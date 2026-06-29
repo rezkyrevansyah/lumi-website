@@ -11,7 +11,7 @@ function BrandItem({ brand }: { brand: BrandEntry }) {
     <div className="flex items-center mx-10 gap-3 group cursor-default">
       <span className="w-2 h-2 rounded-full bg-[#2DD9A4] opacity-40 shrink-0" />
       {logoUrl ? (
-        <div className="relative h-10 w-36 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="relative h-14 w-44 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
           <Image
             src={logoUrl}
             alt={name}
