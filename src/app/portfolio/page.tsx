@@ -5,12 +5,20 @@ import Footer from "@/components/sections/Footer";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import FloatingWA from "@/components/FloatingWA";
 import PortfolioPage from "@/components/portfolio/PortfolioPage";
+import type { Metadata } from "next";
 import { type PortfolioItem } from "@/lib/data";
 
-export const metadata = {
-  title: "Portfolio — Lumi Beta Works",
+export const metadata: Metadata = {
+  title: "Portfolio",
   description:
     "Browse all projects built by Lumi Beta Works — web, mobile, QA, and consulting across industries.",
+  alternates: { canonical: "https://lumibetaworks.id/portfolio" },
+  openGraph: {
+    title: "Portfolio — Lumi Beta Works",
+    description:
+      "Browse all projects built by Lumi Beta Works — web, mobile, QA, and consulting across industries.",
+    url: "https://lumibetaworks.id/portfolio",
+  },
 };
 
 export default async function Page() {

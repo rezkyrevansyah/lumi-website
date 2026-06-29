@@ -12,10 +12,18 @@ import PositiveVibes from "@/components/about/PositiveVibes";
 import AboutCTA from "@/components/about/AboutCTA";
 import CompanyProfile from "@/components/about/CompanyProfile";
 
-export const metadata = {
-  title: "About — Lumi Beta Works",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
   description:
     "We bring long-lasting impacts into reality. Learn about Lumi Beta Works — our engineering framework, values, and the clients we've served.",
+  alternates: { canonical: "https://lumibetaworks.id/about" },
+  openGraph: {
+    title: "About Lumi Beta Works",
+    description: "Learn about our engineering framework, values, and the clients we've served.",
+    url: "https://lumibetaworks.id/about",
+  },
 };
 
 export default function AboutPage() {

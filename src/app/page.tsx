@@ -1,5 +1,14 @@
+import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
+
+export const metadata: Metadata = {
+  title: "Lumi Beta Works — Jasa Web, App, QA & Consulting",
+  description:
+    "Lumi Beta Works — Jasa pembuatan web, app, QA testing, dan tech consulting untuk UMKM hingga enterprise. Affordable, trustworthy, max effort.",
+  alternates: { canonical: "https://lumibetaworks.id" },
+  openGraph: { url: "https://lumibetaworks.id" },
+};
 import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
 import TrustedBy from "@/components/sections/TrustedBy";
