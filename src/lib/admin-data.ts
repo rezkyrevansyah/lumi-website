@@ -13,7 +13,7 @@ import {
 
 // ── Types ──────────────────────────────────────────────────────────────
 
-export type AdminPortfolioItem = PortfolioItem & { id: string };
+export type AdminPortfolioItem = PortfolioItem & { id: string; imageUrl?: string };
 export type AdminTestimonial = Testimonial & { id: string };
 export type AdminService = Service & { id: string };
 
