@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { type AdminStat } from "@/lib/admin-data";
+import { createClient } from "@/utils/supabase/client";
 
 interface StatsEditorProps {
   initialStats: AdminStat[];
@@ -13,13 +14,22 @@ interface StatsEditorProps {
 export default function StatsEditor({ initialStats }: StatsEditorProps) {
   const [stats, setStats] = useState(initialStats);
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
 
   function update(id: string, key: "value" | "label", val: string) {
     setStats((prev) => prev.map((s) => (s.id === id ? { ...s, [key]: val } : s)));
     setSaved(false);
   }
 
-  function handleSave() {
+  async function handleSave() {
+    setSaving(true);
+    const supabase = createClient();
+    await Promise.all(
+      stats.map((s) =>
+        supabase.from("stats").update({ value: s.value, label: s.label }).eq("id", s.id)
+      )
+    );
+    setSaving(false);
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   }
@@ -64,9 +74,13 @@ export default function StatsEditor({ initialStats }: StatsEditorProps) {
         ))}
       </div>
 
-      <Button onClick={handleSave} className={saved ? "bg-green-500 hover:bg-green-600 text-white gap-2" : "btn-primary gap-2"}
-        style={{ fontFamily: "var(--font-opensans)" }}>
-        {saved ? <><Check size={14} /> Saved!</> : "Save Changes"}
+      <Button
+        onClick={handleSave}
+        disabled={saving}
+        className={saved ? "bg-green-500 hover:bg-green-600 text-white gap-2" : "btn-primary gap-2"}
+        style={{ fontFamily: "var(--font-opensans)" }}
+      >
+        {saved ? <><Check size={14} /> Saved!</> : saving ? "Saving…" : "Save Changes"}
       </Button>
     </div>
   );

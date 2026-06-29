@@ -8,10 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-// Mock credentials — replace with real auth later
-const ADMIN_EMAIL = "admin@lumibetaworks.id";
-const ADMIN_PASSWORD = "lumi2025";
+import { createClient } from "@/utils/supabase/client";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -26,15 +23,14 @@ export default function AdminLoginPage() {
     setError("");
     setLoading(true);
 
-    // Simulate small delay
-    await new Promise((r) => setTimeout(r, 600));
+    const supabase = createClient();
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
 
-    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-      sessionStorage.setItem("admin_auth", "1");
-      router.replace("/admin");
-    } else {
+    if (error) {
       setError("Email or password is incorrect.");
       setLoading(false);
+    } else {
+      router.replace("/admin");
     }
   }
 

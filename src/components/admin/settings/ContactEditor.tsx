@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Check, Mail, Phone } from "lucide-react";
 import { type AdminContact } from "@/lib/admin-data";
+import { createClient } from "@/utils/supabase/client";
 
 interface ContactEditorProps {
   initialContact: AdminContact;
@@ -14,8 +15,15 @@ interface ContactEditorProps {
 export default function ContactEditor({ initialContact }: ContactEditorProps) {
   const [contact, setContact] = useState(initialContact);
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
 
-  function handleSave() {
+  async function handleSave() {
+    setSaving(true);
+    const supabase = createClient();
+    await supabase
+      .from("site_settings")
+      .upsert({ key: "contact", value: contact });
+    setSaving(false);
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   }
@@ -59,9 +67,13 @@ export default function ContactEditor({ initialContact }: ContactEditorProps) {
         </div>
       </div>
 
-      <Button onClick={handleSave} className={saved ? "bg-green-500 hover:bg-green-600 text-white gap-2" : "btn-primary gap-2"}
-        style={{ fontFamily: "var(--font-opensans)" }}>
-        {saved ? <><Check size={14} /> Saved!</> : "Save Changes"}
+      <Button
+        onClick={handleSave}
+        disabled={saving}
+        className={saved ? "bg-green-500 hover:bg-green-600 text-white gap-2" : "btn-primary gap-2"}
+        style={{ fontFamily: "var(--font-opensans)" }}
+      >
+        {saved ? <><Check size={14} /> Saved!</> : saving ? "Saving…" : "Save Changes"}
       </Button>
     </div>
   );

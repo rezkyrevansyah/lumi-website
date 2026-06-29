@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { X, Plus, Check, Upload, ImageIcon, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { type AdminBrand } from "@/lib/admin-data";
+import { createClient } from "@/utils/supabase/client";
 
 interface TrustedBrandsEditorProps {
   initialBrands: AdminBrand[];
@@ -18,7 +19,7 @@ const MAX_WIDTH = 400;
 const MAX_HEIGHT = 200;
 const MAX_BYTES = 500 * 1024; // 500 KB
 
-function validateImage(file: File): Promise<{ ok: boolean; error?: string; dataUrl?: string }> {
+function validateImage(file: File): Promise<{ ok: boolean; error?: string }> {
   return new Promise((resolve) => {
     if (file.size > MAX_BYTES) {
       return resolve({ ok: false, error: `File too large. Max size is 500 KB (current: ${(file.size / 1024).toFixed(0)} KB).` });
@@ -35,7 +36,7 @@ function validateImage(file: File): Promise<{ ok: boolean; error?: string; dataU
             error: `Image too large. Max ${MAX_WIDTH}×${MAX_HEIGHT}px (yours: ${img.width}×${img.height}px).`,
           });
         } else {
-          resolve({ ok: true, dataUrl });
+          resolve({ ok: true });
         }
       };
       img.onerror = () => resolve({ ok: false, error: "Invalid image file." });
@@ -53,11 +54,12 @@ function BrandChip({
 }: {
   brand: AdminBrand;
   onRemove: () => void;
-  onLogoUpload: (dataUrl: string) => void;
+  onLogoUpload: (url: string) => void;
   onRemoveLogo: () => void;
 }) {
   const fileRef = useRef<HTMLInputElement>(null);
   const [uploadError, setUploadError] = useState("");
+  const [uploading, setUploading] = useState(false);
 
   async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -66,10 +68,28 @@ function BrandChip({
     const result = await validateImage(file);
     if (!result.ok) {
       setUploadError(result.error ?? "Invalid file.");
-    } else {
-      onLogoUpload(result.dataUrl!);
+      e.target.value = "";
+      return;
     }
-    // reset input so same file can be re-selected
+
+    setUploading(true);
+    const supabase = createClient();
+    const ext = file.name.split(".").pop() ?? "png";
+    const path = `brands/${Date.now()}.${ext}`;
+    const { error: uploadErr } = await supabase.storage
+      .from("lumi-storage")
+      .upload(path, file, { upsert: true });
+
+    if (uploadErr) {
+      setUploadError("Upload gagal. Coba lagi.");
+    } else {
+      const { data: { publicUrl } } = supabase.storage
+        .from("lumi-storage")
+        .getPublicUrl(path);
+      onLogoUpload(publicUrl);
+    }
+
+    setUploading(false);
     e.target.value = "";
   }
 
@@ -110,10 +130,15 @@ function BrandChip({
         <button
           type="button"
           onClick={() => fileRef.current?.click()}
-          className="flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] text-muted-foreground hover:bg-muted hover:text-foreground transition-colors border border-border"
+          disabled={uploading}
+          className="flex items-center gap-1 px-2 py-1 rounded-lg text-[11px] text-muted-foreground hover:bg-muted hover:text-foreground transition-colors border border-border disabled:opacity-50"
           style={{ fontFamily: "var(--font-opensans)" }}
         >
-          <Upload size={11} />
+          {uploading ? (
+            <span className="w-3 h-3 rounded-full border border-muted-foreground/40 border-t-muted-foreground animate-spin" />
+          ) : (
+            <Upload size={11} />
+          )}
           {brand.logoUrl ? "Replace logo" : "Upload logo"}
         </button>
         {brand.logoUrl && (
@@ -150,32 +175,59 @@ export default function TrustedBrandsEditor({ initialBrands }: TrustedBrandsEdit
   const [brands, setBrands] = useState(initialBrands);
   const [input, setInput] = useState("");
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
 
-  function addBrand() {
+  async function addBrand() {
     const val = input.trim();
-    if (val && !brands.find((b) => b.name.toLowerCase() === val.toLowerCase())) {
-      setBrands((prev) => [...prev, { id: String(Date.now()), name: val }]);
-      setSaved(false);
+    if (!val || brands.find((b) => b.name.toLowerCase() === val.toLowerCase())) {
+      setInput("");
+      return;
+    }
+
+    const supabase = createClient();
+    const { data, error } = await supabase
+      .from("trusted_brands")
+      .insert({ name: val, sort_order: brands.length + 1 })
+      .select()
+      .single();
+
+    if (!error && data) {
+      setBrands((prev) => [...prev, { id: data.id, name: data.name, logoUrl: data.logo_url ?? undefined }]);
     }
     setInput("");
   }
 
-  function removeBrand(id: string) {
+  async function removeBrand(id: string) {
+    const supabase = createClient();
+    await supabase.from("trusted_brands").delete().eq("id", id);
     setBrands((prev) => prev.filter((b) => b.id !== id));
     setSaved(false);
   }
 
-  function setLogo(id: string, logoUrl: string) {
+  async function setLogo(id: string, logoUrl: string) {
+    const supabase = createClient();
+    await supabase.from("trusted_brands").update({ logo_url: logoUrl }).eq("id", id);
     setBrands((prev) => prev.map((b) => (b.id === id ? { ...b, logoUrl } : b)));
     setSaved(false);
   }
 
-  function removeLogo(id: string) {
+  async function removeLogo(id: string) {
+    const supabase = createClient();
+    await supabase.from("trusted_brands").update({ logo_url: null }).eq("id", id);
     setBrands((prev) => prev.map((b) => (b.id === id ? { ...b, logoUrl: undefined } : b)));
     setSaved(false);
   }
 
-  function handleSave() {
+  async function handleSave() {
+    setSaving(true);
+    // Re-write sort_order for all brands in current order
+    const supabase = createClient();
+    await Promise.all(
+      brands.map((b, i) =>
+        supabase.from("trusted_brands").update({ sort_order: i + 1 }).eq("id", b.id)
+      )
+    );
+    setSaving(false);
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   }
@@ -215,7 +267,7 @@ export default function TrustedBrandsEditor({ initialBrands }: TrustedBrandsEdit
               key={brand.id}
               brand={brand}
               onRemove={() => removeBrand(brand.id)}
-              onLogoUpload={(dataUrl) => setLogo(brand.id, dataUrl)}
+              onLogoUpload={(url) => setLogo(brand.id, url)}
               onRemoveLogo={() => removeLogo(brand.id)}
             />
           ))}
@@ -243,13 +295,14 @@ export default function TrustedBrandsEditor({ initialBrands }: TrustedBrandsEdit
 
       <Button
         onClick={handleSave}
+        disabled={saving}
         className={cn(
           "gap-2",
           saved ? "bg-green-500 hover:bg-green-600 text-white" : "btn-primary"
         )}
         style={{ fontFamily: "var(--font-opensans)" }}
       >
-        {saved ? <><Check size={14} /> Saved!</> : "Save Changes"}
+        {saved ? <><Check size={14} /> Saved!</> : saving ? "Saving…" : "Save Changes"}
       </Button>
     </div>
   );

@@ -1,7 +1,24 @@
 import Image from "next/image";
 import { FOOTER_SERVICE_LINKS } from "@/lib/data";
+import { cookies } from "next/headers";
+import { createClient } from "@/utils/supabase/server";
 
-export default function Footer() {
+const DEFAULT_EMAIL = "hello@lumibetaworks.id";
+const DEFAULT_WHATSAPP = "62XXXXXXXXXX";
+
+export default async function Footer() {
+  const cookieStore = await cookies();
+  const supabase = createClient(cookieStore);
+  const { data } = await supabase
+    .from("site_settings")
+    .select("value")
+    .eq("key", "contact")
+    .single();
+
+  const contact = data?.value as { email?: string; whatsapp?: string } | null;
+  const email = contact?.email ?? DEFAULT_EMAIL;
+  const whatsapp = contact?.whatsapp ?? DEFAULT_WHATSAPP;
+
   return (
     <footer className="bg-[#3D3E4A] text-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-14 md:pt-16 pb-8">
@@ -26,7 +43,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3">
               <a
-                href="mailto:hello@lumibetaworks.id"
+                href={`mailto:${email}`}
                 className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#2DD9A4] transition-colors flex items-center justify-center"
                 aria-label="Email"
               >
@@ -36,7 +53,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://wa.me/62XXXXXXXXXX"
+                href={`https://wa.me/${whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#2DD9A4] transition-colors flex items-center justify-center"
@@ -83,7 +100,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="mailto:hello@lumibetaworks.id"
+                  href={`mailto:${email}`}
                   className="text-white/50 hover:text-[#2DD9A4] text-sm transition-colors flex items-center gap-2"
                   style={{ fontFamily: "var(--font-opensans)" }}
                 >
@@ -91,12 +108,12 @@ export default function Footer() {
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                     <polyline points="22,6 12,13 2,6" />
                   </svg>
-                  hello@lumibetaworks.id
+                  {email}
                 </a>
               </li>
               <li>
                 <a
-                  href="https://wa.me/62XXXXXXXXXX"
+                  href={`https://wa.me/${whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/50 hover:text-[#2DD9A4] text-sm transition-colors flex items-center gap-2"

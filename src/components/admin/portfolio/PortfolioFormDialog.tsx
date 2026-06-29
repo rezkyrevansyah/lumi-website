@@ -12,12 +12,14 @@ import { Label } from "@/components/ui/label";
 import { Upload, X, AlertCircle, ImageIcon } from "lucide-react";
 import TagInput from "@/components/admin/shared/TagInput";
 import { type AdminPortfolioItem } from "@/lib/admin-data";
+import { createClient } from "@/utils/supabase/client";
 
 interface PortfolioFormDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   item: AdminPortfolioItem | null;
   onSave: (data: AdminPortfolioItem) => void;
+  saving?: boolean;
 }
 
 const BLANK: Omit<AdminPortfolioItem, "id"> = {
@@ -36,7 +38,7 @@ const BLANK: Omit<AdminPortfolioItem, "id"> = {
 const IMG_SIZE = 1080;
 const MAX_BYTES = 2 * 1024 * 1024; // 2 MB
 
-function validatePortfolioImage(file: File): Promise<{ ok: boolean; error?: string; dataUrl?: string }> {
+function validatePortfolioImage(file: File): Promise<{ ok: boolean; error?: string }> {
   return new Promise((resolve) => {
     if (file.size > MAX_BYTES) {
       return resolve({
@@ -55,7 +57,7 @@ function validatePortfolioImage(file: File): Promise<{ ok: boolean; error?: stri
             error: `Ukuran harus tepat ${IMG_SIZE}×${IMG_SIZE}px (file kamu: ${img.width}×${img.height}px).`,
           });
         } else {
-          resolve({ ok: true, dataUrl });
+          resolve({ ok: true });
         }
       };
       img.onerror = () => resolve({ ok: false, error: "File gambar tidak valid." });
@@ -65,15 +67,17 @@ function validatePortfolioImage(file: File): Promise<{ ok: boolean; error?: stri
   });
 }
 
-export default function PortfolioFormDialog({ open, onOpenChange, item, onSave }: PortfolioFormDialogProps) {
+export default function PortfolioFormDialog({ open, onOpenChange, item, onSave, saving }: PortfolioFormDialogProps) {
   const [form, setForm] = useState({ ...BLANK });
   const [imgError, setImgError] = useState("");
   const [imgLoading, setImgLoading] = useState(false);
+  const [pendingFile, setPendingFile] = useState<File | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setForm(item ? { ...item } : { ...BLANK });
     setImgError("");
+    setPendingFile(null);
   }, [item, open]);
 
   function set(key: string, value: unknown) {
@@ -99,14 +103,44 @@ export default function PortfolioFormDialog({ open, onOpenChange, item, onSave }
     if (!result.ok) {
       setImgError(result.error ?? "File tidak valid.");
     } else {
-      set("imageUrl", result.dataUrl);
+      // Show preview using object URL, store file for upload on save
+      const previewUrl = URL.createObjectURL(file);
+      set("imageUrl", previewUrl);
+      setPendingFile(file);
     }
     e.target.value = "";
   }
 
-  function handleSave() {
+  async function handleSave() {
     if (!form.title.trim()) return;
-    onSave({ ...form, id: item?.id ?? String(Date.now()) });
+
+    let finalImageUrl = form.imageUrl;
+
+    // Upload pending image to Supabase Storage
+    if (pendingFile) {
+      const supabase = createClient();
+      const ext = pendingFile.name.split(".").pop() ?? "jpg";
+      const path = `portfolio/${Date.now()}.${ext}`;
+      const { error: uploadError } = await supabase.storage
+        .from("lumi-storage")
+        .upload(path, pendingFile, { upsert: true });
+
+      if (uploadError) {
+        setImgError("Upload gagal. Coba lagi.");
+        return;
+      }
+
+      const { data: { publicUrl } } = supabase.storage
+        .from("lumi-storage")
+        .getPublicUrl(path);
+      finalImageUrl = publicUrl;
+    }
+
+    onSave({
+      ...form,
+      imageUrl: finalImageUrl,
+      id: item?.id ?? String(Date.now()),
+    });
     onOpenChange(false);
   }
 
@@ -135,7 +169,7 @@ export default function PortfolioFormDialog({ open, onOpenChange, item, onSave }
                 />
                 <button
                   type="button"
-                  onClick={() => { set("imageUrl", undefined); setImgError(""); }}
+                  onClick={() => { set("imageUrl", undefined); setPendingFile(null); setImgError(""); }}
                   className="absolute top-2 right-2 w-7 h-7 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center text-white transition-colors"
                 >
                   <X size={13} />
@@ -275,8 +309,18 @@ export default function PortfolioFormDialog({ open, onOpenChange, item, onSave }
           <Button variant="outline" onClick={() => onOpenChange(false)} style={{ fontFamily: "var(--font-opensans)" }}>
             Cancel
           </Button>
-          <Button onClick={handleSave} className="btn-primary" style={{ fontFamily: "var(--font-opensans)" }}>
-            {item ? "Save Changes" : "Add Item"}
+          <Button
+            onClick={handleSave}
+            disabled={saving || imgLoading}
+            className="btn-primary"
+            style={{ fontFamily: "var(--font-opensans)" }}
+          >
+            {saving ? (
+              <span className="flex items-center gap-2">
+                <span className="w-3.5 h-3.5 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+                Saving…
+              </span>
+            ) : item ? "Save Changes" : "Add Item"}
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PORTFOLIO } from "@/lib/data";
+import { type PortfolioItem } from "@/lib/data";
 import { PortfolioCard } from "./PortfolioCard";
 
 type Platform = "all" | "web" | "android" | "ios";
@@ -16,18 +16,18 @@ const PLATFORM_TABS: { value: Platform; label: string }[] = [
 
 const PER_PAGE = 6;
 
-export default function PortfolioPage() {
+export default function PortfolioPage({ projects }: { projects: (PortfolioItem & { imageUrl?: string })[] }) {
   const [platform, setPlatform] = useState<Platform>("all");
   const [category, setCategory] = useState("all");
   const [page, setPage] = useState(1);
 
   const categories = useMemo(() => {
-    const raw = PORTFOLIO.map((p) => p.category.split(" • ")[0].trim());
+    const raw = projects.map((p) => p.category.split(" • ")[0].trim());
     return ["all", ...Array.from(new Set(raw))];
-  }, []);
+  }, [projects]);
 
   const filtered = useMemo(() => {
-    return PORTFOLIO.filter((p) => {
+    return projects.filter((p) => {
       const matchPlatform = platform === "all" || p.platforms.includes(platform);
       const matchCategory =
         category === "all" || p.category.split(" • ")[0].trim() === category;

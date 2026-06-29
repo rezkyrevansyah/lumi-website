@@ -1,35 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 import AdminSidebar from "./AdminSidebar";
 import AdminHeader from "./AdminHeader";
 import { cn } from "@/lib/utils";
 
 export default function AdminShell({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [checked, setChecked] = useState(false);
-  const router = useRouter();
   const pathname = usePathname();
 
-  useEffect(() => {
-    if (pathname === "/admin/login") {
-      setChecked(true);
-      return;
-    }
-    const auth = sessionStorage.getItem("admin_auth");
-    if (!auth) {
-      router.replace("/admin/login");
-    } else {
-      setChecked(true);
-    }
-  }, [pathname, router]);
-
-  // Login page renders without the shell
+  // Login page renders without the shell (middleware handles auth protection)
   if (pathname === "/admin/login") return <>{children}</>;
-
-  // Wait for auth check to avoid flash
-  if (!checked) return null;
 
   return (
     <div className="flex h-screen overflow-hidden bg-[#F8F9FB]">

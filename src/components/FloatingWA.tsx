@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function FloatingWA() {
+export default function FloatingWA({ whatsapp = "62XXXXXXXXXX" }: { whatsapp?: string }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -37,7 +37,7 @@ export default function FloatingWA() {
         <span className="absolute inset-0 rounded-full animate-ping opacity-30" style={{ background: "#25D366" }} />
 
         <motion.a
-          href="https://wa.me/62XXXXXXXXXX?text=Hi+Lumi+Beta+Works!+I'm+interested+in+discussing+a+project."
+          href={`https://wa.me/${whatsapp}?text=Hi+Lumi+Beta+Works!+I'm+interested+in+discussing+a+project.`}
           target="_blank"
           rel="noopener noreferrer"
           whileHover={{ scale: 1.1 }}

@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
+import { createClient } from "@/utils/supabase/client";
 
 const NAV_CONTENT = [
   { href: "/admin/portfolio",    label: "Portfolio",    icon: FolderKanban },
@@ -36,8 +37,9 @@ export default function AdminSidebar({ onClose }: AdminSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
 
-  function handleLogout() {
-    sessionStorage.removeItem("admin_auth");
+  async function handleLogout() {
+    const supabase = createClient();
+    await supabase.auth.signOut();
     router.replace("/admin/login");
   }
 

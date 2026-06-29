@@ -9,6 +9,7 @@ import ConfirmDialog from "@/components/admin/shared/ConfirmDialog";
 import TestimonialFormDialog from "./TestimonialFormDialog";
 import { MessageSquareQuote } from "lucide-react";
 import { type AdminTestimonial } from "@/lib/admin-data";
+import { createClient } from "@/utils/supabase/client";
 
 interface TestimonialListProps {
   initialItems: AdminTestimonial[];
@@ -44,15 +45,40 @@ export default function TestimonialList({ initialItems }: TestimonialListProps) 
     setDialogOpen(true);
   }
 
-  function handleSave(data: AdminTestimonial) {
-    setItems((prev) =>
-      prev.find((i) => i.id === data.id)
-        ? prev.map((i) => (i.id === data.id ? data : i))
-        : [...prev, data]
-    );
+  async function handleSave(data: AdminTestimonial) {
+    const supabase = createClient();
+    const isNew = !items.find((i) => i.id === data.id);
+    const payload = {
+      quote: data.quote,
+      name: data.name,
+      role: data.role,
+      rating: data.rating,
+      ...(isNew ? { sort_order: items.length + 1 } : {}),
+    };
+
+    if (isNew) {
+      const { data: inserted, error } = await supabase
+        .from("testimonials")
+        .insert(payload)
+        .select()
+        .single();
+      if (!error && inserted) {
+        setItems((prev) => [...prev, { ...data, id: inserted.id }]);
+      }
+    } else {
+      const { error } = await supabase
+        .from("testimonials")
+        .update(payload)
+        .eq("id", data.id);
+      if (!error) {
+        setItems((prev) => prev.map((i) => (i.id === data.id ? data : i)));
+      }
+    }
   }
 
-  function handleDelete(id: string) {
+  async function handleDelete(id: string) {
+    const supabase = createClient();
+    await supabase.from("testimonials").delete().eq("id", id);
     setItems((prev) => prev.filter((i) => i.id !== id));
   }
 

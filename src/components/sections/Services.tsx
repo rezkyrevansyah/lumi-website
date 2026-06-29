@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { SERVICES } from "@/lib/data";
+import { type Service } from "@/lib/data";
 
 function ServiceIcon({ iconType, iconPath, size = 30 }: { iconType: string; iconPath: string; size?: number }) {
   const props = { width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8 as number };
@@ -31,7 +31,7 @@ function ServiceIcon({ iconType, iconPath, size = 30 }: { iconType: string; icon
 
 const SPRING = { type: "spring", stiffness: 300, damping: 36, mass: 1 } as const;
 
-export default function Services() {
+export default function Services({ services }: { services: Service[] }) {
   const [active, setActive] = useState(0);
 
   return (
@@ -64,7 +64,7 @@ export default function Services() {
 
         {/* Mobile: stacked cards */}
         <div className="flex flex-col gap-3 md:hidden">
-          {SERVICES.map((service, i) => {
+          {services.map((service, i) => {
             const isActive = active === i;
             return (
               <div
@@ -128,7 +128,7 @@ export default function Services() {
           transition={{ duration: 0.55, delay: 0.15 }}
           className="hidden md:flex gap-3 h-[280px]"
         >
-          {SERVICES.map((service, i) => {
+          {services.map((service, i) => {
             const isActive = active === i;
             return (
               <motion.div

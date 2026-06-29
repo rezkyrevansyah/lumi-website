@@ -1,22 +1,35 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { cookies } from "next/headers";
+import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
-import { PORTFOLIO } from "@/lib/data";
 import { PortfolioCard } from "@/components/portfolio/PortfolioCard";
+import { type PortfolioItem } from "@/lib/data";
 
-export default function Portfolio() {
+export default async function Portfolio() {
+  const cookieStore = await cookies();
+  const supabase = createClient(cookieStore);
+  const { data } = await supabase
+    .from("portfolio_items")
+    .select("*")
+    .order("sort_order")
+    .limit(3);
+
+  const projects: (PortfolioItem & { imageUrl?: string })[] = (data ?? []).map((row) => ({
+    title: row.title,
+    client: row.client,
+    category: row.category,
+    description: row.description,
+    tags: row.tags ?? [],
+    platforms: row.platforms ?? [],
+    color: row.color,
+    bg: row.bg,
+    imageUrl: row.image_url ?? undefined,
+  }));
+
   return (
     <section id="portfolio" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
-        >
+        <div className="text-center mb-14">
           <p className="section-tag mb-3">Our Work</p>
           <h2
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3D3E4A] mb-5"
@@ -31,23 +44,17 @@ export default function Portfolio() {
             A snapshot of what we&apos;ve built — across industries, platforms, and
             problem spaces.
           </p>
-        </motion.div>
+        </div>
 
         {/* Grid — show first 3 on home */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-          {PORTFOLIO.slice(0, 3).map((proj, i) => (
+          {projects.map((proj, i) => (
             <PortfolioCard key={proj.title} proj={proj} index={i} />
           ))}
         </div>
 
         {/* View all CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-center"
-        >
+        <div className="text-center">
           <Link
             href="/portfolio"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-base font-semibold border-2 border-[#2DD9A4] text-[#2DD9A4] hover:bg-[#2DD9A4] hover:text-white transition-all duration-200 group"
@@ -59,7 +66,7 @@ export default function Portfolio() {
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

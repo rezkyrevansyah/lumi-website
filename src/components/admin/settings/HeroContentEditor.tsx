@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Trash2, Plus, Check } from "lucide-react";
 import { type AdminHeroBadge, type AdminActiveProject } from "@/lib/admin-data";
+import { createClient } from "@/utils/supabase/client";
 
 interface HeroContentEditorProps {
   initialBadges: AdminHeroBadge[];
@@ -15,6 +16,7 @@ export default function HeroContentEditor({ initialBadges, initialProjects }: He
   const [badges, setBadges] = useState(initialBadges);
   const [projects, setProjects] = useState(initialProjects);
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
 
   function updateBadge(id: string, key: "icon" | "label", val: string) {
     setBadges((prev) => prev.map((b) => (b.id === id ? { ...b, [key]: val } : b)));
@@ -36,7 +38,18 @@ export default function HeroContentEditor({ initialBadges, initialProjects }: He
     setSaved(false);
   }
 
-  function handleSave() {
+  async function handleSave() {
+    setSaving(true);
+    const supabase = createClient();
+    const badgesPayload = badges.map(({ icon, label }) => ({ icon, label }));
+    const projectsPayload = projects.map(({ name, type, progress, color }) => ({ name, type, progress, color }));
+
+    await Promise.all([
+      supabase.from("site_settings").upsert({ key: "hero_badges", value: badgesPayload }),
+      supabase.from("site_settings").upsert({ key: "active_projects", value: projectsPayload }),
+    ]);
+
+    setSaving(false);
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   }
@@ -118,9 +131,13 @@ export default function HeroContentEditor({ initialBadges, initialProjects }: He
         </div>
       </div>
 
-      <Button onClick={handleSave} className={saved ? "bg-green-500 hover:bg-green-600 text-white gap-2" : "btn-primary gap-2"}
-        style={{ fontFamily: "var(--font-opensans)" }}>
-        {saved ? <><Check size={14} /> Saved!</> : "Save Changes"}
+      <Button
+        onClick={handleSave}
+        disabled={saving}
+        className={saved ? "bg-green-500 hover:bg-green-600 text-white gap-2" : "btn-primary gap-2"}
+        style={{ fontFamily: "var(--font-opensans)" }}
+      >
+        {saved ? <><Check size={14} /> Saved!</> : saving ? "Saving…" : "Save Changes"}
       </Button>
     </div>
   );

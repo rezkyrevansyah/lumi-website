@@ -13,6 +13,7 @@ import EmptyState from "@/components/admin/shared/EmptyState";
 import PageHeader from "@/components/admin/shared/PageHeader";
 import { FolderKanban } from "lucide-react";
 import { type AdminPortfolioItem } from "@/lib/admin-data";
+import { createClient } from "@/utils/supabase/client";
 
 interface PortfolioTableProps {
   initialItems: AdminPortfolioItem[];
@@ -28,6 +29,7 @@ export default function PortfolioTable({ initialItems }: PortfolioTableProps) {
   const [editItem, setEditItem] = useState<AdminPortfolioItem | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
 
   function handleEdit(item: AdminPortfolioItem) {
     setEditItem(item);
@@ -39,15 +41,52 @@ export default function PortfolioTable({ initialItems }: PortfolioTableProps) {
     setDialogOpen(true);
   }
 
-  function handleSave(data: AdminPortfolioItem) {
-    setItems((prev) =>
-      prev.find((i) => i.id === data.id)
-        ? prev.map((i) => (i.id === data.id ? data : i))
-        : [...prev, data]
-    );
+  async function handleSave(data: AdminPortfolioItem) {
+    setSaving(true);
+    const supabase = createClient();
+
+    const isNew = !items.find((i) => i.id === data.id);
+    const payload = {
+      title: data.title,
+      client: data.client,
+      category: data.category,
+      description: data.description,
+      tags: data.tags,
+      platforms: data.platforms,
+      color: data.color,
+      bg: data.bg,
+      image_url: data.imageUrl ?? null,
+      ...(isNew ? { sort_order: items.length + 1 } : {}),
+    };
+
+    if (isNew) {
+      const { data: inserted, error } = await supabase
+        .from("portfolio_items")
+        .insert(payload)
+        .select()
+        .single();
+      if (!error && inserted) {
+        setItems((prev) => [
+          ...prev,
+          { ...data, id: inserted.id, imageUrl: inserted.image_url ?? undefined },
+        ]);
+      }
+    } else {
+      const { error } = await supabase
+        .from("portfolio_items")
+        .update(payload)
+        .eq("id", data.id);
+      if (!error) {
+        setItems((prev) => prev.map((i) => (i.id === data.id ? data : i)));
+      }
+    }
+
+    setSaving(false);
   }
 
-  function handleDelete(id: string) {
+  async function handleDelete(id: string) {
+    const supabase = createClient();
+    await supabase.from("portfolio_items").delete().eq("id", id);
     setItems((prev) => prev.filter((i) => i.id !== id));
   }
 
@@ -162,6 +201,7 @@ export default function PortfolioTable({ initialItems }: PortfolioTableProps) {
         onOpenChange={setDialogOpen}
         item={editItem}
         onSave={handleSave}
+        saving={saving}
       />
 
       <ConfirmDialog

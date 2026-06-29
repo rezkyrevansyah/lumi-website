@@ -10,6 +10,7 @@ import TagBadge from "@/components/admin/shared/TagBadge";
 import PageHeader from "@/components/admin/shared/PageHeader";
 import ServiceFormDialog from "./ServiceFormDialog";
 import { type AdminService } from "@/lib/admin-data";
+import { createClient } from "@/utils/supabase/client";
 
 interface ServiceListProps {
   initialItems: AdminService[];
@@ -25,8 +26,22 @@ export default function ServiceList({ initialItems }: ServiceListProps) {
     setDialogOpen(true);
   }
 
-  function handleSave(data: AdminService) {
-    setItems((prev) => prev.map((i) => (i.id === data.id ? data : i)));
+  async function handleSave(data: AdminService) {
+    const supabase = createClient();
+    const { error } = await supabase
+      .from("services")
+      .update({
+        title: data.title,
+        description: data.desc,
+        tags: data.tags,
+        icon_path: data.iconPath,
+        icon_type: data.iconType,
+      })
+      .eq("id", data.id);
+
+    if (!error) {
+      setItems((prev) => prev.map((i) => (i.id === data.id ? data : i)));
+    }
   }
 
   return (

@@ -1,8 +1,11 @@
+import { cookies } from "next/headers";
+import { createClient } from "@/utils/supabase/server";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import FloatingWA from "@/components/FloatingWA";
 import PortfolioPage from "@/components/portfolio/PortfolioPage";
+import { type PortfolioItem, PORTFOLIO } from "@/lib/data";
 
 export const metadata = {
   title: "Portfolio — Lumi Beta Works",
@@ -10,16 +13,42 @@ export const metadata = {
     "Browse all projects built by Lumi Beta Works — web, mobile, QA, and consulting across industries.",
 };
 
-export default function Page() {
+export default async function Page() {
+  const cookieStore = await cookies();
+  const supabase = createClient(cookieStore);
+
+  const [portfolioResult, contactResult] = await Promise.all([
+    supabase.from("portfolio_items").select("*").order("sort_order"),
+    supabase.from("site_settings").select("value").eq("key", "contact").single(),
+  ]);
+
+  const projects: (PortfolioItem & { imageUrl?: string })[] =
+    portfolioResult.data && portfolioResult.data.length > 0
+      ? portfolioResult.data.map((row) => ({
+          title: row.title,
+          client: row.client,
+          category: row.category,
+          description: row.description,
+          tags: row.tags ?? [],
+          platforms: row.platforms ?? [],
+          color: row.color,
+          bg: row.bg,
+          imageUrl: row.image_url ?? undefined,
+        }))
+      : PORTFOLIO;
+
+  const contact = contactResult.data?.value as { email?: string; whatsapp?: string } | null;
+  const whatsapp = contact?.whatsapp ?? "62XXXXXXXXXX";
+
   return (
     <>
       <BackgroundBlobs />
       <Navbar />
       <main>
-        <PortfolioPage />
+        <PortfolioPage projects={projects} />
       </main>
       <Footer />
-      <FloatingWA />
+      <FloatingWA whatsapp={whatsapp} />
     </>
   );
 }
