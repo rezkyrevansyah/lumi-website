@@ -1,12 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { SERVICES } from "@/lib/data";
 
-function ServiceIcon({ iconType, iconPath }: { iconType: string; iconPath: string }) {
+function ServiceIcon({ iconType, iconPath, size = 30 }: { iconType: string; iconPath: string; size?: number }) {
+  const props = { width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8 as number };
   if (iconType === "polylines") {
     return (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <svg {...props}>
         <polyline points="16 18 22 12 16 6" />
         <polyline points="8 6 2 12 8 18" />
       </svg>
@@ -14,27 +16,24 @@ function ServiceIcon({ iconType, iconPath }: { iconType: string; iconPath: strin
   }
   if (iconType === "circle-clock") {
     return (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <svg {...props}>
         <circle cx="12" cy="12" r="10" />
         <path d="M12 8v4l3 3" />
       </svg>
     );
   }
-  if (iconType === "home") {
-    return (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d={iconPath} />
-      </svg>
-    );
-  }
   return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+    <svg {...props}>
       <path d={iconPath} />
     </svg>
   );
 }
 
+const SPRING = { type: "spring", stiffness: 300, damping: 36, mass: 1 } as const;
+
 export default function Services() {
+  const [active, setActive] = useState(0);
+
   return (
     <section id="service" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -48,14 +47,14 @@ export default function Services() {
         >
           <p className="section-tag mb-3">What We Do</p>
           <h2
-            className="text-4xl lg:text-5xl font-bold text-[#3D3E4A] mb-5"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3D3E4A] mb-5"
             style={{ fontFamily: "var(--font-rubik)" }}
           >
             Services Built for
             <span className="gradient-text"> Your Needs</span>
           </h2>
           <p
-            className="text-gray-500 text-lg max-w-xl mx-auto"
+            className="text-gray-500 text-base md:text-lg max-w-xl mx-auto"
             style={{ fontFamily: "var(--font-opensans)" }}
           >
             Whether you&apos;re a UMKM, a startup, or an enterprise — we&apos;ve got a
@@ -63,63 +62,145 @@ export default function Services() {
           </p>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SERVICES.map((service, i) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className={`service-card bg-[#F8F9FB] rounded-2xl p-7 ${
-                i === 3 ? "md:col-span-2 lg:col-span-1" : ""
-              }`}
-            >
-              {/* Icon */}
+        {/* Mobile: stacked cards */}
+        <div className="flex flex-col gap-3 md:hidden">
+          {SERVICES.map((service, i) => {
+            const isActive = active === i;
+            return (
               <div
-                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 text-[#2DD9A4]"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(45,217,164,0.15) 0%, rgba(108,99,255,0.1) 100%)",
-                }}
+                key={service.title}
+                onClick={() => setActive(i)}
+                className={`relative rounded-2xl p-5 cursor-pointer transition-all duration-300
+                  ${isActive
+                    ? "bg-white border-2 border-[#6C63FF] shadow-lg shadow-indigo-100/60"
+                    : "bg-[#F0EFFF] border-2 border-transparent"
+                  }`}
               >
-                <ServiceIcon iconType={service.iconType} iconPath={service.iconPath} />
-              </div>
-
-              <h3
-                className="text-xl font-bold text-[#3D3E4A] mb-3"
-                style={{ fontFamily: "var(--font-rubik)" }}
-              >
-                {service.title}
-              </h3>
-
-              <p
-                className="text-gray-500 text-sm leading-relaxed mb-5"
-                style={{ fontFamily: "var(--font-opensans)" }}
-              >
-                {service.desc}
-              </p>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2">
-                {service.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs font-medium px-3 py-1 rounded-full"
-                    style={{
-                      background: "rgba(45,217,164,0.1)",
-                      color: "#25a880",
-                      fontFamily: "var(--font-opensans)",
-                    }}
+                <div className="flex items-start gap-4">
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: "rgba(108,99,255,0.12)", color: "#6C63FF" }}
                   >
-                    {tag}
-                  </span>
-                ))}
+                    <ServiceIcon iconType={service.iconType} iconPath={service.iconPath} size={24} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-bold text-[#3D3E4A] text-base" style={{ fontFamily: "var(--font-rubik)" }}>
+                      {service.title}
+                    </h3>
+                    <AnimatePresence initial={false}>
+                      {isActive && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.25 }}
+                          className="overflow-hidden"
+                        >
+                          <p className="text-gray-500 text-sm leading-relaxed mt-2 mb-3" style={{ fontFamily: "var(--font-opensans)" }}>
+                            {service.desc}
+                          </p>
+                          <a
+                            href="#contact"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#6C63FF]"
+                            style={{ fontFamily: "var(--font-opensans)" }}
+                          >
+                            Discover More
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                              <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                          </a>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
               </div>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
+
+        {/* Desktop: horizontal accordion */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55, delay: 0.15 }}
+          className="hidden md:flex gap-3 h-[280px]"
+        >
+          {SERVICES.map((service, i) => {
+            const isActive = active === i;
+            return (
+              <motion.div
+                key={service.title}
+                layout
+                onClick={() => setActive(i)}
+                animate={{ flex: isActive ? 3.2 : 1 }}
+                transition={SPRING}
+                className={`relative rounded-2xl p-6 cursor-pointer overflow-hidden flex flex-col
+                  ${isActive
+                    ? "bg-white border-2 border-[#6C63FF] shadow-xl shadow-indigo-100/60"
+                    : "bg-[#F0EFFF] border-2 border-transparent hover:border-[#6C63FF]/20"
+                  }`}
+                style={{ minWidth: 0 }}
+              >
+                {/* Decorative: vertical line + dot */}
+                <div className="absolute top-3 right-5 flex flex-col items-center gap-0">
+                  <div className="w-px h-8" style={{ background: isActive ? "#6C63FF" : "#f97316" }} />
+                  <div className="w-3 h-3 rounded-full mt-0.5" style={{ background: isActive ? "#6C63FF" : "#f97316" }} />
+                </div>
+
+                {/* Icon */}
+                <div
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 flex-shrink-0"
+                  style={{ background: "rgba(108,99,255,0.12)", color: "#6C63FF" }}
+                >
+                  <ServiceIcon iconType={service.iconType} iconPath={service.iconPath} size={30} />
+                </div>
+
+                {/* Title */}
+                <h3
+                  className="font-bold text-[#3D3E4A] leading-snug flex-shrink-0 text-xl"
+                  style={{ fontFamily: "var(--font-rubik)" }}
+                >
+                  {service.title}
+                </h3>
+
+                {/* Expanded content */}
+                <AnimatePresence initial={false}>
+                  {isActive && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 4 }}
+                      transition={{ duration: 0.2, delay: 0.1 }}
+                      className="mt-3 flex flex-col gap-4 flex-1"
+                    >
+                      <p className="text-gray-500 text-sm leading-relaxed" style={{ fontFamily: "var(--font-opensans)" }}>
+                        {service.desc}
+                      </p>
+                      <a
+                        href="#contact"
+                        onClick={(e) => e.stopPropagation()}
+                        className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-[#6C63FF] group w-fit"
+                        style={{ fontFamily: "var(--font-opensans)" }}
+                      >
+                        Discover More
+                        <svg
+                          width="16" height="16" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" strokeWidth="2.2"
+                          className="transition-transform duration-200 group-hover:translate-x-1"
+                        >
+                          <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                      </a>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

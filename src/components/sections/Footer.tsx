@@ -4,17 +4,17 @@ import { FOOTER_SERVICE_LINKS } from "@/lib/data";
 export default function Footer() {
   return (
     <footer className="bg-[#3D3E4A] text-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-8">
-        <div className="grid md:grid-cols-4 gap-10 mb-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-14 md:pt-16 pb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 mb-12">
           {/* Brand column */}
-          <div className="md:col-span-2">
+          <div className="sm:col-span-2">
             <div className="mb-5">
               <Image
                 src="/logo1_white_1920x1080.svg"
                 alt="Lumi Beta Works"
                 width={160}
                 height={54}
-                className="h-12 w-auto object-contain"
+                className="h-10 md:h-12 w-auto object-contain"
               />
             </div>
             <p
@@ -24,21 +24,13 @@ export default function Footer() {
               A passionate solo-developer studio delivering quality digital
               products for businesses of all sizes across Indonesia.
             </p>
-            {/* Social / contact icons */}
             <div className="flex items-center gap-3">
               <a
                 href="mailto:hello@lumibetaworks.id"
                 className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#2DD9A4] transition-colors flex items-center justify-center"
                 aria-label="Email"
               >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
@@ -95,14 +87,7 @@ export default function Footer() {
                   className="text-white/50 hover:text-[#2DD9A4] text-sm transition-colors flex items-center gap-2"
                   style={{ fontFamily: "var(--font-opensans)" }}
                 >
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                     <polyline points="22,6 12,13 2,6" />
                   </svg>
@@ -128,17 +113,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p
-            className="text-white/40 text-xs"
-            style={{ fontFamily: "var(--font-opensans)" }}
-          >
+        <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+          <p className="text-white/40 text-xs" style={{ fontFamily: "var(--font-opensans)" }}>
             © 2025 Lumi Beta Works. All rights reserved.
           </p>
-          <p
-            className="text-white/40 text-xs"
-            style={{ fontFamily: "var(--font-opensans)" }}
-          >
+          <p className="text-white/40 text-xs" style={{ fontFamily: "var(--font-opensans)" }}>
             Crafted with max effort ✦ Jakarta
           </p>
         </div>

@@ -46,7 +46,7 @@ function PortfolioCard({ proj, index }: { proj: PortfolioItem; index: number }) 
     >
       {/* Visual area — colorful top */}
       <div
-        className="relative h-44 overflow-hidden flex items-center justify-center"
+        className="relative aspect-square overflow-hidden flex items-center justify-center"
         style={{
           background: `linear-gradient(135deg, ${proj.bg} 0%, ${proj.color}33 100%)`,
         }}
@@ -178,7 +178,7 @@ export default function Portfolio() {
             className="text-4xl lg:text-5xl font-bold text-[#3D3E4A] mb-5"
             style={{ fontFamily: "var(--font-rubik)" }}
           >
-            <span className="gradient-text">Projects</span> We&apos;re Proud Of
+            <span className="gradient-text">Projects</span>{" "}We&apos;re Proud Of
           </h2>
           <p
             className="text-gray-500 text-lg max-w-xl mx-auto"

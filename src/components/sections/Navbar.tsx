@@ -58,9 +58,16 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <a
             href="#contact"
-            className="hidden md:inline-flex btn-primary items-center gap-2 px-5 py-2 rounded-xl text-sm"
+            className="hidden md:inline-flex btn-primary items-center gap-2 px-5 py-2 rounded-xl text-sm group"
           >
             Let&apos;s Discuss
+            <svg
+              width="15" height="15" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="2.2"
+              className="transition-transform duration-200 group-hover:translate-x-1"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
           </a>
 
           <button
