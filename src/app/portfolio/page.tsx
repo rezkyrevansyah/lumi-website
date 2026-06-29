@@ -5,7 +5,7 @@ import Footer from "@/components/sections/Footer";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import FloatingWA from "@/components/FloatingWA";
 import PortfolioPage from "@/components/portfolio/PortfolioPage";
-import { type PortfolioItem, PORTFOLIO } from "@/lib/data";
+import { type PortfolioItem } from "@/lib/data";
 
 export const metadata = {
   title: "Portfolio — Lumi Beta Works",
@@ -22,20 +22,17 @@ export default async function Page() {
     supabase.from("site_settings").select("value").eq("key", "contact").single(),
   ]);
 
-  const projects: (PortfolioItem & { imageUrl?: string })[] =
-    portfolioResult.data && portfolioResult.data.length > 0
-      ? portfolioResult.data.map((row) => ({
-          title: row.title,
-          client: row.client,
-          category: row.category,
-          description: row.description,
-          tags: row.tags ?? [],
-          platforms: row.platforms ?? [],
-          color: row.color,
-          bg: row.bg,
-          imageUrl: row.image_url ?? undefined,
-        }))
-      : PORTFOLIO;
+  const projects: (PortfolioItem & { imageUrl?: string })[] = (portfolioResult.data ?? []).map((row) => ({
+    title: row.title,
+    client: row.client,
+    category: row.category,
+    description: row.description,
+    tags: row.tags ?? [],
+    platforms: row.platforms ?? [],
+    color: row.color,
+    bg: row.bg,
+    imageUrl: row.image_url ?? undefined,
+  }));
 
   const contact = contactResult.data?.value as { email?: string; whatsapp?: string } | null;
   const whatsapp = contact?.whatsapp ?? "62XXXXXXXXXX";

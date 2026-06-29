@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
-import { TESTIMONIALS, type Testimonial } from "@/lib/data";
+import type { Testimonial } from "@/lib/data";
 import TestimonialsMarquee from "./TestimonialsMarquee";
 
 export default async function Testimonials() {
@@ -8,15 +8,14 @@ export default async function Testimonials() {
   const supabase = createClient(cookieStore);
   const { data } = await supabase.from("testimonials").select("*").order("sort_order");
 
-  const items: Testimonial[] =
-    data && data.length > 0
-      ? data.map((row) => ({
-          quote: row.quote,
-          name: row.name,
-          role: row.role,
-          rating: row.rating,
-        }))
-      : TESTIMONIALS;
+  if (!data || data.length === 0) return null;
+
+  const items: Testimonial[] = data.map((row) => ({
+    quote: row.quote,
+    name: row.name,
+    role: row.role,
+    rating: row.rating,
+  }));
 
   return (
     <section className="py-24 bg-white overflow-hidden">

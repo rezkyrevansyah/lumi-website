@@ -17,9 +17,9 @@ export default async function Home() {
   const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
 
-  const [brandsResult, contactResult] = await Promise.all([
+  const [brandsResult, settingsResult] = await Promise.all([
     supabase.from("trusted_brands").select("*").order("sort_order"),
-    supabase.from("site_settings").select("value").eq("key", "contact").single(),
+    supabase.from("site_settings").select("key, value"),
   ]);
 
   const brands: AdminBrand[] = (brandsResult.data ?? []).map((row) => ({
@@ -28,16 +28,29 @@ export default async function Home() {
     logoUrl: row.logo_url ?? undefined,
   }));
 
-  const contact = contactResult.data?.value as { email?: string; whatsapp?: string } | null;
-  const whatsapp = contact?.whatsapp ?? "62XXXXXXXXXX";
+  const settingsMap: Record<string, unknown> = {};
+  for (const row of settingsResult.data ?? []) {
+    settingsMap[row.key] = row.value;
+  }
+
+  const contact = settingsMap["contact"] as { email?: string; whatsapp?: string } | null;
+  const whatsapp = contact?.whatsapp ?? "";
+
+  const heroBadgesRaw = settingsMap["hero_badges"] as Array<{ icon: string; label: string }> | undefined;
+  const badges = heroBadgesRaw ?? [];
+
+  const activeProjectsRaw = settingsMap["active_projects"] as Array<{
+    name: string; type: string; progress: number; color: string;
+  }> | undefined;
+  const activeProjects = activeProjectsRaw ?? [];
 
   return (
     <>
       <BackgroundBlobs />
       <Navbar />
       <main>
-        <Hero />
-        <TrustedBy brands={brands.length > 0 ? brands : undefined} />
+        <Hero badges={badges} activeProjects={activeProjects} />
+        <TrustedBy brands={brands} />
         <ServicesSection />
         <Portfolio />
         <Stats />

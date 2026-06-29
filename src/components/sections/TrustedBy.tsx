@@ -1,8 +1,6 @@
-import { TRUSTED_BRANDS } from "@/lib/data";
 import type { AdminBrand } from "@/lib/admin-data";
 import Image from "next/image";
 
-// TrustedBy accepts either static strings (from data.ts) or AdminBrand objects with optional logo
 type BrandEntry = string | AdminBrand;
 
 function BrandItem({ brand }: { brand: BrandEntry }) {
@@ -39,7 +37,7 @@ interface TrustedByProps {
 }
 
 export default function TrustedBy({ brands }: TrustedByProps) {
-  const items: BrandEntry[] = brands ?? TRUSTED_BRANDS;
+  const items: BrandEntry[] = brands ?? [];
   const doubled = [...items, ...items];
 
   return (

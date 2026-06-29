@@ -11,9 +11,6 @@ import {
   type AdminHeroBadge,
   type AdminActiveProject,
   type AdminBrand,
-  ADMIN_CONTACT,
-  ADMIN_HERO_BADGES,
-  ADMIN_ACTIVE_PROJECTS,
 } from "@/lib/admin-data";
 
 export default async function AdminSettingsPage() {
@@ -43,19 +40,22 @@ export default async function AdminSettingsPage() {
     settingsMap[row.key] = row.value;
   }
 
-  const contact: AdminContact = (settingsMap["contact"] as AdminContact) ?? ADMIN_CONTACT;
+  const contact: AdminContact = (settingsMap["contact"] as AdminContact) ?? { email: "", whatsapp: "" };
 
   const heroBadgesRaw = settingsMap["hero_badges"] as Array<{ icon: string; label: string }> | undefined;
-  const heroBadges: AdminHeroBadge[] = heroBadgesRaw
-    ? heroBadgesRaw.map((b, i) => ({ id: String(i + 1), icon: b.icon, label: b.label }))
-    : ADMIN_HERO_BADGES;
+  const heroBadges: AdminHeroBadge[] = (heroBadgesRaw ?? []).map((b, i) => ({
+    id: String(i + 1),
+    icon: b.icon,
+    label: b.label,
+  }));
 
   const activeProjectsRaw = settingsMap["active_projects"] as Array<{
     name: string; type: string; progress: number; color: string;
   }> | undefined;
-  const activeProjects: AdminActiveProject[] = activeProjectsRaw
-    ? activeProjectsRaw.map((p, i) => ({ id: String(i + 1), ...p }))
-    : ADMIN_ACTIVE_PROJECTS;
+  const activeProjects: AdminActiveProject[] = (activeProjectsRaw ?? []).map((p, i) => ({
+    id: String(i + 1),
+    ...p,
+  }));
 
   return (
     <div className="max-w-4xl mx-auto">

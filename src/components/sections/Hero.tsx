@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ACTIVE_PROJECTS, HERO_BADGES } from "@/lib/data";
+
+type HeroBadge = { icon: string; label: string };
+type ActiveProject = { name: string; type: string; progress: number; color: string };
+
+interface HeroProps {
+  badges?: HeroBadge[];
+  activeProjects?: ActiveProject[];
+}
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 16 },
@@ -9,7 +16,7 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number], delay },
 });
 
-export default function Hero() {
+export default function Hero({ badges = [], activeProjects = [] }: HeroProps) {
   return (
     <section
       id="home"
@@ -91,7 +98,7 @@ export default function Hero() {
             {...fadeUp(0.4)}
             className="flex items-center gap-4 md:gap-6 pt-1 flex-wrap"
           >
-            {HERO_BADGES.map((badge) => (
+            {badges.map((badge) => (
               <div
                 key={badge.label}
                 className="flex items-center gap-2 text-sm text-gray-400"
@@ -159,7 +166,7 @@ export default function Hero() {
               </div>
 
               <div className="space-y-3">
-                {ACTIVE_PROJECTS.map((proj) => (
+                {activeProjects.map((proj) => (
                   <div key={proj.name} className="bg-[#F8F9FB] rounded-2xl p-3 sm:p-4">
                     <div className="flex items-center justify-between mb-2">
                       <div>

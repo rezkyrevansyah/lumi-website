@@ -1,12 +1,11 @@
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
-import { STATS } from "@/lib/data";
 
 export default async function Stats() {
   const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
-  const { data } = await supabase.from("stats").select("*").order("sort_order");
-  const stats = data && data.length > 0 ? data : STATS;
+  const { data: stats } = await supabase.from("stats").select("*").order("sort_order");
+  if (!stats || stats.length === 0) return null;
 
   return (
     <section className="py-16 bg-white border-y border-gray-100">
