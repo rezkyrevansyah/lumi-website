@@ -80,6 +80,8 @@ export type PortfolioItem = {
   title: string;
   client: string;
   category: string;
+  description: string;
+  tags: string[];
   platforms: ("web" | "android" | "ios")[];
   color: string;
   bg: string;
@@ -90,6 +92,8 @@ export const PORTFOLIO: PortfolioItem[] = [
     title: "Sistem Kepegawaian Online",
     client: "BKD Pemprov",
     category: "Government • HR",
+    description: "Sistem manajemen kepegawaian digital untuk instansi pemerintah, mencakup absensi, mutasi, dan pelaporan terintegrasi.",
+    tags: ["Next.js", "PostgreSQL", "Docker"],
     platforms: ["web"],
     color: "#2DD9A4",
     bg: "#0F1923",
@@ -98,6 +102,8 @@ export const PORTFOLIO: PortfolioItem[] = [
     title: "E-Commerce Marketplace",
     client: "TechMart Indonesia",
     category: "Commerce • Retail",
+    description: "Platform marketplace multi-vendor dengan fitur pembayaran, manajemen inventori, dan analitik penjualan real-time.",
+    tags: ["React", "Node.js", "Flutter", "Midtrans"],
     platforms: ["web", "android", "ios"],
     color: "#6C63FF",
     bg: "#1A1040",
@@ -106,6 +112,8 @@ export const PORTFOLIO: PortfolioItem[] = [
     title: "Fintech Wallet App",
     client: "FinFlow",
     category: "Finance • Lifestyle",
+    description: "Aplikasi dompet digital dengan fitur transfer, top-up, split bill, dan laporan keuangan personal.",
+    tags: ["Flutter", "Node.js", "Firebase"],
     platforms: ["android", "ios"],
     color: "#3BB5C5",
     bg: "#0D1F2D",
@@ -114,6 +122,8 @@ export const PORTFOLIO: PortfolioItem[] = [
     title: "LMS Platform",
     client: "EduBright",
     category: "Education • Technology",
+    description: "Platform pembelajaran online dengan video streaming, kuis interaktif, sertifikasi, dan progress tracking siswa.",
+    tags: ["Next.js", "Supabase", "React Native"],
     platforms: ["web", "android"],
     color: "#F59E0B",
     bg: "#1F1505",
@@ -122,6 +132,8 @@ export const PORTFOLIO: PortfolioItem[] = [
     title: "Inventory & POS System",
     client: "RetailX",
     category: "Retail • Operations",
+    description: "Sistem kasir dan manajemen stok untuk jaringan toko retail, dengan laporan harian dan notifikasi stok menipis.",
+    tags: ["React", "Express", "MySQL"],
     platforms: ["web"],
     color: "#EC4899",
     bg: "#200D18",
@@ -130,6 +142,8 @@ export const PORTFOLIO: PortfolioItem[] = [
     title: "Telemedicine App",
     client: "HealthCo",
     category: "Health • Lifestyle",
+    description: "Aplikasi konsultasi dokter online dengan video call, rekam medis digital, dan sistem antrian virtual.",
+    tags: ["Flutter", "WebRTC", "Django"],
     platforms: ["android", "ios"],
     color: "#10B981",
     bg: "#051F14",

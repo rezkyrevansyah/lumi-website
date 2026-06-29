@@ -7,10 +7,13 @@ import Stats from "@/components/sections/Stats";
 import Testimonials from "@/components/sections/Testimonials";
 import ContactCTA from "@/components/sections/ContactCTA";
 import Footer from "@/components/sections/Footer";
+import BackgroundBlobs from "@/components/BackgroundBlobs";
+import FloatingWA from "@/components/FloatingWA";
 
 export default function Home() {
   return (
     <>
+      <BackgroundBlobs />
       <Navbar />
       <main>
         <Hero />
@@ -22,6 +25,7 @@ export default function Home() {
         <ContactCTA />
       </main>
       <Footer />
+      <FloatingWA />
     </>
   );
 }
