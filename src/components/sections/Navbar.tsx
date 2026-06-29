@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { NAV_LINKS } from "@/lib/data";
@@ -8,6 +9,7 @@ import { NAV_LINKS } from "@/lib/data";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -41,17 +43,28 @@ export default function Navbar() {
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm text-gray-500 hover:text-[#2DD9A4] font-medium transition-colors"
-                style={{ fontFamily: "var(--font-opensans)" }}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive =
+              link.href === "/about"
+                ? pathname === "/about"
+                : pathname === "/" && link.href.startsWith("/#");
+            return (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className={`relative text-sm font-medium transition-colors pb-1 ${
+                    isActive ? "text-[#2DD9A4]" : "text-gray-500 hover:text-[#2DD9A4]"
+                  }`}
+                  style={{ fontFamily: "var(--font-opensans)" }}
+                >
+                  {link.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-[#2DD9A4]" />
+                  )}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         {/* CTA + Hamburger */}
