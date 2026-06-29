@@ -1,26 +1,207 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-opensans);
+  --font-heading: var(--font-rubik);
   --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  /* Lumi brand colors as Tailwind utilities */
+  --color-lumi-emerald: #2dd9a4;
+  --color-lumi-indigo: #6c63ff;
+  --color-lumi-teal: #3bb5c5;
+  --color-lumi-charcoal: #3d3e4a;
+  --color-lumi-off-white: #f8f9fb;
+  --color-lumi-light-gray: #edeef2;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  /* Lumi brand tokens */
+  --lumi-charcoal: #3d3e4a;
+  --lumi-emerald: #2dd9a4;
+  --lumi-indigo: #6c63ff;
+  --lumi-teal: #3bb5c5;
+  --lumi-off-white: #f8f9fb;
+  --lumi-light-gray: #edeef2;
+
+  /* Override shadcn tokens for Lumi theme */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.27 0.012 264);  /* ~#3D3E4A */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.27 0.012 264);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.27 0.012 264);
+  --primary: oklch(0.81 0.14 166);      /* ~#2DD9A4 emerald */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.27 0.012 264);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.81 0.14 166);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.81 0.14 166);
+  --chart-1: oklch(0.81 0.14 166);
+  --chart-2: oklch(0.64 0.18 276);
+  --chart-3: oklch(0.71 0.13 208);
+  --chart-4: oklch(0.77 0.14 85);
+  --chart-5: oklch(0.68 0.17 330);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.27 0.012 264);
+  --sidebar-primary: oklch(0.81 0.14 166);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.27 0.012 264);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.81 0.14 166);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-opensans), "Open Sans", sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-rubik), "Rubik", sans-serif;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── Lumi Utility Classes ─────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--lumi-emerald) 0%, var(--lumi-indigo) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--lumi-emerald) 0%, var(--lumi-teal) 100%);
+  color: #fff;
+  font-family: var(--font-rubik), "Rubik", sans-serif;
+  font-weight: 600;
+  transition: opacity 0.2s, transform 0.2s;
+  box-shadow: 0 4px 15px rgba(45, 217, 164, 0.3);
+}
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  border: 2px solid var(--lumi-charcoal);
+  color: var(--lumi-charcoal);
+  font-family: var(--font-rubik), "Rubik", sans-serif;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.btn-outline:hover {
+  background: var(--lumi-charcoal);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.section-tag {
+  display: inline-block;
+  padding: 0.25rem 0.875rem;
+  border-radius: 9999px;
+  background: rgba(45, 217, 164, 0.12);
+  color: #25a880;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: var(--font-rubik), "Rubik", sans-serif;
+}
+
+.service-card {
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(45, 217, 164, 0.12);
+}
+
+.portfolio-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.portfolio-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Animations ───────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+.animate-marquee-fast {
+  animation: marquee 22s linear infinite;
+}
+
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.animate-marquee-reverse {
+  animation: marquee-reverse 26s linear infinite;
 }
