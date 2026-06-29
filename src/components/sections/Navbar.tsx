@@ -30,7 +30,7 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="flex items-center">
+        <a href="/" className="flex items-center">
           <Image
             src="/logo3_1920x1080.svg"
             alt="Lumi Beta Works"
@@ -45,8 +45,8 @@ export default function Navbar() {
         <ul className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((link) => {
             const isActive =
-              link.href === "/about"
-                ? pathname === "/about"
+              link.href.startsWith("/") && !link.href.startsWith("/#")
+                ? pathname === link.href
                 : pathname === "/" && link.href.startsWith("/#");
             return (
               <li key={link.href}>
