@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Rubik, Open_Sans } from "next/font/google";
+import NavigationProgress from "@/components/NavigationProgress";
+import PageTransition from "@/components/PageTransition";
 import "./globals.css";
 
 const rubik = Rubik({
@@ -47,7 +49,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${rubik.variable} ${openSans.variable}`}>
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        <NavigationProgress />
+        <PageTransition>{children}</PageTransition>
+      </body>
     </html>
   );
 }

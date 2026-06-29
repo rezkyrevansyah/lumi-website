@@ -10,6 +10,7 @@ import AchievementsUnlocked from "@/components/about/AchievementsUnlocked";
 import HappyClients from "@/components/about/HappyClients";
 import PositiveVibes from "@/components/about/PositiveVibes";
 import AboutCTA from "@/components/about/AboutCTA";
+import CompanyProfile from "@/components/about/CompanyProfile";
 
 export const metadata = {
   title: "About — Lumi Beta Works",
@@ -30,6 +31,7 @@ export default function AboutPage() {
         <AchievementsUnlocked />
         <HappyClients />
         <PositiveVibes />
+        <CompanyProfile />
         <AboutCTA />
       </main>
       <Footer />

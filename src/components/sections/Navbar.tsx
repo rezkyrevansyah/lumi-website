@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { NAV_LINKS } from "@/lib/data";
 
 export default function Navbar() {
@@ -30,7 +31,7 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="flex items-center">
+        <Link href="/" className="flex items-center">
           <Image
             src="/logo3_1920x1080.svg"
             alt="Lumi Beta Works"
@@ -39,7 +40,7 @@ export default function Navbar() {
             className="h-11 w-auto object-contain"
             priority
           />
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-8">
@@ -50,7 +51,7 @@ export default function Navbar() {
                 : pathname === "/" && link.href.startsWith("/#");
             return (
               <li key={link.href}>
-                <a
+                <Link
                   href={link.href}
                   className={`relative text-sm font-medium transition-colors pb-1 ${
                     isActive ? "text-[#2DD9A4]" : "text-gray-500 hover:text-[#2DD9A4]"
@@ -61,7 +62,7 @@ export default function Navbar() {
                   {isActive && (
                     <span className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-[#2DD9A4]" />
                   )}
-                </a>
+                </Link>
               </li>
             );
           })}
@@ -69,8 +70,8 @@ export default function Navbar() {
 
         {/* CTA + Hamburger */}
         <div className="flex items-center gap-3">
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             className="hidden md:inline-flex btn-primary items-center gap-2 px-5 py-2 rounded-xl text-sm group"
           >
             Let&apos;s Discuss
@@ -81,7 +82,7 @@ export default function Navbar() {
             >
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
-          </a>
+          </Link>
 
           <button
             className="md:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 transition-colors"
@@ -115,24 +116,24 @@ export default function Navbar() {
             <ul className="flex flex-col gap-1 pt-3">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     className="block py-2.5 text-sm text-gray-600 hover:text-[#2DD9A4] font-medium transition-colors"
                     style={{ fontFamily: "var(--font-opensans)" }}
                     onClick={() => setMenuOpen(false)}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li className="pt-2">
-                <a
-                  href="#contact"
+                <Link
+                  href="/#contact"
                   className="btn-primary inline-flex items-center justify-center w-full px-5 py-2.5 rounded-xl text-sm"
                   onClick={() => setMenuOpen(false)}
                 >
                   Let&apos;s Discuss
-                </a>
+                </Link>
               </li>
             </ul>
           </motion.div>

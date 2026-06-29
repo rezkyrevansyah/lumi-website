@@ -32,18 +32,18 @@ export default function AboutHero() {
       <div className="relative max-w-5xl mx-auto px-6 lg:px-8 text-center">
         {/* Tag */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.45 }}
         >
           <p className="section-tag mb-5">Who We Are</p>
         </motion.div>
 
         {/* Headline */}
         <motion.h1
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.08 }}
+          transition={{ duration: 0.5, delay: 0.07 }}
           className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#3D3E4A] leading-tight mb-6"
           style={{ fontFamily: "var(--font-rubik)" }}
         >
@@ -54,9 +54,9 @@ export default function AboutHero() {
 
         {/* Desc */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.16 }}
+          transition={{ duration: 0.5, delay: 0.13 }}
           className="text-gray-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-8"
           style={{ fontFamily: "var(--font-opensans)" }}
         >
@@ -67,9 +67,9 @@ export default function AboutHero() {
 
         {/* Badges */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.24 }}
+          transition={{ duration: 0.45, delay: 0.19 }}
           className="flex flex-wrap items-center justify-center gap-4 mb-10"
         >
           {BADGES.map((b) => (
@@ -90,7 +90,7 @@ export default function AboutHero() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          transition={{ duration: 0.45, delay: 0.24 }}
         >
           <a
             href="/#contact"
@@ -106,9 +106,9 @@ export default function AboutHero() {
 
         {/* Stats strip */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.42 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-px bg-gray-200 rounded-2xl overflow-hidden border border-gray-200"
         >
           {STATS.map((s) => (

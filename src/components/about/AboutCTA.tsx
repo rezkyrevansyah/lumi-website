@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function AboutCTA() {
   return (
@@ -34,15 +35,15 @@ export default function AboutCTA() {
               Your ideas matter to us. Share what you have in mind, feel free
               to discuss it (for free!) and see what we can do!
             </p>
-            <a
-              href="/about#contact"
+            <Link
+              href="/#contact"
               className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-base"
             >
               Let&apos;s Talk!
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           </motion.div>
 
           {/* Right — decorative illustration */}

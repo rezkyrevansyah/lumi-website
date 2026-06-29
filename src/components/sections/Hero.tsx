@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { ACTIVE_PROJECTS, HERO_BADGES } from "@/lib/data";
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 28 },
+  initial: { opacity: 0, y: 16 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number], delay },
+  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number], delay },
 });
 
 export default function Hero() {
@@ -106,9 +106,9 @@ export default function Hero() {
 
         {/* Right column — floating card */}
         <motion.div
-          initial={{ opacity: 0, x: 32 }}
+          initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
           className="relative flex justify-center lg:justify-end mt-8 lg:mt-0"
         >
           <div className="relative">
