@@ -39,7 +39,7 @@ export default function NavigationProgress() {
       if (intervalRef.current) clearInterval(intervalRef.current);
       setProgress(100);
       setTimeout(() => setVisible(false), 300);
-    }, 500);
+    }, 200);
 
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);

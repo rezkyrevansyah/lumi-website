@@ -8,6 +8,8 @@ import PortfolioPage from "@/components/portfolio/PortfolioPage";
 import type { Metadata } from "next";
 import { type PortfolioItem } from "@/lib/data";
 
+export const revalidate = 300;
+
 export const metadata: Metadata = {
   title: "Portfolio",
   description:

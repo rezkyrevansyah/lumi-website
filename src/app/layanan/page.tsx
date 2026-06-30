@@ -8,6 +8,8 @@ import ContactCTA from "@/components/sections/ContactCTA";
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Layanan",
   description:

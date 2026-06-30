@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 
+export const revalidate = 300;
+
 export const metadata: Metadata = {
   title: "Lumi Beta Works — Jasa Pembuatan Website & Aplikasi Terpercaya",
   description:
