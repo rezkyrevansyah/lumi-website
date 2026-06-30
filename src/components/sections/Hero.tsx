@@ -50,7 +50,7 @@ export default function Hero({ badges = [], activeProjects = [] }: HeroProps) {
 
           <motion.h1
             {...fadeUp(0.1)}
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-[#3D3E4A]"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-[#3D3E4A]"
             style={{ fontFamily: "var(--font-rubik)" }}
           >
             <span className="gradient-text">Website & Aplikasi</span>
