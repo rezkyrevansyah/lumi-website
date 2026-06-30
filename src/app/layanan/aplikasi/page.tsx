@@ -30,21 +30,20 @@ export const metadata: Metadata = {
   },
 };
 
-const TYPES = [
-  { icon: "📱", label: "Aplikasi Bisnis", desc: "CRM, sistem manajemen, absensi, dan tools operasional untuk efisiensi bisnis." },
-  { icon: "💳", label: "Fintech & Dompet Digital", desc: "Aplikasi pembayaran, transfer, pinjaman, dan manajemen keuangan personal." },
-  { icon: "🛒", label: "Marketplace & E-Commerce", desc: "Platform jual-beli multi-vendor dengan fitur lengkap dan pembayaran terintegrasi." },
-  { icon: "🏥", label: "Kesehatan & Telemedicine", desc: "Aplikasi konsultasi dokter, rekam medis, dan manajemen klinik digital." },
-  { icon: "📚", label: "Edukasi & E-Learning", desc: "Platform belajar online dengan video, kuis, sertifikat, dan progress tracking." },
-  { icon: "🚚", label: "Logistik & Pengiriman", desc: "Aplikasi tracking pengiriman, manajemen armada, dan optimasi rute." },
-];
+type ServicePageItem = { icon: string; label: string; description: string };
 
 export default async function JasaAplikasiPage() {
   const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
-  const { data } = await supabase.from("site_settings").select("value").eq("key", "contact").single();
-  const contact = data?.value as { whatsapp?: string } | null;
+
+  const [settingsRes, typesRes] = await Promise.all([
+    supabase.from("site_settings").select("value").eq("key", "contact").single(),
+    supabase.from("service_page_items").select("icon, label, description").eq("page_key", "aplikasi_types").order("sort_order"),
+  ]);
+
+  const contact = settingsRes.data?.value as { whatsapp?: string } | null;
   const whatsapp = contact?.whatsapp ?? "";
+  const types: ServicePageItem[] = typesRes.data ?? [];
 
   return (
     <>
@@ -104,14 +103,14 @@ export default async function JasaAplikasiPage() {
               </h2>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {TYPES.map((t) => (
+              {types.map((t) => (
                 <div key={t.label} className="bg-[#F8F9FB] rounded-2xl p-6 hover:shadow-md transition-shadow duration-300">
                   <div className="text-3xl mb-3">{t.icon}</div>
                   <h3 className="font-bold text-[#3D3E4A] text-lg mb-2" style={{ fontFamily: "var(--font-rubik)" }}>
                     {t.label}
                   </h3>
                   <p className="text-gray-500 text-sm leading-relaxed" style={{ fontFamily: "var(--font-opensans)" }}>
-                    {t.desc}
+                    {t.description}
                   </p>
                 </div>
               ))}

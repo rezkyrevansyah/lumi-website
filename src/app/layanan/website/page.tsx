@@ -34,32 +34,22 @@ export const metadata: Metadata = {
   },
 };
 
-const NICHES = [
-  { icon: "🏪", label: "Bisnis & UMKM", desc: "Website company profile, landing page, dan toko online untuk usaha kamu." },
-  { icon: "🍽️", label: "Restoran & Kafe", desc: "Website menu digital, reservasi online, dan profil restoran yang menarik." },
-  { icon: "🏥", label: "Klinik & Kesehatan", desc: "Website klinik dengan fitur jadwal dokter, pendaftaran online, dan info layanan." },
-  { icon: "🎓", label: "Sekolah & Kampus", desc: "Website sekolah dengan informasi akademik, berita, dan portal siswa." },
-  { icon: "🛒", label: "Toko Online", desc: "E-commerce dengan manajemen produk, pembayaran, dan pengiriman terintegrasi." },
-  { icon: "🏢", label: "Perusahaan", desc: "Website korporat yang profesional untuk meningkatkan kepercayaan dan brand." },
-];
-
-const FEATURES = [
-  "Desain modern & responsif di semua perangkat",
-  "SEO-friendly untuk ranking Google lebih baik",
-  "Loading cepat (optimasi performa)",
-  "CMS sehingga konten bisa diubah sendiri",
-  "Keamanan SSL & perlindungan data",
-  "Integrasi WhatsApp & media sosial",
-  "Dukungan teknis setelah launch",
-  "Harga transparan, tanpa biaya tersembunyi",
-];
+type ServicePageItem = { icon: string; label: string; description: string };
 
 export default async function JasaWebsitePage() {
   const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
-  const { data } = await supabase.from("site_settings").select("value").eq("key", "contact").single();
-  const contact = data?.value as { whatsapp?: string } | null;
+
+  const [settingsRes, nichesRes, featuresRes] = await Promise.all([
+    supabase.from("site_settings").select("value").eq("key", "contact").single(),
+    supabase.from("service_page_items").select("icon, label, description").eq("page_key", "website_niches").order("sort_order"),
+    supabase.from("service_page_items").select("label, description").eq("page_key", "website_features").order("sort_order"),
+  ]);
+
+  const contact = settingsRes.data?.value as { whatsapp?: string } | null;
   const whatsapp = contact?.whatsapp ?? "";
+  const niches: ServicePageItem[] = nichesRes.data ?? [];
+  const features: ServicePageItem[] = featuresRes.data ?? [];
 
   return (
     <>
@@ -122,14 +112,14 @@ export default async function JasaWebsitePage() {
               </h2>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {NICHES.map((n) => (
+              {niches.map((n) => (
                 <div key={n.label} className="bg-[#F8F9FB] rounded-2xl p-6 hover:shadow-md transition-shadow duration-300">
                   <div className="text-3xl mb-3">{n.icon}</div>
                   <h3 className="font-bold text-[#3D3E4A] text-lg mb-2" style={{ fontFamily: "var(--font-rubik)" }}>
                     {n.label}
                   </h3>
                   <p className="text-gray-500 text-sm leading-relaxed" style={{ fontFamily: "var(--font-opensans)" }}>
-                    {n.desc}
+                    {n.description}
                   </p>
                 </div>
               ))}
@@ -150,12 +140,12 @@ export default async function JasaWebsitePage() {
               </h2>
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
-              {FEATURES.map((f) => (
-                <div key={f} className="flex items-start gap-3 bg-white rounded-xl p-4">
+              {features.map((f) => (
+                <div key={f.label} className="flex items-start gap-3 bg-white rounded-xl p-4">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2DD9A4" strokeWidth="2.5" className="shrink-0 mt-0.5">
                     <path d="M20 6L9 17l-5-5" />
                   </svg>
-                  <p className="text-gray-600 text-sm" style={{ fontFamily: "var(--font-opensans)" }}>{f}</p>
+                  <p className="text-gray-600 text-sm" style={{ fontFamily: "var(--font-opensans)" }}>{f.label}</p>
                 </div>
               ))}
             </div>

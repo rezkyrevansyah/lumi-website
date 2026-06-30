@@ -28,21 +28,20 @@ export const metadata: Metadata = {
   },
 };
 
-const TOPICS = [
-  { icon: "🗺️", label: "Strategi Digital", desc: "Roadmap transformasi digital yang realistis sesuai kapasitas dan target bisnis kamu." },
-  { icon: "🏗️", label: "Arsitektur Sistem", desc: "Rancang arsitektur yang skalabel, maintainable, dan siap tumbuh bersama bisnis." },
-  { icon: "⚙️", label: "Pilihan Tech Stack", desc: "Rekomendasi teknologi yang tepat — bukan yang paling trending, tapi yang paling sesuai." },
-  { icon: "🔍", label: "Audit Produk Existing", desc: "Evaluasi mendalam terhadap sistem yang sudah ada dan rekomendasi perbaikan." },
-  { icon: "🚀", label: "MVP & Validasi Ide", desc: "Bantu mendefinisikan scope MVP yang efisien untuk validasi pasar dengan cepat." },
-  { icon: "👥", label: "Evaluasi Tim Teknis", desc: "Assessment kemampuan tim dan rekomendasi proses engineering yang lebih baik." },
-];
+type ServicePageItem = { icon: string; label: string; description: string };
 
 export default async function JasaKonsultasiPage() {
   const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
-  const { data } = await supabase.from("site_settings").select("value").eq("key", "contact").single();
-  const contact = data?.value as { whatsapp?: string } | null;
+
+  const [settingsRes, topicsRes] = await Promise.all([
+    supabase.from("site_settings").select("value").eq("key", "contact").single(),
+    supabase.from("service_page_items").select("icon, label, description").eq("page_key", "konsultasi_topics").order("sort_order"),
+  ]);
+
+  const contact = settingsRes.data?.value as { whatsapp?: string } | null;
   const whatsapp = contact?.whatsapp ?? "";
+  const topics: ServicePageItem[] = topicsRes.data ?? [];
 
   return (
     <>
@@ -90,14 +89,14 @@ export default async function JasaKonsultasiPage() {
               </h2>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {TOPICS.map((t) => (
+              {topics.map((t) => (
                 <div key={t.label} className="bg-[#F8F9FB] rounded-2xl p-6 hover:shadow-md transition-shadow duration-300">
                   <div className="text-3xl mb-3">{t.icon}</div>
                   <h3 className="font-bold text-[#3D3E4A] text-lg mb-2" style={{ fontFamily: "var(--font-rubik)" }}>
                     {t.label}
                   </h3>
                   <p className="text-gray-500 text-sm leading-relaxed" style={{ fontFamily: "var(--font-opensans)" }}>
-                    {t.desc}
+                    {t.description}
                   </p>
                 </div>
               ))}

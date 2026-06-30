@@ -29,47 +29,20 @@ export const metadata: Metadata = {
   },
 };
 
-const SERVICES = [
-  {
-    href: "/layanan/website",
-    icon: "🌐",
-    title: "Jasa Pembuatan Website",
-    desc: "Website profesional untuk bisnis, UMKM, restoran, klinik, sekolah, dan toko online. Desain modern, cepat, dan SEO-friendly.",
-    tags: ["Landing Page", "Company Profile", "E-Commerce", "Web App"],
-    color: "#2DD9A4",
-  },
-  {
-    href: "/layanan/aplikasi",
-    icon: "📱",
-    title: "Jasa Pembuatan Aplikasi Mobile",
-    desc: "Aplikasi Android dan iOS untuk bisnis, fintech, marketplace, dan edukasi. Cross-platform dengan Flutter.",
-    tags: ["Android", "iOS", "Flutter", "Cross-Platform"],
-    color: "#6C63FF",
-  },
-  {
-    href: "/layanan/qa-testing",
-    icon: "🧪",
-    title: "Jasa QA Testing",
-    desc: "Testing manual dan otomasi untuk website dan aplikasi. Temukan bug sebelum produk sampai ke pengguna.",
-    tags: ["Manual Testing", "Automation", "Performance", "Security"],
-    color: "#3BB5C5",
-  },
-  {
-    href: "/layanan/konsultasi",
-    icon: "💡",
-    title: "Jasa Tech Consulting",
-    desc: "Konsultasi teknologi untuk bisnis dan startup. Pilih tech stack yang tepat dan bangun strategi digital yang efektif.",
-    tags: ["Tech Strategy", "Architecture", "MVP", "Digital Roadmap"],
-    color: "#F59E0B",
-  },
-];
+type LayananItem = { icon: string; label: string; description: string; tags: string[]; color: string; href: string };
 
 export default async function LayananPage() {
   const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
-  const { data } = await supabase.from("site_settings").select("value").eq("key", "contact").single();
-  const contact = data?.value as { whatsapp?: string } | null;
+
+  const [settingsRes, servicesRes] = await Promise.all([
+    supabase.from("site_settings").select("value").eq("key", "contact").single(),
+    supabase.from("service_page_items").select("icon, label, description, tags, color, href").eq("page_key", "layanan_index").order("sort_order"),
+  ]);
+
+  const contact = settingsRes.data?.value as { whatsapp?: string } | null;
   const whatsapp = contact?.whatsapp ?? "";
+  const services: LayananItem[] = servicesRes.data ?? [];
 
   return (
     <>
@@ -103,7 +76,7 @@ export default async function LayananPage() {
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid sm:grid-cols-2 gap-6">
-              {SERVICES.map((s) => (
+              {services.map((s) => (
                 <Link
                   key={s.href}
                   href={s.href}
@@ -114,16 +87,16 @@ export default async function LayananPage() {
                     className="text-2xl font-bold text-[#3D3E4A] mb-3 group-hover:text-[#2DD9A4] transition-colors duration-200"
                     style={{ fontFamily: "var(--font-rubik)" }}
                   >
-                    {s.title}
+                    {s.label}
                   </h2>
                   <p
                     className="text-gray-500 text-base leading-relaxed mb-5"
                     style={{ fontFamily: "var(--font-opensans)" }}
                   >
-                    {s.desc}
+                    {s.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {s.tags.map((tag) => (
+                    {(s.tags ?? []).map((tag) => (
                       <span
                         key={tag}
                         className="px-3 py-1 text-xs font-semibold rounded-full bg-white border border-gray-200 text-gray-500"
@@ -133,7 +106,7 @@ export default async function LayananPage() {
                       </span>
                     ))}
                   </div>
-                  <div className="mt-5 flex items-center gap-2 text-sm font-semibold" style={{ color: s.color, fontFamily: "var(--font-rubik)" }}>
+                  <div className="mt-5 flex items-center gap-2 text-sm font-semibold" style={{ color: s.color ?? "#2DD9A4", fontFamily: "var(--font-rubik)" }}>
                     Pelajari lebih lanjut
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M5 12h14M12 5l7 7-7 7" />

@@ -29,21 +29,20 @@ export const metadata: Metadata = {
   },
 };
 
-const SERVICES = [
-  { icon: "🧪", label: "Functional Testing", desc: "Verifikasi semua fitur berjalan sesuai spesifikasi dan kebutuhan bisnis." },
-  { icon: "⚡", label: "Performance Testing", desc: "Uji kecepatan, load, dan stress test untuk memastikan performa di traffic tinggi." },
-  { icon: "🔒", label: "Security Testing", desc: "Identifikasi celah keamanan sebelum dieksploitasi — OWASP Top 10 coverage." },
-  { icon: "📱", label: "Mobile Testing", desc: "Testing di berbagai perangkat Android dan iOS untuk pengalaman pengguna optimal." },
-  { icon: "🤖", label: "Automation Testing", desc: "Skrip otomasi dengan Selenium, Cypress, dan Appium untuk regresi yang efisien." },
-  { icon: "🔗", label: "API Testing", desc: "Validasi endpoint API untuk keandalan integrasi antar layanan." },
-];
+type ServicePageItem = { icon: string; label: string; description: string };
 
 export default async function JasaQATestingPage() {
   const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
-  const { data } = await supabase.from("site_settings").select("value").eq("key", "contact").single();
-  const contact = data?.value as { whatsapp?: string } | null;
+
+  const [settingsRes, servicesRes] = await Promise.all([
+    supabase.from("site_settings").select("value").eq("key", "contact").single(),
+    supabase.from("service_page_items").select("icon, label, description").eq("page_key", "qa_services").order("sort_order"),
+  ]);
+
+  const contact = settingsRes.data?.value as { whatsapp?: string } | null;
   const whatsapp = contact?.whatsapp ?? "";
+  const services: ServicePageItem[] = servicesRes.data ?? [];
 
   return (
     <>
@@ -92,14 +91,14 @@ export default async function JasaQATestingPage() {
               </h2>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {SERVICES.map((s) => (
+              {services.map((s) => (
                 <div key={s.label} className="bg-[#F8F9FB] rounded-2xl p-6 hover:shadow-md transition-shadow duration-300">
                   <div className="text-3xl mb-3">{s.icon}</div>
                   <h3 className="font-bold text-[#3D3E4A] text-lg mb-2" style={{ fontFamily: "var(--font-rubik)" }}>
                     {s.label}
                   </h3>
                   <p className="text-gray-500 text-sm leading-relaxed" style={{ fontFamily: "var(--font-opensans)" }}>
-                    {s.desc}
+                    {s.description}
                   </p>
                 </div>
               ))}
