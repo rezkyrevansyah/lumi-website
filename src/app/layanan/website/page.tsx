@@ -37,6 +37,7 @@ export const metadata: Metadata = {
 };
 
 type ServicePageItem = { icon: string; label: string; description: string };
+type FeatureItem = { label: string; description: string };
 
 export default async function JasaWebsitePage() {
   const cookieStore = await cookies();
@@ -51,7 +52,7 @@ export default async function JasaWebsitePage() {
   const contact = settingsRes.data?.value as { whatsapp?: string } | null;
   const whatsapp = contact?.whatsapp ?? "";
   const niches: ServicePageItem[] = nichesRes.data ?? [];
-  const features: ServicePageItem[] = featuresRes.data ?? [];
+  const features: FeatureItem[] = featuresRes.data ?? [];
 
   return (
     <>
