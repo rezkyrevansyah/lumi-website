@@ -38,8 +38,8 @@ export default async function Footer() {
               className="text-white/50 text-sm leading-relaxed max-w-xs mb-6"
               style={{ fontFamily: "var(--font-opensans)" }}
             >
-              A passionate solo-developer studio delivering quality digital
-              products for businesses of all sizes across Indonesia.
+              Studio digital terpercaya yang membangun produk berkualitas
+              untuk bisnis dari semua skala di seluruh Indonesia.
             </p>
             <div className="flex items-center gap-3">
               <a
@@ -72,17 +72,17 @@ export default async function Footer() {
               className="font-bold mb-4 text-sm uppercase tracking-wider text-white/80"
               style={{ fontFamily: "var(--font-rubik)" }}
             >
-              Services
+              Layanan
             </h4>
             <ul className="space-y-3">
               {FOOTER_SERVICE_LINKS.map((s) => (
-                <li key={s}>
+                <li key={s.label}>
                   <a
-                    href="#service"
+                    href={s.href}
                     className="text-white/50 hover:text-[#2DD9A4] text-sm transition-colors"
                     style={{ fontFamily: "var(--font-opensans)" }}
                   >
-                    {s}
+                    {s.label}
                   </a>
                 </li>
               ))}
@@ -95,7 +95,7 @@ export default async function Footer() {
               className="font-bold mb-4 text-sm uppercase tracking-wider text-white/80"
               style={{ fontFamily: "var(--font-rubik)" }}
             >
-              Contact
+              Kontak
             </h4>
             <ul className="space-y-3">
               <li>
@@ -132,7 +132,7 @@ export default async function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <p className="text-white/40 text-xs" style={{ fontFamily: "var(--font-opensans)" }}>
-            © 2025 Lumi Beta Works. All rights reserved.
+            © 2025 Lumi Beta Works. Hak cipta dilindungi.
           </p>
           <p className="text-white/40 text-xs" style={{ fontFamily: "var(--font-opensans)" }}>
             Crafted with max effort ✦ Jakarta

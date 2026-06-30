@@ -2,12 +2,12 @@
 
 import { motion } from "framer-motion";
 
-const BADGES = ["Trustworthy", "Reliable", "Innovative", "Affordable"];
+const BADGES = ["Terpercaya", "Andal", "Inovatif", "Terjangkau"];
 
 const STATS = [
-  { value: "20+", label: "Projects" },
-  { value: "15+", label: "Clients" },
-  { value: "100%", label: "On-Time" },
+  { value: "20+", label: "Proyek" },
+  { value: "15+", label: "Klien" },
+  { value: "100%", label: "Tepat Waktu" },
   { value: "4.9", label: "Rating" },
 ];
 
@@ -36,7 +36,7 @@ export default function AboutHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
         >
-          <p className="section-tag mb-5">Who We Are</p>
+          <p className="section-tag mb-5">Tentang Kami</p>
         </motion.div>
 
         {/* Headline */}
@@ -47,9 +47,8 @@ export default function AboutHero() {
           className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#3D3E4A] leading-tight mb-6"
           style={{ fontFamily: "var(--font-rubik)" }}
         >
-          We bring{" "}
-          <span className="gradient-text">long-lasting</span>
-          <br />impacts into reality!
+          Kami Bangun Solusi Digital
+          <br /><span className="gradient-text">yang Berdampak Nyata</span>
         </motion.h1>
 
         {/* Desc */}
@@ -60,9 +59,9 @@ export default function AboutHero() {
           className="text-gray-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-8"
           style={{ fontFamily: "var(--font-opensans)" }}
         >
-          Your digital investments matter. Driven to continuously innovate, we
-          deliver modern, reliable, and battle-tested digital solutions — crafted
-          with a product engineering approach trusted across industries.
+          Investasi digital kamu penting bagi kami. Kami menghadirkan solusi
+          website dan aplikasi yang modern, andal, dan teruji — dibangun dengan
+          pendekatan product engineering yang dipercaya berbagai industri.
         </motion.p>
 
         {/* Badges */}
@@ -96,7 +95,7 @@ export default function AboutHero() {
             href="/#contact"
             className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-base group"
           >
-            Start to learn more
+            Mulai Konsultasi Gratis
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"
               className="transition-transform duration-200 group-hover:translate-x-1">
               <path d="M5 12h14M12 5l7 7-7 7" />

@@ -1,5 +1,6 @@
 export const NAV_LINKS = [
   { label: "Home", href: "/#home" },
+  { label: "Layanan", href: "/layanan" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "About", href: "/about" },
 ];
@@ -203,9 +204,9 @@ export const TESTIMONIALS: Testimonial[] = [
 ];
 
 export const FOOTER_SERVICE_LINKS = [
-  "UI/UX Design",
-  "Web Development",
-  "App Development",
-  "QA Testing",
-  "Tech Consulting",
+  { label: "UI/UX Design", href: "/layanan/website" },
+  { label: "Jasa Website", href: "/layanan/website" },
+  { label: "Jasa Aplikasi Mobile", href: "/layanan/aplikasi" },
+  { label: "QA Testing", href: "/layanan/qa-testing" },
+  { label: "Tech Consulting", href: "/layanan/konsultasi" },
 ];

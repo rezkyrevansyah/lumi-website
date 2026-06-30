@@ -3,11 +3,16 @@ import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 
 export const metadata: Metadata = {
-  title: "Lumi Beta Works — Jasa Web, App, QA & Consulting",
+  title: "Lumi Beta Works — Jasa Pembuatan Website & Aplikasi Terpercaya",
   description:
-    "Lumi Beta Works — Jasa pembuatan web, app, QA testing, dan tech consulting untuk UMKM hingga enterprise. Affordable, trustworthy, max effort.",
+    "Jasa pembuatan website dan aplikasi profesional untuk UMKM, bisnis, restoran, klinik, dan sekolah. Harga terjangkau, hasil berkualitas, tepat waktu. Konsultasi gratis!",
   alternates: { canonical: "https://lumibetaworks.id" },
-  openGraph: { url: "https://lumibetaworks.id" },
+  openGraph: {
+    url: "https://lumibetaworks.id",
+    title: "Lumi Beta Works — Jasa Pembuatan Website & Aplikasi Terpercaya",
+    description:
+      "Jasa pembuatan website dan aplikasi profesional untuk UMKM, bisnis, restoran, klinik, dan sekolah. Harga terjangkau, hasil berkualitas, tepat waktu.",
+  },
 };
 import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";

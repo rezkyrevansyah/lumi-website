@@ -11,12 +11,12 @@ import { type PortfolioItem } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Portfolio",
   description:
-    "Browse all projects built by Lumi Beta Works — web, mobile, QA, and consulting across industries.",
+    "Lihat semua proyek website dan aplikasi yang telah dibangun Lumi Beta Works — dari UMKM, pemerintah, fintech, hingga edukasi di seluruh Indonesia.",
   alternates: { canonical: "https://lumibetaworks.id/portfolio" },
   openGraph: {
     title: "Portfolio — Lumi Beta Works",
     description:
-      "Browse all projects built by Lumi Beta Works — web, mobile, QA, and consulting across industries.",
+      "Lihat semua proyek website dan aplikasi yang telah dibangun Lumi Beta Works di berbagai industri.",
     url: "https://lumibetaworks.id/portfolio",
   },
 };

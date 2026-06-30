@@ -15,13 +15,14 @@ import CompanyProfile from "@/components/about/CompanyProfile";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "Tentang Kami",
   description:
-    "We bring long-lasting impacts into reality. Learn about Lumi Beta Works — our engineering framework, values, and the clients we've served.",
+    "Kenali Lumi Beta Works — studio digital terpercaya dari Jakarta yang membangun website dan aplikasi berkualitas untuk bisnis di seluruh Indonesia sejak 2024.",
   alternates: { canonical: "https://lumibetaworks.id/about" },
   openGraph: {
-    title: "About Lumi Beta Works",
-    description: "Learn about our engineering framework, values, and the clients we've served.",
+    title: "Tentang Lumi Beta Works — Studio Digital Terpercaya",
+    description:
+      "Studio digital terpercaya dari Jakarta yang membangun website dan aplikasi berkualitas untuk bisnis di seluruh Indonesia.",
     url: "https://lumibetaworks.id/about",
   },
 };

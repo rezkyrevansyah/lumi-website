@@ -45,7 +45,7 @@ export default function Hero({ badges = [], activeProjects = [] }: HeroProps) {
         {/* Left column */}
         <div className="flex flex-col gap-5 md:gap-6">
           <motion.div {...fadeUp(0)}>
-            <span className="section-tag">Open for new projects</span>
+            <span className="section-tag">Buka untuk proyek baru</span>
           </motion.div>
 
           <motion.h1
@@ -53,11 +53,11 @@ export default function Hero({ badges = [], activeProjects = [] }: HeroProps) {
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-[#3D3E4A]"
             style={{ fontFamily: "var(--font-rubik)" }}
           >
-            We Build
+            Jasa Pembuatan
             <br />
-            <span className="gradient-text">Digital Things</span>
+            <span className="gradient-text">Website & Aplikasi</span>
             <br />
-            That Matter.
+            Terpercaya.
           </motion.h1>
 
           <motion.p
@@ -65,9 +65,9 @@ export default function Hero({ badges = [], activeProjects = [] }: HeroProps) {
             className="text-base md:text-lg text-gray-500 leading-relaxed max-w-lg"
             style={{ fontFamily: "var(--font-opensans)" }}
           >
-            From startups to enterprises — Lumi Beta Works delivers web, app,
-            QA, and consulting services with full transparency, max effort, and
-            prices that make sense.
+            Dari UMKM hingga enterprise — Lumi Beta Works menghadirkan jasa
+            pembuatan website, aplikasi, QA testing, dan tech consulting dengan
+            harga terjangkau, transparan, dan hasil yang berdampak nyata.
           </motion.p>
 
           <motion.div
@@ -81,13 +81,13 @@ export default function Hero({ badges = [], activeProjects = [] }: HeroProps) {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
               </svg>
-              Let&apos;s Discuss
+              Konsultasi Gratis
             </a>
             <a
               href="#portfolio"
               className="btn-outline inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-base"
             >
-              See Our Work
+              Lihat Portfolio
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
@@ -138,7 +138,7 @@ export default function Hero({ badges = [], activeProjects = [] }: HeroProps) {
                   4.9 / 5.0
                 </p>
                 <p className="text-xs text-gray-400" style={{ fontFamily: "var(--font-opensans)" }}>
-                  Client Rating
+                  Rating Klien
                 </p>
               </div>
             </motion.div>
@@ -154,14 +154,14 @@ export default function Hero({ badges = [], activeProjects = [] }: HeroProps) {
                 20+
               </p>
               <p className="text-xs text-white/60" style={{ fontFamily: "var(--font-opensans)" }}>
-                Projects Completed
+                Proyek Selesai
               </p>
             </motion.div>
 
             {/* Main active projects card */}
             <div className="w-72 sm:w-80 bg-white rounded-3xl shadow-2xl p-5 sm:p-6 animate-float">
               <div className="flex items-center justify-between mb-4">
-                <span className="section-tag">Active Project</span>
+                <span className="section-tag">Proyek Aktif</span>
                 <span className="w-2.5 h-2.5 rounded-full bg-[#2DD9A4] animate-pulse" />
               </div>
 

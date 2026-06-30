@@ -25,21 +25,21 @@ export default function AboutCTA() {
               className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3D3E4A] mb-4 leading-tight"
               style={{ fontFamily: "var(--font-rubik)" }}
             >
-              Love what{" "}
-              <span className="gradient-text">we do?</span>
+              Tertarik dengan{" "}
+              <span className="gradient-text">layanan kami?</span>
             </h2>
             <p
               className="text-gray-500 text-base md:text-lg leading-relaxed mb-8 max-w-md"
               style={{ fontFamily: "var(--font-opensans)" }}
             >
-              Your ideas matter to us. Share what you have in mind, feel free
-              to discuss it (for free!) and see what we can do!
+              Idemu penting bagi kami. Ceritakan proyekmu dan konsultasikan
+              secara gratis — tanpa komitmen, tanpa syarat.
             </p>
             <Link
               href="/#contact"
               className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-base"
             >
-              Let&apos;s Talk!
+              Hubungi Kami
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
@@ -72,10 +72,10 @@ export default function AboutCTA() {
                   </svg>
                 </div>
                 <p className="text-sm text-gray-500 font-medium" style={{ fontFamily: "var(--font-opensans)" }}>
-                  Free consultation available
+                  Konsultasi awal gratis
                 </p>
                 <p className="text-xs text-[#6C63FF] font-semibold mt-1" style={{ fontFamily: "var(--font-opensans)" }}>
-                  No commitment required
+                  Tanpa komitmen
                 </p>
               </div>
             </div>

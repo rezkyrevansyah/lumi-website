@@ -11,8 +11,8 @@ const PILLARS = [
         <path d="M9.5 3.5C6 5 3.5 8.2 3.5 12" strokeLinecap="round" />
       </svg>
     ),
-    title: "Creative Mind",
-    desc: "Endless creative and robust analytical thinking to solve your business problems with elegant solutions.",
+    title: "Inovatif & Kreatif",
+    desc: "Pemikiran kreatif dan analitis tanpa batas untuk memecahkan masalah bisnismu dengan solusi yang elegan.",
     color: "#2DD9A4",
     bg: "rgba(45,217,164,0.1)",
   },
@@ -25,8 +25,8 @@ const PILLARS = [
         <path d="M16 3.13a4 4 0 0 1 0 7.75" />
       </svg>
     ),
-    title: "Dedicated Team",
-    desc: "Passionate craftspeople who dedicatedly build your business solutions — every sprint, every release.",
+    title: "Tim Berdedikasi",
+    desc: "Pengembang berpengalaman yang sepenuh hati membangun solusi bisnismu — setiap sprint, setiap rilis.",
     color: "#6C63FF",
     bg: "rgba(108,99,255,0.1)",
   },
@@ -37,8 +37,8 @@ const PILLARS = [
         <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32" />
       </svg>
     ),
-    title: "Battle Tested",
-    desc: "Successfully shipped digital products across various industries — from government to startups.",
+    title: "Teruji & Terpercaya",
+    desc: "Telah berhasil merilis produk digital di berbagai industri — dari instansi pemerintah hingga startup.",
     color: "#3BB5C5",
     bg: "rgba(59,181,197,0.1)",
   },
@@ -48,8 +48,8 @@ const PILLARS = [
         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.35h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-.85a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
       </svg>
     ),
-    title: "Focusing on You",
-    desc: "Your business matters to us. Honest communication and long-term relationships are our secret recipes.",
+    title: "Fokus pada Kamu",
+    desc: "Bisnismu adalah prioritas kami. Komunikasi jujur dan hubungan jangka panjang adalah kunci kami.",
     color: "#F59E0B",
     bg: "rgba(245,158,11,0.1)",
   },
@@ -66,18 +66,18 @@ export default function WhyChooseUs() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="section-tag mb-3">Our Strengths</p>
+          <p className="section-tag mb-3">Keunggulan Kami</p>
           <h2
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3D3E4A] mb-4"
             style={{ fontFamily: "var(--font-rubik)" }}
           >
-            Why Clients{" "}
-            <span className="gradient-text">Choose Us</span>
+            Kenapa Klien{" "}
+            <span className="gradient-text">Memilih Kami?</span>
           </h2>
           <p className="text-gray-500 text-base md:text-lg max-w-xl mx-auto"
             style={{ fontFamily: "var(--font-opensans)" }}>
-            Our purpose is simple:{" "}
-            <strong className="text-[#3D3E4A]">to empower and deliver long-lasting greatness!</strong>
+            Tujuan kami sederhana:{" "}
+            <strong className="text-[#3D3E4A]">memberdayakan bisnis kamu dengan solusi digital terbaik!</strong>
           </p>
         </motion.div>
 
