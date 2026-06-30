@@ -21,13 +21,13 @@ export default async function Testimonials() {
     <section className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-16">
         <div className="text-center">
-          <p className="section-tag mb-3">What People Say</p>
+          <p className="section-tag mb-3">Kata Klien Kami</p>
           <h2
             className="text-4xl lg:text-5xl font-bold text-[#3D3E4A]"
             style={{ fontFamily: "var(--font-rubik)" }}
           >
-            Why Clients{" "}
-            <span className="gradient-text">Trust Us</span>
+            Kenapa Mereka{" "}
+            <span className="gradient-text">Percaya Kami</span>
           </h2>
         </div>
       </div>

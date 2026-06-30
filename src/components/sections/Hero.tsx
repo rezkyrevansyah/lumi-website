@@ -53,11 +53,11 @@ export default function Hero({ badges = [], activeProjects = [] }: HeroProps) {
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-[#3D3E4A]"
             style={{ fontFamily: "var(--font-rubik)" }}
           >
-            Jasa Pembuatan
-            <br />
             <span className="gradient-text">Website & Aplikasi</span>
             <br />
-            Terpercaya.
+            Profesional,
+            <br />
+            Harga Terjangkau.
           </motion.h1>
 
           <motion.p
@@ -65,9 +65,9 @@ export default function Hero({ badges = [], activeProjects = [] }: HeroProps) {
             className="text-base md:text-lg text-gray-500 leading-relaxed max-w-lg"
             style={{ fontFamily: "var(--font-opensans)" }}
           >
-            Dari UMKM hingga enterprise — Lumi Beta Works menghadirkan jasa
-            pembuatan website, aplikasi, QA testing, dan tech consulting dengan
-            harga terjangkau, transparan, dan hasil yang berdampak nyata.
+            Dari UMKM hingga enterprise — kami hadirkan jasa pembuatan website,
+            aplikasi, QA testing, dan tech consulting dengan hasil berkualitas,
+            transparan, dan harga yang masuk akal.
           </motion.p>
 
           <motion.div

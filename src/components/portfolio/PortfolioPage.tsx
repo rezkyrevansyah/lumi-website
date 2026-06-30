@@ -58,7 +58,7 @@ export default function PortfolioPage({ projects }: { projects: (PortfolioItem &
         >
           <a href="/" className="hover:text-[#2DD9A4] transition-colors">Home</a>
           <span>/</span>
-          <span className="text-[#3D3E4A] font-medium">View All Projects</span>
+          <span className="text-[#3D3E4A] font-medium">Semua Proyek</span>
         </motion.div>
 
         {/* Header */}
@@ -68,20 +68,20 @@ export default function PortfolioPage({ projects }: { projects: (PortfolioItem &
           transition={{ duration: 0.5, delay: 0.05 }}
           className="mb-10"
         >
-          <p className="section-tag mb-3">Our Work</p>
+          <p className="section-tag mb-3">Hasil Kerja Kami</p>
           <h1
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3D3E4A] mb-4"
             style={{ fontFamily: "var(--font-rubik)" }}
           >
-            <span className="gradient-text">Projects</span>{" "}We&apos;re Proud Of
+            <span className="gradient-text">Proyek</span>{" "}yang Kami Banggakan
           </h1>
           <p
             className="text-gray-500 text-base md:text-lg max-w-2xl"
             style={{ fontFamily: "var(--font-opensans)" }}
           >
-            We pride ourselves on our commitment to quality and delivering
-            reliable, sustainable, and loveable digital products — across
-            industries, platforms, and problem spaces.
+            Kami berkomitmen menghadirkan produk digital yang andal, berkelanjutan,
+            dan disukai pengguna — lintas industri, platform, dan berbagai
+            tantangan bisnis nyata.
           </p>
         </motion.div>
 
@@ -120,7 +120,7 @@ export default function PortfolioPage({ projects }: { projects: (PortfolioItem &
             >
               {categories.map((c) => (
                 <option key={c} value={c}>
-                  {c === "all" ? "All Category" : c}
+                  {c === "all" ? "Semua Kategori" : c}
                 </option>
               ))}
             </select>
@@ -144,7 +144,7 @@ export default function PortfolioPage({ projects }: { projects: (PortfolioItem &
 
           {/* Count */}
           <span className="text-sm text-gray-400 ml-auto" style={{ fontFamily: "var(--font-opensans)" }}>
-            {filtered.length} project{filtered.length !== 1 ? "s" : ""}
+            {filtered.length} proyek
           </span>
         </motion.div>
 
@@ -177,14 +177,14 @@ export default function PortfolioPage({ projects }: { projects: (PortfolioItem &
                 </svg>
               </div>
               <p className="text-gray-400 text-base" style={{ fontFamily: "var(--font-opensans)" }}>
-                No projects found for this filter.
+                Tidak ada proyek untuk filter ini.
               </p>
               <button
                 onClick={handleReset}
                 className="mt-4 text-sm text-[#2DD9A4] font-semibold hover:underline"
                 style={{ fontFamily: "var(--font-opensans)" }}
               >
-                Clear filters
+                Hapus filter
               </button>
             </motion.div>
           )}

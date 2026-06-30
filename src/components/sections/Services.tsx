@@ -45,20 +45,20 @@ export default function Services({ services }: { services: Service[] }) {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="section-tag mb-3">What We Do</p>
+          <p className="section-tag mb-3">Layanan Kami</p>
           <h2
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3D3E4A] mb-5"
             style={{ fontFamily: "var(--font-rubik)" }}
           >
-            Services Built for
-            <span className="gradient-text"> Your Needs</span>
+            Solusi Digital untuk
+            <span className="gradient-text"> Semua Skala Bisnis</span>
           </h2>
           <p
             className="text-gray-500 text-base md:text-lg max-w-xl mx-auto"
             style={{ fontFamily: "var(--font-opensans)" }}
           >
-            Whether you&apos;re a UMKM, a startup, or an enterprise — we&apos;ve got a
-            service that fits your scale and budget.
+            UMKM, startup, atau enterprise — kami punya layanan yang sesuai
+            dengan kebutuhanmu dan anggaran yang kamu miliki.
           </p>
         </motion.div>
 
@@ -105,7 +105,7 @@ export default function Services({ services }: { services: Service[] }) {
                             className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#6C63FF]"
                             style={{ fontFamily: "var(--font-opensans)" }}
                           >
-                            Discover More
+                            Pelajari Lebih Lanjut
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                               <path d="M5 12h14M12 5l7 7-7 7" />
                             </svg>
@@ -185,7 +185,7 @@ export default function Services({ services }: { services: Service[] }) {
                         className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-[#6C63FF] group w-fit"
                         style={{ fontFamily: "var(--font-opensans)" }}
                       >
-                        Discover More
+                        Pelajari Lebih Lanjut
                         <svg
                           width="16" height="16" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" strokeWidth="2.2"
