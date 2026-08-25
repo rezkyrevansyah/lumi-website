@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
@@ -10,116 +11,261 @@ import { createClient } from "@/utils/supabase/server";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Jasa Buat Website Perusahaan & Instansi Terpercaya — Vendor IT",
+  title: "Jasa Buat Website Perusahaan & Instansi Terpercaya — Vendor IT Lumi",
   description:
-    "Jasa pembuatan website perusahaan, instansi pemerintah, dan corporate profesional. Desain modern, cepat, aman, & SEO-friendly. Konsultasi gratis!",
+    "Jasa pembuatan website perusahaan, corporate profile, dan portal instansi pemerintah. Desain modern, ultra cepat (<1s), aman, SEO friendly score 95+, dan bergaransi.",
   alternates: { canonical: "https://lumibetaworks.id/layanan/website" },
   keywords: [
     "jasa buat website perusahaan",
-    "jasa pembuatan website perusahaan",
-    "jasa pembuatan website instansi",
-    "vendor website IT",
-    "jasa buat website",
-    "jasa website profesional",
-    "jasa buat website corporate",
-    "web developer perusahaan Jakarta",
-    "vendor IT website",
+    "jasa pembuatan website corporate",
+    "vendor website instansi pemerintah",
+    "vendor it website jakarta",
+    "web developer b2b indonesia",
+    "jasa website custom nextjs",
   ],
   openGraph: {
     title: "Jasa Buat Website Perusahaan & Instansi — Lumi Beta Works",
     description:
-      "Website profesional untuk perusahaan & instansi. Desain modern, SEO-friendly, garansi performa & keamanan.",
+      "Website corporate & instansi dengan performa tinggi, SEO optimal, dan desain eksklusif yang meningkatkan reputasi bisnis Anda.",
     url: "https://lumibetaworks.id/layanan/website",
   },
 };
 
-type ServicePageItem = { icon: string; label: string; description: string };
-type FeatureItem = { label: string; description: string };
+const WEB_TYPES = [
+  {
+    icon: "🏢",
+    title: "Corporate Website & Company Profile",
+    desc: "Membangun citra profesional perusahaan dengan desain elegan, copywriting berbobot, dan struktur halaman yang meyakinkan calon klien B2B serta investor.",
+  },
+  {
+    icon: "🏛️",
+    title: "Portal Publik & Website Instansi",
+    desc: "Sistem portal web berstandar kepatuhan tinggi, navigasi ramah publik, transparansi informasi, dan ketahanan terhadap beban trafik tinggi.",
+  },
+  {
+    icon: "🛍️",
+    title: "E-Commerce & Digital Catalog",
+    desc: "Platform katalog produk interaktif terintegrasi payment gateway otomatis, kalkulator ongkir, dan sistem manajemen pesanan yang mudah dioperasikan.",
+  },
+  {
+    icon: "⚡",
+    title: "Custom Web Application & Dashboard",
+    desc: "Aplikasi web internal custom untuk operasional bisnis, manajemen data karyawan, sistem absensi, hingga dashboard analitik real-time.",
+  },
+];
+
+const WEB_STANDARDS = [
+  {
+    title: "Ultra Fast Performance (<1s Load Time)",
+    desc: "Dibangun dengan Next.js App Router dan Server-Side Rendering (SSR) untuk kecepatan muat kilat tanpa jeda.",
+  },
+  {
+    title: "SEO Ready (Score 95+)",
+    desc: "Struktur semantik HTML5, Open Graph, meta tags dinamis, sitemap otomatis, dan schema JSON-LD untuk ranking Google maksimal.",
+  },
+  {
+    title: "100% Mobile Responsive",
+    desc: "Tampilan beradaptasi mulus di semua ukuran layar: smartphone, tablet, laptop, hingga monitor ultrawide.",
+  },
+  {
+    title: "Keamanan Tingkat Tinggi (SSL & Anti-XSS)",
+    desc: "Perlindungan data terenkripsi, sanitasi input ketat, proteksi serangan brute force, dan backup berkala.",
+  },
+  {
+    title: "CMS / Admin Panel yang Mudah Digunakan",
+    desc: "Kelola konten, berita, layanan, dan portofolio Anda secara mandiri tanpa perlu menyentuh baris kode.",
+  },
+  {
+    title: "Garansi & Pendampingan Pasca Serah Terima",
+    desc: "Garansi perbaikan bug dan sesi pelatihan gratis untuk tim internal Anda.",
+  },
+];
+
+const CASE_STUDIES = [
+  {
+    name: "BAZNAS National Portal",
+    category: "Portal Publik & Crowdfunding",
+    result: "Menangani puluhan ribu donatur aktif dengan uptime 99.9% dan pengujian performa ketat.",
+  },
+  {
+    name: "EKRAF Hub Ecosystem",
+    category: "Government Platform (Kemenparekraf)",
+    result: "Ekosistem terintegrasi data pelaku ekonomi kreatif Indonesia dengan Single Sign-On (SSO).",
+  },
+  {
+    name: "Website Masjid Al Arqam",
+    category: "Community & Donation Platform",
+    result: "Platform informasi kegiatan, jadwal, dan transparansi laporan keuangan masjid modern.",
+  },
+  {
+    name: "Yoonjae Space Studio",
+    category: "Studio Booking & Finance",
+    result: "Peningkatan booking online dan kemudahan manajemen inventaris studio kreatif.",
+  },
+];
+
+const WEB_FAQS = [
+  {
+    q: "Berapa lama proses pembuatan website perusahaan di Lumi?",
+    a: "Rata-rata memakan waktu 10 hingga 20 hari kerja tergantung jumlah halaman dan integrasi fitur yang dibutuhkan.",
+  },
+  {
+    q: "Apakah website yang dibuat sudah termasuk domain dan hosting?",
+    a: "Kami dapat membantu pengadaan domain (.com, .id, .co.id) serta konfigurasi cloud server berkecepatan tinggi, atau menggunakan infrastruktur server milik perusahaan Anda.",
+  },
+  {
+    q: "Apakah kami bisa mengupdate konten website sendiri nanti?",
+    a: "Ya! Kami melengkapi website Anda dengan dashboard Admin CMS yang sangat ramah pengguna, lengkap dengan panduan video/manual penggunaan.",
+  },
+];
 
 export default async function JasaWebsitePage() {
   const cookieStore = await cookies();
   const supabase = createClient(cookieStore);
 
-  const [settingsRes, nichesRes, featuresRes] = await Promise.all([
-    supabase.from("site_settings").select("value").eq("key", "contact").single(),
-    supabase.from("service_page_items").select("icon, label, description").eq("page_key", "website_niches").order("sort_order"),
-    supabase.from("service_page_items").select("label, description").eq("page_key", "website_features").order("sort_order"),
-  ]);
+  const { data: settings } = await supabase
+    .from("site_settings")
+    .select("value")
+    .eq("key", "contact")
+    .single();
 
-  const contact = settingsRes.data?.value as { whatsapp?: string } | null;
+  const contact = settings?.value as { whatsapp?: string } | null;
   const whatsapp = contact?.whatsapp || "62882015884006";
-  const niches: ServicePageItem[] = nichesRes.data ?? [];
-  const features: FeatureItem[] = featuresRes.data ?? [];
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: WEB_FAQS.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <BackgroundBlobs />
       <Navbar />
-      <main>
-        {/* Hero */}
-        <section className="pt-28 pb-20 bg-[#F8F9FB] relative overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none" style={{
-            backgroundImage: "linear-gradient(rgba(61,62,74,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(61,62,74,0.04) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }} />
-          <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <p className="section-tag mb-4">Layanan Kami</p>
+      <main className="overflow-hidden">
+        {/* Hero Section */}
+        <section className="pt-32 pb-20 md:pt-36 md:pb-24 bg-[#F8F9FB] border-b border-gray-100 relative">
+          <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center relative z-10">
+            {/* Breadcrumb */}
+            <div className="flex items-center justify-center gap-2 text-xs font-semibold text-gray-500 mb-6">
+              <Link href="/" className="hover:text-[#2DD9A4]">Beranda</Link>
+              <span>/</span>
+              <Link href="/layanan" className="hover:text-[#2DD9A4]">Layanan</Link>
+              <span>/</span>
+              <span className="text-[#0E8B62]">Website Perusahaan</span>
+            </div>
+
+            <span className="section-tag mb-4 inline-block">Jasa Pembuatan Website Corporate</span>
             <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#3D3E4A] leading-tight mb-6"
+              className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#101828] leading-[1.18] tracking-tight mb-6"
               style={{ fontFamily: "var(--font-rubik)" }}
             >
-              Jasa Pembuatan{" "}
-              <span className="gradient-text">Website</span>{" "}
-              Profesional
+              Jasa Buat Website Perusahaan &amp; Instansi{" "}
+              <span className="gradient-text">Terpercaya</span>
             </h1>
             <p
-              className="text-gray-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-8"
+              className="text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-10"
               style={{ fontFamily: "var(--font-opensans)" }}
             >
-              Kami membangun website yang tidak hanya cantik, tapi juga cepat, aman, dan
-              dioptimalkan untuk mesin pencari. Dari landing page sederhana hingga platform
-              e-commerce kompleks — kami siap mengerjakan proyekmu.
+              Kami membangun website corporate yang tidak hanya tampil mewah dan elegan, tetapi juga dioptimasi untuk kecepatan muat kilat, keamanan tingkat enterprise, dan peringkat tinggi di Google.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href={`https://wa.me/${whatsapp}?text=Halo+Lumi+Beta+Works!+Saya+tertarik+dengan+jasa+pembuatan+website.`}
+                href={`https://wa.me/${whatsapp}?text=Halo+Lumi+Beta+Works,+saya+ingin+konsultasi+pembuatan+Website+Perusahaan.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-base"
+                className="btn-primary inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold shadow-lg shadow-emerald-500/20 w-full sm:w-auto"
               >
-                Konsultasi Gratis via WhatsApp
+                Konsultasi Website Gratis
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
               </a>
-              <a
+              <Link
                 href="/portfolio"
-                className="btn-outline inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-base"
+                className="btn-outline inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-base font-semibold bg-white border-gray-200 text-[#3D3E4A] hover:bg-gray-50 w-full sm:w-auto"
               >
-                Lihat Hasil Kerja Kami
-              </a>
+                Lihat Contoh Portfolio Website
+              </Link>
             </div>
           </div>
         </section>
 
-        {/* Niche segments */}
-        <section className="py-20 bg-white">
+        {/* Website Types Grid */}
+        <section className="py-20 md:py-28 bg-white border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <p className="section-tag mb-3">Untuk Siapa?</p>
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="section-tag mb-3 inline-block">Kategori Solusi</span>
               <h2
-                className="text-3xl md:text-4xl font-bold text-[#3D3E4A]"
+                className="text-3xl sm:text-4xl font-bold text-[#101828]"
                 style={{ fontFamily: "var(--font-rubik)" }}
               >
-                Website untuk <span className="gradient-text">Semua Jenis Bisnis</span>
+                Tipe Website yang <span className="gradient-text">Kami Kembangkan</span>
               </h2>
             </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {WEB_TYPES.map((t) => (
+                <div
+                  key={t.title}
+                  className="p-6 rounded-2xl border border-gray-100 bg-[#F8F9FB] hover:bg-white hover:border-emerald-300 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="w-12 h-12 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-2xl mb-4 shadow-sm">
+                      {t.icon}
+                    </div>
+                    <h3
+                      className="font-bold text-[#101828] text-lg mb-2"
+                      style={{ fontFamily: "var(--font-rubik)" }}
+                    >
+                      {t.title}
+                    </h3>
+                    <p
+                      className="text-gray-500 text-sm leading-relaxed"
+                      style={{ fontFamily: "var(--font-opensans)" }}
+                    >
+                      {t.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Standards & Features */}
+        <section className="py-20 md:py-28 bg-[#F8F9FB] border-b border-gray-100">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="section-tag mb-3 inline-block">Standar Kualitas</span>
+              <h2
+                className="text-3xl sm:text-4xl font-bold text-[#101828]"
+                style={{ fontFamily: "var(--font-rubik)" }}
+              >
+                Standar Kualitas Eksekusi <span className="gradient-text">Lumi Beta Works</span>
+              </h2>
+            </div>
+
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {niches.map((n) => (
-                <div key={n.label} className="bg-[#F8F9FB] rounded-2xl p-6 hover:shadow-md transition-shadow duration-300">
-                  <div className="text-3xl mb-3">{n.icon}</div>
-                  <h3 className="font-bold text-[#3D3E4A] text-lg mb-2" style={{ fontFamily: "var(--font-rubik)" }}>
-                    {n.label}
-                  </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed" style={{ fontFamily: "var(--font-opensans)" }}>
-                    {n.description}
+              {WEB_STANDARDS.map((s) => (
+                <div key={s.title} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-[#2DD9A4] font-bold text-lg">✓</span>
+                    <h3 className="font-bold text-[#101828] text-base" style={{ fontFamily: "var(--font-rubik)" }}>
+                      {s.title}
+                    </h3>
+                  </div>
+                  <p className="text-gray-500 text-xs sm:text-sm leading-relaxed pl-6" style={{ fontFamily: "var(--font-opensans)" }}>
+                    {s.desc}
                   </p>
                 </div>
               ))}
@@ -127,25 +273,70 @@ export default async function JasaWebsitePage() {
           </div>
         </section>
 
-        {/* Features */}
-        <section className="py-20 bg-[#F8F9FB]">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <p className="section-tag mb-3">Yang Kamu Dapatkan</p>
+        {/* Relevant Case Studies */}
+        <section className="py-20 md:py-28 bg-white border-b border-gray-100">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="section-tag mb-3 inline-block">Bukti Nyata</span>
               <h2
-                className="text-3xl md:text-4xl font-bold text-[#3D3E4A]"
+                className="text-3xl sm:text-4xl font-bold text-[#101828]"
                 style={{ fontFamily: "var(--font-rubik)" }}
               >
-                Standar Kualitas <span className="gradient-text">Kami</span>
+                Proyek Website yang <span className="gradient-text">Telah Kami Sukseskan</span>
               </h2>
             </div>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {features.map((f) => (
-                <div key={f.label} className="flex items-start gap-3 bg-white rounded-xl p-4">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2DD9A4" strokeWidth="2.5" className="shrink-0 mt-0.5">
-                    <path d="M20 6L9 17l-5-5" />
-                  </svg>
-                  <p className="text-gray-600 text-sm" style={{ fontFamily: "var(--font-opensans)" }}>{f.label}</p>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {CASE_STUDIES.map((c) => (
+                <div key={c.name} className="p-6 rounded-2xl bg-[#F8F9FB] border border-gray-100 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[11px] font-bold text-[#0E8B62] uppercase tracking-wider block mb-1">
+                      {c.category}
+                    </span>
+                    <h3 className="font-bold text-lg text-[#101828] mb-2" style={{ fontFamily: "var(--font-rubik)" }}>
+                      {c.name}
+                    </h3>
+                    <p className="text-gray-500 text-xs sm:text-sm leading-relaxed" style={{ fontFamily: "var(--font-opensans)" }}>
+                      {c.result}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Link href="/portfolio" className="btn-outline inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold bg-white">
+                Jelajahi Semua 17+ Portofolio Kami
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-20 bg-[#F8F9FB] border-b border-gray-100">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <span className="section-tag mb-3 inline-block">FAQ Website</span>
+              <h2
+                className="text-3xl font-bold text-[#101828]"
+                style={{ fontFamily: "var(--font-rubik)" }}
+              >
+                Pertanyaan Seputar <span className="gradient-text">Jasa Buat Website</span>
+              </h2>
+            </div>
+
+            <div className="space-y-4">
+              {WEB_FAQS.map((f, i) => (
+                <div key={i} className="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
+                  <h3 className="font-bold text-base sm:text-lg text-[#101828] mb-2" style={{ fontFamily: "var(--font-rubik)" }}>
+                    {f.q}
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed" style={{ fontFamily: "var(--font-opensans)" }}>
+                    {f.a}
+                  </p>
                 </div>
               ))}
             </div>
