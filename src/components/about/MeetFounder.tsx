@@ -54,8 +54,8 @@ export default function MeetFounder() {
                 src="/profile_founder/revan_photo1.png"
                 alt="Rezky Revansyah, Founder Lumi Beta Works"
                 fill
+                sizes="(min-width: 640px) 256px, 240px"
                 className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                unoptimized
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#101828]/60 via-transparent to-transparent opacity-60 pointer-events-none" />
 

@@ -134,14 +134,13 @@ export default function Services({ services }: { services: Service[] }) {
                 key={service.title}
                 layout
                 onClick={() => setActive(i)}
-                animate={{ flex: isActive ? 3.2 : 1 }}
                 transition={SPRING}
                 className={`relative rounded-2xl p-6 cursor-pointer overflow-hidden flex flex-col
                   ${isActive
                     ? "bg-white border-2 border-[#6C63FF] shadow-xl shadow-indigo-100/60"
                     : "bg-[#F0EFFF] border-2 border-transparent hover:border-[#6C63FF]/20"
                   }`}
-                style={{ minWidth: 0 }}
+                style={{ minWidth: 0, flex: isActive ? 3.2 : 1 }}
               >
                 {/* Decorative: vertical line + dot */}
                 <div className="absolute top-3 right-5 flex flex-col items-center gap-0">

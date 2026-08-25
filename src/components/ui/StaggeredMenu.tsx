@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import "./StaggeredMenu.css";
 
@@ -402,13 +403,15 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       </div>
       <header className="staggered-menu-header" aria-label="Main navigation header">
         <a href="/" className="sm-logo cursor-pointer" aria-label="Halaman Utama Lumi Beta Works">
-          <img
+          <Image
             src={logoUrl || "/logo3_1920x1080.svg"}
             alt="Lumi Beta Works"
             className="sm-logo-img hover:opacity-90 transition-opacity"
             draggable={false}
             width={140}
             height={40}
+            style={{ width: "auto", height: 40 }}
+            unoptimized
           />
         </a>
         <button

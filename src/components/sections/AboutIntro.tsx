@@ -22,6 +22,7 @@ export default function AboutIntro() {
                   src="/logo1.png"
                   alt="Lumi Beta Works | Vendor IT & Jasa Buat Website Perusahaan"
                   fill
+                  sizes="(min-width: 1024px) 384px, 90vw"
                   className="object-contain p-2"
                   priority
                 />

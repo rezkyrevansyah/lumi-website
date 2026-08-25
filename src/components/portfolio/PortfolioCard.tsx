@@ -59,8 +59,8 @@ export function PortfolioCard({ proj, index }: { proj: PortfolioItem & { imageUr
             src={proj.imageUrl}
             alt={proj.title}
             fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="object-cover group-hover:scale-105 transition-transform duration-500"
-            unoptimized
           />
         ) : (
           /* Default gradient placeholder */

@@ -6,14 +6,14 @@ import "./globals.css";
 
 const rubik = Rubik({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-rubik",
   display: "swap",
 });
 
 const openSans = Open_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-opensans",
   display: "swap",
 });

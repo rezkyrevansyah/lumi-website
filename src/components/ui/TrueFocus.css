@@ -14,14 +14,10 @@
   font-size: clamp(1.25rem, 3vw, 1.85rem);
   font-weight: 800;
   cursor: pointer;
-  transition: filter 0.3s ease, color 0.3s ease;
+  transition: opacity 0.3s ease, color 0.3s ease;
   outline: none;
   user-select: none;
   color: #101828;
-}
-
-.focus-word.active {
-  filter: blur(0);
 }
 
 .focus-frame {

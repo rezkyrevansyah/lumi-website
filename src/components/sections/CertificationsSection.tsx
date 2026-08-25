@@ -57,8 +57,8 @@ export default function CertificationsSection() {
                   src={cert.src}
                   alt={cert.alt}
                   fill
+                  sizes="(min-width: 768px) 240px, 45vw"
                   className="object-contain group-hover:scale-105 transition-transform duration-300 p-2"
-                  unoptimized
                 />
               </div>
             </motion.div>
