@@ -286,10 +286,10 @@ export const PORTFOLIO: PortfolioItem[] = [
 ];
 
 export const STATS = [
-  { value: "25+", label: "Enterprise & B2B Projects" },
-  { value: "15+", label: "Happy B2B Clients" },
-  { value: "100%", label: "On-Time Delivery SLA" },
-  { value: "4.9", label: "Average Client Rating" },
+  { value: "36", label: "Pesanan Selesai" },
+  { value: "24", label: "Pelanggan Puas" },
+  { value: "13", label: "Dipekerjakan Ulang" },
+  { value: "5.0", label: "Rating Kepuasan" },
 ];
 
 export type Testimonial = {
@@ -301,27 +301,75 @@ export type Testimonial = {
 
 export const TESTIMONIALS: Testimonial[] = [
   {
-    quote: "Lumi Beta Works membantu pengujian kualitas portal kami dengan sangat baik. Bebas dari kendala saat trafik tinggi.",
-    name: "Pengelola Sistem BAZNAS",
-    role: "Tim Teknologi BAZNAS RI",
+    quote: "The experience of working with Revan was truly great throughout the entire process. He constructed a full stack web application for our business in London precisely as we needed it. Communication was always clear, he got a quick grasp of our requirements, proposed some practical improvements, and met all the milestones on time. The code was clean, the user interface had a professional appearance, and the backend was both reliable and well-structured. Even after the project was completed, he was willing to make a few adjustments without any trouble. It's not easy to come across someone who has both strong technical abilities and excellent communication skills, but Revan most definitely does. I would be happy to work with him again and can highly recommend him to anybody seeking a reliable full-stack developer.",
+    name: "Winnie",
+    role: "Business Owner — London, UK",
     rating: 5,
   },
   {
-    quote: "Proses pengerjaan website & testing sangat profesional. Komunikasi lancar dan pengerjaan tepat waktu sesuai SLA.",
-    name: "Tim Ekraf Hub",
-    role: "Kemenparekraf RI",
+    quote: "Nice, he do a full stack web development and can work using english. Outstanding results and give a lot of bonus. Good work",
+    name: "Ron",
+    role: "International Client",
     rating: 5,
   },
   {
-    quote: "Kualitas pengetesan aplikasi mobile & e-commerce dari Lumi sangat detail. Edge cases yang sulit terdeteksi berhasil ditemukan.",
-    name: "QA Lead Retail",
-    role: "Erafone / Erajaya Group",
+    quote: "Kerjasama dengan mas Revan sangat professional, saya merekomendasikan untuk pembuatan UI/UX dan website.",
+    name: "Fahmi",
+    role: "Client UI/UX & Web",
     rating: 5,
   },
   {
-    quote: "Website studio manajemen kami di Depok tampil modern dan sangat responsif. Pelanggan kami sangat menyukai tampilannya.",
-    name: "Manager Yoonjae Space",
-    role: "Studio Yoonjae Space Depok",
+    quote: "Mantap, hasilnya memuaskan, dan ada bonusnya juga, recommended banget buat repeat order ini, terima kasih banyak yaa",
+    name: "merdekapro",
+    role: "Repeat Order Client",
+    rating: 5,
+  },
+  {
+    quote: "Sip, rekomended untuk UI/UX. Respon bagus dan cepat.",
+    name: "totocos",
+    role: "Client UI/UX Design",
+    rating: 5,
+  },
+  {
+    quote: "Nicee, bisa dari UI/UX sampe website jadi, gokil banget!",
+    name: "Verified Client",
+    role: "Full-Stack Web Client",
+    rating: 5,
+  },
+  {
+    quote: "Sudah sering sama mas Revan, mantap dan selalu terpercaya!",
+    name: "Verified Client",
+    role: "Repeat Order Client",
+    rating: 5,
+  },
+  {
+    quote: "Mantap pengerjaan cepat dan trusted.",
+    name: "b6iojh2y",
+    role: "Client Web Development",
+    rating: 5,
+  },
+  {
+    quote: "Mantap, rekomended deh pokoknya.",
+    name: "bimol7",
+    role: "Client Project",
+    rating: 5,
+  },
+  {
+    quote: "Makasih kakk rekomenn banget!",
+    name: "eca",
+    role: "Client",
+    rating: 5,
+  },
+  {
+    quote: "Mantap, sesuai requestan customer. Terimakasih.",
+    name: "Verified Client",
+    role: "Client",
+    rating: 5,
+  },
+  {
+    quote: "Sangat memuaskan.",
+    name: "daa",
+    role: "Client",
     rating: 5,
   },
 ];

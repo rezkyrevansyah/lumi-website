@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 
 const CLIENTS = [
-  "BKD Pemprov", "TechMart Indonesia", "FinFlow", "EduBright", "RetailX",
-  "HealthCo", "BuildPro Indonesia", "AgroBase", "CloudSync", "MediaOne",
-  "GovDKI", "StartupHub", "DataCorp", "LogiTech ID", "UrbanSpace",
+  "BAZNAS RI", "Kemenparekraf RI", "Erafone (Erajaya)", "Tower Bersama Group", "LASKAR AI",
+  "Yoonjae Space", "Masjid Al-Arqam", "Dapur Nusantara", "BaliPass", "Next Swimming School",
+  "Robux Indo Store", "Athro Barbershop", "Winnie (London, UK)", "Ron (International)", "merdekapro",
 ];
 
 export default function HappyClients() {
