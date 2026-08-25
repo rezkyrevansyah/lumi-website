@@ -9,7 +9,7 @@ export default function BackgroundBlobs() {
         contain: "strict",
       }}
     >
-      {/* Top-left — emerald */}
+      {/* Top-left: emerald */}
       <div
         className="absolute -top-48 -left-48 w-[600px] h-[600px] rounded-full pointer-events-none"
         style={{
@@ -18,7 +18,7 @@ export default function BackgroundBlobs() {
         }}
       />
 
-      {/* Top-right — indigo */}
+      {/* Top-right: indigo */}
       <div
         className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{
@@ -27,7 +27,7 @@ export default function BackgroundBlobs() {
         }}
       />
 
-      {/* Center — teal */}
+      {/* Center: teal */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full pointer-events-none"
         style={{
@@ -36,7 +36,7 @@ export default function BackgroundBlobs() {
         }}
       />
 
-      {/* Bottom-left — indigo */}
+      {/* Bottom-left: indigo */}
       <div
         className="absolute bottom-0 -left-40 w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{
@@ -45,7 +45,7 @@ export default function BackgroundBlobs() {
         }}
       />
 
-      {/* Bottom-right — emerald */}
+      {/* Bottom-right: emerald */}
       <div
         className="absolute -bottom-32 -right-32 w-[550px] h-[550px] rounded-full pointer-events-none"
         style={{

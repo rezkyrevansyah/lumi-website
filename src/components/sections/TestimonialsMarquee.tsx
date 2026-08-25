@@ -58,7 +58,7 @@ export default function TestimonialsMarquee({ items }: { items: Testimonial[] })
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Row 1 — left to right */}
+      {/* Row 1: left to right */}
       <div className="relative flex overflow-hidden">
         <div className="flex animate-marquee items-center">
           {row1.map((t, i) => (
@@ -67,7 +67,7 @@ export default function TestimonialsMarquee({ items }: { items: Testimonial[] })
         </div>
       </div>
 
-      {/* Row 2 — right to left */}
+      {/* Row 2: right to left */}
       <div className="relative flex overflow-hidden">
         <div className="flex animate-marquee-reverse items-center">
           {row2.map((t, i) => (

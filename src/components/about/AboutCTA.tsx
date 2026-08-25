@@ -26,7 +26,7 @@ export default function AboutCTA() {
             className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto mb-8 leading-relaxed"
             style={{ fontFamily: "var(--font-opensans)" }}
           >
-            Mari berdiskusi santai. Ceritakan kebutuhan bisnis atau instansi Anda, dan kami akan bantu berikan saran arsitektur, estimasi pengerjaan, dan solusi paling efisien — 100% gratis tanpa komitmen.
+            Mari berdiskusi santai. Ceritakan kebutuhan bisnis atau instansi Anda, dan kami akan bantu berikan saran arsitektur, estimasi pengerjaan, dan solusi paling efisien, 100% gratis tanpa komitmen.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

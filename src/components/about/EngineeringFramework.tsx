@@ -24,7 +24,7 @@ export default function EngineeringFramework() {
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-          {/* Left — pipeline illustration */}
+          {/* Left: pipeline illustration */}
           <motion.div
             initial={{ opacity: 0, x: -28 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -71,7 +71,7 @@ export default function EngineeringFramework() {
             ))}
           </motion.div>
 
-          {/* Right — text */}
+          {/* Right: text */}
           <motion.div
             initial={{ opacity: 0, x: 28 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -93,8 +93,8 @@ export default function EngineeringFramework() {
             >
               Designed to optimize the engineering process by integrating
               cutting-edge technologies and best practices, resulting in faster
-              development cycles and higher-quality outputs. Highly flexible and
-              customizable — ideal and scalable for projects of any size or
+              development cycles and higher-quality outputs. Highly flexible, scalable,
+              and customizable for projects of any size or
               complexity, enabling your software development to adapt to the
               market&apos;s ever-changing demands.
             </p>

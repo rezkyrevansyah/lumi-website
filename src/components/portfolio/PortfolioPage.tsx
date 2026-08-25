@@ -80,8 +80,7 @@ export default function PortfolioPage({ projects }: { projects: (PortfolioItem &
             style={{ fontFamily: "var(--font-opensans)" }}
           >
             Kami berkomitmen menghadirkan produk digital yang andal, berkelanjutan,
-            dan disukai pengguna — lintas industri, platform, dan berbagai
-            tantangan bisnis nyata.
+            dan disukai pengguna di berbagai industri, platform, dan kebutuhan bisnis nyata.
           </p>
         </motion.div>
 

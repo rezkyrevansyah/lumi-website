@@ -11,12 +11,12 @@ import { PORTFOLIO, type PortfolioItem } from "@/lib/data";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "Portofolio Proyek & Klien B2B",
+  title: "Portofolio Proyek & Klien B2B | Lumi Beta Works",
   description:
-    "Portofolio resmi Lumi Beta Works — BAZNAS RI, Kemenparekraf RI, Erafone (Erajaya), Tower Bersama Group, TerraScan AI, Yoonjae Space, Masjid Al-Arqam, dsb.",
+    "Portofolio resmi Lumi Beta Works meliputi BAZNAS RI, Kemenparekraf RI, Erafone (Erajaya), Tower Bersama Group, TerraScan AI, Yoonjae Space, Masjid Al-Arqam, dan puluhan proyek lainnya.",
   alternates: { canonical: "https://lumibetaworks.id/portfolio" },
   openGraph: {
-    title: "Portofolio Proyek & Klien B2B — Lumi Beta Works",
+    title: "Portofolio Proyek & Klien B2B | Lumi Beta Works",
     description:
       "Daftar portofolio pembuatan website corporate, aplikasi mobile enterprise, & pengujian QA testing Lumi Beta Works.",
     url: "https://lumibetaworks.id/portfolio",

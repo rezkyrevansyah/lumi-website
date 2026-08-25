@@ -52,7 +52,7 @@ export default function StatsEditor({ initialStats }: StatsEditorProps) {
               className="text-2xl font-bold gradient-text"
               style={{ fontFamily: "var(--font-rubik)" }}
             >
-              {stat.value || "—"}
+              {stat.value || "-"}
             </p>
             <div className="space-y-2">
               <Input

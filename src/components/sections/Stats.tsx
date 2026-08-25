@@ -10,7 +10,11 @@ export default async function Stats() {
   const hasNewStats = (dbStats ?? []).some(
     (s) => s.value.includes("36") || s.label.toLowerCase().includes("pesanan")
   );
-  const stats = hasNewStats ? dbStats! : STATS;
+  const rawStats = hasNewStats ? dbStats! : STATS;
+  const stats = rawStats.map((s) => ({
+    ...s,
+    value: s.value === "36" ? "36+" : s.value === "24" ? "24+" : s.value === "13" ? "13+" : s.value,
+  }));
 
   return (
     <section className="py-16 bg-white border-y border-gray-100">

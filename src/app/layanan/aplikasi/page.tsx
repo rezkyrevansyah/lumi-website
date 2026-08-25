@@ -11,7 +11,7 @@ import { createClient } from "@/utils/supabase/server";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Vendor Pembuatan Aplikasi Mobile Android & iOS — Lumi Beta Works",
+  title: "Vendor Pembuatan Aplikasi Mobile Android & iOS | Lumi Beta Works",
   description:
     "Vendor IT pembuatan aplikasi mobile Android & iOS custom menggunakan Flutter. Performa native, UI/UX intuitif, arsitektur scalable, dan publikasi Play Store / App Store.",
   alternates: { canonical: "https://lumibetaworks.id/layanan/aplikasi" },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "software house mobile app indonesia",
   ],
   openGraph: {
-    title: "Vendor Pembuatan Aplikasi Mobile Android & iOS — Lumi Beta Works",
+    title: "Vendor Pembuatan Aplikasi Mobile Android & iOS | Lumi Beta Works",
     description:
       "Solusi aplikasi mobile handal dengan Flutter. Hemat biaya & waktu pengembangan tanpa kompromi pada kualitas performa.",
     url: "https://lumibetaworks.id/layanan/aplikasi",

@@ -48,7 +48,7 @@ export default function AdminHeader({ onMenuOpen }: AdminHeaderProps) {
         </div>
       </div>
 
-      {/* Right side — user badge */}
+      {/* Right side: user badge */}
       <div className="flex items-center gap-2">
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#F8F9FB] border border-border">
           <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#2DD9A4] to-[#6C63FF] flex items-center justify-center text-white text-[10px] font-bold"

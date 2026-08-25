@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const ACHIEVEMENTS = [
   {
-    value: "36",
+    value: "36+",
     label: "Pesanan Selesai",
     desc: "Puluhan proyek website, aplikasi mobile, dan pengujian QA sukses diluncurkan.",
     color: "#6C63FF",
@@ -12,7 +12,7 @@ const ACHIEVEMENTS = [
     textColor: "#6C63FF",
   },
   {
-    value: "24",
+    value: "24+",
     label: "Pelanggan Puas",
     desc: "Dari instansi pemerintah, korporat retail, UMKM, hingga klien internasional.",
     color: "#2DD9A4",
@@ -20,7 +20,7 @@ const ACHIEVEMENTS = [
     textColor: "#1aad84",
   },
   {
-    value: "13",
+    value: "13+",
     label: "Dipekerjakan Ulang",
     desc: "Tingkat repeat order tinggi karena komitmen kualitas, kecepatan, & integritas.",
     color: "#3BB5C5",

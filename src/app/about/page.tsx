@@ -14,12 +14,12 @@ import type { Metadata } from "next";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Tentang Kami — Studio Teknologi & Partner Digital Nyaman",
+  title: "Tentang Kami | Studio Teknologi & Partner Digital Nyaman",
   description:
-    "Kenali Lumi Beta Works — Studio digital yang berangkat dari reputasi freelancer terpercaya di Fastwork menjadi partner teknologi pilihan untuk website corporate, aplikasi mobile, dan QA testing.",
+    "Kenali Lumi Beta Works, studio digital yang berangkat dari reputasi freelancer terpercaya di Fastwork menjadi partner teknologi pilihan untuk website corporate, aplikasi mobile, dan QA testing.",
   alternates: { canonical: "https://lumibetaworks.id/about" },
   openGraph: {
-    title: "Tentang Kami — Lumi Beta Works",
+    title: "Tentang Kami | Lumi Beta Works",
     description:
       "Perjalanan, visi, dan komitmen Lumi Beta Works dalam memberikan pengalaman pengerjaan proyek digital yang nyaman, transparan, dan berkelas.",
     url: "https://lumibetaworks.id/about",

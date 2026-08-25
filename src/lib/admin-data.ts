@@ -45,7 +45,7 @@ export type AdminActiveProject = {
 export type AdminBrand = {
   id: string;
   name: string;
-  logoUrl?: string; // base64 or URL — optional, falls back to text
+  logoUrl?: string; // base64 or URL, optional, falls back to text
 };
 
 // ── Initial Data ───────────────────────────────────────────────────────

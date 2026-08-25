@@ -26,7 +26,7 @@ const PILLARS = [
       </svg>
     ),
     title: "Tim Berdedikasi",
-    desc: "Pengembang berpengalaman yang sepenuh hati membangun solusi bisnismu — setiap sprint, setiap rilis.",
+    desc: "Pengembang berpengalaman yang sepenuh hati membangun solusi bisnismu di setiap sprint dan setiap rilis.",
     color: "#6C63FF",
     bg: "rgba(108,99,255,0.1)",
   },
@@ -38,7 +38,7 @@ const PILLARS = [
       </svg>
     ),
     title: "Teruji & Terpercaya",
-    desc: "Telah berhasil merilis produk digital di berbagai industri — dari instansi pemerintah hingga startup.",
+    desc: "Telah berhasil merilis produk digital di berbagai industri, mulai dari instansi pemerintah hingga startup.",
     color: "#3BB5C5",
     bg: "rgba(59,181,197,0.1)",
   },

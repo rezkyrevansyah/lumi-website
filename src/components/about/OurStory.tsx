@@ -54,7 +54,7 @@ export default function OurStory() {
               className="text-gray-600 text-base md:text-lg leading-relaxed"
               style={{ fontFamily: "var(--font-opensans)" }}
             >
-              Lumi Beta Works tidak dimulai dari ruang rapat formal yang kaku. Kami berangkat dari rekam jejak nyata di lapangan — dipercaya oleh puluhan klien di platform{" "}
+              Lumi Beta Works tidak dimulai dari ruang rapat formal yang kaku. Kami berangkat dari rekam jejak nyata di lapangan, dipercaya oleh puluhan klien di platform{" "}
               <a
                 href={FASTWORK_URL}
                 target="_blank"

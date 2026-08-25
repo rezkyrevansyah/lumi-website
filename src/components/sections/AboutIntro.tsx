@@ -20,7 +20,7 @@ export default function AboutIntro() {
               <div className="relative w-full h-36 sm:h-44 mb-4">
                 <Image
                   src="/logo1.png"
-                  alt="Lumi Beta Works — Vendor IT & Jasa Buat Website Perusahaan"
+                  alt="Lumi Beta Works | Vendor IT & Jasa Buat Website Perusahaan"
                   fill
                   className="object-contain p-2"
                   priority

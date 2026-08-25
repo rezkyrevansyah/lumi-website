@@ -60,7 +60,7 @@ export default function AboutHero() {
           style={{ fontFamily: "var(--font-opensans)" }}
         >
           Investasi digital kamu penting bagi kami. Kami menghadirkan solusi
-          website dan aplikasi yang modern, andal, dan teruji — dibangun dengan
+          website dan aplikasi yang modern, andal, dan teruji, dibangun dengan
           pendekatan product engineering yang dipercaya berbagai industri.
         </motion.p>
 

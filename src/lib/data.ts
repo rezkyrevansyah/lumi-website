@@ -227,7 +227,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     title: "BaliPass",
     client: "Bali Travel & Tourism",
     category: "Web Development • Tourism",
-    description: "Platform discovery & booking acara terbaik di Bali — dari yoga & cultural immersion hingga party & spiritual journey dengan event terkurasi.",
+    description: "Platform discovery & booking acara terbaik di Bali, mulai dari yoga & cultural immersion hingga party & spiritual journey dengan event terkurasi.",
     tags: ["Events", "Booking", "Tourism", "Bali"],
     platforms: ["web"],
     color: "#2DD9A4",
@@ -286,9 +286,9 @@ export const PORTFOLIO: PortfolioItem[] = [
 ];
 
 export const STATS = [
-  { value: "36", label: "Pesanan Selesai" },
-  { value: "24", label: "Pelanggan Puas" },
-  { value: "13", label: "Dipekerjakan Ulang" },
+  { value: "36+", label: "Pesanan Selesai" },
+  { value: "24+", label: "Pelanggan Puas" },
+  { value: "13+", label: "Dipekerjakan Ulang" },
   { value: "5.0", label: "Rating Kepuasan" },
 ];
 
@@ -303,7 +303,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     quote: "The experience of working with Revan was truly great throughout the entire process. He constructed a full stack web application for our business in London precisely as we needed it. Communication was always clear, he got a quick grasp of our requirements, proposed some practical improvements, and met all the milestones on time. The code was clean, the user interface had a professional appearance, and the backend was both reliable and well-structured. Even after the project was completed, he was willing to make a few adjustments without any trouble. It's not easy to come across someone who has both strong technical abilities and excellent communication skills, but Revan most definitely does. I would be happy to work with him again and can highly recommend him to anybody seeking a reliable full-stack developer.",
     name: "Winnie",
-    role: "Business Owner — London, UK",
+    role: "Business Owner (London, UK)",
     rating: 5,
   },
   {

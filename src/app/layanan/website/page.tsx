@@ -11,7 +11,7 @@ import { createClient } from "@/utils/supabase/server";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Jasa Buat Website Perusahaan & Instansi Terpercaya — Vendor IT Lumi",
+  title: "Jasa Buat Website Perusahaan & Instansi Terpercaya | Vendor IT Lumi",
   description:
     "Jasa pembuatan website perusahaan, corporate profile, dan portal instansi pemerintah. Desain modern, ultra cepat (<1s), aman, SEO friendly score 95+, dan bergaransi.",
   alternates: { canonical: "https://lumibetaworks.id/layanan/website" },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "jasa website custom nextjs",
   ],
   openGraph: {
-    title: "Jasa Buat Website Perusahaan & Instansi — Lumi Beta Works",
+    title: "Jasa Buat Website Perusahaan & Instansi | Lumi Beta Works",
     description:
       "Website corporate & instansi dengan performa tinggi, SEO optimal, dan desain eksklusif yang meningkatkan reputasi bisnis Anda.",
     url: "https://lumibetaworks.id/layanan/website",

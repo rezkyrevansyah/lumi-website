@@ -30,7 +30,7 @@ export default function AdminMediaPage() {
         </Button>
 
         <p className="mt-4 text-xs text-muted-foreground" style={{ fontFamily: "var(--font-opensans)" }}>
-          Coming soon — requires Supabase Storage integration
+          Coming soon (requires Supabase Storage integration)
         </p>
       </div>
     </div>

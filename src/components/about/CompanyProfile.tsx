@@ -14,7 +14,7 @@ export default function CompanyProfile() {
           className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden"
         >
           <div className="grid lg:grid-cols-2 gap-0 items-center">
-            {/* Left — text */}
+            {/* Left: text */}
             <div className="p-8 md:p-12">
               <p className="section-tag mb-4">Company Profile</p>
               <h2
@@ -29,7 +29,7 @@ export default function CompanyProfile() {
                 style={{ fontFamily: "var(--font-opensans)" }}
               >
                 Download our company profile to get a full picture of what Lumi
-                Beta Works offers — our services, approach, past projects, and
+                Beta Works offers, including our services, approach, past projects, and
                 how we can take your business to the next level.
               </p>
 
@@ -52,7 +52,7 @@ export default function CompanyProfile() {
               </a>
             </div>
 
-            {/* Right — decorative illustration area */}
+            {/* Right: decorative illustration area */}
             <div
               className="relative h-64 lg:h-full min-h-[260px] flex items-center justify-center overflow-hidden"
               style={{ background: "linear-gradient(135deg, #F0EFFF 0%, #E8FBF4 100%)" }}

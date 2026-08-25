@@ -11,7 +11,7 @@ import { createClient } from "@/utils/supabase/server";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Layanan Vendor IT & Rekayasa Perangkat Lunak Terpercaya — Lumi Beta Works",
+  title: "Layanan Vendor IT & Rekayasa Perangkat Lunak Terpercaya | Lumi Beta Works",
   description:
     "Solusi lengkap pembuatan website perusahaan, aplikasi mobile iOS & Android, QA testing enterprise, dan konsultasi IT profesional. Kualitas tinggi, tepat waktu, & bergaransi.",
   alternates: { canonical: "https://lumibetaworks.id/layanan" },
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "software house b2b",
   ],
   openGraph: {
-    title: "Layanan Vendor IT & Rekayasa Perangkat Lunak — Lumi Beta Works",
+    title: "Layanan Vendor IT & Rekayasa Perangkat Lunak | Lumi Beta Works",
     description:
       "Jasa pembuatan website corporate, aplikasi mobile custom, QA testing berstandar industri, dan konsultasi arsitektur IT.",
     url: "https://lumibetaworks.id/layanan",
@@ -199,7 +199,7 @@ export default async function LayananPage() {
               className="text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-10"
               style={{ fontFamily: "var(--font-opensans)" }}
             >
-              Dari website corporate berkecepatan tinggi, aplikasi mobile custom, hingga audit QA berstandar enterprise — kami membantu bisnis dan instansi Anda melangkah lebih cepat dengan teknologi yang handal.
+              Dari website corporate berkecepatan tinggi, aplikasi mobile custom, hingga audit QA berstandar enterprise, kami membantu bisnis dan instansi Anda melangkah lebih cepat dengan teknologi yang handal.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs sm:text-sm font-semibold text-gray-600">

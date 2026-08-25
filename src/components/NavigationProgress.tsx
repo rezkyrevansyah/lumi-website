@@ -1,69 +1,70 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { usePathname } from "next/navigation";
+import LottieLoader from "@/components/ui/LottieLoader";
 
 export default function NavigationProgress() {
   const pathname = usePathname();
-  const [progress, setProgress] = useState(0);
-  const [visible, setVisible] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const prevPathname = useRef(pathname);
 
+  // When pathname changes (route transition completed), close the loader smoothly
   useEffect(() => {
-    if (pathname === prevPathname.current) return;
-    prevPathname.current = pathname;
-
-    // Clear any running timers
-    if (timerRef.current) clearTimeout(timerRef.current);
-    if (intervalRef.current) clearInterval(intervalRef.current);
-
-    // Start
-    setProgress(0);
-    setVisible(true);
-
-    // Quickly jump to ~80% then slow down
-    let current = 0;
-    intervalRef.current = setInterval(() => {
-      current += current < 60 ? 12 : current < 80 ? 4 : 1;
-      if (current >= 90) {
-        if (intervalRef.current) clearInterval(intervalRef.current);
-        current = 90;
-      }
-      setProgress(current);
-    }, 60);
-
-    // Complete after a short delay (route has rendered)
-    timerRef.current = setTimeout(() => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      setProgress(100);
-      setTimeout(() => setVisible(false), 300);
-    }, 200);
-
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
+    if (pathname !== prevPathname.current) {
+      prevPathname.current = pathname;
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 350);
+      return () => clearTimeout(timer);
+    }
   }, [pathname]);
 
-  if (!visible && progress === 0) return null;
+  // Intercept internal link clicks to trigger the Lottie loading overlay instantly
+  useEffect(() => {
+    const handleAnchorClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+      const anchor = target?.closest("a") as HTMLAnchorElement | null;
+      if (!anchor) return;
+
+      const href = anchor.getAttribute("href");
+      if (!href) return;
+
+      // Ignore external links, hash anchors, new tabs, and mailto/tel/whatsapp
+      if (
+        href.startsWith("#") ||
+        href.startsWith("http://") ||
+        href.startsWith("https://") ||
+        href.startsWith("mailto:") ||
+        href.startsWith("tel:") ||
+        href.startsWith("https://wa.me") ||
+        anchor.target === "_blank" ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey
+      ) {
+        return;
+      }
+
+      // Check if navigating to a different internal route
+      const currentPath = window.location.pathname;
+      const targetUrl = new URL(anchor.href, window.location.origin);
+      if (targetUrl.pathname !== currentPath) {
+        setIsLoading(true);
+      }
+    };
+
+    document.addEventListener("click", handleAnchorClick, { capture: true });
+    return () => {
+      document.removeEventListener("click", handleAnchorClick, { capture: true });
+    };
+  }, []);
+
+  if (!isLoading) return null;
 
   return (
-    <div
-      className="fixed top-0 left-0 right-0 z-[9999] pointer-events-none"
-      style={{ height: "3px" }}
-    >
-      <div
-        style={{
-          height: "100%",
-          width: `${progress}%`,
-          background: "linear-gradient(90deg, #2DD9A4, #6C63FF)",
-          transition: progress === 100 ? "width 0.2s ease, opacity 0.3s ease" : "width 0.4s ease",
-          opacity: visible ? 1 : 0,
-          boxShadow: "0 0 8px rgba(45, 217, 164, 0.6)",
-        }}
-      />
+    <div className="fixed inset-0 z-[999999] flex items-center justify-center bg-white/95 backdrop-blur-md transition-all duration-300">
+      <LottieLoader size={220} label="Memuat Halaman..." />
     </div>
   );
 }

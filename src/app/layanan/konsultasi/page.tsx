@@ -11,7 +11,7 @@ import { createClient } from "@/utils/supabase/server";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Konsultan IT & Modernisasi Sistem Perusahaan — Lumi Beta Works",
+  title: "Konsultan IT & Modernisasi Sistem Perusahaan | Lumi Beta Works",
   description:
     "Layanan konsultasi arsitektur IT, audit kode, modernisasi sistem legacy, dan strategi migrasi cloud untuk efisiensi bisnis perusahaan & instansi.",
   alternates: { canonical: "https://lumibetaworks.id/layanan/konsultasi" },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "tech stack advisory b2b",
   ],
   openGraph: {
-    title: "Konsultan IT & Modernisasi Sistem Perusahaan — Lumi Beta Works",
+    title: "Konsultan IT & Modernisasi Sistem Perusahaan | Lumi Beta Works",
     description:
       "Tingkatkan kecepatan, keamanan, dan skalabilitas infrastruktur software bisnis Anda bersama konsultan IT berpengalaman.",
     url: "https://lumibetaworks.id/layanan/konsultasi",

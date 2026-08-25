@@ -4,7 +4,7 @@ import * as React from "react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-/* Decrypt Text — from Motiq (https://motiq.dev/components/decrypt-text).
+/* Decrypt Text: from Motiq (https://motiq.dev/components/decrypt-text).
    MIT licensed. Zero runtime dependencies. */
 
 /* -------------------------------------------------------------------------- */

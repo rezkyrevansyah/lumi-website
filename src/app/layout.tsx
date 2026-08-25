@@ -25,8 +25,8 @@ export const metadata: Metadata = {
     shortcut: "/logo4_1080x1080.svg",
   },
   title: {
-    default: "Vendor IT Perusahaan & Jasa Buat Website Terpercaya — Lumi Beta Works",
-    template: "%s — Lumi Beta Works",
+    default: "Vendor IT Perusahaan & Jasa Buat Website Terpercaya | Lumi Beta Works",
+    template: "%s | Lumi Beta Works",
   },
   description:
     "Vendor IT Perusahaan & Instansi terpercaya. Pembuatan website perusahaan, aplikasi mobile custom, QA testing, dan konsultasi IT berkualitas tinggi & tepat waktu.",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Lumi Beta Works", url: "https://lumibetaworks.id" }],
   openGraph: {
-    title: "Vendor IT Perusahaan & Jasa Buat Website Professional — Lumi Beta Works",
+    title: "Vendor IT Perusahaan & Jasa Buat Website Professional | Lumi Beta Works",
     description:
       "Mitra Vendor IT & Software House profesional untuk Perusahaan, Instansi, & Bisnis Berkembang di Indonesia.",
     type: "website",

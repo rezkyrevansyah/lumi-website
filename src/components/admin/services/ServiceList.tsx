@@ -48,7 +48,7 @@ export default function ServiceList({ initialItems }: ServiceListProps) {
     <>
       <PageHeader
         title="Services"
-        description="Edit your service offerings. Services cannot be added or removed — only their content."
+        description="Edit your service offerings. Services cannot be added or removed, only their content."
       />
 
       <div className="bg-white rounded-2xl border border-border shadow-sm overflow-hidden">

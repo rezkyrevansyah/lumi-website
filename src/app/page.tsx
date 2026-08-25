@@ -5,13 +5,13 @@ import { createClient } from "@/utils/supabase/server";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "Vendor IT Perusahaan & Jasa Buat Website Terpercaya — Lumi Beta Works",
+  title: "Vendor IT Perusahaan & Jasa Buat Website Terpercaya | Lumi Beta Works",
   description:
     "Vendor IT Perusahaan & Instansi terpercaya. Jasa pembuatan website perusahaan, aplikasi mobile, QA testing, dan konsultasi IT berkualitas & terjangkau. Konsultasi gratis!",
   alternates: { canonical: "https://lumibetaworks.id" },
   openGraph: {
     url: "https://lumibetaworks.id",
-    title: "Vendor IT Perusahaan & Jasa Buat Website Professional — Lumi Beta Works",
+    title: "Vendor IT Perusahaan & Jasa Buat Website Professional | Lumi Beta Works",
     description:
       "Mitra Vendor IT & Software House profesional untuk Perusahaan, Instansi, & Bisnis Berkembang di Indonesia.",
   },

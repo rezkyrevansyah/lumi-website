@@ -45,11 +45,11 @@ export default async function Portfolio() {
             className="text-gray-500 text-base md:text-lg max-w-xl mx-auto"
             style={{ fontFamily: "var(--font-opensans)" }}
           >
-            Portofolio karya nyata kami — melayani lembaga pemerintah, perusahaan retail, telekomunikasi, &amp; bisnis modern di Indonesia.
+            Portofolio karya nyata kami dalam melayani lembaga pemerintah, perusahaan retail, telekomunikasi, &amp; bisnis modern di Indonesia.
           </p>
         </div>
 
-        {/* Grid — show first 6 on home */}
+        {/* Grid: show first 6 on home */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {projects.map((proj, i) => (
             <PortfolioCard key={proj.title} proj={proj} index={i} />

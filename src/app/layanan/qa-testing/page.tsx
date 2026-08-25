@@ -11,7 +11,7 @@ import { createClient } from "@/utils/supabase/server";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Vendor QA Testing & Software Quality Assurance Enterprise — Lumi",
+  title: "Vendor QA Testing & Software Quality Assurance Enterprise | Lumi Beta Works",
   description:
     "Layanan Vendor QA testing manual & automation profesional untuk website, aplikasi mobile, & API sistem perusahaan. Garansi produk bebas bug sebelum rilis live.",
   alternates: { canonical: "https://lumibetaworks.id/layanan/qa-testing" },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "manual qa tester profesional",
   ],
   openGraph: {
-    title: "Vendor QA Testing Website & Aplikasi Enterprise — Lumi Beta Works",
+    title: "Vendor QA Testing Website & Aplikasi Enterprise | Lumi Beta Works",
     description:
       "Uji keandalan, keamanan, dan stabilitas performa sistem Anda dengan metodologi QA berstandar enterprise.",
     url: "https://lumibetaworks.id/layanan/qa-testing",

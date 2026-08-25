@@ -6,9 +6,9 @@ import Image from "next/image";
 const FASTWORK_URL = "https://fastwork.id/user/revansyah?source=web_chat_user-profile-modal";
 
 const METRICS = [
-  { value: "36", label: "Pesanan Selesai", desc: "100% tepat waktu" },
-  { value: "24", label: "Klien Puas", desc: "Dari UMKM s/d Instansi" },
-  { value: "13", label: "Dipekerjakan Ulang", desc: "Tingkat repeat order tinggi" },
+  { value: "36+", label: "Pesanan Selesai", desc: "100% tepat waktu" },
+  { value: "24+", label: "Klien Puas", desc: "Dari UMKM s/d Instansi" },
+  { value: "13+", label: "Dipekerjakan Ulang", desc: "Tingkat repeat order tinggi" },
   { value: "5.0", label: "Rating Sempurna", desc: "Ulasan kepuasan 5 bintang" },
 ];
 

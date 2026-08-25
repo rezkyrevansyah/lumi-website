@@ -6,9 +6,9 @@ import Image from "next/image";
 const FASTWORK_URL = "https://fastwork.id/user/revansyah?source=web_chat_user-profile-modal";
 
 const CREDENTIALS = [
-  "Bachelor of Information Technology — Universitas Brawijaya",
-  "Google Bangkit Academy — Top 50 Capstone Winner",
-  "AI Engineer Cohort — LASKAR AI 2025",
+  "Bachelor of Information Technology, Universitas Brawijaya",
+  "Google Bangkit Academy, Top 50 Capstone Winner",
+  "AI Engineer Cohort, LASKAR AI 2025",
   "Enterprise QA & Full-Stack for National Scale Systems",
 ];
 
@@ -52,7 +52,7 @@ export default function MeetFounder() {
             <div className="relative w-60 h-72 sm:w-64 sm:h-80 rounded-3xl bg-gradient-to-br from-emerald-100 to-teal-50 border-2 border-emerald-300/60 shadow-xl overflow-hidden group">
               <Image
                 src="/profile_founder/revan_photo1.png"
-                alt="Rezky Revansyah — Founder Lumi Beta Works"
+                alt="Rezky Revansyah, Founder Lumi Beta Works"
                 fill
                 className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 unoptimized
@@ -87,7 +87,7 @@ export default function MeetFounder() {
               className="text-gray-600 text-sm sm:text-base leading-relaxed"
               style={{ fontFamily: "var(--font-opensans)" }}
             >
-              Berpengalaman menangani berbagai proyek berskala nasional dan internasional — mulai dari portal zakat nasional BAZNAS RI, ekosistem Kemenparekraf, platform e-commerce Erafone, hingga sistem operasional telekomunikasi Tower Bersama Group.
+              Berpengalaman menangani berbagai proyek berskala nasional dan internasional seperti portal zakat nasional BAZNAS RI, ekosistem Kemenparekraf, platform e-commerce Erafone, hingga sistem operasional telekomunikasi Tower Bersama Group.
             </p>
 
             {/* Credentials Pills */}
