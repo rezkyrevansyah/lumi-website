@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import GradientWaves from "@/components/ui/GradientWaves";
 import TrueFocus from "@/components/ui/TrueFocus";
 
@@ -84,7 +85,7 @@ export default function Hero(_props: HeroProps) {
             </svg>
             Konsultasi Vendor IT (Free)
           </a>
-          <a
+          <Link
             href="/portfolio"
             className="btn-outline inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-base font-semibold border-2 border-gray-300 text-[#3D3E4A] hover:bg-gray-100 transition-all"
           >
@@ -92,7 +93,7 @@ export default function Hero(_props: HeroProps) {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

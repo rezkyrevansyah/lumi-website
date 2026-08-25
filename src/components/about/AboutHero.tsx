@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const BADGES = ["Terpercaya", "Andal", "Inovatif", "Terjangkau"];
@@ -91,7 +92,7 @@ export default function AboutHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.24 }}
         >
-          <a
+          <Link
             href="/#contact"
             className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-base group"
           >
@@ -100,7 +101,7 @@ export default function AboutHero() {
               className="transition-transform duration-200 group-hover:translate-x-1">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
-          </a>
+          </Link>
         </motion.div>
 
         {/* Stats strip */}

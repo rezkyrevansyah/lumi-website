@@ -2,6 +2,7 @@
 
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { gsap } from "gsap";
 import "./StaggeredMenu.css";
 
@@ -402,7 +403,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         })()}
       </div>
       <header className="staggered-menu-header" aria-label="Main navigation header">
-        <a href="/" className="sm-logo cursor-pointer" aria-label="Halaman Utama Lumi Beta Works">
+        <Link href="/" className="sm-logo cursor-pointer" aria-label="Halaman Utama Lumi Beta Works">
           <Image
             src={logoUrl || "/logo3_1920x1080.svg"}
             alt="Lumi Beta Works"
@@ -413,7 +414,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             style={{ width: "auto", height: 40 }}
             unoptimized
           />
-        </a>
+        </Link>
         <button
           ref={toggleBtnRef}
           className="sm-toggle"
@@ -445,9 +446,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             {items && items.length ? (
               items.map((it, idx) => (
                 <li className="sm-panel-itemWrap" key={it.label + idx}>
-                  <a className="sm-panel-item" href={it.link} aria-label={it.ariaLabel} data-index={idx + 1} onClick={closeMenu}>
+                  <Link className="sm-panel-item" href={it.link} aria-label={it.ariaLabel} data-index={idx + 1} onClick={closeMenu}>
                     <span className="sm-panel-itemLabel">{it.label}</span>
-                  </a>
+                  </Link>
                 </li>
               ))
             ) : (

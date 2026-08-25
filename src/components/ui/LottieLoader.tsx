@@ -1,7 +1,6 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState, useEffect } from "react";
 
 const DotLottieReact = dynamic(
   () => import("@lottiefiles/dotlottie-react").then((mod) => mod.DotLottieReact),
@@ -21,12 +20,6 @@ export default function LottieLoader({
   label = "Memuat...",
   fullscreen = false,
 }: LottieLoaderProps) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   const content = (
     <div className={`flex flex-col items-center justify-center gap-3 ${className}`}>
       <div
@@ -36,13 +29,11 @@ export default function LottieLoader({
           height: typeof size === "number" ? `${size}px` : size,
         }}
       >
-        {mounted && (
-          <DotLottieReact
-            src="/lottie/lottie_loading_bouncing.lottie"
-            loop
-            autoplay
-          />
-        )}
+        <DotLottieReact
+          src="/lottie/lottie_loading_bouncing.lottie"
+          loop
+          autoplay
+        />
       </div>
       {label && (
         <p

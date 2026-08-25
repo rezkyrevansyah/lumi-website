@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { type PortfolioItem } from "@/lib/data";
 import { PortfolioCard } from "./PortfolioCard";
@@ -56,7 +57,7 @@ export default function PortfolioPage({ projects }: { projects: (PortfolioItem &
           className="flex items-center gap-2 text-sm text-gray-400 mb-8"
           style={{ fontFamily: "var(--font-opensans)" }}
         >
-          <a href="/" className="hover:text-[#2DD9A4] transition-colors">Home</a>
+          <Link href="/" className="hover:text-[#2DD9A4] transition-colors">Home</Link>
           <span>/</span>
           <span className="text-[#3D3E4A] font-medium">Semua Proyek</span>
         </motion.div>
