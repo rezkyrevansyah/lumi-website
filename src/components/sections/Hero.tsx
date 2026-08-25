@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { DecryptText } from "@/components/ui/decrypt-text";
 
 type HeroBadge = { icon: string; label: string };
 type ActiveProject = { name: string; type: string; progress: number; color: string };
@@ -44,21 +45,35 @@ export default function Hero({ badges = [], activeProjects = [] }: HeroProps) {
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 md:py-24 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center w-full">
         {/* Left column */}
         <div className="flex flex-col gap-5 md:gap-6">
-          <motion.div {...fadeUp(0)}>
-            <span className="section-tag">Buka untuk proyek baru</span>
+          <motion.div {...fadeUp(0)} className="flex items-center gap-3">
+            <span className="section-tag inline-flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#2DD9A4] animate-pulse" />
+              Buka untuk proyek baru
+            </span>
           </motion.div>
 
-          <motion.h1
-            {...fadeUp(0.1)}
-            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-[#3D3E4A]"
-            style={{ fontFamily: "var(--font-rubik)" }}
-          >
-            <span className="gradient-text">Website & Aplikasi</span>
-            <br />
-            Profesional,
-            <br />
-            Harga Terjangkau.
-          </motion.h1>
+          <motion.div {...fadeUp(0.1)}>
+            <DecryptText
+              as="h1"
+              text="Website & Aplikasi Profesional, Harga Terjangkau."
+              variant="display"
+              trigger="mount"
+              stagger={35}
+              retriggerOnHover
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-[#3D3E4A] tracking-tight"
+            />
+          </motion.div>
+
+          <motion.div {...fadeUp(0.15)}>
+            <DecryptText
+              text="npx lumi-website init --solution web-app"
+              variant="terminal"
+              trigger="mount"
+              startDelay={500}
+              loop={6000}
+              className="w-full max-w-lg my-1"
+            />
+          </motion.div>
 
           <motion.p
             {...fadeUp(0.2)}
@@ -76,7 +91,7 @@ export default function Hero({ badges = [], activeProjects = [] }: HeroProps) {
           >
             <a
               href="#contact"
-              className="btn-primary inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl text-base"
+              className="btn-primary inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl text-base font-medium transition-all"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -85,7 +100,7 @@ export default function Hero({ badges = [], activeProjects = [] }: HeroProps) {
             </a>
             <a
               href="#portfolio"
-              className="btn-outline inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-base"
+              className="btn-outline inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-base font-medium transition-all"
             >
               Lihat Portfolio
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
