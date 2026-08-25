@@ -72,8 +72,8 @@ export const ADMIN_STATS: AdminStat[] = STATS.map((s, i) => ({
 }));
 
 export const ADMIN_CONTACT: AdminContact = {
-  email: "hello@lumibetaworks.id",
-  whatsapp: "62XXXXXXXXXX",
+  email: "lumibetaworks@gmail.com",
+  whatsapp: "62882015884006",
 };
 
 export const ADMIN_HERO_BADGES: AdminHeroBadge[] = HERO_BADGES.map((b, i) => ({
@@ -90,10 +90,11 @@ export const ADMIN_ACTIVE_PROJECTS: AdminActiveProject[] = ACTIVE_PROJECTS.map((
   color: p.color,
 }));
 
-export const ADMIN_BRANDS: AdminBrand[] = TRUSTED_BRANDS.map((name, i) => ({
-  id: String(i + 1),
-  name,
-}));
+export const ADMIN_BRANDS: AdminBrand[] = TRUSTED_BRANDS.map((item, i) =>
+  typeof item === "string"
+    ? { id: String(i + 1), name: item }
+    : { id: String(i + 1), name: item.name, logoUrl: item.logoUrl }
+);
 
 // ── Mock Activity Feed ─────────────────────────────────────────────────
 

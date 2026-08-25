@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function FloatingWA({ whatsapp = "62XXXXXXXXXX" }: { whatsapp?: string }) {
+export default function FloatingWA({ whatsapp = "62882015884006" }: { whatsapp?: string }) {
   const [hovered, setHovered] = useState(false);
 
   return (

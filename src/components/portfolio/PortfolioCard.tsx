@@ -35,15 +35,18 @@ const PLATFORM_LABELS: Record<string, string> = {
   ios: "iOS",
 };
 
-export function PortfolioCard({ proj, index }: { proj: PortfolioItem & { imageUrl?: string }; index: number }) {
+export function PortfolioCard({ proj, index }: { proj: PortfolioItem & { imageUrl?: string; demoUrl?: string }; index: number }) {
   return (
-    <motion.div
+    <motion.a
+      href={proj.demoUrl ?? "#"}
+      target={proj.demoUrl ? "_blank" : undefined}
+      rel={proj.demoUrl ? "noopener noreferrer" : undefined}
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.07 }}
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
-      className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+      className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col justify-between"
     >
       {/* Visual area */}
       <div
@@ -149,6 +152,6 @@ export function PortfolioCard({ proj, index }: { proj: PortfolioItem & { imageUr
           ))}
         </div>
       </div>
-    </motion.div>
+    </motion.a>
   );
 }

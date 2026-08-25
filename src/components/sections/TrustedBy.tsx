@@ -8,21 +8,29 @@ function BrandItem({ brand }: { brand: BrandEntry }) {
   const logoUrl = typeof brand === "object" ? brand.logoUrl : undefined;
 
   return (
-    <div className="flex items-center mx-10 gap-3 group cursor-default">
-      <span className="w-2 h-2 rounded-full bg-[#2DD9A4] opacity-40 shrink-0" />
+    <div className="flex items-center mx-8 gap-4 group cursor-default">
+      <span className="w-2 h-2 rounded-full bg-[#2DD9A4] opacity-50 shrink-0" />
       {logoUrl ? (
-        <div className="relative h-14 w-44 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-          <Image
-            src={logoUrl}
-            alt={name}
-            fill
-            className="object-contain"
-            unoptimized
-          />
+        <div className="flex items-center gap-3 bg-[#F8F9FB] px-4 py-2 rounded-xl border border-gray-100 group-hover:border-emerald-300 transition-all duration-300">
+          <div className="relative h-9 w-28 sm:h-10 sm:w-36">
+            <Image
+              src={logoUrl}
+              alt={name}
+              fill
+              className="object-contain"
+              unoptimized
+            />
+          </div>
+          <span
+            className="text-sm font-bold text-[#101828] group-hover:text-[#0E8B62] transition-colors"
+            style={{ fontFamily: "var(--font-rubik)" }}
+          >
+            {name}
+          </span>
         </div>
       ) : (
         <span
-          className="text-xl font-bold tracking-wide text-gray-300 group-hover:text-[#2DD9A4] transition-colors duration-300"
+          className="text-lg font-bold tracking-wide text-gray-400 group-hover:text-[#2DD9A4] transition-colors duration-300"
           style={{ fontFamily: "var(--font-rubik)" }}
         >
           {name}
@@ -44,10 +52,10 @@ export default function TrustedBy({ brands }: TrustedByProps) {
     <section className="py-14 bg-white border-y border-gray-100 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-10 text-center">
         <p
-          className="text-sm text-gray-400 uppercase tracking-widest"
+          className="text-xs sm:text-sm font-semibold text-gray-500 uppercase tracking-widest"
           style={{ fontFamily: "var(--font-opensans)" }}
         >
-          Trusted by businesses &amp; institutions across Indonesia
+          Dipercaya oleh Perusahaan, Instansi Pemerintah, &amp; Brand Ternama di Indonesia
         </p>
       </div>
 

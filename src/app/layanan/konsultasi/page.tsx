@@ -10,22 +10,22 @@ import { createClient } from "@/utils/supabase/server";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Jasa Tech Consulting",
+  title: "Konsultasi Vendor IT Perusahaan & Instansi — Lumi Beta Works",
   description:
-    "Jasa konsultasi teknologi untuk bisnis dan startup Indonesia. Bantu pilih tech stack, arsitektur sistem, strategi digital, dan evaluasi produk existing. Konsultasi gratis.",
+    "Konsultasi teknologi & arsitektur sistem IT untuk Perusahaan, Instansi Pemerintah, & Enterprise. Strategi transformasi digital & evaluasi sistem.",
   alternates: { canonical: "https://lumibetaworks.id/layanan/konsultasi" },
   keywords: [
+    "vendor IT instansi",
+    "vendor IT perusahaan",
+    "konsultasi IT perusahaan",
+    "konsultan IT instansi",
     "jasa tech consulting",
-    "konsultasi teknologi bisnis",
-    "konsultasi digital Indonesia",
-    "tech advisor Indonesia",
-    "konsultasi pengembangan software",
-    "konsultasi startup teknologi",
+    "konsultasi arsitektur sistem IT",
   ],
   openGraph: {
-    title: "Jasa Tech Consulting — Lumi Beta Works",
+    title: "Konsultasi Vendor IT Perusahaan & Instansi — Lumi Beta Works",
     description:
-      "Konsultasi teknologi untuk bisnis dan startup. Pilih tech stack yang tepat, bangun arsitektur yang skalabel.",
+      "Layanan konsultan IT & arsitektur sistem terpercaya untuk Perusahaan dan Instansi di Indonesia.",
     url: "https://lumibetaworks.id/layanan/konsultasi",
   },
 };
@@ -42,7 +42,7 @@ export default async function JasaKonsultasiPage() {
   ]);
 
   const contact = settingsRes.data?.value as { whatsapp?: string } | null;
-  const whatsapp = contact?.whatsapp ?? "";
+  const whatsapp = contact?.whatsapp || "62882015884006";
   const topics: ServicePageItem[] = topicsRes.data ?? [];
 
   return (

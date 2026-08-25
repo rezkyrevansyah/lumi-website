@@ -10,23 +10,21 @@ import { createClient } from "@/utils/supabase/server";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Jasa QA Testing",
+  title: "Vendor QA Testing & Software Quality Assurance Enterprise — Lumi Beta Works",
   description:
-    "Jasa QA testing manual dan otomasi untuk website dan aplikasi. Temukan bug sebelum produk live. Testing fungsional, performa, keamanan, dan mobile. Konsultasi gratis.",
+    "Layanan Vendor QA testing manual & automation profesional untuk website & aplikasi perusahaan/instansi. Garansi produk bebas bug sebelum live.",
   alternates: { canonical: "https://lumibetaworks.id/layanan/qa-testing" },
   keywords: [
-    "jasa QA testing",
-    "jasa software testing",
-    "jasa testing aplikasi",
-    "QA engineer Indonesia",
+    "vendor QA testing perusahaan",
+    "vendor software quality assurance",
+    "jasa QA testing enterprise",
     "automation testing Indonesia",
-    "jasa testing website",
-    "software quality assurance Indonesia",
+    "security audit software perusahaan",
   ],
   openGraph: {
-    title: "Jasa QA Testing Website & Aplikasi — Lumi Beta Works",
+    title: "Vendor QA Testing Website & Aplikasi Enterprise — Lumi Beta Works",
     description:
-      "Testing manual dan otomasi untuk website dan aplikasi. Temukan bug sebelum produk live.",
+      "Testing manual & otomasi untuk sistem perusahaan & instansi. Keamanan & performa teruji.",
     url: "https://lumibetaworks.id/layanan/qa-testing",
   },
 };
@@ -43,7 +41,7 @@ export default async function JasaQATestingPage() {
   ]);
 
   const contact = settingsRes.data?.value as { whatsapp?: string } | null;
-  const whatsapp = contact?.whatsapp ?? "";
+  const whatsapp = contact?.whatsapp || "62882015884006";
   const services: ServicePageItem[] = servicesRes.data ?? [];
 
   return (

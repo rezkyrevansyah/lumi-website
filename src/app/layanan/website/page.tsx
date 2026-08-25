@@ -10,28 +10,25 @@ import { createClient } from "@/utils/supabase/server";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Jasa Pembuatan Website",
+  title: "Jasa Buat Website Perusahaan & Instansi Terpercaya — Vendor IT",
   description:
-    "Jasa pembuatan website profesional untuk bisnis, UMKM, restoran, klinik, sekolah, dan toko online. Desain modern, cepat, dan SEO-friendly. Mulai konsultasi gratis!",
+    "Jasa pembuatan website perusahaan, instansi pemerintah, dan corporate profesional. Desain modern, cepat, aman, & SEO-friendly. Konsultasi gratis!",
   alternates: { canonical: "https://lumibetaworks.id/layanan/website" },
   keywords: [
-    "jasa pembuatan website",
+    "jasa buat website perusahaan",
+    "jasa pembuatan website perusahaan",
+    "jasa pembuatan website instansi",
+    "vendor website IT",
     "jasa buat website",
     "jasa website profesional",
-    "jasa buat website murah",
-    "jasa buat website bisnis",
-    "jasa buat website UMKM",
-    "jasa buat website restoran",
-    "jasa buat website klinik",
-    "jasa buat website sekolah",
-    "jasa buat website toko online",
-    "web developer Jakarta",
-    "pembuatan website Indonesia",
+    "jasa buat website corporate",
+    "web developer perusahaan Jakarta",
+    "vendor IT website",
   ],
   openGraph: {
-    title: "Jasa Pembuatan Website Profesional — Lumi Beta Works",
+    title: "Jasa Buat Website Perusahaan & Instansi — Lumi Beta Works",
     description:
-      "Website profesional untuk bisnis, UMKM, restoran, klinik, dan sekolah. Desain modern, SEO-friendly, harga terjangkau.",
+      "Website profesional untuk perusahaan & instansi. Desain modern, SEO-friendly, garansi performa & keamanan.",
     url: "https://lumibetaworks.id/layanan/website",
   },
 };
@@ -50,7 +47,7 @@ export default async function JasaWebsitePage() {
   ]);
 
   const contact = settingsRes.data?.value as { whatsapp?: string } | null;
-  const whatsapp = contact?.whatsapp ?? "";
+  const whatsapp = contact?.whatsapp || "62882015884006";
   const niches: ServicePageItem[] = nichesRes.data ?? [];
   const features: FeatureItem[] = featuresRes.data ?? [];
 

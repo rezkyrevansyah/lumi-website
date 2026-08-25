@@ -5,29 +5,31 @@ import { createClient } from "@/utils/supabase/server";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "Lumi Beta Works — Jasa Pembuatan Website & Aplikasi Terpercaya",
+  title: "Vendor IT Perusahaan & Jasa Buat Website Terpercaya — Lumi Beta Works",
   description:
-    "Jasa pembuatan website dan aplikasi profesional untuk UMKM, bisnis, restoran, klinik, dan sekolah. Harga terjangkau, hasil berkualitas, tepat waktu. Konsultasi gratis!",
+    "Vendor IT Perusahaan & Instansi terpercaya. Jasa pembuatan website perusahaan, aplikasi mobile, QA testing, dan konsultasi IT berkualitas & terjangkau. Konsultasi gratis!",
   alternates: { canonical: "https://lumibetaworks.id" },
   openGraph: {
     url: "https://lumibetaworks.id",
-    title: "Lumi Beta Works — Jasa Pembuatan Website & Aplikasi Terpercaya",
+    title: "Vendor IT Perusahaan & Jasa Buat Website Professional — Lumi Beta Works",
     description:
-      "Jasa pembuatan website dan aplikasi profesional untuk UMKM, bisnis, restoran, klinik, dan sekolah. Harga terjangkau, hasil berkualitas, tepat waktu.",
+      "Mitra Vendor IT & Software House profesional untuk Perusahaan, Instansi, & Bisnis Berkembang di Indonesia.",
   },
 };
 import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
+import AboutIntro from "@/components/sections/AboutIntro";
 import TrustedBy from "@/components/sections/TrustedBy";
 import ServicesSection from "@/components/sections/ServicesSection";
 import Portfolio from "@/components/sections/Portfolio";
+import CertificationsSection from "@/components/sections/CertificationsSection";
 import Stats from "@/components/sections/Stats";
 import Testimonials from "@/components/sections/Testimonials";
 import ContactCTA from "@/components/sections/ContactCTA";
 import Footer from "@/components/sections/Footer";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import FloatingWA from "@/components/FloatingWA";
-import { type AdminBrand } from "@/lib/admin-data";
+import { ADMIN_BRANDS, type AdminBrand } from "@/lib/admin-data";
 
 export default async function Home() {
   const cookieStore = await cookies();
@@ -38,11 +40,33 @@ export default async function Home() {
     supabase.from("site_settings").select("key, value"),
   ]);
 
-  const brands: AdminBrand[] = (brandsResult.data ?? []).map((row) => ({
-    id: row.id,
-    name: row.name,
-    logoUrl: row.logo_url ?? undefined,
-  }));
+  const dbBrands: AdminBrand[] = (brandsResult.data ?? []).map((row) => {
+    const local = ADMIN_BRANDS.find(
+      (b) =>
+        b.name.toLowerCase() === row.name.toLowerCase() ||
+        row.name.toLowerCase().includes(b.name.toLowerCase()) ||
+        b.name.toLowerCase().includes(row.name.toLowerCase())
+    );
+    return {
+      id: row.id,
+      name: row.name,
+      logoUrl: row.logo_url ?? local?.logoUrl ?? undefined,
+    };
+  });
+
+  // Combine DB brands with local ADMIN_BRANDS (ensuring Erafone & Masjid Al-Arqam are always present)
+  const combinedBrands = [...dbBrands];
+  for (const adminB of ADMIN_BRANDS) {
+    const exists = combinedBrands.some((b) =>
+      b.name.toLowerCase().includes(adminB.name.toLowerCase()) ||
+      adminB.name.toLowerCase().includes(b.name.toLowerCase())
+    );
+    if (!exists) {
+      combinedBrands.push(adminB);
+    }
+  }
+
+  const brands = combinedBrands.length > 0 ? combinedBrands : ADMIN_BRANDS;
 
   const settingsMap: Record<string, unknown> = {};
   for (const row of settingsResult.data ?? []) {
@@ -50,7 +74,7 @@ export default async function Home() {
   }
 
   const contact = settingsMap["contact"] as { email?: string; whatsapp?: string } | null;
-  const whatsapp = contact?.whatsapp ?? "";
+  const whatsapp = contact?.whatsapp || "62882015884006";
 
   const heroBadgesRaw = settingsMap["hero_badges"] as Array<{ icon: string; label: string }> | undefined;
   const badges = heroBadgesRaw ?? [];
@@ -66,9 +90,11 @@ export default async function Home() {
       <Navbar />
       <main>
         <Hero badges={badges} activeProjects={activeProjects} />
+        <AboutIntro />
         <TrustedBy brands={brands} />
         <ServicesSection />
         <Portfolio />
+        <CertificationsSection />
         <Stats />
         <Testimonials />
         <ContactCTA />

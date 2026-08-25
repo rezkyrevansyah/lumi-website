@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { PortfolioCard } from "@/components/portfolio/PortfolioCard";
-import { type PortfolioItem } from "@/lib/data";
+import { PORTFOLIO, type PortfolioItem } from "@/lib/data";
 
 export default async function Portfolio() {
   const cookieStore = await cookies();
@@ -11,19 +11,23 @@ export default async function Portfolio() {
     .from("portfolio_items")
     .select("*")
     .order("sort_order")
-    .limit(3);
+    .limit(6);
 
-  const projects: (PortfolioItem & { imageUrl?: string })[] = (data ?? []).map((row) => ({
+  const dbProjects: (PortfolioItem & { imageUrl?: string; demoUrl?: string })[] = (data ?? []).map((row) => ({
     title: row.title,
     client: row.client,
     category: row.category,
     description: row.description,
     tags: row.tags ?? [],
     platforms: row.platforms ?? [],
-    color: row.color,
-    bg: row.bg,
+    color: row.color ?? "#2DD9A4",
+    bg: row.bg ?? "#0F1923",
     imageUrl: row.image_url ?? undefined,
+    demoUrl: row.demo_url ?? undefined,
   }));
+
+  const hasMigratedData = dbProjects.some((p) => p.title.includes("BAZNAS") || p.title.includes("EKRAF") || p.title.includes("Erafone"));
+  const projects = hasMigratedData ? dbProjects.slice(0, 6) : PORTFOLIO.slice(0, 6);
 
   return (
     <section id="portfolio" className="py-24 bg-white">
@@ -35,18 +39,17 @@ export default async function Portfolio() {
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3D3E4A] mb-5"
             style={{ fontFamily: "var(--font-rubik)" }}
           >
-            <span className="gradient-text">Proyek</span>{" "}yang Kami Banggakan
+            <span className="gradient-text">Proyek B2B &amp; Instansi</span> yang Kami Banggakan
           </h2>
           <p
             className="text-gray-500 text-base md:text-lg max-w-xl mx-auto"
             style={{ fontFamily: "var(--font-opensans)" }}
           >
-            Sebagian dari karya kami — lintas industri, platform, dan berbagai
-            tantangan bisnis nyata.
+            Portofolio karya nyata kami — melayani lembaga pemerintah, perusahaan retail, telekomunikasi, &amp; bisnis modern di Indonesia.
           </p>
         </div>
 
-        {/* Grid — show first 3 on home */}
+        {/* Grid — show first 6 on home */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {projects.map((proj, i) => (
             <PortfolioCard key={proj.title} proj={proj} index={i} />
@@ -57,10 +60,10 @@ export default async function Portfolio() {
         <div className="text-center">
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-base font-semibold border-2 border-[#2DD9A4] text-[#2DD9A4] hover:bg-[#2DD9A4] hover:text-white transition-all duration-200 group"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-base font-semibold border-2 border-[#2DD9A4] text-[#0E8B62] hover:bg-[#2DD9A4] hover:text-white transition-all duration-200 group"
             style={{ fontFamily: "var(--font-rubik)" }}
           >
-            Lihat Semua Proyek
+            Lihat Semua Proyek ({PORTFOLIO.length})
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"
               className="transition-transform duration-200 group-hover:translate-x-1">
               <path d="M5 12h14M12 5l7 7-7 7" />

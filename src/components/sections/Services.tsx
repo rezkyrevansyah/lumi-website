@@ -45,20 +45,19 @@ export default function Services({ services }: { services: Service[] }) {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="section-tag mb-3">Layanan Kami</p>
+          <p className="section-tag mb-3">Layanan Vendor IT & Web Development</p>
           <h2
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3D3E4A] mb-5"
             style={{ fontFamily: "var(--font-rubik)" }}
           >
-            Solusi Digital untuk
-            <span className="gradient-text"> Semua Skala Bisnis</span>
+            Layanan Vendor IT &
+            <span className="gradient-text"> Website Perusahaan</span>
           </h2>
           <p
-            className="text-gray-500 text-base md:text-lg max-w-xl mx-auto"
+            className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto"
             style={{ fontFamily: "var(--font-opensans)" }}
           >
-            UMKM, startup, atau enterprise — kami punya layanan yang sesuai
-            dengan kebutuhanmu dan anggaran yang kamu miliki.
+            Pilihan solusi teknologi terpadu untuk Perusahaan, Instansi Pemerintah, & Bisnis Berkembang dengan garansi kualitas, keamanan, dan ketepatan waktu.
           </p>
         </motion.div>
 

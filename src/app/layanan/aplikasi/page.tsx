@@ -10,24 +10,23 @@ import { createClient } from "@/utils/supabase/server";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Jasa Pembuatan Aplikasi Mobile",
+  title: "Vendor Pembuatan Aplikasi Mobile Perusahaan & Instansi — Lumi Beta Works",
   description:
-    "Jasa pembuatan aplikasi mobile Android dan iOS profesional. Dari aplikasi bisnis, fintech, marketplace, hingga aplikasi kesehatan. Konsultasi gratis, harga terjangkau.",
+    "Vendor IT pembuatan aplikasi mobile Android & iOS enterprise custom untuk perusahaan & instansi. Arsitektur skalabel, performa tinggi, & aman.",
   alternates: { canonical: "https://lumibetaworks.id/layanan/aplikasi" },
   keywords: [
-    "jasa pembuatan aplikasi",
-    "jasa buat aplikasi android",
-    "jasa buat aplikasi ios",
-    "jasa pembuatan aplikasi mobile",
-    "jasa buat aplikasi bisnis",
-    "app developer Indonesia",
-    "pembuatan aplikasi flutter",
-    "jasa buat aplikasi murah",
+    "vendor pembuatan aplikasi",
+    "vendor IT aplikasi perusahaan",
+    "vendor software house aplikasi",
+    "jasa buat aplikasi perusahaan",
+    "vendor pembuatan aplikasi mobile",
+    "app developer perusahaan Jakarta",
+    "pembuatan aplikasi flutter enterprise",
   ],
   openGraph: {
-    title: "Jasa Pembuatan Aplikasi Mobile Android & iOS — Lumi Beta Works",
+    title: "Vendor Pembuatan Aplikasi Mobile Enterprise — Lumi Beta Works",
     description:
-      "Aplikasi mobile Android dan iOS untuk bisnis, fintech, marketplace, dan kesehatan. Harga terjangkau, kualitas enterprise.",
+      "Aplikasi mobile Android dan iOS custom untuk perusahaan & instansi. Kualitas enterprise, skalabel, & terpercaya.",
     url: "https://lumibetaworks.id/layanan/aplikasi",
   },
 };
@@ -44,7 +43,7 @@ export default async function JasaAplikasiPage() {
   ]);
 
   const contact = settingsRes.data?.value as { whatsapp?: string } | null;
-  const whatsapp = contact?.whatsapp ?? "";
+  const whatsapp = contact?.whatsapp || "62882015884006";
   const types: ServicePageItem[] = typesRes.data ?? [];
 
   return (

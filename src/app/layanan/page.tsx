@@ -43,7 +43,7 @@ export default async function LayananPage() {
   ]);
 
   const contact = settingsRes.data?.value as { whatsapp?: string } | null;
-  const whatsapp = contact?.whatsapp ?? "";
+  const whatsapp = contact?.whatsapp || "62882015884006";
   const services: LayananItem[] = servicesRes.data ?? [];
 
   return (

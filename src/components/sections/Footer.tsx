@@ -3,8 +3,8 @@ import { FOOTER_SERVICE_LINKS } from "@/lib/data";
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 
-const DEFAULT_EMAIL = "hello@lumibetaworks.id";
-const DEFAULT_WHATSAPP = "62XXXXXXXXXX";
+const DEFAULT_EMAIL = "lumibetaworks@gmail.com";
+const DEFAULT_WHATSAPP = "62882015884006";
 
 export default async function Footer() {
   const cookieStore = await cookies();
@@ -16,8 +16,10 @@ export default async function Footer() {
     .single();
 
   const contact = data?.value as { email?: string; whatsapp?: string } | null;
-  const email = contact?.email ?? DEFAULT_EMAIL;
-  const whatsapp = contact?.whatsapp ?? DEFAULT_WHATSAPP;
+  const rawEmail = contact?.email;
+  const email = (!rawEmail || rawEmail.includes("hello@lumibetaworks.id")) ? DEFAULT_EMAIL : rawEmail;
+  const rawWhatsapp = contact?.whatsapp;
+  const whatsapp = (!rawWhatsapp || rawWhatsapp === "62882015884000") ? DEFAULT_WHATSAPP : rawWhatsapp;
 
   return (
     <footer className="bg-[#3D3E4A] text-white">

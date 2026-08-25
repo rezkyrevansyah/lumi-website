@@ -1,213 +1,99 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { DecryptText } from "@/components/ui/decrypt-text";
-
-type HeroBadge = { icon: string; label: string };
-type ActiveProject = { name: string; type: string; progress: number; color: string };
+import GradientWaves from "@/components/ui/GradientWaves";
+import TrueFocus from "@/components/ui/TrueFocus";
 
 interface HeroProps {
-  badges?: HeroBadge[];
-  activeProjects?: ActiveProject[];
+  badges?: any[];
+  activeProjects?: any[];
 }
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 16 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number], delay },
-});
-
-export default function Hero({ badges = [], activeProjects = [] }: HeroProps) {
+export default function Hero(_props: HeroProps) {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center pt-16 overflow-hidden bg-[#F8F9FB]"
+      className="relative min-h-screen flex flex-col items-center justify-center p-6 md:p-12 pt-24 md:pt-28 bg-[#F8F9FB] text-[#101828] overflow-hidden"
     >
-      {/* Grid background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(61,62,74,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(61,62,74,0.04) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
+      {/* Background Gradient Waves */}
+      <GradientWaves
+        horizonColor="#F8F9FB"
+        waveColor="#2DD9A4"
+        crestColor="#818CF8"
+        speed={0.35}
+        amplitude={2.0}
+        waveScale={0.6}
+        waveRatio={0.9}
+        swell={25}
+        turbulence={15}
+        tilt={1.11}
+        zoom={1.0}
+        height={5.0}
+        fogDepth={16}
+        detail="medium"
+        brightness={1.0}
+        opacity={0.4}
+        mouseInteraction={true}
+        parallaxStrength={0.4}
+        grain={true}
+        grainIntensity={0.02}
+        className="pointer-events-none"
       />
 
-      {/* Radial glow */}
-      <div
-        className="absolute top-0 left-0 w-[300px] h-[300px] md:w-[600px] md:h-[600px] opacity-20 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle at 20% 30%, #2DD9A4 0%, transparent 60%)",
-        }}
-      />
+      {/* Centered Hero Content */}
+      <div className="relative z-10 flex w-full flex-col items-center justify-center gap-6 max-w-4xl mx-auto text-center pointer-events-auto">
+        {/* Animated Greeting via TrueFocus */}
+        <TrueFocus
+          sentence="Hello, Selamat Datang"
+          blurAmount={4}
+          borderColor="#2DD9A4"
+          glowColor="rgba(45, 217, 164, 0.6)"
+          animationDuration={0.6}
+          pauseBetweenAnimations={1.2}
+          className="my-1"
+        />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 md:py-24 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center w-full">
-        {/* Left column */}
-        <div className="flex flex-col gap-5 md:gap-6">
-          <motion.div {...fadeUp(0)} className="flex items-center gap-3">
-            <span className="section-tag inline-flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#2DD9A4] animate-pulse" />
-              Buka untuk proyek baru
-            </span>
-          </motion.div>
+        <span className="section-tag inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#2DD9A4]/15 text-[#0E8B62] border border-[#2DD9A4]/30">
+          <span className="w-2 h-2 rounded-full bg-[#2DD9A4] animate-pulse" />
+          Mitra Vendor IT &amp; Software House Perusahaan
+        </span>
 
-          <motion.div {...fadeUp(0.1)}>
-            <DecryptText
-              as="h1"
-              text="Website & Aplikasi Profesional, Harga Terjangkau."
-              variant="display"
-              trigger="mount"
-              stagger={35}
-              retriggerOnHover
-              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-[#3D3E4A] tracking-tight"
-            />
-          </motion.div>
-
-          <motion.div {...fadeUp(0.15)}>
-            <DecryptText
-              text="npx lumi-website init --solution web-app"
-              variant="terminal"
-              trigger="mount"
-              startDelay={500}
-              loop={6000}
-              className="w-full max-w-lg my-1"
-            />
-          </motion.div>
-
-          <motion.p
-            {...fadeUp(0.2)}
-            className="text-base md:text-lg text-gray-500 leading-relaxed max-w-lg"
-            style={{ fontFamily: "var(--font-opensans)" }}
-          >
-            Dari UMKM hingga enterprise — kami hadirkan jasa pembuatan website,
-            aplikasi, QA testing, dan tech consulting dengan hasil berkualitas,
-            transparan, dan harga yang masuk akal.
-          </motion.p>
-
-          <motion.div
-            {...fadeUp(0.3)}
-            className="flex flex-col sm:flex-row gap-3 md:gap-4"
-          >
-            <a
-              href="#contact"
-              className="btn-primary inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl text-base font-medium transition-all"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              </svg>
-              Konsultasi Gratis
-            </a>
-            <a
-              href="#portfolio"
-              className="btn-outline inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-base font-medium transition-all"
-            >
-              Lihat Portfolio
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </a>
-          </motion.div>
-
-          <motion.div
-            {...fadeUp(0.4)}
-            className="flex items-center gap-4 md:gap-6 pt-1 flex-wrap"
-          >
-            {badges.map((badge) => (
-              <div
-                key={badge.label}
-                className="flex items-center gap-2 text-sm text-gray-400"
-                style={{ fontFamily: "var(--font-opensans)" }}
-              >
-                <span>{badge.icon}</span>
-                <span>{badge.label}</span>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Right column — floating card */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-          className="relative flex justify-center lg:justify-end mt-8 lg:mt-0"
+        {/* Static Title Header */}
+        <h1
+          className="max-w-3xl text-center text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#101828] leading-[1.15]"
+          style={{ fontFamily: "var(--font-rubik)" }}
         >
-          <div className="relative">
-            {/* Rating badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8, duration: 0.4 }}
-              className="absolute -top-5 -left-4 sm:-top-6 sm:-left-6 bg-white rounded-2xl shadow-lg px-3 py-2.5 sm:px-4 sm:py-3 flex items-center gap-2 z-10"
-            >
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} width="12" height="12" viewBox="0 0 24 24" fill="#2DD9A4">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                  </svg>
-                ))}
-              </div>
-              <div>
-                <p className="text-xs font-bold text-[#3D3E4A]" style={{ fontFamily: "var(--font-rubik)" }}>
-                  4.9 / 5.0
-                </p>
-                <p className="text-xs text-gray-400" style={{ fontFamily: "var(--font-opensans)" }}>
-                  Rating Klien
-                </p>
-              </div>
-            </motion.div>
+          Vendor IT &amp; Jasa Buat Website Perusahaan Terpercaya
+        </h1>
 
-            {/* Projects badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.0, duration: 0.4 }}
-              className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 bg-[#3D3E4A] text-white rounded-2xl shadow-lg px-3 py-2.5 sm:px-4 sm:py-3 z-10"
-            >
-              <p className="text-base sm:text-lg font-bold" style={{ fontFamily: "var(--font-rubik)" }}>
-                20+
-              </p>
-              <p className="text-xs text-white/60" style={{ fontFamily: "var(--font-opensans)" }}>
-                Proyek Selesai
-              </p>
-            </motion.div>
+        <p
+          className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto"
+          style={{ fontFamily: "var(--font-opensans)" }}
+        >
+          Solusi terintegrasi untuk Perusahaan, Instansi, &amp; Bisnis Berkembang. Jasa pembuatan website corporate, aplikasi mobile custom, QA testing, dan konsultasi IT berkualitas tinggi &amp; tepat waktu.
+        </p>
 
-            {/* Main active projects card */}
-            <div className="w-72 sm:w-80 bg-white rounded-3xl shadow-2xl p-5 sm:p-6 animate-float">
-              <div className="flex items-center justify-between mb-4">
-                <span className="section-tag">Proyek Aktif</span>
-                <span className="w-2.5 h-2.5 rounded-full bg-[#2DD9A4] animate-pulse" />
-              </div>
-
-              <div className="space-y-3">
-                {activeProjects.map((proj) => (
-                  <div key={proj.name} className="bg-[#F8F9FB] rounded-2xl p-3 sm:p-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <div>
-                        <p className="font-semibold text-sm text-[#3D3E4A]" style={{ fontFamily: "var(--font-rubik)" }}>
-                          {proj.name}
-                        </p>
-                        <p className="text-xs text-gray-400 mt-0.5" style={{ fontFamily: "var(--font-opensans)" }}>
-                          {proj.type}
-                        </p>
-                      </div>
-                      <span className="text-xs font-bold" style={{ color: proj.color, fontFamily: "var(--font-rubik)" }}>
-                        {proj.progress}%
-                      </span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-1.5">
-                      <div
-                        className="h-1.5 rounded-full transition-all"
-                        style={{ width: `${proj.progress}%`, background: proj.color }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-2">
+          <a
+            href="https://wa.me/62882015884006?text=Halo+Lumi+Beta+Works,+saya+ingin+konsultasi+kebutuhan+Vendor+IT+/+Jasa+Buat+Website+Perusahaan."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:scale-105"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+            Konsultasi Vendor IT (Free)
+          </a>
+          <a
+            href="/portfolio"
+            className="btn-outline inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-base font-semibold border-2 border-gray-300 text-[#3D3E4A] hover:bg-gray-100 transition-all"
+          >
+            Lihat Portfolio B2B
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
   );
