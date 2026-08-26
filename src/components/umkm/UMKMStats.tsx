@@ -9,7 +9,17 @@ const STATS = [
   { value: "30Jt+", label: "Pelaku UMKM Sudah Bertransaksi via QRIS" },
 ];
 
-export default function UMKMStats() {
+interface StatItem {
+  value: string;
+  label: string;
+}
+
+interface UMKMStatsProps {
+  stats?: StatItem[];
+}
+
+export default function UMKMStats({ stats }: UMKMStatsProps) {
+  const displayStats = stats && stats.length > 0 ? stats : STATS;
   return (
     <section className="py-16 sm:py-20 bg-[#101828]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -33,7 +43,7 @@ export default function UMKMStats() {
         </motion.div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {STATS.map((stat, i) => (
+          {displayStats.map((stat, i) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}

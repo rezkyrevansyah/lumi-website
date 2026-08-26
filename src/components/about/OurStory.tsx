@@ -21,14 +21,34 @@ const MILESTONES = [
   },
   {
     step: "03",
-    title: "Mimpi Besar & Partner Ternyaman",
-    desc: "Visi kami sederhana namun berani: Menjadi partner teknologi paling terpercaya dan paling nyaman untuk setiap bisnis, instansi, dan enterprise di Indonesia.",
-    badge: "The Big Dream",
+    title: "Solusi Digital untuk Segala Skala",
+    desc: "Mendampingi transformasi digital dari UMKM, bisnis berkembang, hingga korporasi dan instansi di seluruh Indonesia dengan dedikasi penuh.",
+    badge: "The Vision",
     color: "#3BB5C5",
   },
 ];
 
-export default function OurStory() {
+interface StoryData {
+  paragraph1?: string;
+  paragraph2?: string;
+  paragraph3?: string;
+}
+
+interface OurStoryProps {
+  story?: StoryData | null;
+}
+
+export default function OurStory({ story }: OurStoryProps) {
+  const p1 =
+    story?.paragraph1 ||
+    "Lumi Beta Works berakar dari pengalaman praktis di lapangan, dipercaya oleh berbagai klien di platform Fastwork Indonesia untuk membangun aplikasi, website corporate, hingga pengujian software berstandar tinggi.";
+
+  const p2 =
+    story?.paragraph2 ||
+    "Seiring bertambahnya kepercayaan dan skala proyek yang kami tangani, kami berkomitmen menjadi partner kerja yang solutif: komunikatif, transparan dalam estimasi, dan konsisten menjaga standar kualitas hasil akhir.";
+
+  const p3 = story?.paragraph3;
+
   return (
     <section className="py-20 md:py-28 bg-white border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -47,43 +67,43 @@ export default function OurStory() {
               style={{ fontFamily: "var(--font-rubik)" }}
             >
               Berawal dari Reputasi Nyata, Bertumbuh Menjadi{" "}
-              <span className="gradient-text">Partner yang Nyaman</span>
+              <span className="gradient-text">Partner Terpercaya</span>
             </h2>
 
             <p
               className="text-gray-600 text-base md:text-lg leading-relaxed"
               style={{ fontFamily: "var(--font-opensans)" }}
             >
-              Lumi Beta Works tidak dimulai dari ruang rapat formal yang kaku. Kami berangkat dari rekam jejak nyata di lapangan, dipercaya oleh puluhan klien di platform{" "}
-              <a
-                href={FASTWORK_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-bold text-[#0E8B62] underline hover:text-[#2DD9A4] transition-colors"
-              >
-                Fastwork Indonesia
-              </a>{" "}
-              untuk membangun aplikasi, website corporate, hingga pengujian software berstandar tinggi.
+              {p1}
             </p>
 
             <p
               className="text-gray-600 text-base md:text-lg leading-relaxed"
               style={{ fontFamily: "var(--font-opensans)" }}
             >
-              Seiring bertambahnya kepercayaan dan proyek bernilai strategis, kami menyadari satu hal penting: <strong className="text-[#101828]">klien tidak hanya butuh orang yang bisa coding</strong>, mereka butuh partner kerja yang komunikatif, jujur dalam estimasi, dan membuat seluruh proses pengerjaan terasa tenang dan menyenangkan.
+              {p2}
             </p>
+
+            {p3 && (
+              <p
+                className="text-gray-600 text-base md:text-lg leading-relaxed"
+                style={{ fontFamily: "var(--font-opensans)" }}
+              >
+                {p3}
+              </p>
+            )}
 
             <div className="pt-2">
               <div className="p-5 rounded-2xl bg-[#F8F9FB] border border-gray-100 flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0 font-bold text-lg">
+                <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center text-[#0E8B62] shrink-0 font-bold text-lg">
                   💡
                 </div>
                 <div>
                   <h3 className="font-bold text-[#101828] text-sm mb-1" style={{ fontFamily: "var(--font-rubik)" }}>
-                    Mimpi Besar Kami
+                    Komitmen &amp; Prinsip Kami
                   </h3>
-                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed" style={{ fontFamily: "var(--font-opensans)" }}>
-                    Membuktikan bahwa studio teknologi asal Indonesia mampu memberikan kualitas berkelas enterprise dengan kehangatan komunikasi personal yang bikin betah.
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed" style={{ fontFamily: "var(--font-opensans)" }}>
+                    Menghadirkan solusi teknologi berstandar tinggi yang tepat guna, didukung komunikasi jujur, estimasi transparan, dan hasil yang membawa dampak nyata bagi bisnis klien.
                   </p>
                 </div>
               </div>

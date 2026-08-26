@@ -16,10 +16,8 @@ export default async function Footer() {
   ]);
 
   const contact = contactSetting as { email?: string; whatsapp?: string } | null;
-  const rawEmail = contact?.email;
-  const email = (!rawEmail || rawEmail.includes("hello@lumibetaworks.id")) ? DEFAULT_EMAIL : rawEmail;
-  const rawWhatsapp = contact?.whatsapp;
-  const whatsapp = (!rawWhatsapp || rawWhatsapp === "62882015884000") ? DEFAULT_WHATSAPP : rawWhatsapp;
+  const email = contact?.email?.trim() || DEFAULT_EMAIL;
+  const whatsapp = contact?.whatsapp?.trim() || DEFAULT_WHATSAPP;
 
   const serviceLinks = services.length > 0
     ? services.map((s) => ({ label: s.title, href: `/layanan/${s.slug}` }))

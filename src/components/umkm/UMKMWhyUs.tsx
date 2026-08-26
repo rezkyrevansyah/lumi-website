@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Wallet, HeartHandshake, Puzzle, ShieldCheck } from "lucide-react";
+import { Wallet, HeartHandshake, Puzzle, ShieldCheck, Sparkles as SparklesFallback } from "lucide-react";
 
 const REASONS = [
   {
@@ -34,7 +34,43 @@ const REASONS = [
   },
 ];
 
-export default function UMKMWhyUs() {
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  Wallet,
+  HeartHandshake,
+  Puzzle,
+  ShieldCheck,
+};
+
+interface WhyUsItem {
+  icon?: string | React.ComponentType<{ className?: string }>;
+  title: string;
+  description?: string;
+  desc?: string;
+  accentColor?: string;
+  color?: string;
+  bgColor?: string;
+  bg?: string;
+}
+
+interface UMKMWhyUsProps {
+  reasons?: WhyUsItem[] | null;
+}
+
+export default function UMKMWhyUs({ reasons }: UMKMWhyUsProps) {
+  const displayReasons =
+    reasons && reasons.length > 0
+      ? reasons.map((r) => {
+          const IconComponent =
+            typeof r.icon === "string" ? ICON_MAP[r.icon] || SparklesFallback : r.icon || SparklesFallback;
+          return {
+            icon: IconComponent,
+            title: r.title,
+            desc: r.description || r.desc || "",
+            color: r.accentColor || r.color || "#2DD9A4",
+            bg: r.bgColor || r.bg || "rgba(45,217,164,0.1)",
+          };
+        })
+      : REASONS;
   return (
     <section className="py-20 sm:py-24 bg-[#F8F9FB]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -56,7 +92,7 @@ export default function UMKMWhyUs() {
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {REASONS.map((r, i) => {
+          {displayReasons.map((r, i) => {
             const Icon = r.icon;
             return (
               <motion.div

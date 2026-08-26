@@ -66,7 +66,44 @@ const USE_CASES = [
   },
 ];
 
-export default function UMKMUseCases() {
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  CreditCard,
+  Boxes,
+  Wallet,
+  Globe,
+  CalendarCheck,
+  Users,
+  LayoutDashboard,
+  Puzzle,
+};
+
+interface DBUmkmUseCase {
+  iconName?: string;
+  icon?: React.ComponentType<{ className?: string }>;
+  title: string;
+  description?: string;
+  desc?: string;
+  tags?: string[] | null;
+  isHighlighted?: boolean | null;
+  highlight?: boolean;
+}
+
+interface UMKMUseCasesProps {
+  useCases?: DBUmkmUseCase[];
+}
+
+export default function UMKMUseCases({ useCases }: UMKMUseCasesProps) {
+  const displayUseCases =
+    useCases && useCases.length > 0
+      ? useCases.map((uc) => ({
+          icon: (uc.iconName && ICON_MAP[uc.iconName]) || uc.icon || LayoutDashboard,
+          title: uc.title,
+          desc: uc.description || uc.desc || "",
+          tags: uc.tags || [],
+          highlight: uc.isHighlighted ?? uc.highlight ?? false,
+        }))
+      : USE_CASES;
+
   return (
     <section className="py-20 sm:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -84,7 +121,7 @@ export default function UMKMUseCases() {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-          {USE_CASES.map((uc, i) => {
+          {displayUseCases.map((uc, i) => {
             const Icon = uc.icon;
             return (
               <motion.div

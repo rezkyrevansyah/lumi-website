@@ -25,7 +25,28 @@ const STEPS = [
   },
 ];
 
-export default function UMKMProcess() {
+interface StepItem {
+  stepNumber?: number;
+  step?: string;
+  title: string;
+  description?: string;
+  desc?: string;
+}
+
+interface UMKMProcessProps {
+  steps?: StepItem[];
+}
+
+export default function UMKMProcess({ steps }: UMKMProcessProps) {
+  const displaySteps =
+    steps && steps.length > 0
+      ? steps.map((s, idx) => ({
+          step: s.step || String(s.stepNumber ?? idx + 1).padStart(2, "0"),
+          title: s.title,
+          desc: s.description || s.desc || "",
+        }))
+      : STEPS;
+
   return (
     <section className="py-20 sm:py-24 bg-white border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -46,7 +67,7 @@ export default function UMKMProcess() {
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {STEPS.map((s, i) => (
+          {displaySteps.map((s, i) => (
             <motion.div
               key={s.step}
               initial={{ opacity: 0, y: 24 }}

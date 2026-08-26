@@ -12,7 +12,38 @@ const CREDENTIALS = [
   "Enterprise QA & Full-Stack for National Scale Systems",
 ];
 
-export default function MeetFounder() {
+interface FounderData {
+  name?: string;
+  title?: string;
+  bio?: string;
+  photoUrl?: string;
+  photo_url?: string;
+  credentials?: string[];
+  quote?: string;
+  fastworkUrl?: string;
+  fastwork_url?: string;
+}
+
+interface MeetFounderProps {
+  founder?: FounderData | null;
+}
+
+export default function MeetFounder({ founder }: MeetFounderProps) {
+  const name = founder?.name || "Rezky Revansyah";
+  const title = founder?.title || "Founder & Tech Lead";
+  const bio =
+    founder?.bio ||
+    "Berpengalaman menangani berbagai proyek berskala nasional dan internasional seperti portal zakat nasional BAZNAS RI, ekosistem Kemenparekraf, platform e-commerce Erafone, hingga sistem operasional telekomunikasi Tower Bersama Group.";
+  const photoUrl = founder?.photoUrl || founder?.photo_url || "/profile_founder/revan_photo1.png";
+  const credentials =
+    founder?.credentials && founder.credentials.length > 0
+      ? founder.credentials
+      : CREDENTIALS;
+  const quote =
+    founder?.quote ||
+    "Di Lumi Beta Works, kami tidak hanya menulis baris kode. Kami ingin setiap klien merasa tenang, dipahami, dan puas dengan hasil akhir yang benar-benar membawa dampak nyata bagi bisnis mereka.";
+  const fastworkUrl = founder?.fastworkUrl || founder?.fastwork_url || FASTWORK_URL;
+
   return (
     <section className="py-20 md:py-28 bg-[#F8F9FB] border-b border-gray-100 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
@@ -51,11 +82,12 @@ export default function MeetFounder() {
           <div className="md:col-span-5 flex flex-col items-center justify-center">
             <div className="relative w-60 h-72 sm:w-64 sm:h-80 rounded-3xl bg-gradient-to-br from-emerald-100 to-teal-50 border-2 border-emerald-300/60 shadow-xl overflow-hidden group">
               <Image
-                src="/profile_founder/revan_photo1.png"
-                alt="Rezky Revansyah, Founder Lumi Beta Works"
+                src={photoUrl}
+                alt={name}
                 fill
                 sizes="(min-width: 640px) 256px, 240px"
                 className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                unoptimized
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#101828]/60 via-transparent to-transparent opacity-60 pointer-events-none" />
 
@@ -76,10 +108,10 @@ export default function MeetFounder() {
                 className="text-2xl sm:text-3xl font-extrabold text-[#101828] mt-1"
                 style={{ fontFamily: "var(--font-rubik)" }}
               >
-                Rezky Revansyah
+                {name}
               </h3>
               <p className="text-sm text-gray-500 font-medium">
-                Full-Stack Software Engineer &amp; QA Specialist
+                {title}
               </p>
             </div>
 
@@ -87,12 +119,12 @@ export default function MeetFounder() {
               className="text-gray-600 text-sm sm:text-base leading-relaxed"
               style={{ fontFamily: "var(--font-opensans)" }}
             >
-              Berpengalaman menangani berbagai proyek berskala nasional dan internasional seperti portal zakat nasional BAZNAS RI, ekosistem Kemenparekraf, platform e-commerce Erafone, hingga sistem operasional telekomunikasi Tower Bersama Group.
+              {bio}
             </p>
 
             {/* Credentials Pills */}
             <div className="space-y-2 pt-1">
-              {CREDENTIALS.map((cred) => (
+              {credentials.map((cred) => (
                 <div key={cred} className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 font-medium">
                   <span className="text-[#2DD9A4] font-bold">✓</span>
                   <span>{cred}</span>
@@ -102,7 +134,7 @@ export default function MeetFounder() {
 
             {/* Founder Quote */}
             <div className="p-4 rounded-xl bg-[#F8F9FB] border-l-4 border-[#2DD9A4] text-xs sm:text-sm text-gray-600 italic">
-              &ldquo;Di Lumi Beta Works, kami tidak hanya menulis baris kode. Kami ingin setiap klien merasa tenang, dipahami, dan puas dengan hasil akhir yang benar-benar membawa dampak nyata bagi bisnis mereka.&rdquo;
+              &ldquo;{quote}&rdquo;
             </div>
 
             {/* Action Buttons */}
@@ -115,17 +147,19 @@ export default function MeetFounder() {
               >
                 Ngobrol Langsung via WA
               </a>
-              <a
-                href={FASTWORK_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-outline inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold bg-white"
-              >
-                Profil Fastwork
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
-                </svg>
-              </a>
+              {fastworkUrl && (
+                <a
+                  href={fastworkUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold bg-white"
+                >
+                  Profil Fastwork
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                  </svg>
+                </a>
+              )}
             </div>
           </div>
         </motion.div>

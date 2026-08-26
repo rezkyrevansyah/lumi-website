@@ -1,23 +1,13 @@
-import { cookies } from "next/headers";
-import { createClient } from "@/utils/supabase/server";
+import { getSetting } from "@/actions/settings";
 
 const DEFAULT_EMAIL = "lumibetaworks@gmail.com";
 const DEFAULT_WHATSAPP = "62882015884006";
 
 export default async function ContactCTA() {
-  const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
-  const { data } = await supabase
-    .from("site_settings")
-    .select("value")
-    .eq("key", "contact")
-    .single();
-
-  const contact = data?.value as { email?: string; whatsapp?: string } | null;
-  const rawEmail = contact?.email;
-  const email = (!rawEmail || rawEmail.includes("hello@lumibetaworks.id")) ? DEFAULT_EMAIL : rawEmail;
-  const rawWhatsapp = contact?.whatsapp;
-  const whatsapp = (!rawWhatsapp || rawWhatsapp === "62882015884000") ? DEFAULT_WHATSAPP : rawWhatsapp;
+  const contactSetting = await getSetting("contact");
+  const contact = contactSetting as { email?: string; whatsapp?: string } | null;
+  const email = contact?.email?.trim() || DEFAULT_EMAIL;
+  const whatsapp = contact?.whatsapp?.trim() || DEFAULT_WHATSAPP;
 
   return (
     <section

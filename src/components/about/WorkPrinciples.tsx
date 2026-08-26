@@ -29,7 +29,29 @@ const PRINCIPLES = [
   },
 ];
 
-export default function WorkPrinciples() {
+interface PrincipleItem {
+  icon: string;
+  title: string;
+  description?: string | null;
+  desc?: string | null;
+  accentColor?: string | null;
+  color?: string | null;
+}
+
+interface WorkPrinciplesProps {
+  principles?: PrincipleItem[];
+}
+
+export default function WorkPrinciples({ principles }: WorkPrinciplesProps) {
+  const displayPrinciples =
+    principles && principles.length > 0
+      ? principles.map((p) => ({
+          icon: p.icon,
+          title: p.title,
+          desc: p.description || p.desc || "",
+          color: p.accentColor || p.color || "#2DD9A4",
+        }))
+      : PRINCIPLES;
   return (
     <section className="py-20 md:py-28 bg-white border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -58,7 +80,7 @@ export default function WorkPrinciples() {
 
         {/* 4 Cards Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {PRINCIPLES.map((p, i) => (
+          {displayPrinciples.map((p, i) => (
             <motion.div
               key={p.title}
               initial={{ opacity: 0, y: 20 }}

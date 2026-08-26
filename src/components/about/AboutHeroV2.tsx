@@ -5,14 +5,33 @@ import Image from "next/image";
 
 const FASTWORK_URL = "https://fastwork.id/user/revansyah?source=web_chat_user-profile-modal";
 
-const METRICS = [
+const DEFAULT_METRICS = [
   { value: "36+", label: "Pesanan Selesai", desc: "100% tepat waktu" },
   { value: "24+", label: "Klien Puas", desc: "Dari UMKM s/d Instansi" },
   { value: "13+", label: "Dipekerjakan Ulang", desc: "Tingkat repeat order tinggi" },
   { value: "5.0", label: "Rating Sempurna", desc: "Ulasan kepuasan 5 bintang" },
 ];
 
-export default function AboutHeroV2() {
+interface MetricItem {
+  value: string;
+  label: string;
+  description?: string | null;
+  desc?: string | null;
+}
+
+interface AboutHeroV2Props {
+  metrics?: MetricItem[];
+}
+
+export default function AboutHeroV2({ metrics }: AboutHeroV2Props) {
+  const displayMetrics =
+    metrics && metrics.length > 0
+      ? metrics.map((m) => ({
+          value: m.value,
+          label: m.label,
+          desc: m.description || m.desc || "",
+        }))
+      : DEFAULT_METRICS;
   return (
     <section className="relative pt-32 pb-20 md:pt-36 md:pb-24 bg-[#F8F9FB] border-b border-gray-100 overflow-hidden">
       <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center relative z-10">
@@ -100,7 +119,7 @@ export default function AboutHeroV2() {
           transition={{ duration: 0.5, delay: 0.25 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-4"
         >
-          {METRICS.map((m) => (
+          {displayMetrics.map((m) => (
             <div
               key={m.label}
               className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm text-center flex flex-col justify-center"

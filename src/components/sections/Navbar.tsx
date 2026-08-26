@@ -1,36 +1,27 @@
-"use client";
+import { getSetting } from "@/actions/settings";
+import NavbarClient from "./NavbarClient";
 
-import { StaggeredMenu } from "@/components/ui/StaggeredMenu";
+const DEFAULT_EMAIL = "lumibetaworks@gmail.com";
+const DEFAULT_WHATSAPP = "62882015884006";
 
-const menuItems = [
-  { label: "Home", ariaLabel: "Ke halaman utama", link: "/#home" },
-  { label: "Layanan", ariaLabel: "Lihat layanan kami", link: "/layanan" },
-  { label: "Solusi UMKM", ariaLabel: "Layanan IT khusus untuk UMKM", link: "/umkm" },
-  { label: "Portfolio", ariaLabel: "Lihat portfolio proyek", link: "/portfolio" },
-  { label: "About Us", ariaLabel: "Tentang Lumi Beta Works", link: "/about" },
-];
+interface NavbarProps {
+  email?: string;
+  whatsapp?: string;
+}
 
-const socialItems = [
-  { label: "WhatsApp", link: "https://wa.me/62882015884006" },
-  { label: "Instagram", link: "https://instagram.com/lumibetaworks" },
-  { label: "Email", link: "mailto:lumibetaworks@gmail.com" },
-];
+export default async function Navbar(props: NavbarProps = {}) {
+  let email = props.email;
+  let whatsapp = props.whatsapp;
 
-export default function Navbar() {
-  return (
-    <StaggeredMenu
-      position="right"
-      items={menuItems}
-      socialItems={socialItems}
-      displaySocials={true}
-      displayItemNumbering={true}
-      menuButtonColor="#3D3E4A"
-      openMenuButtonColor="#ffffff"
-      changeMenuColorOnOpen={true}
-      colors={["#2DD9A4", "#101828"]}
-      logoUrl="/logo3_1920x1080.svg"
-      accentColor="#2DD9A4"
-      isFixed={true}
-    />
-  );
+  if (!email || !whatsapp) {
+    const contactSetting = (await getSetting("contact")) as {
+      email?: string;
+      whatsapp?: string;
+    } | null;
+
+    if (!email) email = contactSetting?.email?.trim() || DEFAULT_EMAIL;
+    if (!whatsapp) whatsapp = contactSetting?.whatsapp?.trim() || DEFAULT_WHATSAPP;
+  }
+
+  return <NavbarClient email={email} whatsapp={whatsapp} />;
 }

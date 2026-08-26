@@ -730,6 +730,72 @@ async function seed() {
   }
   console.log(`Inserted ${settings.length} site settings`)
 
+  // ─── Certifications ───────────────────────────────────────────────────────
+  console.log("Seeding certifications...")
+  await sql`DELETE FROM certifications`
+
+  const certs = [
+    { image_url: "/certificate/1.png", alt_text: "Dicoding Sertifikasi", is_dark: false },
+    { image_url: "/certificate/2.png", alt_text: "Bangkit Academy Sertifikasi", is_dark: false },
+    { image_url: "/certificate/3.png", alt_text: "Laskar AI Sertifikasi", is_dark: true },
+    { image_url: "/certificate/4.png", alt_text: "Google Sertifikasi", is_dark: false },
+  ]
+
+  for (let i = 0; i < certs.length; i++) {
+    const c = certs[i]
+    await sql`
+      INSERT INTO certifications (image_url, alt_text, is_dark, sort_order)
+      VALUES (${c.image_url}, ${c.alt_text}, ${c.is_dark}, ${i})
+    `
+  }
+  console.log(`Inserted ${certs.length} certifications`)
+
+  // ─── About Principles ─────────────────────────────────────────────────────
+  console.log("Seeding about principles...")
+  await sql`DELETE FROM about_principles`
+
+  const principles = [
+    // Why Choose Us
+    { section: "why_choose_us", icon: "💡", title: "Inovatif & Kreatif", description: "Pemikiran kreatif dan analitis tanpa batas untuk memecahkan masalah bisnis dengan solusi yang elegan.", accent_color: "#2DD9A4", bg_color: "#F0FDF9" },
+    { section: "why_choose_us", icon: "👥", title: "Tim Berdedikasi", description: "Pengembang berpengalaman yang sepenuh hati membangun solusi bisnis di setiap sprint dan setiap rilis.", accent_color: "#6C63FF", bg_color: "#F3F0FF" },
+    { section: "why_choose_us", icon: "🛡️", title: "Teruji & Terpercaya", description: "Telah berhasil merilis produk digital di berbagai industri, mulai dari instansi pemerintah hingga startup.", accent_color: "#3BB5C5", bg_color: "#E6FFFA" },
+    { section: "why_choose_us", icon: "🎯", title: "Fokus pada Klien", description: "Kebutuhan Anda adalah prioritas kami. Komunikasi jujur dan hubungan jangka panjang adalah kunci kami.", accent_color: "#F59E0B", bg_color: "#FFFBEB" },
+    // Work Principles
+    { section: "work_principles", icon: "💬", title: "Komunikasi Manusiawi & Responsif", description: "Kami menjelaskan konsep teknikal dengan bahasa yang sederhana. Anda selalu tahu perkembangan proyek tanpa harus mengejar-ngejar update.", accent_color: "#2DD9A4", bg_color: "#F0FDF9" },
+    { section: "work_principles", icon: "🎯", title: "Product Thinking, Bukan Sekadar Coding", description: "Kami memahami tujuan bisnis Anda. Fitur yang dibangun difokuskan pada apa yang benar-benar memberi nilai dan mempermudah operasional.", accent_color: "#6C63FF", bg_color: "#F3F0FF" },
+    { section: "work_principles", icon: "🛡️", title: "Pengujian Kualitas Ketat (QA Standard)", description: "Dengan latar belakang QA enterprise, kami menguji setiap fungsi, performa, dan responsivitas layar agar website Anda bebas dari bug saat rilis.", accent_color: "#3BB5C5", bg_color: "#E6FFFA" },
+    { section: "work_principles", icon: "🤝", title: "Garansi & Tanggung Jawab Nyata", description: "Hubungan kerja sama tidak berhenti saat serah terima. Kami memberikan garansi perbaikan dan pendampingan teknikal agar Anda selalu tenang.", accent_color: "#F59E0B", bg_color: "#FFFBEB" },
+  ]
+
+  for (let i = 0; i < principles.length; i++) {
+    const p = principles[i]
+    await sql`
+      INSERT INTO about_principles (section, icon, title, description, accent_color, bg_color, sort_order)
+      VALUES (${p.section}, ${p.icon}, ${p.title}, ${p.description}, ${p.accent_color}, ${p.bg_color}, ${i})
+    `
+  }
+  console.log(`Inserted ${principles.length} about principles`)
+
+  // ─── Achievements ─────────────────────────────────────────────────────────
+  console.log("Seeding achievements...")
+  await sql`DELETE FROM achievements`
+
+  const achievementsData = [
+    { value: "36+", label: "Pesanan Selesai", description: "100% tepat waktu", accent_color: "#2DD9A4", bg_color: "#F0FDF9" },
+    { value: "24+", label: "Klien Puas", description: "Dari UMKM s/d Instansi", accent_color: "#6C63FF", bg_color: "#F3F0FF" },
+    { value: "13+", label: "Dipekerjakan Ulang", description: "Tingkat repeat order tinggi", accent_color: "#3BB5C5", bg_color: "#E6FFFA" },
+    { value: "5.0", label: "Rating Sempurna", description: "Ulasan kepuasan 5 bintang", accent_color: "#F59E0B", bg_color: "#FFFBEB" },
+  ]
+
+  for (let i = 0; i < achievementsData.length; i++) {
+    const a = achievementsData[i]
+    await sql`
+      INSERT INTO achievements (value, label, description, accent_color, bg_color, sort_order)
+      VALUES (${a.value}, ${a.label}, ${a.description}, ${a.accent_color}, ${a.bg_color}, ${i})
+    `
+  }
+  console.log(`Inserted ${achievementsData.length} achievements`)
+
   console.log("\nSeed complete!")
   await sql.end()
 }

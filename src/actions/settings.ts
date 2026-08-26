@@ -16,7 +16,12 @@ export async function setSetting(key: string, value: unknown) {
     .insert(siteSettings)
     .values({ key, value: value as never })
     .onConflictDoUpdate({ target: siteSettings.key, set: { value: value as never } })
+  revalidatePath("/", "layout")
   revalidatePath("/")
+  revalidatePath("/about")
+  revalidatePath("/layanan")
+  revalidatePath("/portfolio")
+  revalidatePath("/umkm")
   revalidatePath("/admin/settings")
 }
 
@@ -53,20 +58,53 @@ export async function getTrustedBrands() {
 export async function createTrustedBrand(data: { name: string; logoUrl?: string; sortOrder?: number }) {
   const [item] = await db.insert(trustedBrands).values(data).returning()
   revalidatePath("/")
+  revalidatePath("/admin/brands")
   revalidatePath("/admin/settings")
   return item
 }
 
-export async function updateTrustedBrand(id: number, data: { name?: string; logoUrl?: string; sortOrder?: number }) {
+export async function bulkCreateTrustedBrands(
+  items: Array<{ name: string; logoUrl?: string; sortOrder?: number }>
+) {
+  if (!items.length) return []
+  const created = await db.insert(trustedBrands).values(items).returning()
+  revalidatePath("/")
+  revalidatePath("/admin/brands")
+  revalidatePath("/admin/settings")
+  return created
+}
+
+export async function updateTrustedBrand(
+  id: number,
+  data: { name?: string; logoUrl?: string; sortOrder?: number }
+) {
   const [item] = await db.update(trustedBrands).set(data).where(eq(trustedBrands.id, id)).returning()
   revalidatePath("/")
+  revalidatePath("/admin/brands")
   revalidatePath("/admin/settings")
   return item
+}
+
+export async function reorderTrustedBrands(
+  items: Array<{ id: number; sortOrder: number }>
+) {
+  await Promise.all(
+    items.map((item) =>
+      db
+        .update(trustedBrands)
+        .set({ sortOrder: item.sortOrder })
+        .where(eq(trustedBrands.id, item.id))
+    )
+  )
+  revalidatePath("/")
+  revalidatePath("/admin/brands")
+  revalidatePath("/admin/settings")
 }
 
 export async function deleteTrustedBrand(id: number) {
   await db.delete(trustedBrands).where(eq(trustedBrands.id, id))
   revalidatePath("/")
+  revalidatePath("/admin/brands")
   revalidatePath("/admin/settings")
 }
 

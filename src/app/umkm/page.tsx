@@ -16,8 +16,15 @@ import UMKMProcess from "@/components/umkm/UMKMProcess";
 import { getSetting } from "@/actions/settings";
 import { getFaqs } from "@/actions/faqs";
 import { getPortfolioItems } from "@/actions/portfolio";
+import {
+  getUmkmUseCases,
+  getUmkmProcessSteps,
+  getUmkmMarketStats,
+  getUmkmWhyUs,
+} from "@/actions/umkm";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Solusi Teknologi UMKM & Bisnis Menengah | Lumi Beta Works",
@@ -65,10 +72,22 @@ const FALLBACK_FAQS = [
 ];
 
 export default async function UMKMPage() {
-  const [contactSetting, dbFaqs, allPortfolio] = await Promise.all([
+  const [
+    contactSetting,
+    dbFaqs,
+    allPortfolio,
+    useCases,
+    processSteps,
+    marketStats,
+    whyUs,
+  ] = await Promise.all([
     getSetting("contact"),
     getFaqs("umkm"),
     getPortfolioItems(),
+    getUmkmUseCases(),
+    getUmkmProcessSteps(),
+    getUmkmMarketStats(),
+    getUmkmWhyUs(),
   ]);
 
   const contact = contactSetting as { whatsapp?: string } | null;
@@ -112,11 +131,11 @@ export default async function UMKMPage() {
       <Navbar />
       <main className="flex-1 bg-white pt-24 min-h-screen">
         <UMKMHero whatsapp={whatsapp} />
-        <UMKMStats />
+        <UMKMStats stats={marketStats} />
         <UMKMStory />
-        <UMKMUseCases />
-        <UMKMWhyUs />
-        <UMKMProcess />
+        <UMKMUseCases useCases={useCases} />
+        <UMKMWhyUs reasons={whyUs as any} />
+        <UMKMProcess steps={processSteps} />
 
         {caseStudies.length > 0 && (
           <section id="studi-kasus" className="py-20 sm:py-24 bg-[#F0FDF4]/30 border-y border-emerald-50">

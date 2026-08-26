@@ -6,7 +6,7 @@ import { supabaseAdmin } from "@/lib/supabase-admin"
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/svg+xml", "image/gif"]
 const MAX_SIZE = 5 * 1024 * 1024 // 5MB
-const ALLOWED_FOLDERS = ["projects", "certifications", "partners", "about", "services"]
+const ALLOWED_FOLDERS = ["projects", "certifications", "partners", "brands", "about", "services"]
 
 export async function POST(request: NextRequest) {
   const cookieStore = await cookies()

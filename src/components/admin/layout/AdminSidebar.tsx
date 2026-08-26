@@ -17,12 +17,14 @@ import {
   Award,
   Info,
   Store,
+  Building2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import { logout } from "@/actions/auth";
 
 const NAV_CONTENT = [
+  { href: "/admin/brands",       label: "Client Logos", icon: Building2 },
   { href: "/admin/portfolio",    label: "Portfolio",    icon: FolderKanban },
   { href: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
   { href: "/admin/services",     label: "Services",     icon: Wrench },
