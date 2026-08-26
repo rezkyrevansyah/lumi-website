@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Check, Mail, Phone } from "lucide-react";
 import { type AdminContact } from "@/lib/admin-data";
-import { createClient } from "@/utils/supabase/client";
+import { setSetting } from "@/actions/settings";
 
 interface ContactEditorProps {
   initialContact: AdminContact;
@@ -15,17 +15,14 @@ interface ContactEditorProps {
 export default function ContactEditor({ initialContact }: ContactEditorProps) {
   const [contact, setContact] = useState(initialContact);
   const [saved, setSaved] = useState(false);
-  const [saving, setSaving] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
-  async function handleSave() {
-    setSaving(true);
-    const supabase = createClient();
-    await supabase
-      .from("site_settings")
-      .upsert({ key: "contact", value: contact });
-    setSaving(false);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
+  function handleSave() {
+    startTransition(async () => {
+      await setSetting("contact", contact);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2000);
+    });
   }
 
   return (
@@ -69,11 +66,11 @@ export default function ContactEditor({ initialContact }: ContactEditorProps) {
 
       <Button
         onClick={handleSave}
-        disabled={saving}
+        disabled={isPending}
         className={saved ? "bg-green-500 hover:bg-green-600 text-white gap-2" : "btn-primary gap-2"}
         style={{ fontFamily: "var(--font-opensans)" }}
       >
-        {saved ? <><Check size={14} /> Saved!</> : saving ? "Saving…" : "Save Changes"}
+        {saved ? <><Check size={14} /> Saved!</> : isPending ? "Saving…" : "Save Changes"}
       </Button>
     </div>
   );

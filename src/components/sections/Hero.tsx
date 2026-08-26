@@ -7,9 +7,10 @@ import TrueFocus from "@/components/ui/TrueFocus";
 interface HeroProps {
   badges?: any[];
   activeProjects?: any[];
+  whatsapp?: string;
 }
 
-export default function Hero(_props: HeroProps) {
+export default function Hero({ whatsapp = "62882015884006" }: HeroProps) {
   return (
     <section
       id="home"
@@ -75,7 +76,7 @@ export default function Hero(_props: HeroProps) {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-2">
           <a
-            href="https://wa.me/62882015884006?text=Halo+Lumi+Beta+Works,+saya+ingin+konsultasi+kebutuhan+Vendor+IT+/+Jasa+Buat+Website+Perusahaan."
+            href={`https://wa.me/${whatsapp}?text=Halo+Lumi+Beta+Works,+saya+ingin+konsultasi+kebutuhan+Vendor+IT+/+Jasa+Buat+Website+Perusahaan.`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:scale-105"

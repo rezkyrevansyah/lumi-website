@@ -1,25 +1,35 @@
 import Image from "next/image";
-import { FOOTER_SERVICE_LINKS } from "@/lib/data";
-import { cookies } from "next/headers";
-import { createClient } from "@/utils/supabase/server";
+import { getSetting } from "@/actions/settings";
+import { getServices } from "@/actions/services";
 
 const DEFAULT_EMAIL = "lumibetaworks@gmail.com";
 const DEFAULT_WHATSAPP = "62882015884006";
 
-export default async function Footer() {
-  const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
-  const { data } = await supabase
-    .from("site_settings")
-    .select("value")
-    .eq("key", "contact")
-    .single();
+const STATIC_FOOTER_LINKS = [
+  { label: "Solusi UMKM", href: "/umkm" },
+];
 
-  const contact = data?.value as { email?: string; whatsapp?: string } | null;
+export default async function Footer() {
+  const [contactSetting, services] = await Promise.all([
+    getSetting("contact"),
+    getServices(),
+  ]);
+
+  const contact = contactSetting as { email?: string; whatsapp?: string } | null;
   const rawEmail = contact?.email;
   const email = (!rawEmail || rawEmail.includes("hello@lumibetaworks.id")) ? DEFAULT_EMAIL : rawEmail;
   const rawWhatsapp = contact?.whatsapp;
   const whatsapp = (!rawWhatsapp || rawWhatsapp === "62882015884000") ? DEFAULT_WHATSAPP : rawWhatsapp;
+
+  const serviceLinks = services.length > 0
+    ? services.map((s) => ({ label: s.title, href: `/layanan/${s.slug}` }))
+    : [
+        { label: "Jasa Website Perusahaan", href: "/layanan/website" },
+        { label: "Vendor Aplikasi Mobile", href: "/layanan/aplikasi" },
+        { label: "QA Testing Enterprise", href: "/layanan/qa-testing" },
+        { label: "IT Consulting Instansi", href: "/layanan/konsultasi" },
+        ...STATIC_FOOTER_LINKS,
+      ];
 
   return (
     <footer className="bg-[#3D3E4A] text-white">
@@ -77,7 +87,7 @@ export default async function Footer() {
               Layanan
             </h4>
             <ul className="space-y-3">
-              {FOOTER_SERVICE_LINKS.map((s) => (
+              {serviceLinks.map((s) => (
                 <li key={s.label}>
                   <a
                     href={s.href}

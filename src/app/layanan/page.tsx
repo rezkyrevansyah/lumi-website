@@ -7,8 +7,9 @@ import FloatingWA from "@/components/FloatingWA";
 import ContactCTA from "@/components/sections/ContactCTA";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import UMKMPromo from "@/components/sections/UMKMPromo";
-import { cookies } from "next/headers";
-import { createClient } from "@/utils/supabase/server";
+import { getSetting } from "@/actions/settings";
+import { getServices } from "@/actions/services";
+import { getFaqs } from "@/actions/faqs";
 
 export const revalidate = 3600;
 
@@ -33,81 +34,6 @@ export const metadata: Metadata = {
     url: "https://lumibetaworks.id/layanan",
   },
 };
-
-const SERVICES_LIST = [
-  {
-    id: "website",
-    title: "Jasa Pembuatan Website Corporate & Instansi",
-    badge: "Most Popular",
-    badgeColor: "#2DD9A4",
-    summary:
-      "Website corporate berkecepatan tinggi, SEO-ready, dan aman. Kami mendukung berbagai tech stack sesuai kebutuhan & infrastruktur Anda (Next.js, Laravel, .NET, Angular, dsb).",
-    deliverables: [
-      "Company Profile & Portal Publik Instansi",
-      "Landing Page Konversi Tinggi & E-Catalog",
-      "Integrasi CMS & Dashboard Admin Custom",
-      "Optimasi SEO Score 95+ & Mobile Responsive",
-    ],
-    tech: ["Laravel / PHP", ".NET / C#", "React / Next.js", "Angular / Vue", "Node.js"],
-    sla: "10–20 Hari Kerja",
-    href: "/layanan/website",
-    waMessage: "Halo Lumi Beta Works, saya ingin konsultasi pembuatan Website Perusahaan.",
-  },
-  {
-    id: "aplikasi",
-    title: "Vendor Pembuatan Aplikasi Mobile (Android & iOS)",
-    badge: "Cross-Platform",
-    badgeColor: "#6C63FF",
-    summary:
-      "Aplikasi mobile native & Flutter dengan arsitektur scalable, UI/UX intuitif, sinkronisasi offline, dan integrasi API yang lancar.",
-    deliverables: [
-      "Aplikasi Bisnis & Operasional Internal",
-      "E-Commerce, Booking, & On-Demand Service",
-      "Push Notification & Realtime Data Sync",
-      "Bantuan Publikasi Google Play & Apple App Store",
-    ],
-    tech: ["Flutter", "Dart", "REST API", "Firebase / Supabase"],
-    sla: "25–45 Hari Kerja",
-    href: "/layanan/aplikasi",
-    waMessage: "Halo Lumi Beta Works, saya ingin konsultasi pembuatan Aplikasi Mobile.",
-  },
-  {
-    id: "qa-testing",
-    title: "Software QA Testing & Audit Kualitas Enterprise",
-    badge: "Zero-Bug Guarantee",
-    badgeColor: "#3BB5C5",
-    summary:
-      "Pengujian manual dan otomatis menyeluruh untuk memastikan software Anda bebas dari bug kritis, aman dari celah, dan stabil saat trafik tinggi.",
-    deliverables: [
-      "Functional & Regression Testing Menyeluruh",
-      "Automation E2E Testing (Playwright / Cypress)",
-      "API Performance & Stress Load Testing",
-      "Laporan Defect Rinci & Rekomendasi Perbaikan",
-    ],
-    tech: ["Playwright", "Postman", "Jira", "K6 Load Test"],
-    sla: "5–15 Hari Kerja",
-    href: "/layanan/qa-testing",
-    waMessage: "Halo Lumi Beta Works, saya ingin konsultasi layanan QA Testing & Security Audit.",
-  },
-  {
-    id: "konsultasi",
-    title: "IT Consulting & Modernisasi Sistem Legacy",
-    badge: "Strategic Advisory",
-    badgeColor: "#F59E0B",
-    summary:
-      "Bimbingan teknikal mendalam untuk arsitektur cloud, refactoring sistem lama, audit keamanan, dan optimasi performa database.",
-    deliverables: [
-      "Audit Arsitektur Kode & Infrastruktur Cloud",
-      "Perencanaan Migrasi Database & Cloud Modern",
-      "Optimasi Kecepatan & Efisiensi Server",
-      "Technical Roadmapping & Tech Stack Advisory",
-    ],
-    tech: ["System Design", "PostgreSQL", "Cloud Arch", "Docker"],
-    sla: "Fleksibel / Sesuai Scope",
-    href: "/layanan/konsultasi",
-    waMessage: "Halo Lumi Beta Works, saya ingin konsultasi arsitektur IT dan modernisasi sistem.",
-  },
-];
 
 const WORKFLOW = [
   {
@@ -155,7 +81,7 @@ const TECH_CATEGORIES = [
   },
 ];
 
-const FAQS = [
+const FALLBACK_FAQS = [
   {
     q: "Apakah kami bisa meminta pengembangan dengan tech stack khusus (misal: Laravel, .NET, Angular, PHP, dll)?",
     a: "Tentu saja! Tim rekayasa kami bersifat stack-agnostic. Kami sangat berpengalaman membangun sistem dengan berbagai framework enterprise dan modern (PHP/Laravel, .NET/C#, Angular, React/Next.js, Vue, Node.js, Python, dsb). Kami akan menyesuaikan secara penuh dengan pedoman IT governance, arsitektur yang sudah berjalan, dan server internal perusahaan Anda.",
@@ -179,28 +105,42 @@ const FAQS = [
 ];
 
 export default async function LayananPage() {
-  const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
+  const [contactSetting, dbServices, dbFaqs] = await Promise.all([
+    getSetting("contact"),
+    getServices(),
+    getFaqs("layanan"),
+  ]);
 
-  const { data: settings } = await supabase
-    .from("site_settings")
-    .select("value")
-    .eq("key", "contact")
-    .single();
+  const contact = contactSetting as { whatsapp?: string } | null;
+  const whatsapp = contact?.whatsapp ?? "62882015884006";
 
-  const contact = settings?.value as { whatsapp?: string } | null;
-  const whatsapp = contact?.whatsapp || "62882015884006";
+  const servicesList = dbServices.length > 0
+    ? dbServices.map((s) => ({
+        id: s.slug,
+        title: s.title,
+        badge: s.badgeLabel ?? "",
+        badgeColor: s.badgeColor ?? "#2DD9A4",
+        summary: s.summary ?? s.shortDesc,
+        deliverables: s.deliverables ?? [],
+        tech: s.techStack ?? [],
+        sla: s.slaLabel ?? "",
+        href: `/layanan/${s.slug}`,
+        waMessage: s.waMessage ?? `Halo Lumi Beta Works, saya ingin konsultasi mengenai ${s.title}.`,
+      }))
+    : [];
+
+  const faqs =
+    dbFaqs.length > 0
+      ? dbFaqs.map((f) => ({ q: f.question, a: f.answer }))
+      : FALLBACK_FAQS;
 
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQS.map((faq) => ({
+    mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.a,
-      },
+      acceptedAnswer: { "@type": "Answer", text: faq.a },
     })),
   };
 
@@ -246,102 +186,109 @@ export default async function LayananPage() {
         </section>
 
         {/* Services Cards Grid */}
-        <section className="py-20 md:py-28 bg-white border-b border-gray-100">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <span className="section-tag mb-3 inline-block">Cakupan Keahlian</span>
-              <h2
-                className="text-3xl sm:text-4xl font-bold text-[#101828]"
-                style={{ fontFamily: "var(--font-rubik)" }}
-              >
-                Pilih Solusi yang Sesuai dengan <span className="gradient-text">Kebutuhan Bisnis Anda</span>
-              </h2>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {SERVICES_LIST.map((srv) => (
-                <div
-                  key={srv.id}
-                  className="rounded-3xl border border-gray-200/90 bg-[#F8F9FB] p-7 sm:p-9 hover:bg-white hover:border-emerald-300 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group"
+        {servicesList.length > 0 && (
+          <section className="py-20 md:py-28 bg-white border-b border-gray-100">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+              <div className="text-center max-w-3xl mx-auto mb-16">
+                <span className="section-tag mb-3 inline-block">Cakupan Keahlian</span>
+                <h2
+                  className="text-3xl sm:text-4xl font-bold text-[#101828]"
+                  style={{ fontFamily: "var(--font-rubik)" }}
                 >
-                  <div>
-                    <div className="flex items-center justify-between gap-3 mb-4">
-                      <span
-                        className="text-xs font-bold px-3 py-1 rounded-full text-white"
-                        style={{ backgroundColor: srv.badgeColor }}
+                  Pilih Solusi yang Sesuai dengan <span className="gradient-text">Kebutuhan Bisnis Anda</span>
+                </h2>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                {servicesList.map((srv) => (
+                  <div
+                    key={srv.id}
+                    className="rounded-3xl border border-gray-200/90 bg-[#F8F9FB] p-7 sm:p-9 hover:bg-white hover:border-emerald-300 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-3 mb-4">
+                        {srv.badge && (
+                          <span
+                            className="text-xs font-bold px-3 py-1 rounded-full text-white"
+                            style={{ backgroundColor: srv.badgeColor }}
+                          >
+                            {srv.badge}
+                          </span>
+                        )}
+                        {srv.sla && (
+                          <span className="text-xs font-semibold text-gray-500 bg-white px-3 py-1 rounded-full border border-gray-200">
+                            ⏱️ SLA: {srv.sla}
+                          </span>
+                        )}
+                      </div>
+
+                      <h3
+                        className="text-xl sm:text-2xl font-bold text-[#101828] mb-3 group-hover:text-[#0E8B62] transition-colors"
+                        style={{ fontFamily: "var(--font-rubik)" }}
                       >
-                        {srv.badge}
-                      </span>
-                      <span className="text-xs font-semibold text-gray-500 bg-white px-3 py-1 rounded-full border border-gray-200">
-                        ⏱️ SLA: {srv.sla}
-                      </span>
-                    </div>
-
-                    <h3
-                      className="text-xl sm:text-2xl font-bold text-[#101828] mb-3 group-hover:text-[#0E8B62] transition-colors"
-                      style={{ fontFamily: "var(--font-rubik)" }}
-                    >
-                      {srv.title}
-                    </h3>
-                    <p
-                      className="text-gray-600 text-sm sm:text-base leading-relaxed mb-6"
-                      style={{ fontFamily: "var(--font-opensans)" }}
-                    >
-                      {srv.summary}
-                    </p>
-
-                    {/* Deliverables */}
-                    <div className="space-y-2.5 mb-6 bg-white p-4 sm:p-5 rounded-2xl border border-gray-100">
-                      <p className="text-xs font-bold uppercase tracking-wider text-gray-400">
-                        Yang Anda Dapatkan (Deliverables):
+                        {srv.title}
+                      </h3>
+                      <p
+                        className="text-gray-600 text-sm sm:text-base leading-relaxed mb-6"
+                        style={{ fontFamily: "var(--font-opensans)" }}
+                      >
+                        {srv.summary}
                       </p>
-                      {srv.deliverables.map((item) => (
-                        <div key={item} className="flex items-start gap-2 text-xs sm:text-sm text-gray-700">
-                          <span className="text-[#2DD9A4] font-bold mt-0.5">✓</span>
-                          <span>{item}</span>
+
+                      {srv.deliverables.length > 0 && (
+                        <div className="space-y-2.5 mb-6 bg-white p-4 sm:p-5 rounded-2xl border border-gray-100">
+                          <p className="text-xs font-bold uppercase tracking-wider text-gray-400">
+                            Yang Anda Dapatkan (Deliverables):
+                          </p>
+                          {srv.deliverables.map((item) => (
+                            <div key={item} className="flex items-start gap-2 text-xs sm:text-sm text-gray-700">
+                              <span className="text-[#2DD9A4] font-bold mt-0.5">✓</span>
+                              <span>{item}</span>
+                            </div>
+                          ))}
                         </div>
-                      ))}
+                      )}
+
+                      {srv.tech.length > 0 && (
+                        <div className="flex flex-wrap items-center gap-2 mb-8">
+                          <span className="text-xs font-semibold text-gray-400 mr-1">Stack:</span>
+                          {srv.tech.map((t) => (
+                            <span
+                              key={t}
+                              className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-gray-100 text-gray-700 border border-gray-200/60"
+                            >
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
 
-                    {/* Tech Stack Pills */}
-                    <div className="flex flex-wrap items-center gap-2 mb-8">
-                      <span className="text-xs font-semibold text-gray-400 mr-1">Stack:</span>
-                      {srv.tech.map((t) => (
-                        <span
-                          key={t}
-                          className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-gray-100 text-gray-700 border border-gray-200/60"
-                        >
-                          {t}
-                        </span>
-                      ))}
+                    <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-gray-200/80">
+                      <Link
+                        href={srv.href}
+                        className="btn-outline w-full sm:w-1/2 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold bg-white"
+                      >
+                        Pelajari Rincian
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                      <a
+                        href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(srv.waMessage)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-primary w-full sm:w-1/2 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold"
+                      >
+                        Konsultasi Gratis
+                      </a>
                     </div>
                   </div>
-
-                  {/* Actions */}
-                  <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-gray-200/80">
-                    <Link
-                      href={srv.href}
-                      className="btn-outline w-full sm:w-1/2 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold bg-white"
-                    >
-                      Pelajari Rincian
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
-                    </Link>
-                    <a
-                      href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(srv.waMessage)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-primary w-full sm:w-1/2 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold"
-                    >
-                      Konsultasi Gratis
-                    </a>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         <UMKMPromo />
 
@@ -471,7 +418,7 @@ export default async function LayananPage() {
               </h2>
             </div>
 
-            <FAQAccordion items={FAQS} defaultOpenIndex={0} />
+            <FAQAccordion items={faqs} defaultOpenIndex={0} />
           </div>
         </section>
 

@@ -2,6 +2,9 @@
 
 # Lumi Beta Works Developer Rules
 
+## Database & Migrations
+**Semua perubahan database dijalankan sendiri oleh Claude di terminal.** Ini termasuk `npm run db:push`, `npx drizzle-kit push`, seed scripts, dan migration scripts. Tidak perlu menunggu konfirmasi atau meminta user untuk menjalankannya.
+
 ## Brand Philosophy
 Lumi Beta Works started from a personal freelancer aiming to build a larger tech business.
 * **Lumi**: The light of an idea.

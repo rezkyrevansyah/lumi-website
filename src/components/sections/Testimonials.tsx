@@ -4,9 +4,9 @@ import React from "react";
 import { motion } from "motion/react";
 import { TestimonialsColumn, type TestimonialItem } from "@/components/ui/testimonials-columns-1";
 
-const FREELANCER_REVIEWS: TestimonialItem[] = [
+const FALLBACK_REVIEWS: TestimonialItem[] = [
   {
-    text: "The experience of working with Revan was truly great throughout the entire process. He constructed a full stack web application for our business in London precisely as we needed it. Communication was always clear, he got a quick grasp of our requirements, proposed some practical improvements, and met all the milestones on time. The code was clean, the user interface had a professional appearance, and the backend was both reliable and well-structured.",
+    text: "The experience of working with Revan was truly great throughout the entire process. He constructed a full stack web application for our business in London precisely as we needed it. Communication was always clear, he got a quick grasp of our requirements, proposed some practical improvements, and met all the milestones on time.",
     name: "Winnie",
     role: "Business Owner • London, UK",
     rating: 5,
@@ -15,12 +15,6 @@ const FREELANCER_REVIEWS: TestimonialItem[] = [
     text: "Nicee, bisa dari uiux sampe website jadi, gokil banget!",
     name: "Verified Client",
     role: "Client UI/UX & Web Development",
-    rating: 5,
-  },
-  {
-    text: "Makasih kakk rekomenn banget!",
-    name: "eca",
-    role: "Client Project",
     rating: 5,
   },
   {
@@ -59,13 +53,43 @@ const FREELANCER_REVIEWS: TestimonialItem[] = [
     role: "Repeat Order Client",
     rating: 5,
   },
+  {
+    text: "Makasih kakk rekomenn banget!",
+    name: "eca",
+    role: "Client Project",
+    rating: 5,
+  },
 ];
 
-const firstColumn = FREELANCER_REVIEWS.slice(0, 3);
-const secondColumn = FREELANCER_REVIEWS.slice(3, 6);
-const thirdColumn = FREELANCER_REVIEWS.slice(6, 9);
+interface DBTestimonial {
+  id: number;
+  quote: string;
+  authorName: string;
+  authorRole: string;
+  rating: number | null;
+  isFeatured: boolean | null;
+  sortOrder: number | null;
+}
 
-export default function Testimonials() {
+interface TestimonialsProps {
+  testimonials?: DBTestimonial[];
+}
+
+export default function Testimonials({ testimonials }: TestimonialsProps) {
+  const reviews: TestimonialItem[] =
+    testimonials && testimonials.length > 0
+      ? testimonials.map((t) => ({
+          text: t.quote,
+          name: t.authorName,
+          role: t.authorRole,
+          rating: t.rating ?? 5,
+        }))
+      : FALLBACK_REVIEWS;
+
+  const firstColumn = reviews.slice(0, 3);
+  const secondColumn = reviews.slice(3, 6);
+  const thirdColumn = reviews.slice(6, 9);
+
   return (
     <section className="py-20 lg:py-28 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -94,7 +118,6 @@ export default function Testimonials() {
           </p>
         </motion.div>
 
-        {/* 3-Column Infinite Vertical Marquee */}
         <div className="flex justify-center gap-5 sm:gap-6 mt-12 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[720px] overflow-hidden">
           <TestimonialsColumn testimonials={firstColumn} duration={17} />
           <TestimonialsColumn

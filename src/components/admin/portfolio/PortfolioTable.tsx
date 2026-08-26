@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { Pencil, Trash2, Plus, Globe, Smartphone } from "lucide-react";
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
@@ -13,23 +13,23 @@ import EmptyState from "@/components/admin/shared/EmptyState";
 import PageHeader from "@/components/admin/shared/PageHeader";
 import { FolderKanban } from "lucide-react";
 import { type AdminPortfolioItem } from "@/lib/admin-data";
-import { createClient } from "@/utils/supabase/client";
+import { createPortfolioItem, updatePortfolioItem, deletePortfolioItem } from "@/actions/portfolio";
 
 interface PortfolioTableProps {
   initialItems: AdminPortfolioItem[];
 }
 
-function PlatformIcon({ platform }: { platform: "web" | "android" | "ios" }) {
+function PlatformIcon({ platform }: { platform: string }) {
   if (platform === "web") return <Globe size={13} className="text-muted-foreground" />;
   return <Smartphone size={13} className="text-muted-foreground" />;
 }
 
 export default function PortfolioTable({ initialItems }: PortfolioTableProps) {
-  const [items, setItems] = useState(initialItems);
+  const [items, setItems] = useState<AdminPortfolioItem[]>(initialItems);
   const [editItem, setEditItem] = useState<AdminPortfolioItem | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [deleteId, setDeleteId] = useState<string | null>(null);
-  const [saving, setSaving] = useState(false);
+  const [deleteId, setDeleteId] = useState<number | null>(null);
+  const [isPending, startTransition] = useTransition();
 
   function handleEdit(item: AdminPortfolioItem) {
     setEditItem(item);
@@ -41,53 +41,41 @@ export default function PortfolioTable({ initialItems }: PortfolioTableProps) {
     setDialogOpen(true);
   }
 
-  async function handleSave(data: AdminPortfolioItem) {
-    setSaving(true);
-    const supabase = createClient();
-
-    const isNew = !items.find((i) => i.id === data.id);
-    const payload = {
-      title: data.title,
-      client: data.client,
-      category: data.category,
-      description: data.description,
-      tags: data.tags,
-      platforms: data.platforms,
-      color: data.color,
-      bg: data.bg,
-      image_url: data.imageUrl ?? null,
-      ...(isNew ? { sort_order: items.length + 1 } : {}),
-    };
-
-    if (isNew) {
-      const { data: inserted, error } = await supabase
-        .from("portfolio_items")
-        .insert(payload)
-        .select()
-        .single();
-      if (!error && inserted) {
-        setItems((prev) => [
-          ...prev,
-          { ...data, id: inserted.id, imageUrl: inserted.image_url ?? undefined },
-        ]);
+  async function handleSave(data: Omit<AdminPortfolioItem, "id"> & { id?: number }) {
+    startTransition(async () => {
+      const isNew = !data.id;
+      const payload = {
+        title: data.title,
+        client: data.client,
+        category: data.category,
+        description: data.description,
+        tags: data.tags ?? [],
+        platforms: data.platforms ?? [],
+        accentColor: data.accentColor ?? undefined,
+        bgColor: data.bgColor ?? undefined,
+        imageUrl: data.imageUrl ?? undefined,
+        demoUrl: data.demoUrl ?? undefined,
+        isUmkmCaseStudy: data.isUmkmCaseStudy ?? false,
+        isPublished: data.isPublished ?? true,
+        sortOrder: data.sortOrder ?? items.length,
+      };
+      if (isNew) {
+        const created = await createPortfolioItem({ ...payload, sortOrder: items.length });
+        if (created) setItems((prev) => [...prev, created as AdminPortfolioItem]);
+      } else {
+        const updated = await updatePortfolioItem(data.id!, payload);
+        if (updated) setItems((prev) => prev.map((i) => (i.id === data.id ? (updated as AdminPortfolioItem) : i)));
       }
-    } else {
-      const { error } = await supabase
-        .from("portfolio_items")
-        .update(payload)
-        .eq("id", data.id);
-      if (!error) {
-        setItems((prev) => prev.map((i) => (i.id === data.id ? data : i)));
-      }
-    }
-
-    setSaving(false);
+      setDialogOpen(false);
+    });
   }
 
-  async function handleDelete(id: string) {
-    const supabase = createClient();
-    await supabase.from("portfolio_items").delete().eq("id", id);
-    setItems((prev) => prev.filter((i) => i.id !== id));
+  function handleDelete(id: number) {
+    startTransition(async () => {
+      await deletePortfolioItem(id);
+      setItems((prev) => prev.filter((i) => i.id !== id));
+      setDeleteId(null);
+    });
   }
 
   return (
@@ -133,11 +121,11 @@ export default function PortfolioTable({ initialItems }: PortfolioTableProps) {
                 <TableRow key={item.id} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <TableCell>
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-xl shrink-0" style={{ background: item.bg }}>
-                        <div className="w-full h-full rounded-xl flex items-center justify-center"
-                          style={{ background: `${item.color}30` }}>
-                          <div className="w-2 h-2 rounded-full" style={{ background: item.color }} />
-                        </div>
+                      <div
+                        className="w-8 h-8 rounded-xl shrink-0 flex items-center justify-center"
+                        style={{ background: item.bgColor ?? "#0F1923" }}
+                      >
+                        <div className="w-2 h-2 rounded-full" style={{ background: item.accentColor ?? "#2DD9A4" }} />
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-[#3D3E4A]" style={{ fontFamily: "var(--font-rubik)" }}>
@@ -155,8 +143,8 @@ export default function PortfolioTable({ initialItems }: PortfolioTableProps) {
                     </span>
                   </TableCell>
                   <TableCell>
-                    <div className="flex items-center gap-1.5">
-                      {item.platforms.map((p) => (
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      {(item.platforms ?? []).map((p) => (
                         <span key={p} className="flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-muted text-xs text-muted-foreground capitalize"
                           style={{ fontFamily: "var(--font-opensans)" }}>
                           <PlatformIcon platform={p} />
@@ -167,12 +155,12 @@ export default function PortfolioTable({ initialItems }: PortfolioTableProps) {
                   </TableCell>
                   <TableCell>
                     <div className="flex flex-wrap gap-1">
-                      {item.tags.slice(0, 2).map((tag) => (
-                        <TagBadge key={tag} label={tag} color={item.color} />
+                      {(item.tags ?? []).slice(0, 2).map((tag) => (
+                        <TagBadge key={tag} label={tag} color={item.accentColor ?? undefined} />
                       ))}
-                      {item.tags.length > 2 && (
+                      {(item.tags ?? []).length > 2 && (
                         <span className="text-xs text-muted-foreground" style={{ fontFamily: "var(--font-opensans)" }}>
-                          +{item.tags.length - 2}
+                          +{(item.tags ?? []).length - 2}
                         </span>
                       )}
                     </div>
@@ -201,15 +189,15 @@ export default function PortfolioTable({ initialItems }: PortfolioTableProps) {
         onOpenChange={setDialogOpen}
         item={editItem}
         onSave={handleSave}
-        saving={saving}
+        saving={isPending}
       />
 
       <ConfirmDialog
         open={deleteId !== null}
         onOpenChange={(open) => !open && setDeleteId(null)}
         title="Delete portfolio item?"
-        description="This will remove the project from your portfolio. This action cannot be undone."
-        onConfirm={() => deleteId && handleDelete(deleteId)}
+        description="This will permanently remove the project. This action cannot be undone."
+        onConfirm={() => deleteId !== null && handleDelete(deleteId)}
       />
     </>
   );

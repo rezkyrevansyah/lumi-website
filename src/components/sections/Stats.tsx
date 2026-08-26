@@ -1,20 +1,14 @@
-import { cookies } from "next/headers";
-import { createClient } from "@/utils/supabase/server";
-import { STATS } from "@/lib/data";
+import { getStats } from "@/actions/settings";
 
 export default async function Stats() {
-  const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
-  const { data: dbStats } = await supabase.from("stats").select("*").order("sort_order");
+  const dbStats = await getStats();
 
-  const hasNewStats = (dbStats ?? []).some(
-    (s) => s.value.includes("36") || s.label.toLowerCase().includes("pesanan")
-  );
-  const rawStats = hasNewStats ? dbStats! : STATS;
-  const stats = rawStats.map((s) => ({
+  const stats = dbStats.map((s) => ({
     ...s,
-    value: s.value === "36" ? "36+" : s.value === "24" ? "24+" : s.value === "13" ? "13+" : s.value,
+    value: s.value.endsWith("+") ? s.value : `${s.value}+`,
   }));
+
+  if (!stats.length) return null;
 
   return (
     <section className="py-16 bg-white border-y border-gray-100">

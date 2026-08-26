@@ -4,6 +4,11 @@
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
 
+<!-- BEGIN:db-rules -->
+## Database & Migrations
+**Run all database changes yourself in the terminal.** This includes `npm run db:push`, `npx drizzle-kit push`, seed scripts, and migration scripts. Do NOT wait for the user to run them.
+<!-- END:db-rules -->
+
 <!-- BEGIN:lumi-brand-rules -->
 # Lumi Beta Works: Brand Philosophy & Developer Guidelines
 

@@ -3,18 +3,32 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const CERTIFICATE_LOGOS = [
-  { id: "cert-1", src: "/certificate/1.png", alt: "Dicoding Sertifikasi", isDark: false },
-  { id: "cert-2", src: "/certificate/2.png", alt: "Bangkit Academy Sertifikasi", isDark: false },
-  { id: "cert-3", src: "/certificate/3.png", alt: "Laskar AI Sertifikasi", isDark: true },
-  { id: "cert-4", src: "/certificate/4.png", alt: "Google Sertifikasi", isDark: false },
+const FALLBACK_CERTS = [
+  { id: 0, imageUrl: "/certificate/1.png", altText: "Dicoding Sertifikasi", isDark: false },
+  { id: 1, imageUrl: "/certificate/2.png", altText: "Bangkit Academy Sertifikasi", isDark: false },
+  { id: 2, imageUrl: "/certificate/3.png", altText: "Laskar AI Sertifikasi", isDark: true },
+  { id: 3, imageUrl: "/certificate/4.png", altText: "Google Sertifikasi", isDark: false },
 ];
 
-export default function CertificationsSection() {
+interface DBCertification {
+  id: number;
+  imageUrl: string;
+  altText: string;
+  isDark: boolean | null;
+  sortOrder: number | null;
+}
+
+interface CertificationsSectionProps {
+  certifications?: DBCertification[];
+}
+
+export default function CertificationsSection({ certifications }: CertificationsSectionProps) {
+  const certs =
+    certifications && certifications.length > 0 ? certifications : FALLBACK_CERTS;
+
   return (
     <section className="py-20 md:py-28 bg-white border-y border-gray-100 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -37,9 +51,8 @@ export default function CertificationsSection() {
           </p>
         </motion.div>
 
-        {/* Real Certificate Logos Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 max-w-5xl mx-auto">
-          {CERTIFICATE_LOGOS.map((cert, i) => (
+          {certs.map((cert, i) => (
             <motion.div
               key={cert.id}
               initial={{ opacity: 0, y: 20 }}
@@ -54,11 +67,12 @@ export default function CertificationsSection() {
             >
               <div className="relative w-full h-full flex items-center justify-center">
                 <Image
-                  src={cert.src}
-                  alt={cert.alt}
+                  src={cert.imageUrl}
+                  alt={cert.altText}
                   fill
                   sizes="(min-width: 768px) 240px, 45vw"
                   className="object-contain group-hover:scale-105 transition-transform duration-300 p-2"
+                  unoptimized
                 />
               </div>
             </motion.div>

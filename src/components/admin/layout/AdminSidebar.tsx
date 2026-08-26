@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   FolderKanban,
@@ -13,20 +13,31 @@ import {
   ExternalLink,
   X,
   LogOut,
+  HelpCircle,
+  Award,
+  Info,
+  Store,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
-import { createClient } from "@/utils/supabase/client";
+import { logout } from "@/actions/auth";
 
 const NAV_CONTENT = [
   { href: "/admin/portfolio",    label: "Portfolio",    icon: FolderKanban },
   { href: "/admin/testimonials", label: "Testimonials", icon: MessageSquareQuote },
   { href: "/admin/services",     label: "Services",     icon: Wrench },
+  { href: "/admin/faqs",         label: "FAQs",         icon: HelpCircle },
+];
+
+const NAV_PAGES = [
+  { href: "/admin/about", label: "About",  icon: Info },
+  { href: "/admin/umkm",  label: "UMKM",   icon: Store },
 ];
 
 const NAV_GENERAL = [
-  { href: "/admin/settings", label: "Site Settings", icon: Settings2 },
-  { href: "/admin/media",    label: "Media",          icon: ImageIcon },
+  { href: "/admin/settings",       label: "Site Settings",  icon: Settings2 },
+  { href: "/admin/certifications", label: "Certifications", icon: Award },
+  { href: "/admin/media",          label: "Media",          icon: ImageIcon },
 ];
 
 interface AdminSidebarProps {
@@ -35,12 +46,9 @@ interface AdminSidebarProps {
 
 export default function AdminSidebar({ onClose }: AdminSidebarProps) {
   const pathname = usePathname();
-  const router = useRouter();
 
   async function handleLogout() {
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    router.replace("/admin/login");
+    await logout();
   }
 
   function isActive(href: string) {
@@ -66,6 +74,22 @@ export default function AdminSidebar({ onClose }: AdminSidebarProps) {
           {label}
         </Link>
       </li>
+    );
+  }
+
+  function NavSection({ label, items }: { label: string; items: typeof NAV_CONTENT }) {
+    return (
+      <div>
+        <p
+          className="px-3 mb-2 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60"
+          style={{ fontFamily: "var(--font-rubik)" }}
+        >
+          {label}
+        </p>
+        <ul className="space-y-1">
+          {items.map((item) => <NavItem key={item.href} {...item} />)}
+        </ul>
+      </div>
     );
   }
 
@@ -95,7 +119,6 @@ export default function AdminSidebar({ onClose }: AdminSidebarProps) {
 
       {/* Nav */}
       <nav className="flex-1 overflow-y-auto px-3 py-4 flex flex-col gap-5">
-        {/* Dashboard */}
         <ul className="space-y-1">
           <li>
             <Link
@@ -115,29 +138,9 @@ export default function AdminSidebar({ onClose }: AdminSidebarProps) {
           </li>
         </ul>
 
-        <div>
-          <p className="px-3 mb-2 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60"
-            style={{ fontFamily: "var(--font-rubik)" }}>
-            Content
-          </p>
-          <ul className="space-y-1">
-            {NAV_CONTENT.map((item) => (
-              <NavItem key={item.href} {...item} />
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <p className="px-3 mb-2 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60"
-            style={{ fontFamily: "var(--font-rubik)" }}>
-            General
-          </p>
-          <ul className="space-y-1">
-            {NAV_GENERAL.map((item) => (
-              <NavItem key={item.href} {...item} />
-            ))}
-          </ul>
-        </div>
+        <NavSection label="Content" items={NAV_CONTENT} />
+        <NavSection label="Pages" items={NAV_PAGES} />
+        <NavSection label="General" items={NAV_GENERAL} />
       </nav>
 
       {/* Footer */}
@@ -161,7 +164,7 @@ export default function AdminSidebar({ onClose }: AdminSidebarProps) {
           Sign Out
         </button>
         <p className="mt-2 px-3 text-[10px] text-muted-foreground/50" style={{ fontFamily: "var(--font-opensans)" }}>
-          Admin v0.1 · Lumi Beta Works
+          Admin v1.0 · Lumi Beta Works
         </p>
       </div>
     </aside>

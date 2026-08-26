@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { type AdminStat } from "@/lib/admin-data";
-import { createClient } from "@/utils/supabase/client";
+import { updateStat } from "@/actions/settings";
 
 interface StatsEditorProps {
   initialStats: AdminStat[];
@@ -14,24 +14,21 @@ interface StatsEditorProps {
 export default function StatsEditor({ initialStats }: StatsEditorProps) {
   const [stats, setStats] = useState(initialStats);
   const [saved, setSaved] = useState(false);
-  const [saving, setSaving] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
-  function update(id: string, key: "value" | "label", val: string) {
+  function update(id: number, key: "value" | "label", val: string) {
     setStats((prev) => prev.map((s) => (s.id === id ? { ...s, [key]: val } : s)));
     setSaved(false);
   }
 
-  async function handleSave() {
-    setSaving(true);
-    const supabase = createClient();
-    await Promise.all(
-      stats.map((s) =>
-        supabase.from("stats").update({ value: s.value, label: s.label }).eq("id", s.id)
-      )
-    );
-    setSaving(false);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
+  function handleSave() {
+    startTransition(async () => {
+      await Promise.all(
+        stats.map((s) => updateStat(s.id, { value: s.value, label: s.label }))
+      );
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2000);
+    });
   }
 
   return (
@@ -48,10 +45,7 @@ export default function StatsEditor({ initialStats }: StatsEditorProps) {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
         {stats.map((stat) => (
           <div key={stat.id} className="bg-[#F8F9FB] rounded-2xl border border-border p-4 space-y-3">
-            <p
-              className="text-2xl font-bold gradient-text"
-              style={{ fontFamily: "var(--font-rubik)" }}
-            >
+            <p className="text-2xl font-bold gradient-text" style={{ fontFamily: "var(--font-rubik)" }}>
               {stat.value || "-"}
             </p>
             <div className="space-y-2">
@@ -76,11 +70,11 @@ export default function StatsEditor({ initialStats }: StatsEditorProps) {
 
       <Button
         onClick={handleSave}
-        disabled={saving}
+        disabled={isPending}
         className={saved ? "bg-green-500 hover:bg-green-600 text-white gap-2" : "btn-primary gap-2"}
         style={{ fontFamily: "var(--font-opensans)" }}
       >
-        {saved ? <><Check size={14} /> Saved!</> : saving ? "Saving…" : "Save Changes"}
+        {saved ? <><Check size={14} /> Saved!</> : isPending ? "Saving…" : "Save Changes"}
       </Button>
     </div>
   );

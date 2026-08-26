@@ -1,26 +1,55 @@
-import {
-  PORTFOLIO,
-  TESTIMONIALS,
-  SERVICES,
-  STATS,
-  HERO_BADGES,
-  ACTIVE_PROJECTS,
-  TRUSTED_BRANDS,
-  type PortfolioItem,
-  type Testimonial,
-  type Service,
-} from "./data";
-
 // ── Types ──────────────────────────────────────────────────────────────
 
-export type AdminPortfolioItem = PortfolioItem & { id: string; imageUrl?: string };
-export type AdminTestimonial = Testimonial & { id: string };
-export type AdminService = Service & { id: string };
+export type AdminPortfolioItem = {
+  id: number;
+  title: string;
+  client: string;
+  category: string;
+  description: string;
+  tags: string[] | null;
+  platforms: string[] | null;
+  accentColor: string | null;
+  bgColor: string | null;
+  imageUrl?: string | null;
+  demoUrl?: string | null;
+  isUmkmCaseStudy: boolean | null;
+  isPublished: boolean | null;
+  sortOrder: number | null;
+};
+
+export type AdminTestimonial = {
+  id: number;
+  quote: string;
+  authorName: string;
+  authorRole: string;
+  rating: number | null;
+  isFeatured: boolean | null;
+  sortOrder: number | null;
+};
+
+export type AdminService = {
+  id: number;
+  title: string;
+  shortDesc: string;
+  summary?: string | null;
+  badgeLabel?: string | null;
+  badgeColor?: string | null;
+  deliverables: string[] | null;
+  techStack: string[] | null;
+  slaLabel?: string | null;
+  iconPath?: string | null;
+  iconType: string | null;
+  slug: string;
+  waMessage?: string | null;
+  tags: string[] | null;
+  sortOrder: number | null;
+};
 
 export type AdminStat = {
-  id: string;
+  id: number;
   value: string;
   label: string;
+  sortOrder: number | null;
 };
 
 export type AdminContact = {
@@ -43,58 +72,11 @@ export type AdminActiveProject = {
 };
 
 export type AdminBrand = {
-  id: string;
+  id: number;
   name: string;
-  logoUrl?: string; // base64 or URL, optional, falls back to text
+  logoUrl?: string | null;
+  sortOrder: number | null;
 };
-
-// ── Initial Data ───────────────────────────────────────────────────────
-
-export const ADMIN_PORTFOLIO: AdminPortfolioItem[] = PORTFOLIO.map((p, i) => ({
-  ...p,
-  id: String(i + 1),
-}));
-
-export const ADMIN_TESTIMONIALS: AdminTestimonial[] = TESTIMONIALS.map((t, i) => ({
-  ...t,
-  id: String(i + 1),
-}));
-
-export const ADMIN_SERVICES: AdminService[] = SERVICES.map((s, i) => ({
-  ...s,
-  id: String(i + 1),
-}));
-
-export const ADMIN_STATS: AdminStat[] = STATS.map((s, i) => ({
-  id: String(i + 1),
-  value: s.value,
-  label: s.label,
-}));
-
-export const ADMIN_CONTACT: AdminContact = {
-  email: "lumibetaworks@gmail.com",
-  whatsapp: "62882015884006",
-};
-
-export const ADMIN_HERO_BADGES: AdminHeroBadge[] = HERO_BADGES.map((b, i) => ({
-  id: String(i + 1),
-  icon: b.icon,
-  label: b.label,
-}));
-
-export const ADMIN_ACTIVE_PROJECTS: AdminActiveProject[] = ACTIVE_PROJECTS.map((p, i) => ({
-  id: String(i + 1),
-  name: p.name,
-  type: p.type,
-  progress: p.progress,
-  color: p.color,
-}));
-
-export const ADMIN_BRANDS: AdminBrand[] = TRUSTED_BRANDS.map((item, i) =>
-  typeof item === "string"
-    ? { id: String(i + 1), name: item }
-    : { id: String(i + 1), name: item.name, logoUrl: item.logoUrl }
-);
 
 // ── Mock Activity Feed ─────────────────────────────────────────────────
 

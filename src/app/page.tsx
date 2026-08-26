@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
-import { createClient } from "@/utils/supabase/server";
 
 export const revalidate = 300;
 
@@ -16,6 +14,7 @@ export const metadata: Metadata = {
       "Mitra Vendor IT & Software House profesional untuk Perusahaan, Instansi, & Bisnis Berkembang di Indonesia.",
   },
 };
+
 import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
 import AboutIntro from "@/components/sections/AboutIntro";
@@ -30,37 +29,30 @@ import ContactCTA from "@/components/sections/ContactCTA";
 import Footer from "@/components/sections/Footer";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import FloatingWA from "@/components/FloatingWA";
-import { ADMIN_BRANDS, type AdminBrand } from "@/lib/admin-data";
+import { getTrustedBrands, getSetting } from "@/actions/settings";
+import { getTestimonials } from "@/actions/testimonials";
+import { getCertifications } from "@/actions/settings";
 
 export default async function Home() {
-  const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
+  const [brands, contactSetting, heroBadgesSetting, activeProjectsSetting, testimonials, certifications] =
+    await Promise.all([
+      getTrustedBrands(),
+      getSetting("contact"),
+      getSetting("hero_badges"),
+      getSetting("active_projects"),
+      getTestimonials(),
+      getCertifications(),
+    ]);
 
-  const [brandsResult, settingsResult] = await Promise.all([
-    supabase.from("trusted_brands").select("*").order("sort_order"),
-    supabase.from("site_settings").select("key, value"),
-  ]);
+  const contact = contactSetting as { email?: string; whatsapp?: string } | null;
+  const whatsapp = contact?.whatsapp ?? "62882015884006";
 
-  const brands: AdminBrand[] = (brandsResult.data ?? []).map((row) => ({
-    id: row.id,
-    name: row.name,
-    logoUrl: row.logo_url ?? undefined,
-  }));
-
-  const settingsMap: Record<string, unknown> = {};
-  for (const row of settingsResult.data ?? []) {
-    settingsMap[row.key] = row.value;
-  }
-
-  const contact = settingsMap["contact"] as { email?: string; whatsapp?: string } | null;
-  const whatsapp = contact?.whatsapp || "62882015884006";
-
-  const heroBadgesRaw = settingsMap["hero_badges"] as Array<{ icon: string; label: string }> | undefined;
+  const heroBadgesRaw = heroBadgesSetting as Array<{ icon: string; label: string }> | null;
   const badges = heroBadgesRaw ?? [];
 
-  const activeProjectsRaw = settingsMap["active_projects"] as Array<{
+  const activeProjectsRaw = activeProjectsSetting as Array<{
     name: string; type: string; progress: number; color: string;
-  }> | undefined;
+  }> | null;
   const activeProjects = activeProjectsRaw ?? [];
 
   return (
@@ -68,15 +60,15 @@ export default async function Home() {
       <BackgroundBlobs />
       <Navbar />
       <main>
-        <Hero badges={badges} activeProjects={activeProjects} />
+        <Hero badges={badges} activeProjects={activeProjects} whatsapp={whatsapp} />
         <AboutIntro />
         <TrustedBy brands={brands} />
         <ServicesSection />
         <UMKMPromo />
         <Portfolio />
-        <CertificationsSection />
+        <CertificationsSection certifications={certifications} />
         <Stats />
-        <Testimonials />
+        <Testimonials testimonials={testimonials} />
         <ContactCTA />
       </main>
       <Footer />

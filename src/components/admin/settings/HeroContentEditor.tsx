@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Trash2, Plus, Check } from "lucide-react";
 import { type AdminHeroBadge, type AdminActiveProject } from "@/lib/admin-data";
-import { createClient } from "@/utils/supabase/client";
+import { setSetting } from "@/actions/settings";
 
 interface HeroContentEditorProps {
   initialBadges: AdminHeroBadge[];
@@ -16,7 +16,7 @@ export default function HeroContentEditor({ initialBadges, initialProjects }: He
   const [badges, setBadges] = useState(initialBadges);
   const [projects, setProjects] = useState(initialProjects);
   const [saved, setSaved] = useState(false);
-  const [saving, setSaving] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   function updateBadge(id: string, key: "icon" | "label", val: string) {
     setBadges((prev) => prev.map((b) => (b.id === id ? { ...b, [key]: val } : b)));
@@ -38,20 +38,19 @@ export default function HeroContentEditor({ initialBadges, initialProjects }: He
     setSaved(false);
   }
 
-  async function handleSave() {
-    setSaving(true);
-    const supabase = createClient();
-    const badgesPayload = badges.map(({ icon, label }) => ({ icon, label }));
-    const projectsPayload = projects.map(({ name, type, progress, color }) => ({ name, type, progress, color }));
+  function handleSave() {
+    startTransition(async () => {
+      const badgesPayload = badges.map(({ icon, label }) => ({ icon, label }));
+      const projectsPayload = projects.map(({ name, type, progress, color }) => ({ name, type, progress, color }));
 
-    await Promise.all([
-      supabase.from("site_settings").upsert({ key: "hero_badges", value: badgesPayload }),
-      supabase.from("site_settings").upsert({ key: "active_projects", value: projectsPayload }),
-    ]);
+      await Promise.all([
+        setSetting("hero_badges", badgesPayload),
+        setSetting("active_projects", projectsPayload),
+      ]);
 
-    setSaving(false);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2000);
+    });
   }
 
   return (
@@ -97,26 +96,31 @@ export default function HeroContentEditor({ initialBadges, initialProjects }: He
         </p>
         <div className="space-y-3">
           {projects.map((proj) => (
-            <div key={proj.id} className="bg-[#F8F9FB] rounded-xl border border-border p-3 grid grid-cols-2 sm:grid-cols-4 gap-2 items-end">
+            <div key={proj.id}
+              className="bg-[#F8F9FB] rounded-xl border border-border p-3 grid grid-cols-2 sm:grid-cols-4 gap-2 items-end">
               <div className="space-y-1">
-                <p className="text-[11px] text-muted-foreground uppercase tracking-wide" style={{ fontFamily: "var(--font-opensans)" }}>Name</p>
+                <p className="text-[11px] text-muted-foreground uppercase tracking-wide"
+                  style={{ fontFamily: "var(--font-opensans)" }}>Name</p>
                 <Input value={proj.name} onChange={(e) => updateProject(proj.id, "name", e.target.value)}
                   className="h-8 text-sm" style={{ fontFamily: "var(--font-opensans)" }} />
               </div>
               <div className="space-y-1">
-                <p className="text-[11px] text-muted-foreground uppercase tracking-wide" style={{ fontFamily: "var(--font-opensans)" }}>Type</p>
+                <p className="text-[11px] text-muted-foreground uppercase tracking-wide"
+                  style={{ fontFamily: "var(--font-opensans)" }}>Type</p>
                 <Input value={proj.type} onChange={(e) => updateProject(proj.id, "type", e.target.value)}
                   className="h-8 text-sm" style={{ fontFamily: "var(--font-opensans)" }} />
               </div>
               <div className="space-y-1">
-                <p className="text-[11px] text-muted-foreground uppercase tracking-wide" style={{ fontFamily: "var(--font-opensans)" }}>Progress %</p>
+                <p className="text-[11px] text-muted-foreground uppercase tracking-wide"
+                  style={{ fontFamily: "var(--font-opensans)" }}>Progress %</p>
                 <Input type="number" min={0} max={100}
                   value={proj.progress}
                   onChange={(e) => updateProject(proj.id, "progress", Number(e.target.value))}
                   className="h-8 text-sm" style={{ fontFamily: "var(--font-opensans)" }} />
               </div>
               <div className="space-y-1">
-                <p className="text-[11px] text-muted-foreground uppercase tracking-wide" style={{ fontFamily: "var(--font-opensans)" }}>Color</p>
+                <p className="text-[11px] text-muted-foreground uppercase tracking-wide"
+                  style={{ fontFamily: "var(--font-opensans)" }}>Color</p>
                 <div className="flex items-center gap-1">
                   <input type="color" value={proj.color}
                     onChange={(e) => updateProject(proj.id, "color", e.target.value)}
@@ -133,11 +137,11 @@ export default function HeroContentEditor({ initialBadges, initialProjects }: He
 
       <Button
         onClick={handleSave}
-        disabled={saving}
+        disabled={isPending}
         className={saved ? "bg-green-500 hover:bg-green-600 text-white gap-2" : "btn-primary gap-2"}
         style={{ fontFamily: "var(--font-opensans)" }}
       >
-        {saved ? <><Check size={14} /> Saved!</> : saving ? "Saving…" : "Save Changes"}
+        {saved ? <><Check size={14} /> Saved!</> : isPending ? "Saving…" : "Save Changes"}
       </Button>
     </div>
   );

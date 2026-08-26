@@ -1,42 +1,34 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import { Eye, EyeOff, Lock, Mail, AlertCircle } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { createClient } from "@/utils/supabase/client";
+import { useState } from "react"
+import Image from "next/image"
+import { Eye, EyeOff, Lock, AlertCircle } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { login } from "@/actions/auth"
 
 export default function AdminLoginPage() {
-  const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [password, setPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
   async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
+    e.preventDefault()
+    setError("")
+    setLoading(true)
 
-    const supabase = createClient();
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-
-    if (error) {
-      setError("Email or password is incorrect.");
-      setLoading(false);
-    } else {
-      router.replace("/admin");
+    const result = await login(password)
+    if (result?.error) {
+      setError(result.error)
+      setLoading(false)
     }
   }
 
   return (
     <div className="min-h-screen bg-[#F8F9FB] flex items-center justify-center px-4 relative overflow-hidden">
-      {/* Background blobs */}
       <div
         className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full pointer-events-none opacity-[0.06]"
         style={{ background: "radial-gradient(circle, #2DD9A4 0%, transparent 70%)", filter: "blur(60px)" }}
@@ -47,7 +39,6 @@ export default function AdminLoginPage() {
       />
 
       <div className="w-full max-w-sm relative">
-        {/* Logo */}
         <div className="flex justify-center mb-8">
           <Image
             src="/logo3_1920x1080.svg"
@@ -59,7 +50,6 @@ export default function AdminLoginPage() {
           />
         </div>
 
-        {/* Card */}
         <div className="bg-white rounded-3xl border border-border shadow-sm p-8">
           <div className="mb-6 text-center">
             <div
@@ -78,30 +68,11 @@ export default function AdminLoginPage() {
               className="text-sm text-muted-foreground mt-1"
               style={{ fontFamily: "var(--font-opensans)" }}
             >
-              Sign in to manage your site content
+              Masuk untuk mengelola konten website
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-1.5">
-              <Label style={{ fontFamily: "var(--font-opensans)" }}>Email</Label>
-              <div className="relative">
-                <Mail
-                  size={15}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none"
-                />
-                <Input
-                  type="email"
-                  value={email}
-                  onChange={(e) => { setEmail(e.target.value); setError(""); }}
-                  placeholder="admin@lumibetaworks.id"
-                  required
-                  className="pl-9"
-                  style={{ fontFamily: "var(--font-opensans)" }}
-                />
-              </div>
-            </div>
-
             <div className="space-y-1.5">
               <Label style={{ fontFamily: "var(--font-opensans)" }}>Password</Label>
               <div className="relative">
@@ -112,9 +83,10 @@ export default function AdminLoginPage() {
                 <Input
                   type={showPassword ? "text" : "password"}
                   value={password}
-                  onChange={(e) => { setPassword(e.target.value); setError(""); }}
+                  onChange={(e) => { setPassword(e.target.value); setError("") }}
                   placeholder="••••••••"
                   required
+                  autoFocus
                   className="pl-9 pr-10"
                   style={{ fontFamily: "var(--font-opensans)" }}
                 />
@@ -129,7 +101,6 @@ export default function AdminLoginPage() {
               </div>
             </div>
 
-            {/* Error */}
             {error && (
               <div
                 className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-red-50 border border-red-100 text-red-600 text-sm"
@@ -152,10 +123,10 @@ export default function AdminLoginPage() {
               {loading ? (
                 <span className="flex items-center gap-2">
                   <span className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
-                  Signing in…
+                  Masuk...
                 </span>
               ) : (
-                "Sign In"
+                "Masuk"
               )}
             </Button>
           </form>
@@ -165,9 +136,9 @@ export default function AdminLoginPage() {
           className="text-center text-xs text-muted-foreground mt-6"
           style={{ fontFamily: "var(--font-opensans)" }}
         >
-          Lumi Beta Works Admin Panel · v0.1
+          Lumi Beta Works Admin Panel · v1.0
         </p>
       </div>
     </div>
-  );
+  )
 }
