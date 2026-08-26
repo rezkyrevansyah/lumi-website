@@ -5,9 +5,9 @@ import { StaggeredMenu } from "@/components/ui/StaggeredMenu";
 const menuItems = [
   { label: "Home", ariaLabel: "Ke halaman utama", link: "/#home" },
   { label: "Layanan", ariaLabel: "Lihat layanan kami", link: "/layanan" },
+  { label: "Solusi UMKM", ariaLabel: "Layanan IT khusus untuk UMKM", link: "/umkm" },
   { label: "Portfolio", ariaLabel: "Lihat portfolio proyek", link: "/portfolio" },
   { label: "About Us", ariaLabel: "Tentang Lumi Beta Works", link: "/about" },
-  { label: "Konsultasi", ariaLabel: "Hubungi tim kami", link: "/#contact" },
 ];
 
 const socialItems = [

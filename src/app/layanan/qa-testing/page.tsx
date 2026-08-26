@@ -5,6 +5,7 @@ import Footer from "@/components/sections/Footer";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import FloatingWA from "@/components/FloatingWA";
 import ContactCTA from "@/components/sections/ContactCTA";
+import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 
@@ -13,7 +14,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Vendor QA Testing & Software Quality Assurance Enterprise | Lumi Beta Works",
   description:
-    "Layanan Vendor QA testing manual & automation profesional untuk website, aplikasi mobile, & API sistem perusahaan. Garansi produk bebas bug sebelum rilis live.",
+    "Layanan Vendor QA testing manual & automation profesional untuk website, aplikasi mobile, & API sistem perusahaan. Memastikan produk stabil, aman, dan teruji secara menyeluruh sebelum rilis live.",
   alternates: { canonical: "https://lumibetaworks.id/layanan/qa-testing" },
   keywords: [
     "vendor qa testing enterprise",
@@ -320,18 +321,7 @@ export default async function JasaQATestingPage() {
               </h2>
             </div>
 
-            <div className="space-y-4">
-              {QA_FAQS.map((f, i) => (
-                <div key={i} className="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
-                  <h3 className="font-bold text-base sm:text-lg text-[#101828] mb-2" style={{ fontFamily: "var(--font-rubik)" }}>
-                    {f.q}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed" style={{ fontFamily: "var(--font-opensans)" }}>
-                    {f.a}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <FAQAccordion items={QA_FAQS} defaultOpenIndex={0} />
           </div>
         </section>
 

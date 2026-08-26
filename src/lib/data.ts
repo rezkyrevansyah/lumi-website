@@ -30,7 +30,7 @@ export const SERVICES: Service[] = [
   },
   {
     title: "Software QA Testing Enterprise",
-    desc: "Layanan pengujian kualitas software manual & otomatis. Menjamin sistem perusahaan & instansi Anda bebas dari bug sebelum dirilis.",
+    desc: "Layanan pengujian kualitas software manual & otomatis. Memastikan stabilitas, performa, dan keandalan sistem perusahaan & instansi Anda sebelum dirilis.",
     tags: ["Manual QA", "Automation QA", "Security Audit", "API Testing"],
     iconPath: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
     iconType: "path",
@@ -59,7 +59,7 @@ export const TRUSTED_BRANDS = [
 export const HERO_BADGES = [
   { icon: "ShieldCheck", label: "Terverifikasi Vendor IT" },
   { icon: "Sparkles", label: "Garansi Tepat Waktu" },
-  { icon: "Code2", label: "Bebas Bug dengan QA" },
+  { icon: "Code2", label: "Teruji Kualitas QA" },
 ];
 
 export const ACTIVE_PROJECTS = [

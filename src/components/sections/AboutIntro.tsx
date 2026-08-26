@@ -1,35 +1,41 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export default function AboutIntro() {
   return (
     <section className="py-16 md:py-24 bg-[#F8F9FB] relative overflow-hidden border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          {/* Left Column: Brand Logo Card */}
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* Left Column: Clean Standalone Logo with Ambient Glow */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-5 flex justify-center"
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 flex flex-col items-center justify-center relative py-4"
           >
-            <div className="relative w-full max-w-sm bg-white rounded-2xl p-6 sm:p-8 shadow-md border border-gray-100 flex flex-col items-center text-center">
-              <div className="relative w-full h-36 sm:h-44 mb-4">
+            {/* Subtle Ambient Radial Glow */}
+            <div className="absolute w-72 sm:w-88 h-72 sm:h-88 rounded-full bg-gradient-to-tr from-[#2DD9A4]/25 via-[#6C63FF]/15 to-transparent filter blur-3xl pointer-events-none -z-10" />
+
+            {/* Standalone Large Vector Logo */}
+            <div className="relative w-full max-w-[290px] sm:max-w-[350px] flex flex-col items-center group">
+              <div className="w-full flex items-center justify-center">
                 <Image
-                  src="/logo1.png"
-                  alt="Lumi Beta Works | Vendor IT & Jasa Buat Website Perusahaan"
-                  fill
-                  sizes="(min-width: 1024px) 384px, 90vw"
-                  className="object-contain p-2"
+                  src="/logo1_1920x1080.svg"
+                  alt="Lumi Beta Works | Vendor IT & Website Perusahaan"
+                  width={360}
+                  height={180}
+                  className="w-full h-auto object-contain transition-transform duration-500 ease-out group-hover:scale-105 drop-shadow-[0_4px_20px_rgba(45,217,164,0.12)]"
                   priority
                 />
               </div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 text-[#0E8B62] text-xs font-semibold border border-emerald-200/60">
-                <span className="w-2 h-2 rounded-full bg-[#2DD9A4]" />
-                Vendor IT Perusahaan &amp; Instansi
+
+              {/* Floating Glassmorphism Badge */}
+              <div className="mt-5 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-[#0E8B62] text-xs font-semibold border border-emerald-200/70 shadow-xs transition-all duration-300 group-hover:border-emerald-400 group-hover:shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-[#2DD9A4] animate-pulse" />
+                <span>Vendor IT Perusahaan &amp; Instansi</span>
               </div>
             </div>
           </motion.div>
@@ -81,10 +87,10 @@ export default function AboutIntro() {
 
               <div className="bg-white p-3.5 rounded-xl border border-gray-100 shadow-sm">
                 <div className="font-bold text-[#101828] text-xs mb-1 text-emerald-600">
-                  ✓ QA &amp; Garansi SLA
+                  ✓ QA &amp; Komitmen SLA
                 </div>
                 <p className="text-gray-500 text-[11px] leading-normal">
-                  Sistem teruji bebas bug dengan jaminan komitmen waktu.
+                  Sistem teruji melalui QA ketat dengan komitmen ketepatan waktu.
                 </p>
               </div>
             </div>

@@ -5,6 +5,7 @@ import Footer from "@/components/sections/Footer";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import FloatingWA from "@/components/FloatingWA";
 import ContactCTA from "@/components/sections/ContactCTA";
+import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 
@@ -51,6 +52,45 @@ const WEB_TYPES = [
     icon: "⚡",
     title: "Custom Web Application & Dashboard",
     desc: "Aplikasi web internal custom untuk operasional bisnis, manajemen data karyawan, sistem absensi, hingga dashboard analitik real-time.",
+  },
+];
+
+const WEB_FRAMEWORKS = [
+  {
+    name: "PHP & Laravel",
+    role: "Backend & Full-Stack",
+    desc: "Ekosistem matang, arsitektur MVC teruji, keamanan terpercaya, sangat ideal untuk website corporate, portal instansi, & aplikasi bisnis.",
+    badge: "Enterprise Standard",
+  },
+  {
+    name: ".NET (C# / ASP.NET Core)",
+    role: "Enterprise Corporate",
+    desc: "Performa tinggi, strong typing, arsitektur enterprise tangguh, dan integrasi mulus dengan ekosistem infrastruktur Microsoft.",
+    badge: "High Performance",
+  },
+  {
+    name: "React.js & Next.js",
+    role: "Modern SSR & Speed",
+    desc: "Server-Side Rendering kilat (<1s load time), optimasi SEO kelas dunia, dan antarmuka interaktif yang dinamis.",
+    badge: "Speed & SEO",
+  },
+  {
+    name: "Angular & TypeScript",
+    role: "Large-Scale SPA",
+    desc: "Framework modular dari Google dengan dependency injection yang kokoh untuk portal dan sistem internal berskala enterprise.",
+    badge: "Modular & Robust",
+  },
+  {
+    name: "Vue.js & Nuxt",
+    role: "Reactive Frontend",
+    desc: "Pengembangan antarmuka reaktif yang ramping, fleksibel, dan sangat cepat untuk aplikasi web interaktif & dashboard.",
+    badge: "Lightweight",
+  },
+  {
+    name: "Node.js & Python",
+    role: "API & Microservices",
+    desc: "Pembangunan REST/GraphQL API berkecepatan tinggi (NestJS/Express) hingga pengolahan data dan integrasi AI (FastAPI/Django).",
+    badge: "Scalable API",
   },
 ];
 
@@ -242,6 +282,69 @@ export default async function JasaWebsitePage() {
           </div>
         </section>
 
+        {/* Multi-Stack & Frameworks Section */}
+        <section className="py-20 md:py-28 bg-[#F0FDF4]/40 border-b border-emerald-100/60">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="section-tag mb-3 inline-block">Fleksibilitas Framework</span>
+              <h2
+                className="text-3xl sm:text-4xl font-bold text-[#101828]"
+                style={{ fontFamily: "var(--font-rubik)" }}
+              >
+                Pilihan Tech Stack &amp; Framework <span className="gradient-text">Sesuai Kebutuhan Anda</span>
+              </h2>
+              <p className="text-gray-600 text-sm sm:text-base mt-3" style={{ fontFamily: "var(--font-opensans)" }}>
+                Kami menguasai spektrum teknologi web yang luas dari stack enterprise hingga ekosistem modern. Anda bebas menentukan teknologi yang paling cocok untuk tim, server, dan standar internal perusahaan Anda.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {WEB_FRAMEWORKS.map((fw) => (
+                <div
+                  key={fw.name}
+                  className="bg-white p-6 sm:p-7 rounded-3xl border border-emerald-100/80 shadow-sm hover:border-emerald-300 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
+                        {fw.badge}
+                      </span>
+                      <span className="text-xs text-gray-400 font-medium">{fw.role}</span>
+                    </div>
+
+                    <h3
+                      className="font-bold text-[#101828] text-lg mb-2"
+                      style={{ fontFamily: "var(--font-rubik)" }}
+                    >
+                      {fw.name}
+                    </h3>
+                    <p
+                      className="text-gray-500 text-xs sm:text-sm leading-relaxed"
+                      style={{ fontFamily: "var(--font-opensans)" }}
+                    >
+                      {fw.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-12 text-center">
+              <p className="text-xs sm:text-sm text-gray-500 max-w-xl mx-auto">
+                Memiliki stack internal spesifik atau ingin konsultasi arsitektur terbaik untuk skala proyek Anda?{" "}
+                <a
+                  href={`https://wa.me/${whatsapp}?text=Halo%20Lumi%20Beta%20Works,%20saya%20ingin%20konsultasi%20pemilihan%20tech%20stack%20website%20(Laravel/.NET/Next.js/Angular).`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#0E8B62] font-bold underline hover:text-[#2DD9A4]"
+                >
+                  Konsultasikan gratis dengan Tech Lead kami
+                </a>
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Standards & Features */}
         <section className="py-20 md:py-28 bg-[#F8F9FB] border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -328,18 +431,7 @@ export default async function JasaWebsitePage() {
               </h2>
             </div>
 
-            <div className="space-y-4">
-              {WEB_FAQS.map((f, i) => (
-                <div key={i} className="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
-                  <h3 className="font-bold text-base sm:text-lg text-[#101828] mb-2" style={{ fontFamily: "var(--font-rubik)" }}>
-                    {f.q}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed" style={{ fontFamily: "var(--font-opensans)" }}>
-                    {f.a}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <FAQAccordion items={WEB_FAQS} defaultOpenIndex={0} />
           </div>
         </section>
 

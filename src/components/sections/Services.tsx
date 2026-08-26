@@ -1,8 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { type Service } from "@/lib/data";
+
+function getServiceLink(title: string): string {
+  const t = title.toLowerCase();
+  if (t.includes("website") || (t.includes("web") && !t.includes("rebuild"))) return "/layanan/website";
+  if (t.includes("aplikasi") || t.includes("mobile") || (t.includes("app") && !t.includes("rebuild"))) return "/layanan/aplikasi";
+  if (t.includes("qa") || t.includes("testing")) return "/layanan/qa-testing";
+  if (t.includes("consulting") || t.includes("konsultasi") || t.includes("rebuild")) return "/layanan/konsultasi";
+  return "/layanan";
+}
 
 function ServiceIcon({ iconType, iconPath, size = 30 }: { iconType: string; iconPath: string; size?: number }) {
   const props = { width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8 as number };
@@ -98,17 +108,17 @@ export default function Services({ services }: { services: Service[] }) {
                           <p className="text-gray-500 text-sm leading-relaxed mt-2 mb-3" style={{ fontFamily: "var(--font-opensans)" }}>
                             {service.desc}
                           </p>
-                          <a
-                            href="#contact"
+                          <Link
+                            href={getServiceLink(service.title)}
                             onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#6C63FF]"
+                            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#6C63FF] hover:text-[#2DD9A4] transition-colors"
                             style={{ fontFamily: "var(--font-opensans)" }}
                           >
                             Pelajari Lebih Lanjut
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                               <path d="M5 12h14M12 5l7 7-7 7" />
                             </svg>
-                          </a>
+                          </Link>
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -177,21 +187,21 @@ export default function Services({ services }: { services: Service[] }) {
                       <p className="text-gray-500 text-sm leading-relaxed" style={{ fontFamily: "var(--font-opensans)" }}>
                         {service.desc}
                       </p>
-                      <a
-                        href="#contact"
+                      <Link
+                        href={getServiceLink(service.title)}
                         onClick={(e) => e.stopPropagation()}
-                        className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-[#6C63FF] group w-fit"
+                        className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-[#6C63FF] hover:text-[#2DD9A4] transition-colors group/link w-fit"
                         style={{ fontFamily: "var(--font-opensans)" }}
                       >
                         Pelajari Lebih Lanjut
                         <svg
                           width="16" height="16" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" strokeWidth="2.2"
-                          className="transition-transform duration-200 group-hover:translate-x-1"
+                          className="transition-transform duration-200 group-hover/link:translate-x-1"
                         >
                           <path d="M5 12h14M12 5l7 7-7 7" />
                         </svg>
-                      </a>
+                      </Link>
                     </motion.div>
                   )}
                 </AnimatePresence>

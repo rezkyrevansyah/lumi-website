@@ -5,6 +5,7 @@ import Footer from "@/components/sections/Footer";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import FloatingWA from "@/components/FloatingWA";
 import ContactCTA from "@/components/sections/ContactCTA";
+import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 
@@ -39,14 +40,14 @@ const SERVICES_LIST = [
     badge: "Most Popular",
     badgeColor: "#2DD9A4",
     summary:
-      "Website modern berkecepatan tinggi (<1s load time), SEO-ready, dan aman untuk meningkatkan kredibilitas dan konversi bisnis Anda.",
+      "Website corporate berkecepatan tinggi, SEO-ready, dan aman. Kami mendukung berbagai tech stack sesuai kebutuhan & infrastruktur Anda (Next.js, Laravel, .NET, Angular, dsb).",
     deliverables: [
       "Company Profile & Portal Publik Instansi",
       "Landing Page Konversi Tinggi & E-Catalog",
       "Integrasi CMS & Dashboard Admin Custom",
       "Optimasi SEO Score 95+ & Mobile Responsive",
     ],
-    tech: ["Next.js 15", "TypeScript", "Tailwind CSS", "Supabase"],
+    tech: ["Laravel / PHP", ".NET / C#", "React / Next.js", "Angular / Vue", "Node.js"],
     sla: "10–20 Hari Kerja",
     href: "/layanan/website",
     waMessage: "Halo Lumi Beta Works, saya ingin konsultasi pembuatan Website Perusahaan.",
@@ -125,12 +126,39 @@ const WORKFLOW = [
   },
   {
     step: "04",
-    title: "Deployment, Serah Terima & Garansi",
-    desc: "Peluncuran ke server produksi, dokumentasi lengkap, panduan tim internal, dan garansi perbaikan pasca rilis.",
+    title: "Deployment, Serah Terima & Dukungan",
+    desc: "Peluncuran ke server produksi, dokumentasi lengkap, panduan tim internal, dan dukungan pemeliharaan pasca rilis.",
+  },
+];
+
+const TECH_CATEGORIES = [
+  {
+    category: "Backend & Enterprise Systems",
+    desc: "Arsitektur backend scalable, microservices, dan REST/GraphQL API tangguh.",
+    stacks: ["PHP (Laravel, CodeIgniter)", ".NET (C#, ASP.NET Core)", "Node.js (Express, NestJS)", "Python (FastAPI, Django)", "Java (Spring Boot)", "Go (Golang)"],
+  },
+  {
+    category: "Frontend & Modern Web Ecosystem",
+    desc: "Web application interaktif, SSR berkecepatan tinggi, dan SEO-optimized.",
+    stacks: ["React.js & Next.js", "Angular", "Vue.js & Nuxt", "TypeScript", "Tailwind CSS", "Bootstrap / Material UI"],
+  },
+  {
+    category: "Mobile Application (Cross-Platform & Native)",
+    desc: "Pengembangan app mobile iOS & Android dengan pengalaman pengguna setara aplikasi global.",
+    stacks: ["Flutter (Dart)", "React Native", "Android (Kotlin)", "iOS (Swift)", "Offline-First Sync", "Push Notification"],
+  },
+  {
+    category: "Database, Cloud & Quality Engineering",
+    desc: "Manajemen basis data relasional/NoSQL, deployment cloud aman, dan automated QA.",
+    stacks: ["PostgreSQL & MySQL", "Microsoft SQL Server", "Redis Cache", "Supabase & Firebase", "Docker & AWS/GCP", "Playwright & Cypress"],
   },
 ];
 
 const FAQS = [
+  {
+    q: "Apakah kami bisa meminta pengembangan dengan tech stack khusus (misal: Laravel, .NET, Angular, PHP, dll)?",
+    a: "Tentu saja! Tim rekayasa kami bersifat stack-agnostic. Kami sangat berpengalaman membangun sistem dengan berbagai framework enterprise dan modern (PHP/Laravel, .NET/C#, Angular, React/Next.js, Vue, Node.js, Python, dsb). Kami akan menyesuaikan secara penuh dengan pedoman IT governance, arsitektur yang sudah berjalan, dan server internal perusahaan Anda.",
+  },
   {
     q: "Berapa estimasi biaya pembuatan website atau aplikasi di Lumi Beta Works?",
     a: "Biaya disesuaikan secara transparan berdasarkan kompleksitas fitur, jumlah halaman/layar, dan integrasi yang dibutuhkan. Kami selalu memberikan rincian scope of work di awal tanpa biaya tersembunyi.",
@@ -204,7 +232,7 @@ export default async function LayananPage() {
 
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs sm:text-sm font-semibold text-gray-600">
               <span className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-full border border-gray-200 shadow-sm">
-                <span className="text-[#2DD9A4]">✓</span> Garansi Bebas Bug
+                <span className="text-[#2DD9A4]">✓</span> Full-Cycle QA Testing
               </span>
               <span className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-full border border-gray-200 shadow-sm">
                 <span className="text-[#2DD9A4]">✓</span> 100% On-Time SLA
@@ -314,6 +342,74 @@ export default async function LayananPage() {
           </div>
         </section>
 
+        {/* Tech Stack Versatility Section */}
+        <section className="py-20 md:py-28 bg-[#F0FDF4]/40 border-b border-emerald-100/60">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="section-tag mb-3 inline-block">Fleksibilitas Tech Stack</span>
+              <h2
+                className="text-3xl sm:text-4xl font-bold text-[#101828]"
+                style={{ fontFamily: "var(--font-rubik)" }}
+              >
+                Bebas Menyesuaikan dengan <span className="gradient-text">Stack &amp; Infrastruktur Anda</span>
+              </h2>
+              <p className="text-gray-600 text-sm sm:text-base mt-3" style={{ fontFamily: "var(--font-opensans)" }}>
+                Kami tidak mengunci Anda pada satu teknologi. Tim rekayasa kami menguasai berbagai framework modern maupun enterprise untuk memastikan kompatibilitas penuh dengan sistem yang sudah berjalan di organisasi Anda.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {TECH_CATEGORIES.map((cat) => (
+                <div
+                  key={cat.category}
+                  className="bg-white p-6 rounded-3xl border border-emerald-100/80 shadow-sm flex flex-col justify-between"
+                >
+                  <div>
+                    <h3
+                      className="font-bold text-[#101828] text-base mb-2 text-emerald-950"
+                      style={{ fontFamily: "var(--font-rubik)" }}
+                    >
+                      {cat.category}
+                    </h3>
+                    <p
+                      className="text-gray-500 text-xs leading-relaxed mb-5"
+                      style={{ fontFamily: "var(--font-opensans)" }}
+                    >
+                      {cat.desc}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-gray-100">
+                    {cat.stacks.map((stk) => (
+                      <span
+                        key={stk}
+                        className="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-gray-50 border border-gray-200/60 text-gray-700"
+                        style={{ fontFamily: "var(--font-opensans)" }}
+                      >
+                        {stk}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-12 text-center">
+              <p className="text-xs sm:text-sm text-gray-500 max-w-xl mx-auto">
+                Memiliki requirement teknologi khusus atau sistem legacy yang perlu diintegrasikan?{" "}
+                <a
+                  href={`https://wa.me/${whatsapp}?text=Halo%20Lumi%20Beta%20Works,%20kami%20ingin%20konsultasi%20pengembangan%20sistem%20dengan%20tech%20stack%20khusus.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#0E8B62] font-bold underline hover:text-[#2DD9A4]"
+                >
+                  Diskusikan arsitektur Anda dengan Lead Engineer kami
+                </a>
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Workflow Section */}
         <section className="py-20 md:py-28 bg-[#F8F9FB] border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -372,24 +468,7 @@ export default async function LayananPage() {
               </h2>
             </div>
 
-            <div className="space-y-4">
-              {FAQS.map((faq, i) => (
-                <div key={i} className="p-6 rounded-2xl bg-[#F8F9FB] border border-gray-100">
-                  <h3
-                    className="font-bold text-base sm:text-lg text-[#101828] mb-2"
-                    style={{ fontFamily: "var(--font-rubik)" }}
-                  >
-                    {faq.q}
-                  </h3>
-                  <p
-                    className="text-gray-600 text-sm sm:text-base leading-relaxed"
-                    style={{ fontFamily: "var(--font-opensans)" }}
-                  >
-                    {faq.a}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <FAQAccordion items={FAQS} defaultOpenIndex={0} />
           </div>
         </section>
 
