@@ -21,6 +21,7 @@ import Hero from "@/components/sections/Hero";
 import AboutIntro from "@/components/sections/AboutIntro";
 import TrustedBy from "@/components/sections/TrustedBy";
 import ServicesSection from "@/components/sections/ServicesSection";
+import UMKMPromo from "@/components/sections/UMKMPromo";
 import Portfolio from "@/components/sections/Portfolio";
 import CertificationsSection from "@/components/sections/CertificationsSection";
 import Stats from "@/components/sections/Stats";
@@ -71,6 +72,7 @@ export default async function Home() {
         <AboutIntro />
         <TrustedBy brands={brands} />
         <ServicesSection />
+        <UMKMPromo />
         <Portfolio />
         <CertificationsSection />
         <Stats />

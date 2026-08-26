@@ -45,6 +45,8 @@ export const metadata: Metadata = {
     "vendor IT pemerintah",
     "jasa IT consulting perusahaan",
     "QA testing Indonesia",
+    "jasa it umkm",
+    "vendor umkm",
   ],
   authors: [{ name: "Lumi Beta Works", url: "https://lumibetaworks.id" }],
   openGraph: {
@@ -97,6 +99,7 @@ const organizationSchema = {
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Vendor Pembuatan Aplikasi Mobile Enterprise" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Software Quality Assurance & QA Testing" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "IT Consulting & System Architecture" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Solusi Digital untuk UMKM & Bisnis Kecil-Menengah" } },
     ],
   },
 };

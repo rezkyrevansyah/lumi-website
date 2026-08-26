@@ -6,13 +6,14 @@ import BackgroundBlobs from "@/components/BackgroundBlobs";
 import FloatingWA from "@/components/FloatingWA";
 import ContactCTA from "@/components/sections/ContactCTA";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
+import UMKMPromo from "@/components/sections/UMKMPromo";
 import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Layanan Vendor IT & Rekayasa Perangkat Lunak Terpercaya | Lumi Beta Works",
+  title: "Layanan Vendor IT & Pengembangan Perangkat Lunak Terpercaya | Lumi Beta Works",
   description:
     "Solusi lengkap pembuatan website perusahaan, aplikasi mobile iOS & Android, QA testing enterprise, dan konsultasi IT profesional. Kualitas tinggi, tepat waktu, & bergaransi.",
   alternates: { canonical: "https://lumibetaworks.id/layanan" },
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     "software house b2b",
   ],
   openGraph: {
-    title: "Layanan Vendor IT & Rekayasa Perangkat Lunak | Lumi Beta Works",
+    title: "Layanan Vendor IT & Pengembangan Perangkat Lunak | Lumi Beta Works",
     description:
       "Jasa pembuatan website corporate, aplikasi mobile custom, QA testing berstandar industri, dan konsultasi arsitektur IT.",
     url: "https://lumibetaworks.id/layanan",
@@ -220,7 +221,7 @@ export default async function LayananPage() {
               className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#101828] leading-[1.18] tracking-tight mb-6"
               style={{ fontFamily: "var(--font-rubik)" }}
             >
-              Solusi Rekayasa Perangkat Lunak yang{" "}
+              Solusi Pengembangan Perangkat Lunak yang{" "}
               <span className="gradient-text">Terukur &amp; Berkelas</span>
             </h1>
             <p
@@ -341,6 +342,8 @@ export default async function LayananPage() {
             </div>
           </div>
         </section>
+
+        <UMKMPromo />
 
         {/* Tech Stack Versatility Section */}
         <section className="py-20 md:py-28 bg-[#F0FDF4]/40 border-b border-emerald-100/60">

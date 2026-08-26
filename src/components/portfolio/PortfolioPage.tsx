@@ -175,7 +175,7 @@ export default function PortfolioPage({
           >
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-[#0E8B62] text-xs font-semibold uppercase tracking-wider mb-4">
               <Sparkles className="w-3.5 h-3.5 text-[#2DD9A4]" />
-              Portofolio &amp; Rekayasa Perangkat Lunak
+              Portofolio &amp; Pengembangan Perangkat Lunak
             </div>
             <h1
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#101828] tracking-tight max-w-4xl leading-tight"

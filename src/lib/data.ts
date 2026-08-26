@@ -379,4 +379,5 @@ export const FOOTER_SERVICE_LINKS = [
   { label: "Vendor Aplikasi Mobile", href: "/layanan/aplikasi" },
   { label: "QA Testing Enterprise", href: "/layanan/qa-testing" },
   { label: "IT Consulting Instansi", href: "/layanan/konsultasi" },
+  { label: "Solusi UMKM", href: "/umkm" },
 ];

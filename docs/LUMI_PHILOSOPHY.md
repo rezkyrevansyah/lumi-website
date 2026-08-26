@@ -21,5 +21,5 @@ Saat ini, meskipun Lumi telah berevolusi dan menerima klien dari perusahaan skal
 Setiap komunikasi, penulisan konten website, dan *copywriting* UI harus mematuhi aturan ketat berikut:
 1. **Natural & Human**: Tidak boleh terdengar kaku atau *AI-generated*. 
 2. **Clean & To The Point**: Hindari basa-basi. Sampaikan pesan secara langsung dan berbobot.
-3. **No Lazy Fillers**: DILARANG KERAS menggunakan simbol `--` (tanda hubung ganda) sebagai pemanis kalimat atau *filler*.
+3. **No Lazy Fillers**: DILARANG KERAS menggunakan simbol `—` (tanda hubung ganda) sebagai pemanis kalimat atau *filler*.
 4. **Action-Oriented**: Ajak pembaca untuk mengambil langkah konkrit (misalnya: Konsultasi gratis, diskusikan ide).
