@@ -1,3 +1,5 @@
+﻿export const dynamic = "force-dynamic";
+
 import { getCertifications } from "@/actions/settings";
 import CertificationList from "@/components/admin/certifications/CertificationList";
 

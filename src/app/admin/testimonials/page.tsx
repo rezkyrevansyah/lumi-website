@@ -1,3 +1,5 @@
+﻿export const dynamic = "force-dynamic";
+
 import { getTestimonials } from "@/actions/testimonials";
 import TestimonialList from "@/components/admin/testimonials/TestimonialList";
 

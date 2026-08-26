@@ -1,3 +1,5 @@
+﻿export const dynamic = "force-dynamic";
+
 import { getFaqs } from "@/actions/faqs";
 import FAQList from "@/components/admin/faqs/FAQList";
 

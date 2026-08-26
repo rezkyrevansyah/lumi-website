@@ -24,7 +24,6 @@ import {
 } from "@/actions/umkm";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Solusi Teknologi UMKM & Bisnis Menengah | Lumi Beta Works",

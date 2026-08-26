@@ -1,3 +1,5 @@
+﻿export const dynamic = "force-dynamic";
+
 import { getServices } from "@/actions/services";
 import ServiceList from "@/components/admin/services/ServiceList";
 

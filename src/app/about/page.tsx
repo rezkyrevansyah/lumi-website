@@ -13,7 +13,6 @@ import { getCertifications, getSetting } from "@/actions/settings";
 import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Tentang Kami | Studio Teknologi & Software House Terpercaya",

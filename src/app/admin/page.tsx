@@ -1,3 +1,5 @@
+﻿export const dynamic = "force-dynamic";
+
 import QuickStats from "@/components/admin/dashboard/QuickStats";
 import QuickLinks from "@/components/admin/dashboard/QuickLinks";
 import ActivityFeed from "@/components/admin/dashboard/ActivityFeed";

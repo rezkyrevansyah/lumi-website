@@ -1,6 +1,6 @@
-"use client";
+﻿"use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const CLIENTS = [
   "BAZNAS RI", "Kemenparekraf RI", "Erafone (Erajaya)", "Tower Bersama Group", "LASKAR AI",

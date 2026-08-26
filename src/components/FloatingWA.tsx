@@ -1,7 +1,7 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 
 export default function FloatingWA({ whatsapp = "62882015884006" }: { whatsapp?: string }) {
   const [hovered, setHovered] = useState(false);

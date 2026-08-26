@@ -1,3 +1,5 @@
+﻿export const dynamic = "force-dynamic";
+
 import { getPortfolioItems } from "@/actions/portfolio";
 import PortfolioTable from "@/components/admin/portfolio/PortfolioTable";
 

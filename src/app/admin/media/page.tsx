@@ -1,3 +1,5 @@
+﻿export const dynamic = "force-dynamic";
+
 import { ImageIcon, Lock } from "lucide-react";
 import PageHeader from "@/components/admin/shared/PageHeader";
 import { Button } from "@/components/ui/button";

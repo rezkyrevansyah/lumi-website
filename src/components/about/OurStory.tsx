@@ -1,6 +1,6 @@
-"use client";
+﻿"use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const FASTWORK_URL = "https://fastwork.id/user/revansyah?source=web_chat_user-profile-modal";
 
