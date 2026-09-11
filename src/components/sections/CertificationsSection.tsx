@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "motion/react";
 import Image from "next/image";
@@ -27,7 +27,7 @@ export default function CertificationsSection({ certifications }: Certifications
     certifications && certifications.length > 0 ? certifications : FALLBACK_CERTS;
 
   return (
-    <section className="py-20 md:py-28 bg-white border-y border-gray-100 relative overflow-hidden">
+    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -36,7 +36,6 @@ export default function CertificationsSection({ certifications }: Certifications
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="section-tag mb-3 inline-block">Kredensial &amp; Sertifikasi Tim</span>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#101828] mb-5 leading-tight"
             style={{ fontFamily: "var(--font-rubik)" }}

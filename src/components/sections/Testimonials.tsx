@@ -100,10 +100,6 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
           viewport={{ once: true }}
           className="flex flex-col items-center justify-center max-w-2xl mx-auto text-center"
         >
-          <div className="flex justify-center mb-3">
-            <span className="section-tag">Kata Klien Kami</span>
-          </div>
-
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#101828] tracking-tight"
             style={{ fontFamily: "var(--font-rubik)" }}

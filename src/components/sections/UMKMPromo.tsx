@@ -13,7 +13,7 @@ const HIGHLIGHTS = [
 
 export default function UMKMPromo() {
   return (
-    <section className="py-20 sm:py-24 bg-[#F8F9FB] border-y border-gray-100">
+    <section className="py-20 sm:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <motion.div
@@ -23,7 +23,6 @@ export default function UMKMPromo() {
             transition={{ duration: 0.5 }}
             className="lg:col-span-6"
           >
-            <span className="section-tag mb-3 inline-block">Solusi UMKM</span>
             <h2
               className="text-3xl sm:text-4xl font-bold text-[#101828] mb-4 leading-snug"
               style={{ fontFamily: "var(--font-rubik)" }}
@@ -35,12 +34,12 @@ export default function UMKMPromo() {
               className="text-gray-600 text-base leading-relaxed mb-6 max-w-xl"
               style={{ fontFamily: "var(--font-opensans)" }}
             >
-              Baru sekitar 33,6% UMKM Indonesia yang benar-benar go-digital. Kami membantu sisanya naik kelas lewat sistem kasir, booking, toko online, hingga dashboard keuangan yang harganya menyesuaikan skala bisnis Anda — bukan tarif enterprise.
+              Baru sekitar 33,6% UMKM Indonesia yang benar-benar go-digital. Kami membantu pelaku usaha naik kelas melalui sistem kasir, booking, toko online, hingga dashboard keuangan dengan investasi fleksibel sesuai kapasitas bisnis Anda tanpa beban biaya enterprise.
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 href="/umkm"
-                className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-base font-semibold"
+                className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-base font-semibold shadow-md shadow-emerald-500/15 transition-transform duration-150 active:scale-[0.96]"
               >
                 Lihat Solusi Lengkap untuk UMKM
                 <ArrowRight className="w-4 h-4" />
@@ -49,7 +48,7 @@ export default function UMKMPromo() {
                 href="https://wa.me/62882015884006?text=Halo+Lumi+Beta+Works,+saya+pemilik+UMKM+dan+ingin+konsultasi+kebutuhan+sistem/website."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-outline inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-base font-semibold border-2 border-gray-300 text-[#3D3E4A] hover:bg-white transition-all"
+                className="btn-outline inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-base font-semibold border-2 border-gray-300 text-[#3D3E4A] hover:bg-gray-50 hover:border-gray-400 transition-all duration-150 active:scale-[0.96]"
               >
                 Konsultasi via WhatsApp
               </a>
@@ -68,9 +67,9 @@ export default function UMKMPromo() {
               return (
                 <div
                   key={h.label}
-                  className="bg-white rounded-2xl p-5 border border-gray-100 flex flex-col items-start gap-3 hover:shadow-lg hover:border-emerald-200/70 transition-all duration-300"
+                  className="bg-[#F8F9FB] rounded-2xl p-5 border border-gray-200/70 flex flex-col items-start gap-3 shadow-2xs hover:shadow-md hover:border-emerald-300/80 hover:-translate-y-0.5 transition-all duration-200"
                 >
-                  <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-emerald-50 text-[#0E8B62]">
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-emerald-500/10 text-[#0E8B62]">
                     <Icon className="w-5 h-5" />
                   </div>
                   <span

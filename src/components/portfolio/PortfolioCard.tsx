@@ -36,8 +36,8 @@ export function PortfolioCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.45, delay: (index % 6) * 0.06 }}
-      whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="group bg-white rounded-3xl overflow-hidden border border-gray-100/90 shadow-sm hover:shadow-xl hover:border-emerald-200/80 transition-all duration-300 flex flex-col justify-between"
+      whileHover={{ y: -3, transition: { duration: 0.2 } }}
+      className="group bg-white rounded-3xl overflow-hidden border border-gray-200/80 shadow-2xs hover:shadow-xl hover:border-emerald-300/80 transition-all duration-300 flex flex-col justify-between"
     >
       {/* Visual Area */}
       <div className="relative aspect-[16/10] overflow-hidden bg-slate-900 flex items-center justify-center">
@@ -47,7 +47,7 @@ export function PortfolioCard({
             alt={proj.title}
             fill
             sizes="(min-width: 1280px) 380px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
+            className="object-cover object-top group-hover:scale-[1.03] transition-transform duration-500 ease-out ring-1 ring-black/5"
           />
         ) : (
           <div
@@ -145,7 +145,7 @@ export function PortfolioCard({
                 href={proj.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E8B62] hover:text-[#2DD9A4] transition-colors group/link"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0E8B62] hover:text-[#2DD9A4] transition-colors duration-150 active:scale-[0.96] group/link"
               >
                 <span>Lihat Live Preview</span>
                 <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />

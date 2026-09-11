@@ -1,8 +1,7 @@
-﻿"use client";
+"use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { type Service } from "@/lib/data";
 
 function getServiceLink(title: string): string {
@@ -14,8 +13,8 @@ function getServiceLink(title: string): string {
   return "/layanan";
 }
 
-function ServiceIcon({ iconType, iconPath, size = 30 }: { iconType: string; iconPath: string; size?: number }) {
-  const props = { width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8 as number };
+function ServiceIcon({ iconType, iconPath, size = 24 }: { iconType: string; iconPath: string; size?: number }) {
+  const props = { width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2 as number };
   if (iconType === "polylines") {
     return (
       <svg {...props}>
@@ -39,176 +38,91 @@ function ServiceIcon({ iconType, iconPath, size = 30 }: { iconType: string; icon
   );
 }
 
-const SPRING = { type: "spring", stiffness: 300, damping: 36, mass: 1 } as const;
-
 export default function Services({ services }: { services: Service[] }) {
-  const [active, setActive] = useState(0);
-
   return (
-    <section id="service" className="py-24 bg-white">
+    <section id="service" className="py-20 md:py-28 bg-[#F8F9FB]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Header */}
+        {/* Header - Clean, No Floating Label */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.5 }}
+          className="text-center mb-14 sm:mb-16 max-w-3xl mx-auto"
         >
-          <p className="section-tag mb-3">Layanan Vendor IT & Web Development</p>
           <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3D3E4A] mb-5"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#101828] mb-4 leading-tight"
             style={{ fontFamily: "var(--font-rubik)" }}
           >
-            Layanan Vendor IT &
-            <span className="gradient-text"> Website Perusahaan</span>
+            Layanan Vendor IT &amp;{" "}
+            <span className="gradient-text">Website Perusahaan</span>
           </h2>
           <p
-            className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto"
+            className="text-gray-600 text-base sm:text-lg leading-relaxed"
             style={{ fontFamily: "var(--font-opensans)" }}
           >
-            Pilihan solusi teknologi terpadu untuk Perusahaan, Instansi Pemerintah, & Bisnis Berkembang dengan garansi kualitas, keamanan, dan ketepatan waktu.
+            Pilihan solusi teknologi terpadu untuk Perusahaan, Instansi Pemerintah, dan Bisnis Berkembang dengan garansi kualitas, keamanan, dan ketepatan waktu.
           </p>
         </motion.div>
 
-        {/* Mobile: stacked cards */}
-        <div className="flex flex-col gap-3 md:hidden">
-          {services.map((service, i) => {
-            const isActive = active === i;
-            return (
-              <div
-                key={service.title}
-                onClick={() => setActive(i)}
-                className={`relative rounded-2xl p-5 cursor-pointer transition-all duration-300
-                  ${isActive
-                    ? "bg-white border-2 border-[#6C63FF] shadow-lg shadow-indigo-100/60"
-                    : "bg-[#F0EFFF] border-2 border-transparent"
-                  }`}
-              >
-                <div className="flex items-start gap-4">
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: "rgba(108,99,255,0.12)", color: "#6C63FF" }}
-                  >
-                    <ServiceIcon iconType={service.iconType} iconPath={service.iconPath} size={24} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-[#3D3E4A] text-base" style={{ fontFamily: "var(--font-rubik)" }}>
-                      {service.title}
-                    </h3>
-                    <AnimatePresence initial={false}>
-                      {isActive && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.25 }}
-                          className="overflow-hidden"
-                        >
-                          <p className="text-gray-500 text-sm leading-relaxed mt-2 mb-3" style={{ fontFamily: "var(--font-opensans)" }}>
-                            {service.desc}
-                          </p>
-                          <Link
-                            href={getServiceLink(service.title)}
-                            onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#6C63FF] hover:text-[#2DD9A4] transition-colors"
-                            style={{ fontFamily: "var(--font-opensans)" }}
-                          >
-                            Pelajari Lebih Lanjut
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                              <path d="M5 12h14M12 5l7 7-7 7" />
-                            </svg>
-                          </Link>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Desktop: horizontal accordion */}
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, delay: 0.15 }}
-          className="hidden md:flex gap-3 h-[280px]"
-        >
-          {services.map((service, i) => {
-            const isActive = active === i;
-            return (
-              <motion.div
-                key={service.title}
-                layout
-                onClick={() => setActive(i)}
-                transition={SPRING}
-                className={`relative rounded-2xl p-6 cursor-pointer overflow-hidden flex flex-col
-                  ${isActive
-                    ? "bg-white border-2 border-[#6C63FF] shadow-xl shadow-indigo-100/60"
-                    : "bg-[#F0EFFF] border-2 border-transparent hover:border-[#6C63FF]/20"
-                  }`}
-                style={{ minWidth: 0, flex: isActive ? 3.2 : 1 }}
-              >
-                {/* Decorative: vertical line + dot */}
-                <div className="absolute top-3 right-5 flex flex-col items-center gap-0">
-                  <div className="w-px h-8" style={{ background: isActive ? "#6C63FF" : "#f97316" }} />
-                  <div className="w-3 h-3 rounded-full mt-0.5" style={{ background: isActive ? "#6C63FF" : "#f97316" }} />
-                </div>
-
-                {/* Icon */}
-                <div
-                  className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 flex-shrink-0"
-                  style={{ background: "rgba(108,99,255,0.12)", color: "#6C63FF" }}
-                >
-                  <ServiceIcon iconType={service.iconType} iconPath={service.iconPath} size={30} />
+        {/* Responsive Services Grid (4-columns on desktop, 2 on tablet, 1 on mobile) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {services.map((service, i) => (
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
+              className="group bg-white rounded-3xl p-6 sm:p-7 border border-gray-200/80 hover:border-emerald-300/80 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                {/* Icon Container with Concentric Radius */}
+                <div className="w-13 h-13 rounded-2xl bg-emerald-500/10 text-[#0E8B62] flex items-center justify-center mb-6 group-hover:bg-[#2DD9A4] group-hover:text-white transition-colors duration-300">
+                  <ServiceIcon iconType={service.iconType} iconPath={service.iconPath} size={24} />
                 </div>
 
                 {/* Title */}
                 <h3
-                  className="font-bold text-[#3D3E4A] leading-snug flex-shrink-0 text-xl"
+                  className="font-bold text-[#101828] text-lg sm:text-xl leading-snug mb-3 group-hover:text-[#0E8B62] transition-colors duration-200"
                   style={{ fontFamily: "var(--font-rubik)" }}
                 >
                   {service.title}
                 </h3>
 
-                {/* Expanded content */}
-                <AnimatePresence initial={false}>
-                  {isActive && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 4 }}
-                      transition={{ duration: 0.2, delay: 0.1 }}
-                      className="mt-3 flex flex-col gap-4 flex-1"
-                    >
-                      <p className="text-gray-500 text-sm leading-relaxed" style={{ fontFamily: "var(--font-opensans)" }}>
-                        {service.desc}
-                      </p>
-                      <Link
-                        href={getServiceLink(service.title)}
-                        onClick={(e) => e.stopPropagation()}
-                        className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-[#6C63FF] hover:text-[#2DD9A4] transition-colors group/link w-fit"
-                        style={{ fontFamily: "var(--font-opensans)" }}
-                      >
-                        Pelajari Lebih Lanjut
-                        <svg
-                          width="16" height="16" viewBox="0 0 24 24" fill="none"
-                          stroke="currentColor" strokeWidth="2.2"
-                          className="transition-transform duration-200 group-hover/link:translate-x-1"
-                        >
-                          <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                      </Link>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                {/* Description */}
+                <p
+                  className="text-gray-600 text-sm leading-relaxed mb-6"
+                  style={{ fontFamily: "var(--font-opensans)" }}
+                >
+                  {service.desc}
+                </p>
+              </div>
+
+              {/* Action Link */}
+              <div className="pt-4 border-t border-gray-100 mt-auto">
+                <Link
+                  href={getServiceLink(service.title)}
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E8B62] group-hover:text-[#0a6647] transition-colors active:scale-[0.96]"
+                  style={{ fontFamily: "var(--font-opensans)" }}
+                >
+                  Pelajari Lebih Lanjut
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    className="transition-transform duration-200 group-hover:translate-x-1"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -9,7 +9,7 @@ function BrandItem({ brand }: { brand: BrandEntry }) {
 
   return (
     <div className="mx-2.5 sm:mx-3.5 group cursor-default shrink-0">
-      <div className="h-16 sm:h-20 w-44 sm:w-56 px-5 py-3 rounded-2xl bg-white border border-gray-200/70 shadow-2xs hover:shadow-md hover:border-emerald-300/80 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center">
+      <div className="h-16 sm:h-20 w-44 sm:w-56 px-5 py-3 rounded-2xl bg-white border border-gray-200/70 shadow-2xs hover:shadow-md hover:border-emerald-300/80 hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center">
         {logoUrl ? (
           <div className="relative w-full h-full opacity-75 group-hover:opacity-100 transition-opacity duration-300">
             <Image
@@ -52,12 +52,11 @@ export default function TrustedBy({ brands }: TrustedByProps) {
   const doubled = [...marqueeItems, ...marqueeItems];
 
   return (
-    <section className="py-16 sm:py-20 bg-[#F8F9FB]/60 border-y border-gray-100 relative overflow-hidden">
+    <section className="py-16 sm:py-20 bg-white relative overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-100/20 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <div className="max-w-4xl mx-auto px-6 text-center mb-10 sm:mb-12">
-        <span className="section-tag mb-3 inline-block">Kepercayaan Klien</span>
         <h2
           className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#101828] tracking-tight leading-snug mb-3"
           style={{ fontFamily: "var(--font-rubik)" }}
