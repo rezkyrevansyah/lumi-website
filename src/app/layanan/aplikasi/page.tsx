@@ -164,7 +164,6 @@ export default async function JasaAplikasiPage() {
               <span className="text-[#0E8B62]">Vendor Aplikasi Mobile</span>
             </div>
 
-            <span className="section-tag mb-4 inline-block">Vendor Pembuatan Aplikasi Mobile</span>
             <h1
               className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#101828] leading-[1.18] tracking-tight mb-6"
               style={{ fontFamily: "var(--font-rubik)" }}

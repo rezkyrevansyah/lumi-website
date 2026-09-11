@@ -156,7 +156,6 @@ export default async function LayananPage() {
         {/* Hero Section */}
         <section className="pt-32 pb-20 md:pt-36 md:pb-24 bg-[#F8F9FB] border-b border-gray-100 relative">
           <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center relative z-10">
-            <span className="section-tag mb-4 inline-block">Layanan Digital &amp; Vendor IT</span>
             <h1
               className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#101828] leading-[1.18] tracking-tight mb-6"
               style={{ fontFamily: "var(--font-rubik)" }}
@@ -165,23 +164,11 @@ export default async function LayananPage() {
               <span className="gradient-text">Terukur &amp; Berkelas</span>
             </h1>
             <p
-              className="text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-10"
+              className="text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto"
               style={{ fontFamily: "var(--font-opensans)" }}
             >
               Dari website corporate berkecepatan tinggi, aplikasi mobile custom, hingga audit QA berstandar enterprise, kami membantu bisnis dan instansi Anda melangkah lebih cepat dengan teknologi yang handal.
             </p>
-
-            <div className="flex flex-wrap items-center justify-center gap-4 text-xs sm:text-sm font-semibold text-gray-600">
-              <span className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-full border border-gray-200 shadow-sm">
-                <span className="text-[#2DD9A4]">✓</span> Full-Cycle QA Testing
-              </span>
-              <span className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-full border border-gray-200 shadow-sm">
-                <span className="text-[#2DD9A4]">✓</span> 100% On-Time SLA
-              </span>
-              <span className="flex items-center gap-1.5 bg-white px-3.5 py-1.5 rounded-full border border-gray-200 shadow-sm">
-                <span className="text-[#2DD9A4]">✓</span> Hak Cipta Kode Milik Anda
-              </span>
-            </div>
           </div>
         </section>
 
@@ -296,7 +283,6 @@ export default async function LayananPage() {
         <section className="py-20 md:py-28 bg-[#F0FDF4]/40 border-b border-emerald-100/60">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <span className="section-tag mb-3 inline-block">Fleksibilitas Tech Stack</span>
               <h2
                 className="text-3xl sm:text-4xl font-bold text-[#101828]"
                 style={{ fontFamily: "var(--font-rubik)" }}
