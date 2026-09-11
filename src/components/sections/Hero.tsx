@@ -54,11 +54,6 @@ export default function Hero({ whatsapp = "62882015884006" }: HeroProps) {
           className="my-1"
         />
 
-        <span className="section-tag inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#2DD9A4]/15 text-[#0E8B62] border border-[#2DD9A4]/30">
-          <span className="w-2 h-2 rounded-full bg-[#2DD9A4] animate-pulse" />
-          Mitra Vendor IT &amp; Software House Perusahaan
-        </span>
-
         {/* Static Title Header */}
         <h1
           className="max-w-3xl text-center text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#101828] leading-[1.15]"

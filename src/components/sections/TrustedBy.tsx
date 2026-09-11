@@ -3,12 +3,6 @@ import Image from "next/image";
 
 type BrandEntry = string | AdminBrand;
 
-const SCALE_PILLS = [
-  { label: "UMKM & Bisnis Lokal", dotColor: "#2DD9A4" },
-  { label: "Startup & Bisnis Berkembang", dotColor: "#3BB5C5" },
-  { label: "Korporasi & Instansi", dotColor: "#6C63FF" },
-];
-
 function BrandItem({ brand }: { brand: BrandEntry }) {
   const name = typeof brand === "string" ? brand : brand.name;
   const logoUrl = typeof brand === "object" ? brand.logoUrl : undefined;
@@ -77,23 +71,6 @@ export default function TrustedBy({ brands }: TrustedByProps) {
         >
           Mulai dari UMKM, bisnis berkembang, hingga instansi dan korporasi. Kami memberikan komitmen kualitas dan pendampingan yang sama untuk setiap skala proyek.
         </p>
-
-        {/* Subtle Scale Micro-Chips */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-5">
-          {SCALE_PILLS.map((pill) => (
-            <div
-              key={pill.label}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-gray-200/80 text-xs font-medium text-gray-600 shadow-2xs"
-              style={{ fontFamily: "var(--font-opensans)" }}
-            >
-              <span
-                className="w-2 h-2 rounded-full shrink-0"
-                style={{ backgroundColor: pill.dotColor }}
-              />
-              <span>{pill.label}</span>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Marquee Track with Smooth Left & Right Edge Fades */}

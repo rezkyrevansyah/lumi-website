@@ -31,16 +31,10 @@ export default function AboutIntro() {
                   priority
                 />
               </div>
-
-              {/* Floating Glassmorphism Badge */}
-              <div className="mt-5 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-[#0E8B62] text-xs font-semibold border border-emerald-200/70 shadow-xs transition-all duration-300 group-hover:border-emerald-400 group-hover:shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-[#2DD9A4] animate-pulse" />
-                <span>Vendor IT Perusahaan &amp; Instansi</span>
-              </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Concise B2B Messaging & Pillars */}
+          {/* Right Column: Concise B2B Messaging */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -64,36 +58,6 @@ export default function AboutIntro() {
             >
               Lumi Beta Works adalah Software House &amp; Vendor IT terpercaya di Indonesia. Kami fokus mendampingi perusahaan, instansi pemerintah, dan bisnis berkembang dalam membangun sistem digital, website corporate, serta aplikasi mobile custom yang aman, responsif, dan tepat waktu.
             </p>
-
-            {/* 3 Pillars */}
-            <div className="grid sm:grid-cols-3 gap-3 pt-1">
-              <div className="bg-white p-3.5 rounded-xl border border-gray-100 shadow-sm">
-                <div className="font-bold text-[#101828] text-xs mb-1 text-emerald-600">
-                  ✓ Website Corporate
-                </div>
-                <p className="text-gray-500 text-[11px] leading-normal">
-                  Jasa buat website perusahaan &amp; instansi berkinerja tinggi.
-                </p>
-              </div>
-
-              <div className="bg-white p-3.5 rounded-xl border border-gray-100 shadow-sm">
-                <div className="font-bold text-[#101828] text-xs mb-1 text-emerald-600">
-                  ✓ Aplikasi Custom
-                </div>
-                <p className="text-gray-500 text-[11px] leading-normal">
-                  Pengembangan app Android/iOS enterprise terintegrasi.
-                </p>
-              </div>
-
-              <div className="bg-white p-3.5 rounded-xl border border-gray-100 shadow-sm">
-                <div className="font-bold text-[#101828] text-xs mb-1 text-emerald-600">
-                  ✓ QA &amp; Komitmen SLA
-                </div>
-                <p className="text-gray-500 text-[11px] leading-normal">
-                  Sistem teruji melalui QA ketat dengan komitmen ketepatan waktu.
-                </p>
-              </div>
-            </div>
 
             {/* CTA */}
             <div className="pt-2">
