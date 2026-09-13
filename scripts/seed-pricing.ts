@@ -1,10 +1,85 @@
 import { db } from "../src/db";
 import { pricingTiers, pricingFeatures } from "../src/db/schema";
-import id from "../messages/id.json";
-import en from "../messages/en.json";
 
-const P_ID = id.Pricing as Record<string, string>;
-const P_EN = en.Pricing as Record<string, string>;
+// Snapshot of the formerly-hardcoded `Pricing` namespace from
+// messages/id.json + messages/en.json, inlined here (not imported) so this
+// seed script has no dependency on those files — Task 14 deleted them once
+// this was the last consumer left.
+const P_ID: Record<string, string> = {
+  landingBadge: "Paling Populer untuk UMKM",
+  landingLabel: "Entry Level",
+  landingName: "Landing Page",
+  landingPricePrefix: "Mulai dari",
+  landingPrice: "Rp 300.000",
+  landingTagline: "Cocok buat kamu yang butuh halaman promosi cepat jadi.",
+  landingCta: "Ambil Paket Ini",
+  landingFeature1: "1 Halaman Responsive (Mobile-First)",
+  landingFeature2: "Integrasi WhatsApp Direct Button",
+  landingFeature3: "Fast Loading & SEO Ready",
+  landingFeature4: "Free Hosting Setup 1 Bulan",
+  landingFeature5: "Revisi Desain 2x & Garansi 14 Hari",
+  customLabel: "Professional Tier",
+  customName: "Custom Website/App",
+  customPricePrefix: "Rentang Investasi",
+  customPrice: "Rp 2,5jt – 5jt",
+  customTagline:
+    "Untuk kebutuhan yang lebih dari sekadar landing page — profil perusahaan, sistem internal sederhana, atau MVP produk.",
+  customCta: "Diskusikan Kebutuhan Saya",
+  customFeature1: "Multi-halaman (hingga 7 halaman kustom)",
+  customFeature2: "CMS Mandiri (Kelola Artikel & Produk)",
+  customFeature3: "Custom Form & Email Notification",
+  customFeature4: "Optimasi Kecepatan & Schema SEO Lanjutan",
+  customFeature5: "Support Teknis & Maintenance 3 Bulan",
+  enterpriseLabel: "Enterprise Tier",
+  enterpriseName: "Enterprise / Kustomisasi Penuh",
+  enterprisePricePrefix: "Investasi",
+  enterprisePrice: "Hubungi Kami",
+  enterpriseTagline:
+    "Untuk proyek skala besar dengan kebutuhan spesifik — integrasi sistem, keamanan tingkat lanjut, atau tim dedicated.",
+  enterpriseCta: "Hubungi Kami",
+  enterpriseFeature1: "Fullstack Custom Architecture (Next.js/Go)",
+  enterpriseFeature2: "Multi-API, Payment Gateway & Database Kompleks",
+  enterpriseFeature3: "QA Automation, Penetration Test & Audit",
+  enterpriseFeature4: "SLA Terjamin & Dedicated Senior Engineer",
+};
+
+const P_EN: Record<string, string> = {
+  landingBadge: "Most Popular for SMEs",
+  landingLabel: "Entry Level",
+  landingName: "Landing Page",
+  landingPricePrefix: "Starting from",
+  landingPrice: "IDR 300,000",
+  landingTagline: "Perfect if you need a promo page up and running fast.",
+  landingCta: "Get This Package",
+  landingFeature1: "1 Responsive Page (Mobile-First)",
+  landingFeature2: "WhatsApp Direct Button Integration",
+  landingFeature3: "Fast Loading & SEO Ready",
+  landingFeature4: "Free Hosting Setup for 1 Month",
+  landingFeature5: "2x Design Revisions & 14-Day Guarantee",
+  customLabel: "Professional Tier",
+  customName: "Custom Website/App",
+  customPricePrefix: "Investment Range",
+  customPrice: "IDR 2.5M – 5M",
+  customTagline:
+    "For needs beyond a landing page — company profiles, simple internal systems, or a product MVP.",
+  customCta: "Discuss My Needs",
+  customFeature1: "Multi-page (up to 7 custom pages)",
+  customFeature2: "Self-Managed CMS (Articles & Products)",
+  customFeature3: "Custom Form & Email Notifications",
+  customFeature4: "Advanced Speed & SEO Schema Optimization",
+  customFeature5: "3 Months of Technical Support & Maintenance",
+  enterpriseLabel: "Enterprise Tier",
+  enterpriseName: "Enterprise / Full Customization",
+  enterprisePricePrefix: "Investment",
+  enterprisePrice: "Contact Us",
+  enterpriseTagline:
+    "For large-scale projects with specific needs — system integration, advanced security, or a dedicated team.",
+  enterpriseCta: "Contact Us",
+  enterpriseFeature1: "Fullstack Custom Architecture (Next.js/Go)",
+  enterpriseFeature2: "Multi-API, Payment Gateway & Complex Database",
+  enterpriseFeature3: "QA Automation, Penetration Testing & Audit",
+  enterpriseFeature4: "Guaranteed SLA & Dedicated Senior Engineer",
+};
 
 async function main() {
   const [landing] = await db
