@@ -1,11 +1,10 @@
-export interface Testimonial {
-  name: string;
-  role: string;
-  quote: string;
-  rating: number;
-}
+import { db } from "../src/db";
+import { testimonials } from "../src/db/schema";
 
-export const testimonials: Testimonial[] = [
+// Snapshot of the formerly-hardcoded src/data/testimonials.ts content, inlined
+// here so this one-time migration script has no dependency on that file
+// (which Task 8 deletes once the DB-backed section is verified).
+const sourceTestimonials: { name: string; role: string; quote: string; rating: number }[] = [
   {
     name: "Winnie",
     role: "Pemilik Bisnis, London",
@@ -82,3 +81,26 @@ export const testimonials: Testimonial[] = [
     quote: "Sudah repeat order berkali-kali untuk kebutuhan sistem dan web, selalu puas sama hasilnya.",
   },
 ];
+
+async function main() {
+  const rows: (typeof testimonials.$inferInsert)[] = sourceTestimonials.map((t, i) => ({
+    name: t.name,
+    roleId: t.role,
+    roleEn: t.role,
+    quote: t.quote,
+    rating: t.rating,
+    sortOrder: i + 1,
+  }));
+
+  console.log(`Seeding ${rows.length} testimonial rows...`);
+
+  await db.insert(testimonials).values(rows);
+
+  console.log("Done.");
+  process.exit(0);
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

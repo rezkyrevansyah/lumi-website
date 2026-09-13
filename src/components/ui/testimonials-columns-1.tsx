@@ -3,11 +3,17 @@
 import React from "react";
 import { Star } from "lucide-react";
 import { getAvatarPalette } from "@/lib/avatar";
-import type { Testimonial } from "@/data/testimonials";
+
+interface TestimonialColumnItem {
+  name: string;
+  role: string;
+  quote: string;
+  rating: number;
+}
 
 export const TestimonialsColumn = (props: {
   className?: string;
-  testimonials: Testimonial[];
+  testimonials: TestimonialColumnItem[];
   duration?: number;
 }) => {
   return (
