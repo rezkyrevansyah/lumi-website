@@ -1,0 +1,145 @@
+{
+  "Metadata": {
+    "title": "Lumi Beta Works — Software House & Partner Rekayasa Digital",
+    "description": "Lumi Beta Works membantu UMKM hingga enterprise membangun website dan aplikasi cepat, skalabel, dan tepat sasaran."
+  },
+  "Nav": {
+    "about": "Tentang Kami",
+    "services": "Layanan",
+    "techStack": "Tech Stack",
+    "portfolio": "Portofolio",
+    "pricing": "Paket & Harga",
+    "pricelist": "Pricelist",
+    "cta": "Konsultasi Gratis",
+    "menuOpen": "Buka menu",
+    "menuClose": "Tutup menu"
+  },
+  "Hero": {
+    "badge": "Partner Digital & Software House Terpercaya",
+    "title": "Website dan aplikasi yang dibangun serius, dari ide sampai rilis.",
+    "subtitle": "Lumi Beta Works bantu bisnis kamu — dari landing page sederhana sampai sistem custom — dikerjakan tim yang paham teknis dan ngerti kebutuhan kamu.",
+    "ctaPrimary": "Konsultasi Gratis",
+    "ctaSecondary": "Lihat Paket",
+    "statClients": "Klien Aktif",
+    "statProjects": "Proyek Sukses",
+    "statSatisfaction": "Kepuasan Klien"
+  },
+  "TrustedBy": {
+    "heading": "Dipercaya oleh bisnis dan institusi dari berbagai sektor"
+  },
+  "About": {
+    "eyebrow": "Tentang Lumi Beta Works",
+    "title": "Tim Kecil yang Suka Ngoprek, Serius Soal Hasil",
+    "body1": "Lumi Beta Works itu tim kecil yang suka ngoprek — dari ngerjain landing page buat UMKM sampai bantu institusi pemerintah beresin sistem yang ribet. Kita nggak jual jargon, kita cuma pengen bikin sesuatu yang beneran kepake.",
+    "body2": "Kalau kamu punya ide (atau bahkan cuma masalah yang belum jelas solusinya), yuk ngobrol dulu.",
+    "cta": "Chat di WhatsApp",
+    "pillar1Title": "Engineering Berstandar Tinggi",
+    "pillar1Body": "Clean code, arsitektur modern Next.js/Cloud, dan implementasi automated security untuk platform yang kokoh dan mudah dikembangkan di masa depan.",
+    "pillar2Title": "Komunikasi Transparan & Sigap",
+    "pillar2Body": "Diskusi langsung tanpa birokrasi berbelit. Sprint berkala, tracking pekerjaan terbuka, dan update status proaktif setiap minggunya.",
+    "pillar3Title": "Delivery Cepat & Berorientasi ROI",
+    "pillar3Body": "Fokus pada hasil bisnis nyata: konversi transaksi yang meningkat, rasio bounce rendah, dan infrastruktur hemat biaya operasional."
+  },
+  "Services": {
+    "eyebrow": "Spesialisasi Kami",
+    "title": "Solusi Rekayasa Digital Komprehensif",
+    "subtitle": "Dari prototipe pertama hingga skala produksi global, kami mendampingi setiap siklus hidup produk teknologi Anda.",
+    "webDevTitle": "Website & Pengembangan Aplikasi",
+    "webDevBody": "Dari landing page sampai aplikasi web/mobile custom, dibangun dengan tech stack yang sesuai kebutuhan — bukan sekadar ikut tren.",
+    "uiuxTitle": "UI/UX Design",
+    "uiuxBody": "Riset dan desain interface yang enak dipakai, bukan cuma enak dilihat. Kita mikirin alur pengguna dari awal, bukan nambal belakangan.",
+    "qaTitle": "QA & Testing",
+    "qaBody": "Testing manual dan otomatis sebelum rilis, supaya bug ketemu di tim kita — bukan di tangan user kamu.",
+    "consultingTitle": "Consulting",
+    "consultingBody": "Konsultasi teknis buat bantu kamu ambil keputusan — pilih tech stack, susun arsitektur, atau sekadar review sebelum lanjut development."
+  },
+  "TechStack": {
+    "eyebrow": "Engineered with Precision",
+    "title": "Tech Stack yang Kita Kuasai",
+    "subtitle": "Dipilih sesuai kebutuhan proyek, bukan sekadar yang lagi ngetren.",
+    "groupFrontend": "Frontend Layer",
+    "groupBackend": "Backend Engine",
+    "groupMobileDb": "Mobile & Database",
+    "groupCloudDevops": "Cloud & DevOps"
+  },
+  "Certifications": {
+    "eyebrow": "Standar Internasional",
+    "title": "Distandarkan oleh Sertifikasi & Standar Industri",
+    "body": "Insinyur kami memiliki kualifikasi bersertifikasi resmi global."
+  },
+  "Pricing": {
+    "eyebrow": "Transparan & Fleksibel",
+    "title": "Investasi Terjangkau, Kualitas Tanpa Kompromi",
+    "subtitle": "Pilih skema paket yang sesuai dengan tahap akselerasi bisnis Anda saat ini.",
+    "viewAll": "Lihat Semua Paket",
+    "landingBadge": "Paling Populer untuk UMKM",
+    "landingLabel": "Entry Level",
+    "landingName": "Landing Page",
+    "landingPricePrefix": "Mulai dari",
+    "landingPrice": "Rp 300.000",
+    "landingTagline": "Cocok buat kamu yang butuh halaman promosi cepat jadi.",
+    "landingCta": "Ambil Paket Ini",
+    "landingFeature1": "1 Halaman Responsive (Mobile-First)",
+    "landingFeature2": "Integrasi WhatsApp Direct Button",
+    "landingFeature3": "Fast Loading & SEO Ready",
+    "landingFeature4": "Free Hosting Setup 1 Bulan",
+    "landingFeature5": "Revisi Desain 2x & Garansi 14 Hari",
+    "customLabel": "Professional Tier",
+    "customName": "Custom Website/App",
+    "customPricePrefix": "Rentang Investasi",
+    "customPrice": "Rp 2,5jt – 5jt",
+    "customTagline": "Untuk kebutuhan yang lebih dari sekadar landing page — profil perusahaan, sistem internal sederhana, atau MVP produk.",
+    "customCta": "Diskusikan Kebutuhan Saya",
+    "customFeature1": "Multi-halaman (hingga 7 halaman kustom)",
+    "customFeature2": "CMS Mandiri (Kelola Artikel & Produk)",
+    "customFeature3": "Custom Form & Email Notification",
+    "customFeature4": "Optimasi Kecepatan & Schema SEO Lanjutan",
+    "customFeature5": "Support Teknis & Maintenance 3 Bulan",
+    "enterpriseLabel": "Enterprise Tier",
+    "enterpriseName": "Enterprise / Kustomisasi Penuh",
+    "enterprisePricePrefix": "Investasi",
+    "enterprisePrice": "Hubungi Kami",
+    "enterpriseTagline": "Untuk proyek skala besar dengan kebutuhan spesifik — integrasi sistem, keamanan tingkat lanjut, atau tim dedicated.",
+    "enterpriseCta": "Hubungi Kami",
+    "enterpriseFeature1": "Fullstack Custom Architecture (Next.js/Go)",
+    "enterpriseFeature2": "Multi-API, Payment Gateway & Database Kompleks",
+    "enterpriseFeature3": "QA Automation, Penetration Test & Audit",
+    "enterpriseFeature4": "SLA Terjamin & Dedicated Senior Engineer"
+  },
+  "Portfolio": {
+    "eyebrow": "Karya Terpilih",
+    "title": "Portofolio & Studi Kasus",
+    "subtitle": "Beberapa proyek yang sudah kita kerjakan.",
+    "categoryWebDev": "Website & App Dev",
+    "categoryUiux": "UI/UX Design",
+    "categoryQa": "QA & Testing",
+    "categoryConsulting": "Consulting"
+  },
+  "Testimonials": {
+    "eyebrow": "Kata Klien",
+    "title": "Testimoni",
+    "comingSoonTitle": "Segera Hadir",
+    "comingSoonBody": "Cerita dari klien yang udah kerja bareng kita."
+  },
+  "FinalCta": {
+    "title": "Siap Mulai Proyek Kamu?",
+    "subtitle": "Ceritain kebutuhan kamu, biar kita bantu cariin solusinya.",
+    "cta": "Mulai Project Sekarang"
+  },
+  "Footer": {
+    "followUs": "Ikuti Kami",
+    "waLabel": "WhatsApp",
+    "emailLabel": "Email",
+    "copyright": "© {year} Lumi Beta Works. Semua hak cipta dilindungi.",
+    "navHeading": "Navigasi",
+    "contactHeading": "Kontak"
+  },
+  "Pricelist": {
+    "eyebrow": "Transparan & Fleksibel",
+    "title": "Paket & Harga",
+    "subtitle": "Mulai dari kebutuhan simpel sampai proyek custom skala penuh.",
+    "breadcrumbHome": "Beranda",
+    "breadcrumbCurrent": "Pricelist",
+    "ctaGeneric": "Hubungi Kami"
+  }
+}

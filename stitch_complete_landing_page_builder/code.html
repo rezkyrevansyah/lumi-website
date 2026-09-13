@@ -1,0 +1,1080 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Lumi Beta Works — Software House &amp; Partner Rekayasa Digital</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#18181B",
+            "secondary": "#10B981",
+            "secondary-dark": "#059669",
+            "accent-surface": "#ECFDF5",
+            "accent-link": "#065F46",
+            "text-secondary": "#52525B",
+            "bg-base": "#FFFFFF",
+            "bg-subtle": "#FAFAFA",
+            "border-hairline": "#E4E4E7",
+            "border-input": "#D4D4D8",
+            "focus-ring": "#10B981",
+            "cta-hover": "#27272A",
+            "glow-blue": "#2563EB",
+            "glow-violet": "#7C3AED"
+          },
+          fontFamily: {
+            headline: ["Bricolage Grotesque", "sans-serif"],
+            body: ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee 35s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-bg-base font-body text-primary antialiased selection:bg-secondary/20 selection:text-secondary-dark">
+<!-- =========================================================================
+       HEADER / NAVBAR
+       ========================================================================= -->
+<header class="fixed top-0 inset-x-0 z-50 bg-bg-base/90 backdrop-blur-md border-b border-border-hairline/80 transition-all duration-200">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between gap-6">
+<!-- Brand Logo -->
+<a class="flex items-center group transition-transform duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-focus-ring rounded-lg" href="#">
+<img alt="Lumi Beta Works" class="h-8 md:h-9 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIXBU2N8vBpBPs1eSvynAHRY06ONi6ffWOwQ5wI3va6Wn3LM2cumbC16wAGp15STyWvlhKtn1X4byzHZrFhJVMIRzJpU2Lh6lOPcVdv4gNiOkyPcv5m-tO7ALRbKaFy_mwJbZXI_6D-XmLwOb1TSBXyzjjQpSRp8GHb6ltBLPOZ2Dgjh3rreaYgfQtnf58UkmSHAQDr_y0bCnWNJl8r_t8FSYtYYixzxxEwKv_-GFf2xHjUM3duZfEx9RPdxyI_qSKtg">
+</a>
+<!-- Navigation Links -->
+<nav aria-label="Main Navigation" class="hidden lg:flex items-center gap-1.5">
+<a class="px-3.5 py-2 text-[14px] font-medium text-text-secondary hover:text-primary transition-colors rounded-full hover:bg-bg-subtle focus-visible:outline focus-visible:outline-2 focus-visible:outline-focus-ring" href="#about">Tentang Kami</a>
+<a class="px-3.5 py-2 text-[14px] font-medium text-text-secondary hover:text-primary transition-colors rounded-full hover:bg-subtle focus-visible:outline focus-visible:outline-2 focus-visible:outline-focus-ring" href="#services">Layanan</a>
+<a class="px-3.5 py-2 text-[14px] font-medium text-text-secondary hover:text-primary transition-colors rounded-full hover:bg-subtle focus-visible:outline focus-visible:outline-2 focus-visible:outline-focus-ring" href="#tech-stack">Tech Stack</a>
+<a class="px-3.5 py-2 text-[14px] font-medium text-text-secondary hover:text-primary transition-colors rounded-full hover:bg-subtle focus-visible:outline focus-visible:outline-2 focus-visible:outline-focus-ring" href="#portfolio">Portofolio</a>
+<a class="px-3.5 py-2 text-[14px] font-medium text-text-secondary hover:text-primary transition-colors rounded-full hover:bg-subtle focus-visible:outline focus-visible:outline-2 focus-visible:outline-focus-ring" href="#pricing">Paket &amp; Harga</a>
+<a class="px-3.5 py-2 text-[14px] font-medium text-text-secondary hover:text-primary transition-colors rounded-full hover:bg-subtle focus-visible:outline focus-visible:outline-2 focus-visible:outline-focus-ring" href="#pricelist">Pricelist</a>
+</nav>
+<!-- Language Switcher & Primary CTA -->
+<div class="flex items-center gap-3 md:gap-4">
+<!-- Language Switcher Pill -->
+<div class="flex items-center p-1 bg-zinc-100 rounded-full border border-border-hairline text-xs font-semibold">
+<button class="px-3 py-1 rounded-full bg-white text-primary shadow-sm transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-focus-ring" type="button">ID</button>
+<button class="px-3 py-1 rounded-full text-text-secondary hover:text-primary transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-focus-ring" type="button">EN</button>
+</div>
+<!-- Consultation Button -->
+<a class="inline-flex items-center justify-center h-10 px-5 rounded-full bg-primary text-white text-[14px] font-semibold hover:bg-cta-hover transition-all duration-150 shadow-[0_2px_12px_rgba(24,24,27,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-focus-ring focus-visible:outline-offset-2" href="https://wa.me/6281283950403?text=Halo%20Lumi%20Beta%20Works%2C%20saya%20tertarik%20konsultasi%20gratis%20soal%20pembuatan%20website%2Fapp." rel="noopener noreferrer" target="_blank">
+          Konsultasi Gratis
+        </a>
+</div>
+</div>
+</header>
+<main class="pt-20">
+<!-- =========================================================================
+         1. HERO SECTION
+         ========================================================================= -->
+<section class="relative w-full overflow-hidden bg-bg-base py-24 lg:py-32 border-b border-border-hairline/40">
+<!-- Ambient Multi-color Glowing Accents -->
+<div class="absolute inset-0 pointer-events-none z-0">
+<div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[380px] bg-gradient-to-b from-secondary/12 via-glow-blue/8 to-transparent blur-[120px] rounded-full"></div>
+<div class="absolute top-1/4 -left-28 w-[340px] h-[340px] bg-glow-violet/8 blur-[100px] rounded-full"></div>
+<div class="absolute bottom-12 -right-28 w-[380px] h-[380px] bg-secondary/10 blur-[110px] rounded-full"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
+<div class="flex flex-col items-center text-center max-w-4xl mx-auto">
+<!-- Badge Pill -->
+<div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-emerald-200/80 shadow-[0_1px_8px_rgba(16,185,129,0.08)] mb-8 transition-transform hover:scale-[1.02]">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="text-xs font-semibold tracking-wide text-zinc-700">Partner Digital &amp; Software House Terpercaya</span>
+</div>
+<!-- Display Headline -->
+<h1 class="font-headline text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary tracking-tight leading-[1.15] max-w-4xl">
+            Wujudkan Website &amp; Aplikasi Cepat, Skalabel, dan Tepat Sasaran
+          </h1>
+<!-- Subheading -->
+<p class="mt-6 font-body text-lg md:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
+            Lumi Beta Works membantu UMKM hingga enterprise membangun solusi digital berstandar tinggi—mulai dari landing page cepat konversi hingga sistem kustom performa tinggi.
+          </p>
+<!-- Dual CTA Buttons -->
+<div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-white hover:bg-cta-hover font-semibold text-[15px] transition-all duration-150 shadow-[0_4px_20px_rgba(24,24,27,0.15)] hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-focus-ring focus-visible:outline-offset-2" href="https://wa.me/6281283950403?text=Halo%20Lumi%20Beta%20Works%2C%20saya%20tertarik%20konsultasi%20gratis%20soal%20pembuatan%20website%2Fapp.%20Boleh%20dibantu%3F" rel="noopener noreferrer" target="_blank">
+<span class="">Konsultasi Gratis</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-zinc-200 bg-white hover:bg-zinc-50 font-semibold text-[15px] text-zinc-800 transition-all duration-150 shadow-[0_2px_8px_rgba(0,0,0,0.04)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-focus-ring focus-visible:outline-offset-2" href="#pricing">
+<span class="material-symbols-outlined text-[18px] text-secondary">payments</span>
+<span class="">Lihat Paket &amp; Harga</span>
+</a>
+</div>
+<!-- Stats Band with Subtle Dividers -->
+<div class="mt-16 pt-10 border-t border-border-hairline/80 w-full max-w-2xl grid grid-cols-3 divide-x divide-zinc-200">
+<div class="flex flex-col items-center px-4">
+<div class="flex items-baseline gap-0.5">
+<span class="font-headline text-3xl sm:text-4xl font-extrabold text-primary">15</span>
+<span class="font-headline text-2xl font-bold text-secondary">+</span>
+</div>
+<span class="text-xs sm:text-sm font-medium text-text-secondary mt-1">Klien Aktif</span>
+</div>
+<div class="flex flex-col items-center px-4">
+<div class="flex items-baseline gap-0.5">
+<span class="font-headline text-3xl sm:text-4xl font-extrabold text-primary">18</span>
+<span class="font-headline text-2xl font-bold text-secondary">+</span>
+</div>
+<span class="text-xs sm:text-sm font-medium text-text-secondary mt-1">Proyek Sukses</span>
+</div>
+<div class="flex flex-col items-center px-4">
+<div class="flex items-baseline gap-0.5">
+<span class="font-headline text-3xl sm:text-4xl font-extrabold text-primary">99.9</span>
+<span class="font-headline text-xl font-bold text-secondary">%</span>
+</div>
+<span class="text-xs sm:text-sm font-medium text-text-secondary mt-1">Kepuasan Klien</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+         2. CLIENT LOGOS (Dipercaya Oleh)
+         ========================================================================= -->
+<section class="w-full bg-bg-subtle py-14 border-b border-border-hairline overflow-hidden">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 text-center mb-8">
+<p class="text-xs font-semibold uppercase tracking-widest text-text-secondary">
+          Dipercaya oleh Berbagai Organisasi &amp; Bisnis Ternama
+        </p>
+</div>
+<!-- Ticker Carousel -->
+<div class="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_15%,white_85%,transparent)]">
+<div class="animate-marquee gap-10 items-center">
+<!-- Items Block 1 -->
+<div class="flex items-center gap-10">
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">palette</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">EKRAF</span>
+</div>
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">smartphone</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">Erafone</span>
+</div>
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">factory</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">PT Dahana</span>
+</div>
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">volunteer_activism</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">BAZNAS</span>
+</div>
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">cell_tower</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">TBIG</span>
+</div>
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">lan</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">Solutechasia</span>
+</div>
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">water_drop</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">PDAM Tirta Semerbak</span>
+</div>
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">directions_car</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">Monis</span>
+</div>
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">science</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">Lorentz</span>
+</div>
+</div>
+<!-- Items Block 2 (Duplicate for Seamless Loop) -->
+<div aria-hidden="true" class="flex items-center gap-10">
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">palette</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">EKRAF</span>
+</div>
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">smartphone</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">Erafone</span>
+</div>
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">factory</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">PT Dahana</span>
+</div>
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">volunteer_activism</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">BAZNAS</span>
+</div>
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">cell_tower</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">TBIG</span>
+</div>
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">lan</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">Solutechasia</span>
+</div>
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">water_drop</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">PDAM Tirta Semerbak</span>
+</div>
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">directions_car</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">Monis</span>
+</div>
+<div class="flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-border-hairline shadow-sm opacity-70 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[20px] text-zinc-600">science</span>
+<span class="font-headline text-sm font-bold tracking-tight text-zinc-700">Lorentz</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+         3. TENTANG KAMI (Human Vibes & Capabilities)
+         ========================================================================= -->
+<section class="w-full bg-bg-base py-24 lg:py-32 border-b border-border-hairline/50" id="about">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+<!-- Left Editorial Narrative -->
+<div class="lg:col-span-6 space-y-6">
+<div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-accent-surface text-secondary-dark text-xs font-semibold">
+<span class="material-symbols-outlined text-[16px]">groups</span>
+<span class="">Tentang Lumi Beta Works</span>
+</div>
+<h2 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold text-primary leading-tight">
+              Bukan Sekadar Kode, Kami Membangun Nilai Nyata untuk Bisnis Anda
+            </h2>
+<p class="font-body text-base md:text-lg text-text-secondary leading-relaxed max-w-[65ch]">
+              Kami percaya bahwa perangkat lunak terbaik bukan dibangun dengan jargon rumit, melainkan empati mendalam terhadap tantangan bisnis dan pengguna Anda. Di Lumi Beta Works, setiap baris kode, animasi mikro, dan arsitektur database dirancang agar memberikan dampak terukur bagi pertumbuhan bisnis Anda.
+            </p>
+<p class="font-body text-base text-text-secondary leading-relaxed max-w-[65ch]">
+              Kami memangkas birokrasi berlebih. Anda berbicara langsung dengan engineer dan desainer yang mengeksekusi proyek Anda—menjamin transparansi, komitmen deadline yang presisi, dan hasil akhir yang membanggakan.
+            </p>
+<div class="pt-2">
+<a class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-secondary text-white hover:bg-secondary-dark font-semibold text-[14px] transition-all duration-150 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-focus-ring" href="https://wa.me/6281283950403?text=Halo%20Lumi%20Beta%20Works%2C%20saya%20ingin%20mengenal%20tim%20dan%20mendiskusikan%20ide%20kolaborasi." rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span class="">Chat dengan Kami</span>
+</a>
+</div>
+</div>
+<!-- Right 3 Pillars Bento Stack -->
+<div class="lg:col-span-6 space-y-4">
+<div class="p-6 sm:p-7 rounded-2xl bg-bg-subtle border border-zinc-100 shadow-[0_4px_24px_rgba(24,24,27,0.04)] hover:shadow-[0_8px_32px_rgba(24,24,27,0.08)] transition-all hover:-translate-y-0.5">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-emerald-50 text-secondary-dark flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">terminal</span>
+</div>
+<div class="space-y-1">
+<h3 class="font-headline text-lg font-bold text-primary">Engineering Berstandar Tinggi</h3>
+<p class="text-sm text-text-secondary leading-relaxed">
+                    Clean code, arsitektur modern Next.js/Cloud, dan implementasi automated security untuk platform yang kokoh dan mudah dikembangkan di masa depan.
+                  </p>
+</div>
+</div>
+</div>
+<div class="p-6 sm:p-7 rounded-2xl bg-bg-subtle border border-zinc-100 shadow-[0_4px_24px_rgba(24,24,27,0.04)] hover:shadow-[0_8px_32px_rgba(24,24,27,0.08)] transition-all hover:-translate-y-0.5">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-emerald-50 text-secondary-dark flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">forum</span>
+</div>
+<div class="space-y-1">
+<h3 class="font-headline text-lg font-bold text-primary">Komunikasi Transparan &amp; Sigap</h3>
+<p class="text-sm text-text-secondary leading-relaxed">
+                    Diskusi langsung tanpa birokrasi berbelit. Sprint berkala, tracking pekerjaan terbuka, dan update status proaktif setiap minggunya.
+                  </p>
+</div>
+</div>
+</div>
+<div class="p-6 sm:p-7 rounded-2xl bg-bg-subtle border border-zinc-100 shadow-[0_4px_24px_rgba(24,24,27,0.04)] hover:shadow-[0_8px_32px_rgba(24,24,27,0.08)] transition-all hover:-translate-y-0.5">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-emerald-50 text-secondary-dark flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">trending_up</span>
+</div>
+<div class="space-y-1">
+<h3 class="font-headline text-lg font-bold text-primary">Delivery Cepat &amp; Berorientasi ROI</h3>
+<p class="text-sm text-text-secondary leading-relaxed">
+                    Fokus pada hasil bisnis nyata: konversi transaksi yang meningkat, rasio bounce rendah, dan infrastruktur hemat biaya operasional.
+                  </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+         4. LAYANAN (Solusi Rekayasa Digital)
+         ========================================================================= -->
+<section class="w-full bg-bg-subtle py-24 lg:py-32 border-b border-border-hairline/60" id="services">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-14">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="space-y-3 max-w-xl">
+<div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-accent-surface text-secondary-dark text-xs font-semibold">
+<span class="material-symbols-outlined text-[15px]">design_services</span>
+<span class="">Spesialisasi Kami</span>
+</div>
+<h2 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold text-primary">
+              Solusi Rekayasa Digital Komprehensif
+            </h2>
+</div>
+<p class="font-body text-base text-text-secondary max-w-md">
+            Dari prototipe pertama hingga skala produksi global, kami mendampingi setiap siklus hidup produk teknologi Anda.
+          </p>
+</div>
+<!-- 4 Grid Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="group flex flex-col justify-between p-7 rounded-2xl bg-white border border-zinc-100 shadow-[0_4px_24px_rgba(24,24,27,0.05)] hover:shadow-[0_12px_32px_rgba(24,24,27,0.08)] transition-all duration-200 hover:-translate-y-1">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl bg-accent-surface text-secondary-dark flex items-center justify-center transition-colors group-hover:bg-primary group-hover:text-white">
+<span class="material-symbols-outlined text-[24px]">web</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-primary group-hover:text-secondary-dark transition-colors">
+                Website &amp; App Development
+              </h3>
+<p class="text-sm text-text-secondary leading-relaxed">
+                Landing page cepat konversi, platform SaaS interaktif, Progressive Web Apps (PWA), dan sistem aplikasi web kustom yang scalable.
+              </p>
+</div>
+<div class="pt-6 mt-4 border-t border-zinc-100 flex items-center gap-1.5 text-secondary-dark text-xs font-semibold">
+<span class="">Pelajari Cakupan</span>
+<span class="material-symbols-outlined text-[15px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group flex flex-col justify-between p-7 rounded-2xl bg-white border border-zinc-100 shadow-[0_4px_24px_rgba(24,24,27,0.05)] hover:shadow-[0_12px_32px_rgba(24,24,27,0.08)] transition-all duration-200 hover:-translate-y-1">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl bg-accent-surface text-secondary-dark flex items-center justify-center transition-colors group-hover:bg-primary group-hover:text-white">
+<span class="material-symbols-outlined text-[24px]">draw</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-primary group-hover:text-secondary-dark transition-colors">
+                UI/UX &amp; Product Design
+              </h3>
+<p class="text-sm text-text-secondary leading-relaxed">
+                Riset perilaku pengguna, alur navigasi intuitif, wireframing, high-fidelity prototype interaktif, dan design system skala enterprise.
+              </p>
+</div>
+<div class="pt-6 mt-4 border-t border-zinc-100 flex items-center gap-1.5 text-secondary-dark text-xs font-semibold">
+<span class="">Pelajari Cakupan</span>
+<span class="material-symbols-outlined text-[15px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group flex flex-col justify-between p-7 rounded-2xl bg-white border border-zinc-100 shadow-[0_4px_24px_rgba(24,24,27,0.05)] hover:shadow-[0_12px_32px_rgba(24,24,27,0.08)] transition-all duration-200 hover:-translate-y-1">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl bg-accent-surface text-secondary-dark flex items-center justify-center transition-colors group-hover:bg-primary group-hover:text-white">
+<span class="material-symbols-outlined text-[24px]">fact_check</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-primary group-hover:text-secondary-dark transition-colors">
+                QA &amp; Automated Testing
+              </h3>
+<p class="text-sm text-text-secondary leading-relaxed">
+                Pengujian fungsional end-to-end, cross-browser compatibility, automated regress test, serta audit performa dan ketahanan beban tinggi.
+              </p>
+</div>
+<div class="pt-6 mt-4 border-t border-zinc-100 flex items-center gap-1.5 text-secondary-dark text-xs font-semibold">
+<span class="">Pelajari Cakupan</span>
+<span class="material-symbols-outlined text-[15px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group flex flex-col justify-between p-7 rounded-2xl bg-white border border-zinc-100 shadow-[0_4px_24px_rgba(24,24,27,0.05)] hover:shadow-[0_12px_32px_rgba(24,24,27,0.08)] transition-all duration-200 hover:-translate-y-1">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-xl bg-accent-surface text-secondary-dark flex items-center justify-center transition-colors group-hover:bg-primary group-hover:text-white">
+<span class="material-symbols-outlined text-[24px]">cloud_sync</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-primary group-hover:text-secondary-dark transition-colors">
+                Tech Consulting &amp; Cloud
+              </h3>
+<p class="text-sm text-text-secondary leading-relaxed">
+                Arsitektur sistem microservices, optimasi database, migrasi cloud (AWS/GCP), serta audit code-level untuk efisiensi biaya infrastruktur.
+              </p>
+</div>
+<div class="pt-6 mt-4 border-t border-zinc-100 flex items-center gap-1.5 text-secondary-dark text-xs font-semibold">
+<span class="">Pelajari Cakupan</span>
+<span class="material-symbols-outlined text-[15px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+         5. TECH STACK & SERTIFIKASI
+         ========================================================================= -->
+<section class="w-full bg-bg-base py-24 lg:py-32 border-b border-border-hairline/60" id="tech-stack">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-16">
+<div class="text-center max-w-2xl mx-auto space-y-3">
+<div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-zinc-100 text-zinc-700 text-xs font-semibold">
+<span class="material-symbols-outlined text-[15px] text-secondary">code_blocks</span>
+<span class="">Engineered with Precision</span>
+</div>
+<h2 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold text-primary">
+            Tech Stack Modern &amp; Teruji
+          </h2>
+<p class="text-base text-text-secondary">
+            Kami mengombinasikan ekosistem teknologi terkini untuk memastikan produk Anda berkecepatan kilat, aman dari celah, dan mudah dikembangkan.
+          </p>
+</div>
+<!-- 4 Organized Categories -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Frontend Layer -->
+<div class="p-6 rounded-2xl bg-bg-subtle border border-zinc-100 shadow-[0_2px_12px_rgba(24,24,27,0.03)] space-y-4">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<h3 class="font-headline text-base font-bold text-primary">Frontend Layer</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">Next.js</span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">React.js</span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">TypeScript</span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">Tailwind CSS</span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">Angular</span>
+</div>
+</div>
+<!-- Backend Engine -->
+<div class="p-6 rounded-2xl bg-bg-subtle border border-zinc-100 shadow-[0_2px_12px_rgba(24,24,27,0.03)] space-y-4">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<h3 class="font-headline text-base font-bold text-primary">Backend Engine</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">Laravel / PHP</span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">Go (Golang)</span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">Python</span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">.NET Core</span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">Node.js</span>
+</div>
+</div>
+<!-- Mobile & Database -->
+<div class="p-6 rounded-2xl bg-bg-subtle border border-zinc-100 shadow-[0_2px_12px_rgba(24,24,27,0.03)] space-y-4">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<h3 class="font-headline text-base font-bold text-primary">Mobile &amp; Database</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">Flutter</span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">React Native</span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">PostgreSQL</span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">Redis</span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">MySQL</span>
+</div>
+</div>
+<!-- Cloud & DevOps -->
+<div class="p-6 rounded-2xl bg-bg-subtle border border-zinc-100 shadow-[0_2px_12px_rgba(24,24,27,0.03)] space-y-4">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<h3 class="font-headline text-base font-bold text-primary">Cloud &amp; DevOps</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">Docker</span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">AWS</span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">Google Cloud</span>
+<span class="px-3 py-1.5 rounded-full bg-white border border-border-hairline text-xs font-medium text-zinc-700 shadow-sm">CI/CD</span>
+</div>
+</div>
+</div>
+<!-- Certification Row -->
+<div class="p-8 rounded-3xl bg-bg-subtle border border-zinc-200/80 flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="space-y-1.5 text-center md:text-left max-w-sm">
+<div class="inline-flex items-center gap-1.5 text-secondary-dark text-xs font-bold">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span class="">STANDAR INTERNASIONAL</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-primary">Kompetensi Terakreditasi</h3>
+<p class="text-xs text-text-secondary">Insinyur kami memiliki kualifikasi bersertifikasi resmi global.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-5 gap-3 w-full md:w-auto">
+<div class="flex flex-col items-center justify-center p-3.5 rounded-xl bg-white border border-zinc-200/60 text-center shadow-sm">
+<span class="material-symbols-outlined text-[22px] text-zinc-700">cloud</span>
+<span class="text-xs font-semibold text-primary mt-1">AWS Certified</span>
+</div>
+<div class="flex flex-col items-center justify-center p-3.5 rounded-xl bg-white border border-zinc-200/60 text-center shadow-sm">
+<span class="material-symbols-outlined text-[22px] text-zinc-700">cloud_done</span>
+<span class="text-xs font-semibold text-primary mt-1">Google Cloud</span>
+</div>
+<div class="flex flex-col items-center justify-center p-3.5 rounded-xl bg-white border border-zinc-200/60 text-center shadow-sm">
+<span class="material-symbols-outlined text-[22px] text-zinc-700">sync</span>
+<span class="text-xs font-semibold text-primary mt-1">Scrum Master</span>
+</div>
+<div class="flex flex-col items-center justify-center p-3.5 rounded-xl bg-white border border-zinc-200/60 text-center shadow-sm">
+<span class="material-symbols-outlined text-[22px] text-zinc-700">bug_report</span>
+<span class="text-xs font-semibold text-primary mt-1">ISTQB QA</span>
+</div>
+<div class="col-span-2 sm:col-span-1 flex flex-col items-center justify-center p-3.5 rounded-xl bg-white border border-zinc-200/60 text-center shadow-sm">
+<span class="material-symbols-outlined text-[22px] text-zinc-700">database</span>
+<span class="text-xs font-semibold text-primary mt-1">Oracle Cert</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+         6. PAKET & HARGA (Pricing Tiers)
+         ========================================================================= -->
+<section class="w-full bg-bg-subtle py-24 lg:py-32 border-b border-border-hairline/60" id="pricing">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-16">
+<div class="text-center max-w-2xl mx-auto space-y-3">
+<div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-accent-surface text-secondary-dark text-xs font-semibold">
+<span class="material-symbols-outlined text-[15px]">payments</span>
+<span class="">Transparan &amp; Fleksibel</span>
+</div>
+<h2 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold text-primary">
+            Investasi Terjangkau, Kualitas Tanpa Kompromi
+          </h2>
+<p class="text-base text-text-secondary">
+            Pilih skema paket yang sesuai dengan tahap akselerasi bisnis Anda saat ini.
+          </p>
+</div>
+<!-- 3 Pricing Cards -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+<!-- Tier 1: UMKM Featured -->
+<div class="relative flex flex-col justify-between p-8 rounded-3xl bg-white border-2 border-secondary shadow-[0_12px_40px_rgba(16,185,129,0.12)] transition-all hover:-translate-y-1">
+<div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-secondary text-white text-xs font-bold tracking-wide shadow-sm">
+              Paling Populer untuk UMKM
+            </div>
+<div class="space-y-6 pt-2">
+<div class="space-y-1">
+<span class="text-xs font-bold text-secondary-dark uppercase tracking-wider">Entry Level</span>
+<h3 class="font-headline text-2xl font-bold text-primary">Landing Page Cepat</h3>
+<p class="text-xs text-text-secondary">Solusi kilat untuk validasi pasar dan meningkatkan direct order WhatsApp.</p>
+</div>
+<div class="py-3 border-y border-zinc-100">
+<span class="text-xs text-text-secondary">Mulai dari</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-headline text-3xl sm:text-4xl font-extrabold text-primary">Rp 300.000</span>
+</div>
+</div>
+<ul class="space-y-3 text-sm text-zinc-700">
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">check_circle</span>
+<span class="">1 Halaman Responsive (Mobile-First)</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">check_circle</span>
+<span class="">Integrasi WhatsApp Direct Button</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">check_circle</span>
+<span class="">Fast Loading &amp; SEO Ready</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">check_circle</span>
+<span class="">Free Hosting Setup 1 Bulan</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">check_circle</span>
+<span class="">Revisi Desain 2x &amp; Garansi 14 Hari</span>
+</li>
+</ul>
+</div>
+<div class="pt-8">
+<a class="w-full inline-flex items-center justify-center gap-2 h-11 px-6 rounded-full bg-secondary text-white hover:bg-secondary-dark font-semibold text-sm transition-all shadow-sm" href="https://wa.me/6281283950403?text=Halo%20Lumi%20Beta%20Works%2C%20saya%20mau%20tanya-tanya%20soal%20paket%20Landing%20Page%20Rp%20300.000.%20Boleh%20dijelaskan%20detailnya%3F" rel="noopener noreferrer" target="_blank">
+<span class="">Ambil Paket Ini</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Tier 2: Business -->
+<div class="flex flex-col justify-between p-8 rounded-3xl bg-white border border-zinc-200 shadow-[0_4px_24px_rgba(24,24,27,0.04)] hover:shadow-[0_12px_32px_rgba(24,24,27,0.08)] transition-all hover:-translate-y-1">
+<div class="space-y-6">
+<div class="space-y-1">
+<span class="text-xs font-bold text-text-secondary uppercase tracking-wider">Professional Tier</span>
+<h3 class="font-headline text-2xl font-bold text-primary">Company Profile &amp; Web App</h3>
+<p class="text-xs text-text-secondary">Representasi korporat elegan dan aplikasi fungsional untuk brand berkembang.</p>
+</div>
+<div class="py-3 border-y border-zinc-100">
+<span class="text-xs text-text-secondary">Rentang Investasi</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-headline text-3xl font-extrabold text-primary">Rp 2.5jt - 5jt</span>
+</div>
+</div>
+<ul class="space-y-3 text-sm text-zinc-700">
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">check_circle</span>
+<span class="">Multi-halaman (hingga 7 halaman kustom)</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">check_circle</span>
+<span class="">CMS Mandiri (Kelola Artikel &amp; Produk)</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">check_circle</span>
+<span class="">Custom Form &amp; Email Notification</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">check_circle</span>
+<span class="">Optimasi Kecepatan &amp; Schema SEO Lanjutan</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">check_circle</span>
+<span class="">Support Teknis &amp; Maintenance 3 Bulan</span>
+</li>
+</ul>
+</div>
+<div class="pt-8">
+<a class="w-full inline-flex items-center justify-center gap-2 h-11 px-6 rounded-full bg-primary text-white hover:bg-cta-hover font-semibold text-sm transition-all shadow-sm" href="https://wa.me/6281283950403?text=Halo%20Lumi%20Beta%20Works%2C%20saya%20tertarik%20dengan%20Paket%20Bisnis%20Company%20Profile%20%26%20Web%20App.%20Bisa%20berbagi%20rinciannya%3F" rel="noopener noreferrer" target="_blank">
+<span class="">Pilih Paket Bisnis</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Tier 3: Custom Enterprise -->
+<div class="flex flex-col justify-between p-8 rounded-3xl bg-white border border-zinc-200 shadow-[0_4px_24px_rgba(24,24,27,0.04)] hover:shadow-[0_12px_32px_rgba(24,24,27,0.08)] transition-all hover:-translate-y-1">
+<div class="space-y-6">
+<div class="space-y-1">
+<span class="text-xs font-bold text-text-secondary uppercase tracking-wider">Enterprise Tier</span>
+<h3 class="font-headline text-2xl font-bold text-primary">Custom Dev &amp; System</h3>
+<p class="text-xs text-text-secondary">Platform kompleks, integrasi backend tersentralisasi, dan sistem keamanan khusus.</p>
+</div>
+<div class="py-3 border-y border-zinc-100">
+<span class="text-xs text-text-secondary">Investasi</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-headline text-3xl font-extrabold text-primary">Kustom Terbuka</span>
+</div>
+</div>
+<ul class="space-y-3 text-sm text-zinc-700">
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">check_circle</span>
+<span class="">Fullstack Custom Architecture (Next/Go)</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">check_circle</span>
+<span class="">Multi-API, Payment Gateway &amp; DB Kompleks</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">check_circle</span>
+<span class="">QA Automation, Penetration Test &amp; Audit</span>
+</li>
+<li class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">check_circle</span>
+<span class="">SLA Terjamin &amp; Dedicated Senior Engineer</span>
+</li>
+</ul>
+</div>
+<div class="pt-8">
+<a class="w-full inline-flex items-center justify-center gap-2 h-11 px-6 rounded-full border border-zinc-300 bg-white hover:bg-zinc-50 font-semibold text-sm text-zinc-800 transition-all" href="https://wa.me/6281283950403?text=Halo%20Lumi%20Beta%20Works%2C%20saya%20tertarik%20paket%20custom%2Fenterprise%20untuk%20project%20saya.%20Bisa%20dibantu%20diskusikan%20lebih%20lanjut%3F" rel="noopener noreferrer" target="_blank">
+<span class="">Diskusikan Kebutuhan</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Catalog Anchor -->
+<div class="text-center pt-2">
+<a class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-zinc-200 text-zinc-800 hover:bg-zinc-50 font-semibold text-sm transition-all shadow-sm" href="#pricelist">
+<span class="material-symbols-outlined text-[18px] text-secondary">menu_book</span>
+<span class="">Lihat Semua Paket Detail di Halaman Pricelist</span>
+</a>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+         7. PORTOFOLIO / STUDI KASUS
+         ========================================================================= -->
+<section class="w-full bg-bg-base py-24 lg:py-32 border-b border-border-hairline/60" id="portfolio">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-16">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="space-y-3 max-w-xl">
+<div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-accent-surface text-secondary-dark text-xs font-semibold">
+<span class="material-symbols-outlined text-[15px]">folder_special</span>
+<span class="">Karya Terpilih</span>
+</div>
+<h2 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold text-primary">
+              Studi Kasus &amp; Portofolio Nyata
+            </h2>
+</div>
+<p class="font-body text-base text-text-secondary max-w-md">
+            Bukti nyata dedikasi kami dalam menghadirkan dampak digital yang estetis dan fungsional bagi berbagai mitra industri.
+          </p>
+</div>
+<!-- 6 Grid Portfolio Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Case 1 -->
+<div class="group flex flex-col rounded-2xl bg-white border border-zinc-200/80 overflow-hidden shadow-[0_4px_20px_rgba(24,24,27,0.04)] hover:shadow-[0_12px_32px_rgba(24,24,27,0.08)] transition-all duration-200 hover:-translate-y-1">
+<div class="relative aspect-video w-full overflow-hidden bg-zinc-100">
+<img alt="Erafone Digital Experience" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwdk8du6dsGbttLjQu_pTWKudUrOYDpfrIQxT7D7IFTh8VoJPoILZ_e3agWBr8POXt3q6EXAaVatOQf7mXUe8dMcCy4jADDlMDJfgrPx1lZzK3Nf4mHYSiAoIn_5Ca9remF6azZ_WyJ21yebRnkoEPBRYOdXZ3E6qWIh7LdFGPakg2VZZ42Ub4NMyWnDRe_lngBKLFBFrZBYR1GX-meo6tSrhEBInqXXd8KLsr7ocR7kdWrROAl-t9">
+<span class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-sm text-zinc-800 text-[11px] font-bold shadow-sm">
+                Web Development
+              </span>
+</div>
+<div class="p-6 flex flex-col justify-between flex-1 space-y-4">
+<div class="space-y-1.5">
+<h3 class="font-headline text-lg font-bold text-primary group-hover:text-secondary-dark transition-colors">
+                  Erafone Digital Experience
+                </h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+                  Optimasi antarmuka landing page promo gawai dengan load speed di bawah 1.2 detik dan konversi meningkat tajam.
+                </p>
+</div>
+<div class="pt-3 border-t border-zinc-100 flex items-center justify-between">
+<span class="text-[11px] text-text-secondary font-medium">Next.js · Tailwind · Cloudflare</span>
+<span class="inline-flex items-center gap-1 text-xs font-semibold text-secondary-dark">
+                  Lihat Live <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Case 2 -->
+<div class="group flex flex-col rounded-2xl bg-white border border-zinc-200/80 overflow-hidden shadow-[0_4px_20px_rgba(24,24,27,0.04)] hover:shadow-[0_12px_32px_rgba(24,24,27,0.08)] transition-all duration-200 hover:-translate-y-1">
+<div class="relative aspect-video w-full overflow-hidden bg-zinc-100">
+<img alt="EKRAF Creative Hub" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA_uOT6IgYRJ4DXVyJ2T5nMDBaVWYCngi5xndpcQxXiwgpgToEAUmewy5-aFipvV-5xmLcpar80U1z6zhgE7TK2f7yjDwNEM7tkOVDhuImziLWQErLSIsY8K2UpK8d4yN3t2uTgkyQF_lnwREBCT7VzPKJ8b3z5pvY8RzZfzQgNN8ceOGzvDrGkV4ZFSNcTb6X-DAMWHzD2i3Sr0dilSEDHxYVLaVry2YWXIPfEkq4AzltGSuX3jNl">
+<span class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-sm text-zinc-800 text-[11px] font-bold shadow-sm">
+                UI/UX &amp; Platform
+              </span>
+</div>
+<div class="p-6 flex flex-col justify-between flex-1 space-y-4">
+<div class="space-y-1.5">
+<h3 class="font-headline text-lg font-bold text-primary group-hover:text-secondary-dark transition-colors">
+                  EKRAF Creative Hub
+                </h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+                  Platform kurasi pelaku ekonomi kreatif nusantara lengkap dengan direktori talenta dan showcase portofolio digital.
+                </p>
+</div>
+<div class="pt-3 border-t border-zinc-100 flex items-center justify-between">
+<span class="text-[11px] text-text-secondary font-medium">React · Node.js · PostgreSQL</span>
+<span class="inline-flex items-center gap-1 text-xs font-semibold text-secondary-dark">
+                  Lihat Live <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Case 3 -->
+<div class="group flex flex-col rounded-2xl bg-white border border-zinc-200/80 overflow-hidden shadow-[0_4px_20px_rgba(24,24,27,0.04)] hover:shadow-[0_12px_32px_rgba(24,24,27,0.08)] transition-all duration-200 hover:-translate-y-1">
+<div class="relative aspect-video w-full overflow-hidden bg-zinc-100">
+<img alt="TBIG Infrastructure Mobile" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPHjRDxEwSRgfx7N6IN2_A7_-w5M0DMoAonWUT4LgscoLzdk7gnsMz8jpxhcaqVXIQI02Ba6m-UWJZutCA_wkOXhLRRc-V--goH1uK6wF7wnKc1ftcOBlwq6EfZ6N_Ft5XM56cRmciTq0-a9jGqILt16k4j6NdnvWf_88CuZG1gJR6AhZjt8VgXQLAWigZ4n95glKnvanHT_9LNj2R3CXgPMCF1MwZh_eImc_pieK4DvyByg4ZUr7z">
+<span class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-sm text-zinc-800 text-[11px] font-bold shadow-sm">
+                Mobile &amp; QA
+              </span>
+</div>
+<div class="p-6 flex flex-col justify-between flex-1 space-y-4">
+<div class="space-y-1.5">
+<h3 class="font-headline text-lg font-bold text-primary group-hover:text-secondary-dark transition-colors">
+                  TBIG Infrastructure Mobile
+                </h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+                  Aplikasi inspeksi menara telekomunikasi lapangan dengan kapabilitas offline-first dan sinkronisasi real-time.
+                </p>
+</div>
+<div class="pt-3 border-t border-zinc-100 flex items-center justify-between">
+<span class="text-[11px] text-text-secondary font-medium">Flutter · Go Backend · Automated QA</span>
+<span class="inline-flex items-center gap-1 text-xs font-semibold text-secondary-dark">
+                  Lihat Live <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Case 4 -->
+<div class="group flex flex-col rounded-2xl bg-white border border-zinc-200/80 overflow-hidden shadow-[0_4px_20px_rgba(24,24,27,0.04)] hover:shadow-[0_12px_32px_rgba(24,24,27,0.08)] transition-all duration-200 hover:-translate-y-1">
+<div class="relative aspect-video w-full overflow-hidden bg-zinc-100">
+<img alt="Cinta Zakat BAZNAS System" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVVQcXajOZ67DMl7f4LN2b6prsAlCK_etl5-C9txOI87y7P6_yHGN08_JAmwdXCZagodM_btbhWn4Scif_Uc51fJYRe9vw8g7MBq6gm6UmG8leMuu1xYWKmCanOTmF18d8RzGzfjiyBA1CtTQMCEcXCL-HnmCO5QVveK6suerOsyQPTneHZcLjlWKliQ0d-v5fOZDm9LzaT4-wHEq50uSchIraYkJNM0l6GgCqfi3028EBS4TGynsb">
+<span class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-sm text-zinc-800 text-[11px] font-bold shadow-sm">
+                Architecture &amp; Web
+              </span>
+</div>
+<div class="p-6 flex flex-col justify-between flex-1 space-y-4">
+<div class="space-y-1.5">
+<h3 class="font-headline text-lg font-bold text-primary group-hover:text-secondary-dark transition-colors">
+                  Cinta Zakat BAZNAS System
+                </h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+                  Rekayasa alur kalkulator zakat terintegrasi payment gateway instan dengan pelaporan data transparan per detik.
+                </p>
+</div>
+<div class="pt-3 border-t border-zinc-100 flex items-center justify-between">
+<span class="text-[11px] text-text-secondary font-medium">Laravel 11 · Payment API · Redis</span>
+<span class="inline-flex items-center gap-1 text-xs font-semibold text-secondary-dark">
+                  Lihat Live <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Case 5 -->
+<div class="group flex flex-col rounded-2xl bg-white border border-zinc-200/80 overflow-hidden shadow-[0_4px_20px_rgba(24,24,27,0.04)] hover:shadow-[0_12px_32px_rgba(24,24,27,0.08)] transition-all duration-200 hover:-translate-y-1">
+<div class="relative aspect-video w-full overflow-hidden bg-zinc-100">
+<img alt="Monis Vehicle Rental Platform" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB_uE2k2t3bdbKePpplgevC1uyaONksafBiowIEmJJNzHSDQl1fcWjgnLsFCNfpGd0gR-dK5khSjzh0N1iR0Zy8I-2cp9WIJq6lRg1XpRgHK86hRmloNVU8LVGpcnQd-8fZBOxzIyc9fEhgLOujmoNQ8KHP13Tq-ZW6zYaGaEBu_hRffwbY0qZT_JS3hn00Vpq7w4hUCoh82P9kAS46jTAOjeVuAHGXDRQB3beEsyWMxdqTJn1Gjjy">
+<span class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-sm text-zinc-800 text-[11px] font-bold shadow-sm">
+                Fullstack SaaS
+              </span>
+</div>
+<div class="p-6 flex flex-col justify-between flex-1 space-y-4">
+<div class="space-y-1.5">
+<h3 class="font-headline text-lg font-bold text-primary group-hover:text-secondary-dark transition-colors">
+                  Monis Vehicle Rental Platform
+                </h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+                  Sistem reservasi armada kendaraan otomatis dengan manajemen jadwal ketersediaan real-time dan tanda tangan digital.
+                </p>
+</div>
+<div class="pt-3 border-t border-zinc-100 flex items-center justify-between">
+<span class="text-[11px] text-text-secondary font-medium">Next.js · TypeScript · Supabase</span>
+<span class="inline-flex items-center gap-1 text-xs font-semibold text-secondary-dark">
+                  Lihat Live <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Case 6 -->
+<div class="group flex flex-col rounded-2xl bg-white border border-zinc-200/80 overflow-hidden shadow-[0_4px_20px_rgba(24,24,27,0.04)] hover:shadow-[0_12px_32px_rgba(24,24,27,0.08)] transition-all duration-200 hover:-translate-y-1">
+<div class="relative aspect-video w-full overflow-hidden bg-zinc-100">
+<img alt="Athro Grooming &amp; Barbershop" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-qgjfiRy1O4ida1LiOWab3dRk5N2ZTNlURhLDMJvE1R800hvb2m6pmWk086p9gZcoLeIlszzyV3DO-ViNUuCrEAlobtc6EW7TMhj7PzrnPriDHonX8PbKNu6mQdVIOzUSuzAzpN6ikWE_k7VdniRGw1uEjCglPRue_iJ81bEYJkZ-IouNQVGwknyMr3Y8Q6WuhVrBdpjJo42wA63D4Z6QwiOKBvLCTAKDKL8mR-4GxqUZM0cj6Qoq">
+<span class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-sm text-zinc-800 text-[11px] font-bold shadow-sm">
+                Landing &amp; Booking
+              </span>
+</div>
+<div class="p-6 flex flex-col justify-between flex-1 space-y-4">
+<div class="space-y-1.5">
+<h3 class="font-headline text-lg font-bold text-primary group-hover:text-secondary-dark transition-colors">
+                  Athro Grooming &amp; Barbershop
+                </h3>
+<p class="text-xs text-text-secondary leading-relaxed">
+                  Landing page premium berkecepatan tinggi dengan alur pemesanan jadwal via WhatsApp yang melipatgandakan walk-in customer.
+                </p>
+</div>
+<div class="pt-3 border-t border-zinc-100 flex items-center justify-between">
+<span class="text-[11px] text-text-secondary font-medium">Tailwind · WhatsApp API · Vercel</span>
+<span class="inline-flex items-center gap-1 text-xs font-semibold text-secondary-dark">
+                  Lihat Live <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+         8. TESTIMONI (Suara Klien Kami)
+         ========================================================================= -->
+<section class="w-full bg-bg-subtle py-24 lg:py-32 border-b border-border-hairline/60">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-16">
+<div class="text-center max-w-2xl mx-auto space-y-3">
+<div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-accent-surface text-secondary-dark text-xs font-semibold">
+<span class="material-symbols-outlined text-[15px]">sentiment_satisfied</span>
+<span class="">Suara Klien Kami</span>
+</div>
+<h2 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold text-primary">
+            Dipercaya karena Integritas &amp; Dampak Nyata
+          </h2>
+<p class="text-base text-text-secondary">
+            Pengalaman kolaborasi langsung dari para founder dan pemimpin teknologi.
+          </p>
+</div>
+<!-- 3 Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex flex-col justify-between p-7 rounded-2xl bg-white border border-zinc-200/80 shadow-[0_4px_24px_rgba(24,24,27,0.04)]">
+<div class="space-y-4">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-sm text-zinc-700 italic leading-relaxed">
+                "Landing page Rp 300rb dari Lumi Beta Works beneran naikin konversi WA kami lebih dari 200%. Cepat, komunikatif, dan desainnya terlihat sangat berkelas!"
+              </p>
+</div>
+<div class="pt-6 mt-4 border-t border-zinc-100 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-emerald-100 text-secondary-dark flex items-center justify-center font-bold text-xs">
+                BS
+              </div>
+<div>
+<h4 class="font-headline text-sm font-bold text-primary">Budi Santoso</h4>
+<p class="text-[11px] text-text-secondary">Founder Local Apparel Brand</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col justify-between p-7 rounded-2xl bg-white border border-zinc-200/80 shadow-[0_4px_24px_rgba(24,24,27,0.04)]">
+<div class="space-y-4">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-sm text-zinc-700 italic leading-relaxed">
+                "Tim engineer Lumi sangat profesional. Kualitas kode bersih, sprint selalu on-time, dan standar QA automation mereka luar biasa teliti dalam menjaga stabilitas."
+              </p>
+</div>
+<div class="pt-6 mt-4 border-t border-zinc-100 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-zinc-100 text-zinc-800 flex items-center justify-center font-bold text-xs">
+                RW
+              </div>
+<div>
+<h4 class="font-headline text-sm font-bold text-primary">Rani Widyawati</h4>
+<p class="text-[11px] text-text-secondary">Product Manager, FinTech Solutions</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col justify-between p-7 rounded-2xl bg-white border border-zinc-200/80 shadow-[0_4px_24px_rgba(24,24,27,0.04)]">
+<div class="space-y-4">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-sm text-zinc-700 italic leading-relaxed">
+                "Solusi custom web app mereka menyederhanakan alur kerja internal kami hingga 40%. Rasanya seperti memiliki in-house tech department yang super andal."
+              </p>
+</div>
+<div class="pt-6 mt-4 border-t border-zinc-100 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-emerald-50 text-secondary-dark flex items-center justify-center font-bold text-xs">
+                HP
+              </div>
+<div>
+<h4 class="font-headline text-sm font-bold text-primary">Hendra Pratama</h4>
+<p class="text-[11px] text-text-secondary">Direktur Operasional Logistik</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================================
+         9. CTA AKHIR (Closing Banner)
+         ========================================================================= -->
+<section class="w-full bg-bg-base py-24 lg:py-32">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="relative overflow-hidden rounded-3xl bg-zinc-900 text-white p-10 sm:p-14 md:p-20 shadow-[0_16px_48px_rgba(24,24,27,0.18)]">
+<!-- Subtle Emerald Ambient Glow -->
+<div class="absolute -top-32 -right-32 w-[420px] h-[420px] bg-secondary/20 blur-[110px] rounded-full pointer-events-none"></div>
+<div class="absolute -bottom-32 -left-32 w-[420px] h-[420px] bg-glow-blue/15 blur-[110px] rounded-full pointer-events-none"></div>
+<div class="relative z-10 max-w-3xl mx-auto text-center space-y-6">
+<div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/10 text-emerald-300 text-xs font-semibold">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span class="">Mulai Langkah Pertama</span>
+</div>
+<h2 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+              Siap Mewujudkan Proyek Digital Anda Bersama Lumi?
+            </h2>
+<p class="font-body text-base sm:text-lg text-zinc-300 max-w-2xl mx-auto leading-relaxed">
+              Konsultasikan kebutuhan aplikasi atau website Anda sekarang. Dapatkan estimasi transparan, arsitektur yang solid, dan diskusi konsep tanpa biaya.
+            </p>
+<div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 h-12 px-8 rounded-full bg-secondary text-white hover:bg-secondary-dark font-semibold text-sm transition-all shadow-[0_4px_24px_rgba(16,185,129,0.3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-focus-ring" href="https://wa.me/6281283950403?text=Halo%20Lumi%20Beta%20Works%2C%20saya%20ingin%20mulai%20diskusi%20soal%20project%20saya." rel="noopener noreferrer" target="_blank">
+<span class="">Mulai Project Sekarang</span>
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</a>
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-8 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-sm transition-all border border-white/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-focus-ring" href="mailto:hello@lumibetaworks.com">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+<span class="">Kirim Brief via Email</span>
+</a>
+</div>
+<!-- Guarantee Strip -->
+<div class="pt-6 flex flex-wrap items-center justify-center gap-y-2 gap-x-6 text-xs text-zinc-400">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">call</span>
+<span class="">WhatsApp: +62 812-8395-0403</span>
+</div>
+<span class="hidden sm:inline text-zinc-600">·</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">schedule</span>
+<span class="">Respon Rata-rata &lt; 30 Menit</span>
+</div>
+<span class="hidden sm:inline text-zinc-600">·</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">mail</span>
+<span class="">hello@lumibetaworks.com</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+<footer class="w-full bg-bg-subtle border-t border-border-hairline pt-16 pb-12">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-border-hairline">
+<!-- Col 1: Brand -->
+<div class="lg:col-span-5 space-y-4">
+<a class="inline-block" href="#">
+<img alt="Lumi Beta Works" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQ2EWsclWefx56vr77CaelrGv2cRNUYGWBhdXC8lpdxwRwtFIZG_tYG6G0PcFQIcRx79YRpWRcvu1Hslszh6EjbYjUQDGq4csm7Kji8vgNLH3kJ9-TuPjrsEDqfjQdEboOdVTU0FNh6NFyG1yXqfCzpb6cyHL_O5s32lsX6rMykHmYiqR4o0rnMoFytuNwl0h9tBdDml6sUQQ9q1ANq6VRlKHB4RWXWgoxuEqAnuifHB0SCQrFEyPNCKsZCD8VUE1-Ng">
+</a>
+<p class="text-sm text-text-secondary leading-relaxed max-w-sm">
+            High-credibility digital agency &amp; technology studio. Menghadirkan rekayasa perangkat lunak presisi, arsitektur modern, dan eksekusi desain berpusat pada manusia.
+          </p>
+<div class="flex items-center gap-3 pt-2">
+<a aria-label="GitHub" class="w-9 h-9 rounded-full bg-white border border-border-hairline flex items-center justify-center text-text-secondary hover:text-primary hover:border-zinc-300 transition-colors" href="https://github.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">code</span>
+</a>
+<a aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-white border border-border-hairline flex items-center justify-center text-text-secondary hover:text-primary hover:border-zinc-300 transition-colors" href="https://linkedin.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">business_center</span>
+</a>
+<a aria-label="Instagram" class="w-9 h-9 rounded-full bg-white border border-border-hairline flex items-center justify-center text-text-secondary hover:text-primary hover:border-zinc-300 transition-colors" href="https://instagram.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">photo_camera</span>
+</a>
+</div>
+</div>
+<!-- Col 2: Eksplorasi -->
+<div class="lg:col-span-2 lg:col-start-7 space-y-3">
+<h4 class="font-headline text-sm font-bold text-primary">Eksplorasi</h4>
+<ul class="space-y-2.5 text-xs text-text-secondary">
+<li class=""><a class="hover:text-primary transition-colors" href="#about">Tentang Kami</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#services">Layanan Digital</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#tech-stack">Tech Stack</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#portfolio">Portofolio</a></li>
+</ul>
+</div>
+<!-- Col 3: Penawaran -->
+<div class="lg:col-span-2 space-y-3">
+<h4 class="font-headline text-sm font-bold text-primary">Penawaran</h4>
+<ul class="space-y-2.5 text-xs text-text-secondary">
+<li class=""><a class="hover:text-primary transition-colors" href="#pricing">Paket &amp; Harga</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#pricelist">Katalog Pricelist</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#pricing">Custom Enterprise</a></li>
+</ul>
+</div>
+<!-- Col 4: Kontak -->
+<div class="lg:col-span-3 space-y-3">
+<h4 class="font-headline text-sm font-bold text-primary">Hubungi Studio</h4>
+<div class="space-y-2.5 text-xs">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">chat</span>
+<div>
+<p class="text-text-secondary">WhatsApp Official</p>
+<a class="font-medium text-primary hover:text-secondary-dark transition-colors" href="https://wa.me/6281283950403" rel="noopener noreferrer" target="_blank">+62 812-8395-0403</a>
+</div>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">mail</span>
+<div>
+<p class="text-text-secondary">Direct Inquiry</p>
+<a class="font-medium text-primary hover:text-secondary-dark transition-colors" href="mailto:hello@lumibetaworks.com">hello@lumibetaworks.com</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-text-secondary">
+<p class="">© 2026 Lumi Beta Works. All rights reserved.</p>
+<div class="flex items-center gap-6">
+<a class="hover:text-primary transition-colors" href="#privacy">Kebijakan Privasi</a>
+<a class="hover:text-primary transition-colors" href="#terms">Syarat &amp; Ketentuan</a>
+</div>
+</div>
+</div>
+</footer>
+
+
+</body></html>
