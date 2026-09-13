@@ -1,5 +1,11 @@
 import Image from "next/image";
-import type { Certification } from "@/data/techStack";
+
+interface Certification {
+  key: string;
+  name: string;
+  logo: string;
+  alt: string;
+}
 
 interface CertificationCardProps {
   certification: Certification;

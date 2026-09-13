@@ -3,14 +3,15 @@ import { CodeXml, ShieldCheck } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { TechStackGroupCard } from "@/components/TechStackGroupCard";
 import { CertificationCard } from "@/components/CertificationBadge";
-import { certifications } from "@/data/techStack";
 import { getTechStackGroups } from "@/lib/content/tech-stack";
+import { getCertifications } from "@/lib/content/certifications";
 
 export async function TechStack() {
   const t = await getTranslations("TechStack");
   const tCert = await getTranslations("Certifications");
   const locale = (await getLocale()) as "id" | "en";
   const groups = await getTechStackGroups(locale);
+  const certifications = await getCertifications();
 
   return (
     <section id="tech-stack" className="w-full border-b border-border/60 bg-background py-24 lg:py-32">
