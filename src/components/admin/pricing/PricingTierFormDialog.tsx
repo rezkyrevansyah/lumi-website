@@ -68,7 +68,7 @@ export function PricingTierFormDialog({ trigger, tierId, initial }: Props) {
                 Ditonjolkan
               </label>
               <label className="flex items-center gap-2 text-sm">
-                Variant CTA
+                Varian CTA
                 <select
                   value={form.ctaVariant}
                   onChange={(e) => setForm({ ...form, ctaVariant: e.target.value })}
