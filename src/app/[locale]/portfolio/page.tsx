@@ -4,7 +4,7 @@ import { ChevronRight, FolderKanban } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { SectionHeader } from "@/components/SectionHeader";
 import { PortfolioGallery } from "@/components/portfolio/PortfolioGallery";
-import { portfolioItems } from "@/data/portfolio";
+import { getPortfolioItems } from "@/lib/content/portfolio";
 
 type Props = PageProps<"/[locale]/portfolio">;
 
@@ -32,13 +32,7 @@ export default async function PortfolioPage({ params }: Props) {
     emptyState: t("emptyState"),
   };
 
-  const localizedItems = portfolioItems.map((item) => ({
-    slug: item.slug,
-    title: item.title,
-    category: item.category,
-    image: item.image,
-    description: item.description[locale as "id" | "en"] ?? item.description.id,
-  }));
+  const localizedItems = await getPortfolioItems(locale as "id" | "en");
 
   return (
     <section className="w-full bg-background py-16 lg:py-24">

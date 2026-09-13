@@ -1,29 +1,21 @@
-import { useTranslations, useLocale } from "next-intl";
+import { getTranslations, getLocale } from "next-intl/server";
 import { FolderKanban, ArrowRight } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { PortfolioCard } from "@/components/PortfolioCard";
 import { Button } from "@/components/Button";
-import { portfolioItems, type ServiceCategory } from "@/data/portfolio";
+import { getPortfolioItems } from "@/lib/content/portfolio";
 
-export function Portfolio() {
-  const t = useTranslations("Portfolio");
-  const locale = useLocale() as "id" | "en";
+export async function Portfolio() {
+  const t = await getTranslations("Portfolio");
+  const locale = (await getLocale()) as "id" | "en";
+  const allItems = await getPortfolioItems(locale);
+  const previewItems = allItems.filter((item) => item.featured).slice(0, 6);
 
-  const categoryLabels: Record<ServiceCategory, string> = {
+  const categoryLabels: Record<"web-app" | "uiux" | "qa", string> = {
     "web-app": t("categoryWebApp"),
     uiux: t("categoryUiux"),
     qa: t("categoryQa"),
   };
-
-  // Preview 6 featured items across all 3 capabilities
-  const previewItems = [
-    portfolioItems[0], // Athro Barbershop (web-app)
-    portfolioItems[12], // Primaya App Revamp (uiux)
-    portfolioItems[2], // BAZNAS Website (qa)
-    portfolioItems[1], // Bali Pass Website (web-app)
-    portfolioItems[14], // SAFTY (uiux)
-    portfolioItems[6], // EKRAF HUB (qa)
-  ];
 
   return (
     <section id="portfolio" className="w-full border-b border-border/60 bg-background py-24 lg:py-32">
@@ -45,7 +37,7 @@ export function Portfolio() {
               key={item.slug}
               title={item.title}
               category={categoryLabels[item.category]}
-              description={item.description[locale] ?? item.description.id}
+              description={item.description}
               image={item.image}
               priority={index === 0}
             />
@@ -67,4 +59,3 @@ export function Portfolio() {
     </section>
   );
 }
-

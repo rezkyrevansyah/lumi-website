@@ -1,17 +1,16 @@
-export type ServiceCategory = "web-app" | "uiux" | "qa";
+import { db } from "../src/db";
+import { portfolioItems } from "../src/db/schema";
 
-export interface PortfolioItem {
+// Snapshot of the formerly-hardcoded src/data/portfolio.ts content, inlined
+// here so this one-time migration script has no dependency on that file
+// (which Task 10 deletes once the DB-backed section is verified).
+const existing: {
   slug: string;
   title: string;
-  category: ServiceCategory;
+  category: "web-app" | "uiux" | "qa";
   image: string;
-  description: {
-    id: string;
-    en: string;
-  };
-}
-
-export const portfolioItems: PortfolioItem[] = [
+  description: { id: string; en: string };
+}[] = [
   {
     slug: "athro-barbershop",
     title: "Athro Barbershop",
@@ -193,3 +192,34 @@ export const portfolioItems: PortfolioItem[] = [
     },
   },
 ];
+
+const FEATURED_SLUGS = new Set([
+  "athro-barbershop",
+  "bali-pass-website",
+  "baznas-website",
+  "ekraf-hub",
+  "primaya-app-revamp",
+  "safty",
+]);
+
+async function main() {
+  const rows = existing.map((item, index) => ({
+    titleId: item.title,
+    titleEn: item.title,
+    descriptionId: item.description.id,
+    descriptionEn: item.description.en,
+    category: item.category,
+    imagePath: item.image,
+    featured: FEATURED_SLUGS.has(item.slug),
+    isPublished: true,
+    sortOrder: index,
+  }));
+  await db.insert(portfolioItems).values(rows);
+  console.log(`Seeded ${rows.length} portfolio items (${FEATURED_SLUGS.size} featured).`);
+  process.exit(0);
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

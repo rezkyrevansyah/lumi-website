@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import type { ServiceCategory } from "@/data/portfolio";
 import { PortfolioCard } from "@/components/PortfolioCard";
 
+type ServiceCategory = "web-app" | "uiux" | "qa";
 type FilterTab = "all" | ServiceCategory;
 
 export interface GalleryItem {
