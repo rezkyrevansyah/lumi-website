@@ -3,19 +3,17 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { Button } from "@/components/Button";
 import { buildWaLink } from "@/lib/whatsapp";
 
 const NAV_LINKS = [
-  { key: "about", href: "/#about" },
-  { key: "services", href: "/#services" },
-  { key: "techStack", href: "/#tech-stack" },
-  { key: "portfolio", href: "/#portfolio" },
-  { key: "pricing", href: "/#pricing" },
+  { key: "portfolio", href: "/portfolio" },
+  { key: "services", href: "/services" },
   { key: "pricelist", href: "/pricelist" },
+  { key: "about", href: "/about" },
 ] as const;
 
 const HERO_WA_MESSAGE =
@@ -63,7 +61,6 @@ export function Navbar() {
             <Button
               href={buildWaLink(HERO_WA_MESSAGE)}
               external
-              icon={<ArrowRight className="h-[18px] w-[18px]" />}
               track={{ event: "wa_click", section: "hero" }}
             >
               {t("cta")}
@@ -100,7 +97,6 @@ export function Navbar() {
             <Button
               href={buildWaLink(HERO_WA_MESSAGE)}
               external
-              icon={<ArrowRight className="h-[18px] w-[18px]" />}
               className="flex-1"
               track={{ event: "wa_click", section: "hero" }}
             >

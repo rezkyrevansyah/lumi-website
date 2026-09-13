@@ -33,15 +33,25 @@ export function PricingCard({
 }: PricingCardProps) {
   return (
     <div
-      className={`relative flex h-full flex-col justify-between rounded-3xl p-8 transition-all hover:-translate-y-1 ${
+      className={`relative flex h-full flex-col justify-between rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1.5 ${
         highlighted
-          ? "border-2 border-accent-500 bg-white shadow-[0_12px_40px_rgba(16,185,129,0.12)]"
-          : "border border-zinc-200 bg-white shadow-card hover:shadow-card-hover"
+          ? "border-2 border-accent-500 bg-white shadow-[0_16px_48px_rgba(16,185,129,0.14)]"
+          : "border border-zinc-200/80 bg-white shadow-card hover:shadow-card-hover hover:border-zinc-300"
       }`}
     >
+      {highlighted && (
+        <div
+          className="pointer-events-none absolute -inset-1 -z-10 rounded-3xl bg-gradient-to-b from-accent-500/15 via-accent-500/5 to-transparent blur-md"
+          aria-hidden="true"
+        />
+      )}
       {badge && (
-        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-accent-500 px-4 py-1 text-xs font-bold tracking-wide text-white shadow-sm">
-          {badge}
+        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-accent-500 px-4 py-1 text-xs font-bold tracking-wide text-white shadow-sm">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+          </span>
+          <span>{badge}</span>
         </div>
       )}
       <div className="space-y-6 pt-2">

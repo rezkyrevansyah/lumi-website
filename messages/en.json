@@ -4,7 +4,7 @@
     "description": "Lumi Beta Works helps businesses of every size build fast, scalable websites and apps that hit the mark."
   },
   "Nav": {
-    "about": "About Us",
+    "about": "About",
     "services": "Services",
     "techStack": "Tech Stack",
     "portfolio": "Portfolio",
@@ -20,9 +20,9 @@
     "subtitle": "Lumi Beta Works helps your business — from a simple landing page to a fully custom system — built by a team that gets both the tech and your goals.",
     "ctaPrimary": "Free Consultation",
     "ctaSecondary": "View Packages",
-    "statClients": "Active Clients",
-    "statProjects": "Projects Delivered",
-    "statSatisfaction": "Client Satisfaction"
+    "statOrders": "Orders",
+    "statClients": "Clients",
+    "statRehired": "Repeat Hires"
   },
   "TrustedBy": {
     "heading": "Trusted by businesses and institutions across industries"
@@ -63,9 +63,11 @@
     "groupCloudDevops": "Cloud & DevOps"
   },
   "Certifications": {
-    "eyebrow": "International Standard",
-    "title": "Backed by Industry Certifications & Standards",
-    "body": "Our engineers hold globally recognized, official qualifications."
+    "eyebrow": "Industry Standards & Certifications",
+    "title": "Proven Qualifications from Global Tech Leaders",
+    "body": "Every software solution and system architecture is built by engineers officially certified by premier programs from Google, Bangkit, Laskar AI, and Dicoding.",
+    "verifiedBadge": "Verified Certification",
+    "trustPill": "Global Industry Standards"
   },
   "Pricing": {
     "eyebrow": "Transparent & Flexible",
@@ -109,17 +111,29 @@
   "Portfolio": {
     "eyebrow": "Selected Work",
     "title": "Portfolio & Case Studies",
-    "subtitle": "A few projects we've worked on.",
-    "categoryWebDev": "Website & App Dev",
+    "subtitle": "Real-world projects built with intent and technical rigor.",
+    "viewMore": "View All Projects",
+    "categoryWebApp": "Web & App Development",
     "categoryUiux": "UI/UX Design",
-    "categoryQa": "QA & Testing",
-    "categoryConsulting": "Consulting"
+    "categoryQa": "QA Engineering"
+  },
+  "PortfolioPage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbCurrent": "Portfolio",
+    "eyebrow": "Our Work",
+    "title": "Project Portfolio",
+    "subtitle": "Real digital solutions engineered with intent, clean architecture, and proven results.",
+    "filterAll": "All",
+    "categoryWebApp": "Web & App Development",
+    "categoryUiux": "UI/UX Design",
+    "categoryQa": "QA Engineering",
+    "emptyState": "No projects found in this category."
   },
   "Testimonials": {
     "eyebrow": "Client Words",
-    "title": "Testimonials",
-    "comingSoonTitle": "Coming Soon",
-    "comingSoonBody": "Stories from clients we've worked with."
+    "title": "Stories from Those Who Grow With Us",
+    "subtitle": "Direct experiences from business owners and MSMEs who trusted Lumi Beta Works with their technology solutions.",
+    "ratingBadge": "5.0 Client Satisfaction Rating"
   },
   "FinalCta": {
     "title": "Ready to Start Your Project?",
@@ -141,5 +155,73 @@
     "breadcrumbHome": "Home",
     "breadcrumbCurrent": "Pricelist",
     "ctaGeneric": "Contact Us"
+  },
+  "ServicesPage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbCurrent": "Services",
+    "eyebrow": "Our Services",
+    "title": "Targeted Digital Engineering Solutions",
+    "subtitle": "Software engineering from planning to deployment, focused on genuine business needs without unnecessary complexity.",
+    "service1Title": "Web & App Development",
+    "service1Desc": "Fast landing pages, internal dashboards, SaaS platforms, and custom web applications powered by Next.js and cloud infrastructure.",
+    "service1Deliverables": "Landing Pages, Custom Web Apps, Admin Dashboards, API & Database Integrations",
+    "service2Title": "UI/UX Design",
+    "service2Desc": "Intuitive and functional digital interfaces. User journeys mapped thoroughly from user research to production-ready Figma assets.",
+    "service2Deliverables": "Wireframing, High-Fidelity UI, Interactive Prototypes, Comprehensive Design Systems",
+    "service3Title": "QA Engineering & Testing",
+    "service3Desc": "Rigorous manual and automated testing to ensure your software is stable, resilient, and virtually bug-free before launch.",
+    "service3Deliverables": "Manual Functional Testing, Test Automation (E2E), API Testing, Performance & Security Audits",
+    "service4Title": "Technical Architecture & Consulting",
+    "service4Desc": "Clear technical consulting to choose the right stack, optimize codebases, or audit system readiness before scaling up.",
+    "service4Deliverables": "Tech Stack Assessment, Cloud Architecture, Refactoring Strategy, Security & Performance Review",
+    "workflowEyebrow": "Workflow",
+    "workflowTitle": "Structured Execution Process",
+    "workflowSubtitle": "A 4-step framework ensuring every project milestone is delivered on schedule and to specification.",
+    "step1Title": "1. Discovery & Scope",
+    "step1Desc": "Deep-dive discussions to understand product objectives, target users, and technical constraints.",
+    "step2Title": "2. Architecture & Design",
+    "step2Desc": "Drafting UI/UX wireframes, database schema, and project delivery milestones.",
+    "step3Title": "3. Development & Testing",
+    "step3Desc": "Clean code implementation backed by automated testing to verify system reliability.",
+    "step4Title": "4. Deployment & Handover",
+    "step4Desc": "Production launch, complete system documentation, and post-release warranty support.",
+    "ctaTitle": "Ready to Work Together?",
+    "ctaSubtitle": "Explore package options on our pricelist page or discuss your ideas directly with our engineering team.",
+    "ctaPricelist": "View Packages & Pricing",
+    "ctaWa": "Chat on WhatsApp"
+  },
+  "AboutPage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbCurrent": "About",
+    "eyebrow": "About Us",
+    "title": "Where Ideas Become Real Products",
+    "subtitle": "From a freelancer daring to experiment into a dedicated technology studio ready to engineer your digital solutions.",
+    "storyBadge": "Brand Philosophy",
+    "storyTitle": "Lumi Beta Works",
+    "storyP1": "Lumi Beta Works started from a personal freelancer with a dream to grow by building an independent tech business. In our early days, most of our clients were MSMEs with remarkable enthusiasm for digital transformation.",
+    "storyP2": "Even though we now handle corporate and enterprise projects, we will never forget our roots. We continue providing accessible, dependable, and high-impact technology solutions for MSMEs.",
+    "pillarLumiTitle": "Lumi",
+    "pillarLumiDesc": "The light of an idea. The spark behind every digital innovation.",
+    "pillarBetaTitle": "Beta",
+    "pillarBetaDesc": "The courage to experiment, test, and relentlessly refine solutions.",
+    "pillarWorksTitle": "Works",
+    "pillarWorksDesc": "Turning ideas into real, functional, and high-value digital products.",
+    "valuesEyebrow": "Core Values",
+    "valuesTitle": "The Standards We Uphold",
+    "val1Title": "Uncompromising Engineering",
+    "val1Desc": "Clean code, modern Next.js/Cloud architectures, and robust security practices for maintainable systems.",
+    "val2Title": "Transparent Communication",
+    "val2Desc": "Direct discussions without red tape. Regular sprint updates, open task tracking, and proactive reports.",
+    "val3Title": "Real Business Impact",
+    "val3Desc": "More than just clean visuals: systems engineered to streamline operations, cut overhead, and drive conversions.",
+    "statsEyebrow": "Track Record",
+    "statsTitle": "Measurable Results",
+    "statOrders": "Orders Delivered",
+    "statClients": "Clients Served",
+    "statRehired": "Repeat Clients",
+    "statRating": "Satisfaction Rating",
+    "ctaTitle": "Have an Idea or Need Technical Guidance?",
+    "ctaSubtitle": "Speak directly with our engineering team with no upfront obligation.",
+    "ctaButton": "Consult on WhatsApp"
   }
 }

@@ -1,6 +1,8 @@
 import { useTranslations } from "next-intl";
-import { ArrowRight, Wallet } from "lucide-react";
+import { Wallet } from "lucide-react";
 import { Button } from "@/components/Button";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { RollingNumber } from "@/components/RollingNumber";
 import { buildWaLink } from "@/lib/whatsapp";
 
 const HERO_WA_MESSAGE =
@@ -36,7 +38,8 @@ export function Hero() {
             <Button
               href={buildWaLink(HERO_WA_MESSAGE)}
               external
-              icon={<ArrowRight className="h-[18px] w-[18px]" />}
+              icon={<WhatsAppIcon className="h-[18px] w-[18px]" />}
+              iconPosition="start"
               track={{ event: "wa_click", section: "hero" }}
               className="w-full sm:w-auto"
             >
@@ -57,7 +60,24 @@ export function Hero() {
           <div className="mt-16 grid w-full max-w-2xl grid-cols-3 divide-x divide-zinc-200 border-t border-border/80 pt-10">
             <div className="flex flex-col items-center px-4">
               <div className="flex items-baseline gap-0.5">
-                <span className="font-display text-3xl font-extrabold text-text-primary sm:text-4xl">15</span>
+                <RollingNumber
+                  value={36}
+                  duration={1.5}
+                  className="font-display text-3xl font-extrabold text-text-primary sm:text-4xl"
+                />
+                <span className="font-display text-2xl font-bold text-accent-500">+</span>
+              </div>
+              <span className="mt-1 text-xs font-medium text-text-secondary sm:text-sm">
+                {t("statOrders")}
+              </span>
+            </div>
+            <div className="flex flex-col items-center px-4">
+              <div className="flex items-baseline gap-0.5">
+                <RollingNumber
+                  value={24}
+                  duration={1.6}
+                  className="font-display text-3xl font-extrabold text-text-primary sm:text-4xl"
+                />
                 <span className="font-display text-2xl font-bold text-accent-500">+</span>
               </div>
               <span className="mt-1 text-xs font-medium text-text-secondary sm:text-sm">
@@ -66,20 +86,15 @@ export function Hero() {
             </div>
             <div className="flex flex-col items-center px-4">
               <div className="flex items-baseline gap-0.5">
-                <span className="font-display text-3xl font-extrabold text-text-primary sm:text-4xl">18</span>
+                <RollingNumber
+                  value={13}
+                  duration={1.8}
+                  className="font-display text-3xl font-extrabold text-text-primary sm:text-4xl"
+                />
                 <span className="font-display text-2xl font-bold text-accent-500">+</span>
               </div>
               <span className="mt-1 text-xs font-medium text-text-secondary sm:text-sm">
-                {t("statProjects")}
-              </span>
-            </div>
-            <div className="flex flex-col items-center px-4">
-              <div className="flex items-baseline gap-0.5">
-                <span className="font-display text-3xl font-extrabold text-text-primary sm:text-4xl">99.9</span>
-                <span className="font-display text-xl font-bold text-accent-500">%</span>
-              </div>
-              <span className="mt-1 text-xs font-medium text-text-secondary sm:text-sm">
-                {t("statSatisfaction")}
+                {t("statRehired")}
               </span>
             </div>
           </div>

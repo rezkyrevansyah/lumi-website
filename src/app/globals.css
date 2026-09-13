@@ -74,31 +74,6 @@ body {
   scrollbar-width: none;
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 35s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
-    animation-play-state: paused;
-  }
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
 .measure-paragraph {
   max-width: 65ch;
 }
@@ -107,3 +82,55 @@ body {
   outline: 1px solid oklch(0 0 0 / 0.1);
   outline-offset: -1px;
 }
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(calc(-100% - var(--marquee-gap, 2.5rem)), 0, 0);
+  }
+}
+
+@keyframes marquee-vertical {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, calc(-100% - var(--marquee-gap, 2.5rem)), 0);
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 50s) linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--marquee-duration, 50s) linear infinite;
+  will-change: transform;
+}
+
+@keyframes scroll-vertical {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+.animate-scroll-vertical {
+  animation: scroll-vertical var(--scroll-duration, 24s) linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-vertical,
+  .animate-scroll-vertical {
+    animation-play-state: paused !important;
+  }
+}
+
+

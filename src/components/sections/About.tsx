@@ -1,6 +1,8 @@
 import { useTranslations } from "next-intl";
-import { Users, Terminal, MessagesSquare, TrendingUp, MessageCircle } from "lucide-react";
+import { Users, Terminal, MessagesSquare, TrendingUp } from "lucide-react";
 import { Button } from "@/components/Button";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { SpotlightCard } from "@/components/SpotlightCard";
 import { buildWaLink } from "@/lib/whatsapp";
 
 const ABOUT_WA_MESSAGE =
@@ -38,7 +40,7 @@ export function About() {
                 href={buildWaLink(ABOUT_WA_MESSAGE)}
                 external
                 variant="secondary"
-                icon={<MessageCircle className="h-[18px] w-[18px]" />}
+                icon={<WhatsAppIcon className="h-[18px] w-[18px]" />}
                 iconPosition="start"
                 track={{ event: "wa_click", section: "about" }}
               >
@@ -49,20 +51,22 @@ export function About() {
 
           <div className="space-y-4 lg:col-span-6">
             {pillars.map((pillar) => (
-              <div
+              <SpotlightCard
                 key={pillar.title}
-                className="rounded-2xl border border-zinc-100 bg-background-subtle p-6 shadow-[0_4px_24px_rgba(24,24,27,0.04)] transition-all hover:-translate-y-0.5 hover:shadow-card-hover sm:p-7"
+                className="p-6 shadow-[0_4px_24px_rgba(24,24,27,0.04)] sm:p-7"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent-50 text-accent-800">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent-50 text-accent-800 transition-all duration-300 group-hover:scale-105 group-hover:bg-accent-500 group-hover:text-white">
                     <pillar.icon className="h-6 w-6" aria-hidden="true" />
                   </div>
                   <div className="space-y-1">
-                    <h3 className="font-display text-lg font-bold text-text-primary">{pillar.title}</h3>
+                    <h3 className="font-display text-lg font-bold text-text-primary transition-colors group-hover:text-accent-800">
+                      {pillar.title}
+                    </h3>
                     <p className="text-sm leading-relaxed text-text-secondary">{pillar.body}</p>
                   </div>
                 </div>
-              </div>
+              </SpotlightCard>
             ))}
           </div>
         </div>

@@ -1,7 +1,8 @@
 import Image from "next/image";
-import { MessageCircle, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { buildWaLink } from "@/lib/whatsapp";
 
 const FOOTER_WA_MESSAGE =
@@ -33,17 +34,17 @@ export function Footer() {
         <div className="space-y-3">
           <h3 className="text-sm font-semibold text-text-primary">{t("navHeading")}</h3>
           <nav className="flex flex-col gap-2 text-sm text-text-secondary">
-            <Link href="/#about" className="transition-colors hover:text-text-primary">
-              {nav("about")}
-            </Link>
-            <Link href="/#services" className="transition-colors hover:text-text-primary">
-              {nav("services")}
-            </Link>
-            <Link href="/#portfolio" className="transition-colors hover:text-text-primary">
+            <Link href="/portfolio" className="transition-colors hover:text-text-primary">
               {nav("portfolio")}
+            </Link>
+            <Link href="/services" className="transition-colors hover:text-text-primary">
+              {nav("services")}
             </Link>
             <Link href="/pricelist" className="transition-colors hover:text-text-primary">
               {nav("pricelist")}
+            </Link>
+            <Link href="/about" className="transition-colors hover:text-text-primary">
+              {nav("about")}
             </Link>
           </nav>
         </div>
@@ -57,7 +58,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 transition-colors hover:text-text-primary"
             >
-              <MessageCircle className="h-4 w-4 text-accent-500" aria-hidden="true" />
+              <WhatsAppIcon className="h-4 w-4 text-accent-500" />
               <span>+62 812-8395-0403</span>
             </a>
             <a

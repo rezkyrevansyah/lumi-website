@@ -4,8 +4,8 @@
     "description": "Lumi Beta Works membantu UMKM hingga enterprise membangun website dan aplikasi cepat, skalabel, dan tepat sasaran."
   },
   "Nav": {
-    "about": "Tentang Kami",
-    "services": "Layanan",
+    "about": "About",
+    "services": "Services",
     "techStack": "Tech Stack",
     "portfolio": "Portofolio",
     "pricing": "Paket & Harga",
@@ -20,9 +20,9 @@
     "subtitle": "Lumi Beta Works bantu bisnis kamu — dari landing page sederhana sampai sistem custom — dikerjakan tim yang paham teknis dan ngerti kebutuhan kamu.",
     "ctaPrimary": "Konsultasi Gratis",
     "ctaSecondary": "Lihat Paket",
-    "statClients": "Klien Aktif",
-    "statProjects": "Proyek Sukses",
-    "statSatisfaction": "Kepuasan Klien"
+    "statOrders": "Pesanan",
+    "statClients": "Pelanggan",
+    "statRehired": "Dipekerjakan ulang"
   },
   "TrustedBy": {
     "heading": "Dipercaya oleh bisnis dan institusi dari berbagai sektor"
@@ -63,9 +63,11 @@
     "groupCloudDevops": "Cloud & DevOps"
   },
   "Certifications": {
-    "eyebrow": "Standar Internasional",
-    "title": "Distandarkan oleh Sertifikasi & Standar Industri",
-    "body": "Insinyur kami memiliki kualifikasi bersertifikasi resmi global."
+    "eyebrow": "Standar & Sertifikasi Industri",
+    "title": "Keahlian Teruji dari Pemimpin Teknologi Global",
+    "body": "Setiap solusi rekayasa dan arsitektur kode dibangun oleh talenta yang telah tersertifikasi resmi dalam program unggulan Google, Bangkit, Laskar AI, dan Dicoding.",
+    "verifiedBadge": "Sertifikasi Terverifikasi",
+    "trustPill": "Standar Industri Global"
   },
   "Pricing": {
     "eyebrow": "Transparan & Fleksibel",
@@ -108,18 +110,30 @@
   },
   "Portfolio": {
     "eyebrow": "Karya Terpilih",
-    "title": "Portofolio & Studi Kasus",
-    "subtitle": "Beberapa proyek yang sudah kita kerjakan.",
-    "categoryWebDev": "Website & App Dev",
+    "title": "Portofolio & Hasil Kerja",
+    "subtitle": "Beberapa proyek nyata yang telah kami selesaikan.",
+    "viewMore": "Lihat Portofolio Lengkap",
+    "categoryWebApp": "Web & App Development",
     "categoryUiux": "UI/UX Design",
-    "categoryQa": "QA & Testing",
-    "categoryConsulting": "Consulting"
+    "categoryQa": "QA Engineering"
+  },
+  "PortfolioPage": {
+    "breadcrumbHome": "Beranda",
+    "breadcrumbCurrent": "Portofolio",
+    "eyebrow": "Karya & Hasil Kerja",
+    "title": "Portofolio Proyek",
+    "subtitle": "Solusi digital nyata yang kami bangun dengan pendekatan teknis matang dan berorientasi hasil.",
+    "filterAll": "Semua",
+    "categoryWebApp": "Web & App Development",
+    "categoryUiux": "UI/UX Design",
+    "categoryQa": "QA Engineering",
+    "emptyState": "Belum ada proyek dalam kategori ini."
   },
   "Testimonials": {
     "eyebrow": "Kata Klien",
-    "title": "Testimoni",
-    "comingSoonTitle": "Segera Hadir",
-    "comingSoonBody": "Cerita dari klien yang udah kerja bareng kita."
+    "title": "Cerita dari Mereka yang Bertumbuh Bersama Kami",
+    "subtitle": "Pengalaman nyata dari pemilik bisnis dan UMKM yang mempercayakan solusi teknologi mereka kepada Lumi Beta Works.",
+    "ratingBadge": "5.0 Rating Kepuasan Klien"
   },
   "FinalCta": {
     "title": "Siap Mulai Proyek Kamu?",
@@ -141,5 +155,73 @@
     "breadcrumbHome": "Beranda",
     "breadcrumbCurrent": "Pricelist",
     "ctaGeneric": "Hubungi Kami"
+  },
+  "ServicesPage": {
+    "breadcrumbHome": "Beranda",
+    "breadcrumbCurrent": "Services",
+    "eyebrow": "Layanan Kami",
+    "title": "Solusi Rekayasa Digital yang Tepat Sasaran",
+    "subtitle": "Pengembangan teknologi dari perencanaan sampai rilis, fokus pada kebutuhan nyata bisnis tanpa proses berbelit.",
+    "service1Title": "Web & App Development",
+    "service1Desc": "Membangun landing page cepat, dashboard internal, platform SaaS, hingga aplikasi web kustom berbasis Next.js dan cloud.",
+    "service1Deliverables": "Landing Page, Web App Kustom, Dashboard & Admin, Integrasi API & Database",
+    "service2Title": "UI/UX Design",
+    "service2Desc": "Merancang antarmuka yang intuitif dan fungsional. Alur pengguna dipetakan rapi dari riset hingga deliverable Figma siap koding.",
+    "service2Deliverables": "Wireframing, High-Fidelity UI, Interactive Prototype, Design System Komprehensif",
+    "service3Title": "QA Engineering & Testing",
+    "service3Desc": "Pengujian menyeluruh secara manual maupun otomatis untuk memastikan produk stabil, aman, dan minim bug sebelum ke tangan pengguna.",
+    "service3Deliverables": "Manual Functional Testing, Automation Test (E2E), API Testing, Audit Performa & Keamanan",
+    "service4Title": "Technical Architecture & Consulting",
+    "service4Desc": "Konsultasi teknis untuk menentukan tech stack, merapikan struktur kode, atau mengaudit kesiapan sistem sebelum skala besar.",
+    "service4Deliverables": "Tech Stack Review, Arsitektur Cloud, Refactoring Strategy, Security & Performance Assessment",
+    "workflowEyebrow": "Cara Kerja",
+    "workflowTitle": "Alur Pengerjaan yang Terukur",
+    "workflowSubtitle": "4 tahap terstruktur untuk memastikan setiap milestone selesai tepat waktu dan sesuai spesifikasi teknis.",
+    "step1Title": "1. Analisis Kebutuhan",
+    "step1Desc": "Diskusi mendalam untuk memahami tujuan produk, target pengguna, dan batasan teknis.",
+    "step2Title": "2. Perancangan & Arsitektur",
+    "step2Desc": "Menyusun sketsa UI/UX, arsitektur data, dan jadwal milestone pengerjaan.",
+    "step3Title": "3. Pengerjaan & Pengujian",
+    "step3Desc": "Koding dengan standar tinggi dan testing berkala untuk memastikan stabilitas sistem.",
+    "step4Title": "4. Deployment & Handover",
+    "step4Desc": "Peluncuran ke production, dokumentasi penggunaan, dan garansi pasca rilis.",
+    "ctaTitle": "Tertarik Bekerja Sama?",
+    "ctaSubtitle": "Pilih paket yang sesuai kebutuhan Anda di halaman pricelist, atau konsultasikan langsung ide Anda bersama kami.",
+    "ctaPricelist": "Lihat Daftar Harga",
+    "ctaWa": "Konsultasi di WhatsApp"
+  },
+  "AboutPage": {
+    "breadcrumbHome": "Beranda",
+    "breadcrumbCurrent": "About",
+    "eyebrow": "Tentang Kami",
+    "title": "Tempat Ide Menjadi Produk Nyata",
+    "subtitle": "Dari freelancer yang berani bereksperimen hingga studio teknologi yang siap mengeksekusi kebutuhan digital Anda.",
+    "storyBadge": "Filosofi Brand",
+    "storyTitle": "Lumi Beta Works",
+    "storyP1": "Lumi Beta Works bermula dari seorang freelancer dengan mimpi berkembang membangun bisnis teknologi sendiri. Di masa awal, sebagian besar klien kami adalah pelaku UMKM dengan antusiasme luar biasa untuk bertransformasi digital.",
+    "storyP2": "Meskipun kini kami menerima klien korporasi dan skala enterprise, kami tidak pernah melupakan UMKM. Kami terus menyediakan solusi bisnis teknologi yang terjangkau, kokoh, dan aplikatif.",
+    "pillarLumiTitle": "Lumi",
+    "pillarLumiDesc": "Cahaya dari sebuah ide. Titik awal lahirnya setiap inovasi digital.",
+    "pillarBetaTitle": "Beta",
+    "pillarBetaDesc": "Keberanian untuk bereksperimen, menguji, dan menyempurnakan solusi.",
+    "pillarWorksTitle": "Works",
+    "pillarWorksDesc": "Mengeksekusi ide menjadi produk nyata yang bernilai bisnis dan handal.",
+    "valuesEyebrow": "Prinsip Kerja",
+    "valuesTitle": "Standar yang Kami Pegang Teguh",
+    "val1Title": "Engineering Tanpa Kompromi",
+    "val1Desc": "Clean code, arsitektur Next.js/Cloud modern, dan implementasi keamanan teruji untuk sistem yang mudah dirawat jangka panjang.",
+    "val2Title": "Komunikasi Terbuka & Sigap",
+    "val2Desc": "Diskusi langsung tanpa birokrasi berbelit. Sprint berkala, tracking pekerjaan terbuka, dan update status proaktif.",
+    "val3Title": "Berorientasi Hasil Nyata",
+    "val3Desc": "Bukan sekadar tampilan menarik, tapi sistem yang efektif membantu operasional, menekan biaya, dan menaikkan konversi.",
+    "statsEyebrow": "Rekam Jejak",
+    "statsTitle": "Pencapaian Nyata",
+    "statOrders": "Pesanan Selesai",
+    "statClients": "Klien Terlayani",
+    "statRehired": "Dipekerjakan Ulang",
+    "statRating": "Rating Kepuasan",
+    "ctaTitle": "Punya Ide atau Butuh Solusi Teknis?",
+    "ctaSubtitle": "Diskusikan langsung kebutuhan Anda bersama tim kami tanpa komitmen awal.",
+    "ctaButton": "Konsultasi di WhatsApp"
   }
 }

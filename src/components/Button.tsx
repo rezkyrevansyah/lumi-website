@@ -36,7 +36,7 @@ export function Button({
   children,
   variant = "primary",
   icon,
-  iconPosition = "end",
+  iconPosition = "start",
   external = false,
   className = "",
   track,

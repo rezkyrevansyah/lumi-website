@@ -24,14 +24,34 @@ export const techStackGroups: TechStackGroup[] = [
 
 export interface Certification {
   key: string;
-  icon: "cloud" | "cloud-check" | "refresh-cw" | "bug" | "database";
-  label: string;
+  name: string;
+  logo: string;
+  alt: string;
 }
 
 export const certifications: Certification[] = [
-  { key: "aws", icon: "cloud", label: "AWS Certified" },
-  { key: "gcp", icon: "cloud-check", label: "Google Cloud" },
-  { key: "scrum", icon: "refresh-cw", label: "Scrum Master" },
-  { key: "istqb", icon: "bug", label: "ISTQB QA" },
-  { key: "oracle", icon: "database", label: "Oracle Cert" },
+  {
+    key: "google",
+    name: "Google",
+    logo: "/certificate/4-optimized.png",
+    alt: "Google",
+  },
+  {
+    key: "bangkit",
+    name: "Bangkit Academy",
+    logo: "/certificate/2-optimized.png",
+    alt: "Bangkit Academy (Google, GoTo, Traveloka)",
+  },
+  {
+    key: "laskar-ai",
+    name: "Laskar AI",
+    logo: "/certificate/3-light-bg.png",
+    alt: "Laskar AI (Indosat, Lintasarta, NVIDIA, Dicoding)",
+  },
+  {
+    key: "dicoding",
+    name: "Dicoding Indonesia",
+    logo: "/certificate/1-optimized.png",
+    alt: "Dicoding Indonesia",
+  },
 ];
