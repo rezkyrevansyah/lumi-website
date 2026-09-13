@@ -850,7 +850,7 @@ Using the Playwright MCP browser tool (or manual browser check): start `npm run 
 
 - [ ] **Step 3: Admin walkthrough**
 
-Log into `/admin`, confirm the sidebar shows all 7 links (Dashboard, Teks Statis, Portfolio, Paket & Harga, Tech Stack, Sertifikasi, Client Logo, Testimoni) even though only "Teks Statis" has working pages so far — the rest will 404 until Tasks 8–13 land, which is expected at this checkpoint.
+Log into `/admin`, confirm the sidebar shows all 7 links (Dasbor, Teks Statis, Portfolio, Paket & Harga, Teknologi, Sertifikasi, Logo Klien, Testimoni — corrected to Indonesian during Task 3's review) even though only "Teks Statis" has working pages so far — the rest will 404 until Tasks 8–13 land, which is expected at this checkpoint.
 
 - [ ] **Step 4: Commit if anything was fixed**
 
