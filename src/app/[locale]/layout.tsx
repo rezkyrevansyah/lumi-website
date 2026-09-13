@@ -21,7 +21,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://lumibetaworks.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.lumibetaworks.com";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
