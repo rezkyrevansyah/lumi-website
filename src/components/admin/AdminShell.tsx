@@ -2,13 +2,13 @@ import Link from "next/link";
 import { logout } from "@/actions/admin/auth";
 
 const NAV = [
-  { href: "/admin", label: "Dashboard" },
+  { href: "/admin", label: "Dasbor" },
   { href: "/admin/translations", label: "Teks Statis" },
   { href: "/admin/portfolio", label: "Portfolio" },
   { href: "/admin/pricing", label: "Paket & Harga" },
-  { href: "/admin/tech-stack", label: "Tech Stack" },
+  { href: "/admin/tech-stack", label: "Teknologi" },
   { href: "/admin/certifications", label: "Sertifikasi" },
-  { href: "/admin/client-logos", label: "Client Logo" },
+  { href: "/admin/client-logos", label: "Logo Klien" },
   { href: "/admin/testimonials", label: "Testimoni" },
 ];
 
