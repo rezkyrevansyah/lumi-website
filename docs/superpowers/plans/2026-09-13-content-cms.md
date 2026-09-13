@@ -1468,7 +1468,7 @@ export function ClientLogoFormDialog({ trigger, initial }: Props) {
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-semibold text-zinc-500">Alt Text (nama klien)</label>
+              <label className="mb-1 block text-xs font-semibold text-zinc-500">Teks Alternatif (nama klien)</label>
               <input
                 value={form.altText}
                 onChange={(e) => setForm({ ...form, altText: e.target.value })}
@@ -2582,7 +2582,7 @@ export function CertificationFormDialog({ trigger, initial }: Props) {
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-semibold text-zinc-500">Alt Text</label>
+              <label className="mb-1 block text-xs font-semibold text-zinc-500">Teks Alternatif</label>
               <input
                 value={form.altText}
                 onChange={(e) => setForm({ ...form, altText: e.target.value })}
