@@ -1161,14 +1161,14 @@ export function TestimonialFormDialog({ trigger, initial }: Props) {
             />
             <div className="grid grid-cols-2 gap-3">
               <input
-                placeholder="Role (ID)"
+                placeholder="Peran (ID)"
                 value={form.roleId}
                 onChange={(e) => setForm({ ...form, roleId: e.target.value })}
                 required
                 className="rounded-lg border border-zinc-300 px-3 py-2 text-sm"
               />
               <input
-                placeholder="Role (EN)"
+                placeholder="Peran (EN)"
                 value={form.roleEn}
                 onChange={(e) => setForm({ ...form, roleEn: e.target.value })}
                 required
@@ -1176,7 +1176,7 @@ export function TestimonialFormDialog({ trigger, initial }: Props) {
               />
             </div>
             <textarea
-              placeholder="Quote (bahasa asli klien, tidak diterjemahkan)"
+              placeholder="Kutipan (bahasa asli klien, tidak diterjemahkan)"
               value={form.quote}
               onChange={(e) => setForm({ ...form, quote: e.target.value })}
               required
@@ -1185,7 +1185,7 @@ export function TestimonialFormDialog({ trigger, initial }: Props) {
             />
             <div className="flex items-center gap-4">
               <label className="flex items-center gap-2 text-sm">
-                Rating
+                Rating (1-5)
                 <input
                   type="number"
                   min={1}
@@ -1201,7 +1201,7 @@ export function TestimonialFormDialog({ trigger, initial }: Props) {
                   checked={form.featured}
                   onChange={(e) => setForm({ ...form, featured: e.target.checked })}
                 />
-                Featured (kartu besar)
+                Unggulan (kartu besar)
               </label>
             </div>
             <div className="flex justify-end gap-2 pt-2">
@@ -1953,7 +1953,7 @@ export function PortfolioFormDialog({ trigger, initial }: Props) {
                   checked={form.featured}
                   onChange={(e) => setForm({ ...form, featured: e.target.checked })}
                 />
-                Featured (tampil di preview homepage)
+                Unggulan (tampil di preview homepage)
               </label>
             </div>
             <div className="flex justify-end gap-2 pt-2">
@@ -3092,7 +3092,7 @@ export function PricingTierList({ tiers, features }: { tiers: Tier[]; features: 
               className="rounded-lg border border-zinc-300 px-2 py-1 text-xs"
             />
             <input
-              placeholder="Feature (EN)"
+              placeholder="Fitur baru (EN)"
               value={newFeature[tier.id]?.en ?? ""}
               onChange={(e) => setNewFeature({ ...newFeature, [tier.id]: { id: newFeature[tier.id]?.id ?? "", en: e.target.value } })}
               className="rounded-lg border border-zinc-300 px-2 py-1 text-xs"
