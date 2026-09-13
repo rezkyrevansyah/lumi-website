@@ -25,8 +25,8 @@ export default function AboutIntro() {
                 <Image
                   src="/logo1_1920x1080.svg"
                   alt="Lumi Beta Works | Vendor IT & Website Perusahaan"
-                  width={360}
-                  height={180}
+                  width={1920}
+                  height={1080}
                   className="w-full h-auto object-contain drop-shadow-[0_4px_20px_rgba(45,217,164,0.12)]"
                   priority
                 />

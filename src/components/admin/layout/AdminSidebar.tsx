@@ -103,8 +103,8 @@ export default function AdminSidebar({ onClose }: AdminSidebarProps) {
           <Image
             src="/logo3_1920x1080.svg"
             alt="Lumi Beta Works"
-            width={130}
-            height={44}
+            width={1920}
+            height={1080}
             className="h-8 w-auto object-contain"
             priority
           />

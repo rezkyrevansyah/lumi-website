@@ -39,8 +39,8 @@ export default async function Footer() {
               <Image
                 src="/logo1_white_1920x1080.svg"
                 alt="Lumi Beta Works"
-                width={160}
-                height={54}
+                width={1920}
+                height={1080}
                 className="h-10 md:h-12 w-auto object-contain"
               />
             </div>

@@ -43,8 +43,8 @@ export default function AdminLoginPage() {
           <Image
             src="/logo3_1920x1080.svg"
             alt="Lumi Beta Works"
-            width={160}
-            height={54}
+            width={1920}
+            height={1080}
             className="h-10 w-auto object-contain"
             priority
           />

@@ -121,10 +121,11 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             alt="Lumi Beta Works"
             className="sm-logo-img hover:opacity-90 transition-opacity"
             draggable={false}
-            width={140}
-            height={40}
+            width={1920}
+            height={1080}
             style={{ width: "auto", height: 40 }}
             unoptimized
+            priority
           />
         </Link>
         <button
