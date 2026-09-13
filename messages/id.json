@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "Lumi Beta Works — Software House & Partner Rekayasa Digital",
-    "description": "Lumi Beta Works membantu UMKM hingga enterprise membangun website dan aplikasi cepat, skalabel, dan tepat sasaran."
+    "title": "Lumi Beta Works | Software House & Partner Rekayasa Digital",
+    "description": "Software house terpercaya untuk UMKM hingga enterprise. Kami membangun website cepat, aplikasi skalabel, dan sistem kustom yang tepat sasaran."
   },
   "Nav": {
     "about": "About",
@@ -118,6 +118,8 @@
     "categoryQa": "QA Engineering"
   },
   "PortfolioPage": {
+    "metaTitle": "Portofolio Proyek & Hasil Karya",
+    "metaDescription": "Lihat hasil nyata pengerjaan website, aplikasi kustom, UI/UX design, dan pengujian QA dari klien Lumi Beta Works.",
     "breadcrumbHome": "Beranda",
     "breadcrumbCurrent": "Portofolio",
     "eyebrow": "Karya & Hasil Kerja",
@@ -141,14 +143,19 @@
     "cta": "Mulai Project Sekarang"
   },
   "Footer": {
-    "followUs": "Ikuti Kami",
+    "tagline": "Software house dan partner rekayasa digital untuk UMKM hingga enterprise. Tempat ide diuji dan dibangun menjadi produk nyata.",
+    "status": "Menerima Project Baru",
+    "navHeading": "Navigasi",
+    "contactHeading": "Hubungi Kami",
+    "coverage": "Melayani Klien Seluruh Indonesia",
     "waLabel": "WhatsApp",
     "emailLabel": "Email",
-    "copyright": "© {year} Lumi Beta Works. Semua hak cipta dilindungi.",
-    "navHeading": "Navigasi",
-    "contactHeading": "Kontak"
+    "copyright": "© {year} Lumi Beta Works. Hak cipta dilindungi undang-undang.",
+    "badgeOrigin": "Software House & Digital Partner · Indonesia"
   },
   "Pricelist": {
+    "metaTitle": "Daftar Harga & Paket Pembuatan Website",
+    "metaDescription": "Pilihan paket investasi transparan mulai dari Landing Page cepat Rp 300rb hingga aplikasi kustom skala enterprise.",
     "eyebrow": "Transparan & Fleksibel",
     "title": "Paket & Harga",
     "subtitle": "Mulai dari kebutuhan simpel sampai proyek custom skala penuh.",
@@ -157,6 +164,8 @@
     "ctaGeneric": "Hubungi Kami"
   },
   "ServicesPage": {
+    "metaTitle": "Layanan Rekayasa Digital & Software Development",
+    "metaDescription": "Layanan Web & App Development, UI/UX Design, QA Testing, dan Konsultasi Arsitektur berbasis teknologi modern.",
     "breadcrumbHome": "Beranda",
     "breadcrumbCurrent": "Services",
     "eyebrow": "Layanan Kami",
@@ -191,6 +200,8 @@
     "ctaWa": "Konsultasi di WhatsApp"
   },
   "AboutPage": {
+    "metaTitle": "Tentang Lumi Beta Works | Tempat Ide Menjadi Produk Nyata",
+    "metaDescription": "Mengenal asal mula, filosofi brand, dan komitmen Lumi Beta Works dalam mendampingi transformasi digital UMKM dan korporasi.",
     "breadcrumbHome": "Beranda",
     "breadcrumbCurrent": "About",
     "eyebrow": "Tentang Kami",

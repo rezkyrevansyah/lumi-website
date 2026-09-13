@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "Lumi Beta Works — Software House & Digital Engineering Partner",
-    "description": "Lumi Beta Works helps businesses of every size build fast, scalable websites and apps that hit the mark."
+    "title": "Lumi Beta Works | Software House & Digital Engineering Partner",
+    "description": "Trusted software house helping MSMEs to enterprises build fast, scalable websites, apps, and tailored digital systems."
   },
   "Nav": {
     "about": "About",
@@ -118,6 +118,8 @@
     "categoryQa": "QA Engineering"
   },
   "PortfolioPage": {
+    "metaTitle": "Project Portfolio & Case Studies",
+    "metaDescription": "Explore real-world web applications, mobile UI/UX designs, and QA testing projects delivered by Lumi Beta Works.",
     "breadcrumbHome": "Home",
     "breadcrumbCurrent": "Portfolio",
     "eyebrow": "Our Work",
@@ -141,14 +143,19 @@
     "cta": "Start Your Project"
   },
   "Footer": {
-    "followUs": "Follow Us",
+    "tagline": "Software house and digital engineering partner from MSMEs to enterprise. Where ideas are tested and built into real products.",
+    "status": "Available for New Projects",
+    "navHeading": "Navigation",
+    "contactHeading": "Contact Us",
+    "coverage": "Serving Clients Nationwide & Remote",
     "waLabel": "WhatsApp",
     "emailLabel": "Email",
     "copyright": "© {year} Lumi Beta Works. All rights reserved.",
-    "navHeading": "Navigation",
-    "contactHeading": "Contact"
+    "badgeOrigin": "Software House & Digital Partner · Indonesia"
   },
   "Pricelist": {
+    "metaTitle": "Packages & Pricing for Web Development",
+    "metaDescription": "Transparent pricing tiers from fast landing pages for MSMEs to custom enterprise systems.",
     "eyebrow": "Transparent & Flexible",
     "title": "Packages & Pricing",
     "subtitle": "From simple needs to full custom projects.",
@@ -157,6 +164,8 @@
     "ctaGeneric": "Contact Us"
   },
   "ServicesPage": {
+    "metaTitle": "Digital Engineering & Software Development Services",
+    "metaDescription": "High-performance Web & App Development, UI/UX Design, QA Testing, and Technical Architecture solutions.",
     "breadcrumbHome": "Home",
     "breadcrumbCurrent": "Services",
     "eyebrow": "Our Services",
@@ -191,6 +200,8 @@
     "ctaWa": "Chat on WhatsApp"
   },
   "AboutPage": {
+    "metaTitle": "About Lumi Beta Works | Where Ideas Become Products",
+    "metaDescription": "Discover the brand philosophy, track record, and engineering commitment of Lumi Beta Works for businesses of all sizes.",
     "breadcrumbHome": "Home",
     "breadcrumbCurrent": "About",
     "eyebrow": "About Us",
