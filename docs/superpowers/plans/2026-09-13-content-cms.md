@@ -3272,7 +3272,7 @@ Using the Playwright MCP browser tool: start `npm run dev`. Check, at both 1440p
 - Homepage: every section renders with correct text and correct structured content (portfolio grid, pricing cards, tech stack groups + certifications, testimonials columns, trusted-by marquee).
 - `/pricelist` (both locales): correct tier breakdown.
 - `/portfolio`, `/services`, `/about` (both locales): still render (these pages' own content, if any comes from `translations`, should be unaffected since Task 5 already covers all namespaces).
-- `/admin`: log in, visit every sidebar link (Teks Statis, Portfolio, Paket & Harga, Tech Stack, Sertifikasi, Client Logo, Testimoni) and confirm each renders its list without errors.
+- `/admin`: log in, visit every sidebar link (Teks Statis, Portfolio, Paket & Harga, Teknologi, Sertifikasi, Logo Klien, Testimoni) and confirm each renders its list without errors.
 - Make one live edit in each of the 7 admin sections and confirm the change appears on the public site within a page reload (proves `updateTag` wiring end-to-end for every entity), then revert each edit back to its original value.
 
 Stop the dev server after.
