@@ -166,15 +166,21 @@ export default async function LocaleLayout({ children, params }: Props) {
   };
 
   return (
-    <html lang={locale} className="scroll-smooth">
+    <html lang={locale} className="scroll-smooth motion-reduce:scroll-auto">
       <body className={`${bricolage.variable} ${jakarta.variable} min-h-screen bg-background font-sans text-text-primary antialiased`}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-xl focus:bg-accent-700 focus:px-4 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-accent-500"
+        >
+          {locale === "en" ? "Skip to main content" : "Lewati ke konten utama"}
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <NextIntlClientProvider>
           <Navbar />
-          <main className="pt-20">{children}</main>
+          <main id="main-content" className="pt-20">{children}</main>
           <Footer />
         </NextIntlClientProvider>
         {GA_ID && <GoogleAnalytics gaId={GA_ID} />}

@@ -19,10 +19,10 @@ export function FinalCta() {
           />
 
           <div className="relative z-10 mx-auto max-w-2xl space-y-4">
-            <h2 className="font-display text-3xl font-bold text-text-primary sm:text-4xl lg:text-5xl">
+            <h2 className="font-display text-3xl font-bold text-text-primary text-balance sm:text-4xl lg:text-5xl">
               {t("title")}
             </h2>
-            <p className="mx-auto max-w-xl text-base text-text-secondary md:text-lg">
+            <p className="mx-auto max-w-xl text-base text-text-secondary text-pretty leading-relaxed md:text-lg">
               {t("subtitle")}
             </p>
             <div className="pt-4 flex justify-center">

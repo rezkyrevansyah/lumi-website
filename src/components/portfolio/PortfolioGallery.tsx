@@ -60,7 +60,7 @@ export function PortfolioGallery({ items, labels }: PortfolioGalleryProps) {
               key={tab.key}
               type="button"
               onClick={() => setActiveTab(tab.key)}
-              className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus-ring)] ${
+              className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus-ring)] ${
                 isActive
                   ? "bg-cta-solid text-white shadow-sm"
                   : "border border-border/80 bg-white text-text-secondary hover:border-zinc-300 hover:bg-background-subtle hover:text-text-primary"
@@ -68,7 +68,7 @@ export function PortfolioGallery({ items, labels }: PortfolioGalleryProps) {
             >
               <span>{tab.label}</span>
               <span
-                className={`rounded-full px-2 py-0.5 text-xs font-bold leading-none ${
+                className={`rounded-full px-2 py-0.5 text-xs font-bold leading-none tabular-nums ${
                   isActive ? "bg-white/20 text-white" : "bg-zinc-100 text-text-muted"
                 }`}
               >

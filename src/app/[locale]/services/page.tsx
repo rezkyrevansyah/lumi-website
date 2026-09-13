@@ -116,10 +116,10 @@ export default async function ServicesPage({ params }: Props) {
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="font-display text-xl font-bold text-text-primary transition-colors group-hover:text-accent-800">
+                  <h3 className="font-display text-xl font-bold text-text-primary text-balance transition-colors group-hover:text-accent-800">
                     {service.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-text-secondary">
+                  <p className="text-sm leading-relaxed text-text-secondary text-pretty">
                     {service.description}
                   </p>
                 </div>
@@ -172,13 +172,13 @@ export default async function ServicesPage({ params }: Props) {
                 className="relative flex flex-col justify-between rounded-2xl border border-zinc-200/70 bg-white p-6 shadow-xs"
               >
                 <div className="space-y-3">
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-accent-50 text-sm font-bold text-accent-800">
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-accent-50 text-sm font-bold text-accent-800 tabular-nums">
                     0{idx + 1}
                   </span>
-                  <h4 className="font-display text-base font-bold text-text-primary">
+                  <h4 className="font-display text-base font-bold text-text-primary text-balance">
                     {step.title}
                   </h4>
-                  <p className="text-xs leading-relaxed text-text-secondary">
+                  <p className="text-xs leading-relaxed text-text-secondary text-pretty">
                     {step.desc}
                   </p>
                 </div>
@@ -190,10 +190,10 @@ export default async function ServicesPage({ params }: Props) {
         {/* Bottom CTA */}
         <div className="rounded-3xl border border-zinc-200 bg-white p-8 text-center shadow-sm sm:p-12">
           <div className="mx-auto max-w-xl space-y-4">
-            <h3 className="font-display text-2xl font-bold text-text-primary sm:text-3xl">
+            <h3 className="font-display text-2xl font-bold text-text-primary text-balance sm:text-3xl">
               {t("ctaTitle")}
             </h3>
-            <p className="text-sm leading-relaxed text-text-secondary md:text-base">
+            <p className="text-sm leading-relaxed text-text-secondary text-pretty md:text-base">
               {t("ctaSubtitle")}
             </p>
             <div className="flex flex-col items-center justify-center gap-4 pt-4 sm:flex-row">

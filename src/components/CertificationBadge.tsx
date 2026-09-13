@@ -15,7 +15,7 @@ export function CertificationCard({ certification }: CertificationCardProps) {
   const { logo, alt } = certification;
 
   return (
-    <div className="group relative flex h-28 sm:h-36 w-full items-center justify-center rounded-2xl border border-border/80 bg-white p-6 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-accent-500/40 hover:shadow-card-hover select-none">
+    <div className="group relative flex h-28 sm:h-36 w-full items-center justify-center rounded-2xl border border-border/80 bg-white p-6 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-accent-500/40 hover:shadow-card-hover">
       <div className="relative h-14 sm:h-18 w-full max-w-[200px]">
         <Image
           src={logo}

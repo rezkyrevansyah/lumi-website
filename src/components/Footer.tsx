@@ -31,8 +31,8 @@ export function Footer() {
             {t("tagline")}
           </p>
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-700">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative flex h-2 w-2" aria-hidden="true">
+              <span className="absolute inline-flex h-full w-full animate-ping motion-reduce:animate-none rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
             </span>
             <span>{t("status")}</span>
@@ -46,16 +46,28 @@ export function Footer() {
               {t("navHeading")}
             </h3>
             <nav className="flex flex-col gap-2.5 text-sm text-text-secondary">
-              <Link href="/portfolio" className="transition-colors hover:text-text-primary">
+              <Link
+                href="/portfolio"
+                className="w-fit rounded-md transition-colors hover:text-text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus-ring)]"
+              >
                 {nav("portfolio")}
               </Link>
-              <Link href="/services" className="transition-colors hover:text-text-primary">
+              <Link
+                href="/services"
+                className="w-fit rounded-md transition-colors hover:text-text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus-ring)]"
+              >
                 {nav("services")}
               </Link>
-              <Link href="/pricelist" className="transition-colors hover:text-text-primary">
+              <Link
+                href="/pricelist"
+                className="w-fit rounded-md transition-colors hover:text-text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus-ring)]"
+              >
                 {nav("pricelist")}
               </Link>
-              <Link href="/about" className="transition-colors hover:text-text-primary">
+              <Link
+                href="/about"
+                className="w-fit rounded-md transition-colors hover:text-text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus-ring)]"
+              >
                 {nav("about")}
               </Link>
             </nav>
@@ -70,14 +82,15 @@ export function Footer() {
                 href={buildWaLink(FOOTER_WA_MESSAGE)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 transition-colors hover:text-text-primary"
+                className="inline-flex w-fit items-center gap-2 rounded-md transition-colors hover:text-text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus-ring)]"
               >
                 <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
                 <span className="font-medium">+62 812-8395-0403</span>
+                <span className="sr-only"> (opens in new tab)</span>
               </a>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                className="inline-flex items-center gap-2 transition-colors hover:text-text-primary"
+                className="inline-flex w-fit items-center gap-2 rounded-md transition-colors hover:text-text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus-ring)]"
               >
                 <Mail className="h-4 w-4 text-accent-500" aria-hidden="true" />
                 <span>{CONTACT_EMAIL}</span>
@@ -90,10 +103,10 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar - Rata kiri kanan */}
+      {/* Bottom bar */}
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-5 text-xs text-text-muted sm:flex-row lg:px-12">
-          <div>{t("copyright", { year })}</div>
+          <div className="tabular-nums">{t("copyright", { year })}</div>
           <div>{t("badgeOrigin")}</div>
         </div>
       </div>

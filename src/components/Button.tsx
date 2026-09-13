@@ -29,7 +29,7 @@ const VARIANT_CLASSES: Record<NonNullable<ButtonProps["variant"]>, string> = {
 };
 
 const BASE_CLASSES =
-  "inline-flex h-11 min-h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full px-6 text-[15px] font-semibold transition-all duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus-ring)]";
+  "inline-flex h-11 min-h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full px-6 text-[15px] font-semibold transition-all duration-150 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-focus-ring)]";
 
 export function Button({
   href,
@@ -47,6 +47,7 @@ export function Button({
       {icon && iconPosition === "start" && icon}
       <span>{children}</span>
       {icon && iconPosition === "end" && icon}
+      {external && <span className="sr-only"> (opens in new tab)</span>}
     </>
   );
 

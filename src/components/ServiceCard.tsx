@@ -9,7 +9,7 @@ interface ServiceCardProps {
 
 export function ServiceCard({ icon: Icon, title, description }: ServiceCardProps) {
   return (
-    <div className="group relative flex flex-col justify-between rounded-2xl border border-zinc-200/80 bg-white p-7 shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:border-accent-500/35 hover:shadow-card-hover select-none">
+    <div className="group relative flex flex-col justify-between rounded-2xl border border-zinc-200/80 bg-white p-7 shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:border-accent-500/35 hover:shadow-card-hover">
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-50 text-accent-800 transition-all duration-300 group-hover:scale-105 group-hover:bg-accent-500 group-hover:text-white">
@@ -24,7 +24,7 @@ export function ServiceCard({ icon: Icon, title, description }: ServiceCardProps
           <h3 className="font-display text-lg font-bold text-text-primary transition-colors group-hover:text-accent-800">
             {title}
           </h3>
-          <p className="text-sm leading-relaxed text-text-secondary">
+          <p className="text-sm leading-relaxed text-text-secondary text-pretty">
             {description}
           </p>
         </div>

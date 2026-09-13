@@ -1,7 +1,14 @@
 import { eq } from "drizzle-orm";
 import { db } from "@/db";
 import { translations } from "@/db/schema";
-import { TranslationForm } from "@/components/admin/translations/TranslationForm";
+import {
+  TRANSLATION_REGISTRY,
+  sortTranslationRows,
+  NamespaceMeta,
+} from "@/lib/content/translation-registry";
+import { TranslationNamespaceList } from "@/components/admin/translations/TranslationNamespaceList";
+
+export const dynamic = "force-dynamic";
 
 export default async function NamespaceTranslationsPage({
   params,
@@ -9,20 +16,29 @@ export default async function NamespaceTranslationsPage({
   params: Promise<{ namespace: string }>;
 }) {
   const { namespace } = await params;
-  const rows = await db
+  const rawRows = await db
     .select()
     .from(translations)
-    .where(eq(translations.namespace, namespace))
-    .orderBy(translations.key);
+    .where(eq(translations.namespace, namespace));
+
+  const sortedRows = sortTranslationRows(namespace, rawRows);
+
+  const meta: NamespaceMeta = TRANSLATION_REGISTRY[namespace] || {
+    namespace,
+    label: namespace,
+    desc: "Pengaturan teks untuk bagian ini.",
+    category: "pages",
+    categoryLabel: "Bagian Lainnya",
+    livePath: "/",
+    keysOrder: [],
+    keyMeta: {},
+  };
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold text-zinc-900">{namespace}</h1>
-      <div className="mt-6 space-y-4">
-        {rows.map((row) => (
-          <TranslationForm key={row.id} row={row} />
-        ))}
-      </div>
-    </div>
+    <TranslationNamespaceList
+      namespace={namespace}
+      rows={sortedRows}
+      meta={meta}
+    />
   );
 }

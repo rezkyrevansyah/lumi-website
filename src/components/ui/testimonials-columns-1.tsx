@@ -19,7 +19,7 @@ export const TestimonialsColumn = (props: {
   return (
     <div className={props.className}>
       <div
-        className="flex flex-col gap-6 pb-6 select-none animate-scroll-vertical group-hover:[animation-play-state:paused] [will-change:transform]"
+        className="flex flex-col gap-6 pb-6 animate-scroll-vertical group-hover:[animation-play-state:paused] [will-change:transform]"
         style={
           {
             "--scroll-duration": `${props.duration || 24}s`,

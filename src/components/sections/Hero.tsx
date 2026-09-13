@@ -22,15 +22,15 @@ export function Hero() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
         <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
           <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-emerald-200/80 bg-white px-4 py-1.5 shadow-[0_1px_8px_rgba(16,185,129,0.08)]">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-accent-500" />
+            <span className="h-2 w-2 animate-pulse motion-reduce:animate-none rounded-full bg-accent-500" aria-hidden="true" />
             <span className="text-xs font-semibold tracking-wide text-zinc-700">{t("badge")}</span>
           </div>
 
-          <h1 className="max-w-4xl font-display text-4xl font-extrabold leading-[1.15] tracking-tight text-text-primary sm:text-5xl lg:text-6xl">
+          <h1 className="max-w-4xl font-display text-4xl font-extrabold leading-[1.15] tracking-tight text-text-primary text-balance sm:text-5xl lg:text-6xl">
             {t("title")}
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-text-secondary md:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-text-secondary text-pretty md:text-xl">
             {t("subtitle")}
           </p>
 

@@ -23,16 +23,16 @@ export function SectionHeader({
   return (
     <div className={`flex flex-col gap-3 ${alignClasses} ${className}`}>
       {eyebrow && (
-        <div className="inline-flex items-center gap-2 rounded-full bg-accent-50 px-3.5 py-1 text-xs font-semibold text-accent-800">
+        <div className="inline-flex items-center gap-2 rounded-full border border-accent-500/20 bg-accent-50 px-3.5 py-1 text-xs font-semibold text-accent-800 shadow-2xs">
           {icon}
           <span>{eyebrow}</span>
         </div>
       )}
-      <h2 className="font-display text-3xl font-bold leading-tight text-text-primary sm:text-4xl lg:text-5xl">
+      <h2 className="font-display text-3xl font-bold leading-tight text-text-primary text-balance sm:text-4xl lg:text-5xl">
         {title}
       </h2>
       {subtitle && (
-        <p className="measure-paragraph text-base text-text-secondary md:text-lg">
+        <p className="measure-paragraph text-base leading-relaxed text-text-secondary text-pretty md:text-lg">
           {subtitle}
         </p>
       )}

@@ -134,13 +134,13 @@ export default async function AboutPage({ params }: Props) {
                   <span className="inline-flex items-center rounded-full bg-accent-50 px-3 py-0.5 text-xs font-semibold text-accent-800">
                     {t("storyBadge")}
                   </span>
-                  <h3 className="font-display text-2xl font-bold text-text-primary sm:text-3xl">
+                  <h3 className="font-display text-2xl font-bold text-text-primary text-balance sm:text-3xl">
                     {t("storyTitle")}
                   </h3>
                 </div>
               </div>
 
-              <div className="space-y-4 text-base leading-relaxed text-text-secondary">
+              <div className="space-y-4 text-base leading-relaxed text-text-secondary text-pretty">
                 <p>{t("storyP1")}</p>
                 <p>{t("storyP2")}</p>
               </div>
@@ -168,7 +168,7 @@ export default async function AboutPage({ params }: Props) {
                   <h4 className="font-display text-lg font-bold text-text-primary">
                     {p.word}
                   </h4>
-                  <p className="text-sm leading-relaxed text-text-secondary">
+                  <p className="text-sm leading-relaxed text-text-secondary text-pretty">
                     {p.desc}
                   </p>
                 </div>
@@ -197,7 +197,7 @@ export default async function AboutPage({ params }: Props) {
                     <h4 className="font-display text-lg font-bold text-text-primary transition-colors group-hover:text-accent-800">
                       {val.title}
                     </h4>
-                    <p className="text-sm leading-relaxed text-text-secondary">
+                    <p className="text-sm leading-relaxed text-text-secondary text-pretty">
                       {val.desc}
                     </p>
                   </div>
@@ -211,7 +211,7 @@ export default async function AboutPage({ params }: Props) {
         <div className="rounded-3xl border border-zinc-200/80 bg-background-subtle p-8 sm:p-12">
           <div className="grid grid-cols-2 gap-8 text-center sm:grid-cols-4">
             <div className="space-y-1">
-              <div className="font-display text-3xl font-extrabold text-text-primary sm:text-4xl">
+              <div className="font-display text-3xl font-extrabold tabular-nums text-text-primary sm:text-4xl">
                 <RollingNumber value={36} />+
               </div>
               <p className="text-xs font-medium text-text-secondary sm:text-sm">
@@ -219,7 +219,7 @@ export default async function AboutPage({ params }: Props) {
               </p>
             </div>
             <div className="space-y-1">
-              <div className="font-display text-3xl font-extrabold text-text-primary sm:text-4xl">
+              <div className="font-display text-3xl font-extrabold tabular-nums text-text-primary sm:text-4xl">
                 <RollingNumber value={24} />+
               </div>
               <p className="text-xs font-medium text-text-secondary sm:text-sm">
@@ -227,7 +227,7 @@ export default async function AboutPage({ params }: Props) {
               </p>
             </div>
             <div className="space-y-1">
-              <div className="font-display text-3xl font-extrabold text-text-primary sm:text-4xl">
+              <div className="font-display text-3xl font-extrabold tabular-nums text-text-primary sm:text-4xl">
                 <RollingNumber value={13} />+
               </div>
               <p className="text-xs font-medium text-text-secondary sm:text-sm">
@@ -235,7 +235,7 @@ export default async function AboutPage({ params }: Props) {
               </p>
             </div>
             <div className="space-y-1">
-              <div className="inline-flex items-center justify-center gap-1 font-display text-3xl font-extrabold text-text-primary sm:text-4xl">
+              <div className="inline-flex items-center justify-center gap-1 font-display text-3xl font-extrabold tabular-nums text-text-primary sm:text-4xl">
                 <RollingNumber value={5} decimals={1} />
                 <Star className="h-5 w-5 fill-amber-400 text-amber-400" />
               </div>
@@ -249,10 +249,10 @@ export default async function AboutPage({ params }: Props) {
         {/* Bottom CTA */}
         <div className="rounded-3xl border border-zinc-200 bg-white p-8 text-center shadow-sm sm:p-12">
           <div className="mx-auto max-w-xl space-y-4">
-            <h3 className="font-display text-2xl font-bold text-text-primary sm:text-3xl">
+            <h3 className="font-display text-2xl font-bold text-text-primary text-balance sm:text-3xl">
               {t("ctaTitle")}
             </h3>
-            <p className="text-sm leading-relaxed text-text-secondary md:text-base">
+            <p className="text-sm leading-relaxed text-text-secondary text-pretty md:text-base">
               {t("ctaSubtitle")}
             </p>
             <div className="pt-4 flex justify-center">
