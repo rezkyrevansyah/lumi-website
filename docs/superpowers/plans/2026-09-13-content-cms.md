@@ -2207,7 +2207,7 @@ export default async function AdminTechStackPage() {
   const items = await db.select().from(techStackItems).orderBy(asc(techStackItems.sortOrder));
   return (
     <div>
-      <h1 className="text-2xl font-bold text-zinc-900">Tech Stack</h1>
+      <h1 className="text-2xl font-bold text-zinc-900">Teknologi</h1>
       <TechStackEditor categories={categories} items={items} />
     </div>
   );
