@@ -390,13 +390,13 @@ import Link from "next/link";
 import { logout } from "@/actions/admin/auth";
 
 const NAV = [
-  { href: "/admin", label: "Dashboard" },
+  { href: "/admin", label: "Dasbor" },
   { href: "/admin/translations", label: "Teks Statis" },
   { href: "/admin/portfolio", label: "Portfolio" },
   { href: "/admin/pricing", label: "Paket & Harga" },
-  { href: "/admin/tech-stack", label: "Tech Stack" },
+  { href: "/admin/tech-stack", label: "Teknologi" },
   { href: "/admin/certifications", label: "Sertifikasi" },
-  { href: "/admin/client-logos", label: "Client Logo" },
+  { href: "/admin/client-logos", label: "Logo Klien" },
   { href: "/admin/testimonials", label: "Testimoni" },
 ];
 
@@ -510,7 +510,6 @@ git commit -m "feat(cms): protect /admin via proxy session check, add admin shel
 
 ```ts
 // scripts/seed-translations.ts
-import "dotenv/config";
 import { db } from "../src/db";
 import { translations } from "../src/db/schema";
 import idMessages from "../messages/id.json";
@@ -553,7 +552,7 @@ main().catch((err) => {
 
 Modify `package.json` scripts block:
 ```json
-"db:seed-translations": "tsx scripts/seed-translations.ts"
+"db:seed-translations": "tsx --env-file=.env.local scripts/seed-translations.ts"
 ```
 (if `tsx` isn't already a devDependency, run `npm install -D tsx` first — check `package.json` for it before installing.)
 
@@ -1414,7 +1413,7 @@ export default async function AdminClientLogosPage() {
   const rows = await db.select().from(clientLogos).orderBy(asc(clientLogos.sortOrder));
   return (
     <div>
-      <h1 className="text-2xl font-bold text-zinc-900">Client Logo</h1>
+      <h1 className="text-2xl font-bold text-zinc-900">Logo Klien</h1>
       <ClientLogoList items={rows} />
     </div>
   );
@@ -1455,7 +1454,7 @@ export function ClientLogoFormDialog({ trigger, initial }: Props) {
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/40" />
         <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[92vw] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white p-6 shadow-xl">
           <Dialog.Title className="text-lg font-bold text-zinc-900">
-            {initial ? "Edit Client Logo" : "Client Logo Baru"}
+            {initial ? "Edit Logo Klien" : "Logo Klien Baru"}
           </Dialog.Title>
           <form onSubmit={handleSubmit} className="mt-4 space-y-3">
             <div>
@@ -1514,7 +1513,7 @@ export function ClientLogoList({ items }: { items: Row[] }) {
       <ClientLogoFormDialog
         trigger={
           <button className="rounded-full bg-zinc-900 px-4 py-1.5 text-sm font-semibold text-white">
-            + Tambah Client Logo
+            + Tambah Logo Klien
           </button>
         }
       />
@@ -1553,7 +1552,6 @@ export function ClientLogoList({ items }: { items: Row[] }) {
 
 ```ts
 // scripts/seed-client-logos.ts
-import "dotenv/config";
 import { db } from "../src/db";
 import { clientLogos } from "../src/db/schema";
 import { clientLogos as existingLogos } from "../src/data/clientLogos";
@@ -1574,7 +1572,7 @@ main().catch((err) => {
   process.exit(1);
 });
 ```
-Add `"db:seed-client-logos": "tsx scripts/seed-client-logos.ts"` to `package.json`, run it.
+Add `"db:seed-client-logos": "tsx --env-file=.env.local scripts/seed-client-logos.ts"` to `package.json`, run it.
 
 - [ ] **Step 6: Verify, delete old data file, build/lint/commit**
 
@@ -2044,7 +2042,6 @@ The current `src/data/portfolio.ts` has 18 entries with `title`, `category` (`"w
 
 ```ts
 // scripts/seed-portfolio.ts
-import "dotenv/config";
 import { db } from "../src/db";
 import { portfolioItems } from "../src/db/schema";
 import { portfolioItems as existing } from "../src/data/portfolio";
@@ -2080,7 +2077,7 @@ main().catch((err) => {
   process.exit(1);
 });
 ```
-Add `"db:seed-portfolio": "tsx scripts/seed-portfolio.ts"` to `package.json`, run `npm run db:seed-portfolio`.
+Add `"db:seed-portfolio": "tsx --env-file=.env.local scripts/seed-portfolio.ts"` to `package.json`, run `npm run db:seed-portfolio`.
 
 - [ ] **Step 6: Verify, delete old data file, build/lint/commit**
 
@@ -2341,7 +2338,6 @@ export function TechStackEditor({ categories, items }: { categories: Category[];
 
 ```ts
 // scripts/seed-tech-stack.ts
-import "dotenv/config";
 import { db } from "../src/db";
 import { techStackCategories, techStackItems } from "../src/db/schema";
 import { techStackGroups } from "../src/data/techStack";
@@ -2672,7 +2668,6 @@ export function CertificationList({ items }: { items: Row[] }) {
 
 ```ts
 // scripts/seed-certifications.ts
-import "dotenv/config";
 import { db } from "../src/db";
 import { certifications } from "../src/db/schema";
 import { certifications as existing } from "../src/data/techStack";
@@ -2695,7 +2690,7 @@ main().catch((err) => {
   process.exit(1);
 });
 ```
-Add `"db:seed-certifications": "tsx scripts/seed-certifications.ts"` to `package.json`, run `npm run db:seed-certifications`. This inserts the 4 real current entries: Google, Bangkit Academy, Laskar AI, Dicoding Indonesia.
+Add `"db:seed-certifications": "tsx --env-file=.env.local scripts/seed-certifications.ts"` to `package.json`, run `npm run db:seed-certifications`. This inserts the 4 real current entries: Google, Bangkit Academy, Laskar AI, Dicoding Indonesia.
 
 - [ ] **Step 6: Verify, delete `src/data/techStack.ts`, build/lint/commit**
 
@@ -3114,7 +3109,6 @@ export function PricingTierList({ tiers, features }: { tiers: Tier[]; features: 
 
 ```ts
 // scripts/seed-pricing.ts
-import "dotenv/config";
 import { db } from "../src/db";
 import { pricingTiers, pricingFeatures } from "../src/db/schema";
 import id from "../messages/id.json";
@@ -3227,7 +3221,7 @@ main().catch((err) => {
 });
 ```
 
-Add `"db:seed-pricing": "tsx scripts/seed-pricing.ts"` to `package.json`, run `npm run db:seed-pricing`. After confirming it worked (Step 7 below), the migrated keys (`landingName`, `landingLabel`, `landingFeature1`...`enterpriseFeature4`, etc.) are left in place as harmless orphan rows in the `Pricing` namespace of `translations` — no cleanup query needed; `eyebrow`, `title`, `subtitle`, and `viewAll` in that same namespace stay in active use for the section header.
+Add `"db:seed-pricing": "tsx --env-file=.env.local scripts/seed-pricing.ts"` to `package.json`, run `npm run db:seed-pricing`. After confirming it worked (Step 7 below), the migrated keys (`landingName`, `landingLabel`, `landingFeature1`...`enterpriseFeature4`, etc.) are left in place as harmless orphan rows in the `Pricing` namespace of `translations` — no cleanup query needed; `eyebrow`, `title`, `subtitle`, and `viewAll` in that same namespace stay in active use for the section header.
 
 - [ ] **Step 7: Verify, delete old data file, build/lint/commit**
 
