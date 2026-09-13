@@ -1825,9 +1825,9 @@ import { Dialog } from "radix-ui";
 import { createPortfolioItem, updatePortfolioItem, type PortfolioInput } from "@/actions/admin/portfolio";
 
 const CATEGORIES = [
-  { value: "web-app", label: "Web & App Development" },
-  { value: "uiux", label: "UI/UX Design" },
-  { value: "qa", label: "QA Engineering" },
+  { value: "web-app", label: "Pengembangan Web & Aplikasi" },
+  { value: "uiux", label: "Desain UI/UX" },
+  { value: "qa", label: "Rekayasa QA" },
 ] as const;
 
 interface Props {
@@ -1881,7 +1881,7 @@ export function PortfolioFormDialog({ trigger, initial }: Props) {
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs font-semibold text-zinc-500">Title (EN)</label>
+                <label className="mb-1 block text-xs font-semibold text-zinc-500">Judul (EN)</label>
                 <input
                   value={form.titleEn}
                   onChange={(e) => setForm({ ...form, titleEn: e.target.value })}
@@ -1902,7 +1902,7 @@ export function PortfolioFormDialog({ trigger, initial }: Props) {
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs font-semibold text-zinc-500">Description (EN)</label>
+                <label className="mb-1 block text-xs font-semibold text-zinc-500">Deskripsi (EN)</label>
                 <textarea
                   value={form.descriptionEn}
                   onChange={(e) => setForm({ ...form, descriptionEn: e.target.value })}
@@ -2007,7 +2007,7 @@ export function PortfolioList({ items }: { items: Row[] }) {
             <div>
               <div className="font-semibold text-zinc-900">
                 {item.titleId}
-                {item.featured && <span className="ml-2 text-xs text-accent-700">★ featured</span>}
+                {item.featured && <span className="ml-2 text-xs text-accent-700">★ unggulan</span>}
                 {!item.isPublished && <span className="ml-2 text-xs text-red-500">(disembunyikan)</span>}
               </div>
               <div className="text-xs text-zinc-500">{item.category} — {item.imagePath}</div>
