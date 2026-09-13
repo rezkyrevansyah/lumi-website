@@ -15,7 +15,8 @@
     "db:seed-client-logos": "tsx --env-file=.env.local scripts/seed-client-logos.ts",
     "db:seed-portfolio": "tsx --env-file=.env.local scripts/seed-portfolio.ts",
     "db:seed-tech-stack": "tsx --env-file=.env.local scripts/seed-tech-stack.ts",
-    "db:seed-certifications": "tsx --env-file=.env.local scripts/seed-certifications.ts"
+    "db:seed-certifications": "tsx --env-file=.env.local scripts/seed-certifications.ts",
+    "db:seed-pricing": "tsx --env-file=.env.local scripts/seed-pricing.ts"
   },
   "dependencies": {
     "@next/third-parties": "^16.3.5",

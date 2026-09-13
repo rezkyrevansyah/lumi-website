@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { SectionHeader } from "@/components/SectionHeader";
 import { PricingCard } from "@/components/PricingCard";
 import { buildWaLink } from "@/lib/whatsapp";
+import { getPricingTiers } from "@/lib/content/pricing";
 
 type Props = PageProps<"/[locale]/pricelist">;
 
@@ -23,28 +24,7 @@ export default async function PricelistPage({ params }: Props) {
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: "Pricelist" });
-  const tPricing = await getTranslations({ locale, namespace: "Pricing" });
-
-  const landingFeatures = [
-    tPricing("landingFeature1"),
-    tPricing("landingFeature2"),
-    tPricing("landingFeature3"),
-    tPricing("landingFeature4"),
-    tPricing("landingFeature5"),
-  ];
-  const customFeatures = [
-    tPricing("customFeature1"),
-    tPricing("customFeature2"),
-    tPricing("customFeature3"),
-    tPricing("customFeature4"),
-    tPricing("customFeature5"),
-  ];
-  const enterpriseFeatures = [
-    tPricing("enterpriseFeature1"),
-    tPricing("enterpriseFeature2"),
-    tPricing("enterpriseFeature3"),
-    tPricing("enterpriseFeature4"),
-  ];
+  const tiers = await getPricingTiers(locale as "id" | "en");
 
   return (
     <section className="w-full bg-background py-16 lg:py-24">
@@ -60,51 +40,31 @@ export default async function PricelistPage({ params }: Props) {
         <SectionHeader eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} />
 
         <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-3">
-          <PricingCard
-            highlighted
-            badge={tPricing("landingBadge")}
-            label={tPricing("landingLabel")}
-            name={tPricing("landingName")}
-            pricePrefix={tPricing("landingPricePrefix")}
-            price={tPricing("landingPrice")}
-            tagline={tPricing("landingTagline")}
-            features={landingFeatures}
-            ctaLabel={t("ctaGeneric")}
-            ctaVariant="secondary"
-            ctaHref={buildWaLink(
-              "Halo Lumi Beta Works, saya lihat halaman pricelist dan tertarik dengan paket Landing Page. Boleh dibantu?"
-            )}
-            trackSection="pricelist"
-          />
-          <PricingCard
-            label={tPricing("customLabel")}
-            name={tPricing("customName")}
-            pricePrefix={tPricing("customPricePrefix")}
-            price={tPricing("customPrice")}
-            tagline={tPricing("customTagline")}
-            features={customFeatures}
-            ctaLabel={t("ctaGeneric")}
-            ctaHref={buildWaLink(
-              "Halo Lumi Beta Works, saya lihat halaman pricelist dan tertarik dengan paket Custom Website/App. Boleh dibantu?"
-            )}
-            trackSection="pricelist"
-          />
-          <PricingCard
-            label={tPricing("enterpriseLabel")}
-            name={tPricing("enterpriseName")}
-            pricePrefix={tPricing("enterprisePricePrefix")}
-            price={tPricing("enterprisePrice")}
-            tagline={tPricing("enterpriseTagline")}
-            features={enterpriseFeatures}
-            ctaLabel={t("ctaGeneric")}
-            ctaVariant="outline"
-            ctaHref={buildWaLink(
-              "Halo Lumi Beta Works, saya lihat halaman pricelist dan tertarik dengan paket Enterprise. Boleh dibantu?"
-            )}
-            trackSection="pricelist"
-          />
+          {tiers.map((tier) => (
+            <PricingCard
+              key={tier.key}
+              highlighted={tier.highlighted}
+              badge={tier.badge}
+              label={tier.label}
+              name={tier.name}
+              pricePrefix={tier.pricePrefix}
+              price={tier.price}
+              tagline={tier.tagline}
+              features={tier.features}
+              ctaLabel={t("ctaGeneric")}
+              ctaVariant={tier.ctaVariant}
+              ctaHref={buildWaLink(PRICELIST_WA_MESSAGES[tier.key])}
+              trackSection="pricelist"
+            />
+          ))}
         </div>
       </div>
     </section>
   );
 }
+
+const PRICELIST_WA_MESSAGES: Record<string, string> = {
+  landing: "Halo Lumi Beta Works, saya lihat halaman pricelist dan tertarik dengan paket Landing Page. Boleh dibantu?",
+  custom: "Halo Lumi Beta Works, saya lihat halaman pricelist dan tertarik dengan paket Custom Website/App. Boleh dibantu?",
+  enterprise: "Halo Lumi Beta Works, saya lihat halaman pricelist dan tertarik dengan paket Enterprise. Boleh dibantu?",
+};

@@ -1,33 +1,15 @@
-import { useTranslations } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Wallet, BookOpen } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { PricingCard } from "@/components/PricingCard";
 import { Button } from "@/components/Button";
 import { buildWaLink } from "@/lib/whatsapp";
+import { getPricingTiers } from "@/lib/content/pricing";
 
-export function Pricing() {
-  const t = useTranslations("Pricing");
-
-  const landingFeatures = [
-    t("landingFeature1"),
-    t("landingFeature2"),
-    t("landingFeature3"),
-    t("landingFeature4"),
-    t("landingFeature5"),
-  ];
-  const customFeatures = [
-    t("customFeature1"),
-    t("customFeature2"),
-    t("customFeature3"),
-    t("customFeature4"),
-    t("customFeature5"),
-  ];
-  const enterpriseFeatures = [
-    t("enterpriseFeature1"),
-    t("enterpriseFeature2"),
-    t("enterpriseFeature3"),
-    t("enterpriseFeature4"),
-  ];
+export async function Pricing() {
+  const t = await getTranslations("Pricing");
+  const locale = (await getLocale()) as "id" | "en";
+  const tiers = await getPricingTiers(locale);
 
   return (
     <section id="pricing" className="w-full border-b border-border/60 bg-background-subtle py-24 lg:py-32">
@@ -41,49 +23,23 @@ export function Pricing() {
         />
 
         <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-3">
-          <PricingCard
-            highlighted
-            badge={t("landingBadge")}
-            label={t("landingLabel")}
-            name={t("landingName")}
-            pricePrefix={t("landingPricePrefix")}
-            price={t("landingPrice")}
-            tagline={t("landingTagline")}
-            features={landingFeatures}
-            ctaLabel={t("landingCta")}
-            ctaVariant="secondary"
-            ctaHref={buildWaLink(
-              "Halo Lumi Beta Works, saya mau tanya-tanya soal paket Landing Page Rp 300.000. Boleh dijelaskan detailnya?"
-            )}
-            trackSection="pricing_entry"
-          />
-          <PricingCard
-            label={t("customLabel")}
-            name={t("customName")}
-            pricePrefix={t("customPricePrefix")}
-            price={t("customPrice")}
-            tagline={t("customTagline")}
-            features={customFeatures}
-            ctaLabel={t("customCta")}
-            ctaHref={buildWaLink(
-              "Halo Lumi Beta Works, saya tertarik dengan Paket Bisnis Company Profile & Web App. Bisa berbagi rinciannya?"
-            )}
-            trackSection="pricing_custom"
-          />
-          <PricingCard
-            label={t("enterpriseLabel")}
-            name={t("enterpriseName")}
-            pricePrefix={t("enterprisePricePrefix")}
-            price={t("enterprisePrice")}
-            tagline={t("enterpriseTagline")}
-            features={enterpriseFeatures}
-            ctaLabel={t("enterpriseCta")}
-            ctaVariant="outline"
-            ctaHref={buildWaLink(
-              "Halo Lumi Beta Works, saya tertarik paket custom/enterprise untuk project saya. Bisa dibantu diskusikan lebih lanjut?"
-            )}
-            trackSection="pricing_custom"
-          />
+          {tiers.map((tier) => (
+            <PricingCard
+              key={tier.key}
+              highlighted={tier.highlighted}
+              badge={tier.badge}
+              label={tier.label}
+              name={tier.name}
+              pricePrefix={tier.pricePrefix}
+              price={tier.price}
+              tagline={tier.tagline}
+              features={tier.features}
+              ctaLabel={tier.ctaLabel}
+              ctaVariant={tier.ctaVariant}
+              ctaHref={buildWaLink(WA_MESSAGES[tier.key])}
+              trackSection={tier.key === "landing" ? "pricing_entry" : "pricing_custom"}
+            />
+          ))}
         </div>
 
         <div className="pt-2 text-center">
@@ -100,3 +56,9 @@ export function Pricing() {
     </section>
   );
 }
+
+const WA_MESSAGES: Record<string, string> = {
+  landing: "Halo Lumi Beta Works, saya mau tanya-tanya soal paket Landing Page Rp 300.000. Boleh dijelaskan detailnya?",
+  custom: "Halo Lumi Beta Works, saya tertarik dengan Paket Bisnis Company Profile & Web App. Bisa berbagi rinciannya?",
+  enterprise: "Halo Lumi Beta Works, saya tertarik paket custom/enterprise untuk project saya. Bisa dibantu diskusikan lebih lanjut?",
+};
