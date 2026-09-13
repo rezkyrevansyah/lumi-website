@@ -1,9 +1,10 @@
-export interface ClientLogo {
-  src: string;
-  alt: string;
-}
+import { db } from "../src/db";
+import { clientLogos } from "../src/db/schema";
 
-export const clientLogos: ClientLogo[] = [
+// Snapshot of the formerly-hardcoded src/data/clientLogos.ts content, inlined
+// here so this one-time migration script has no dependency on that file
+// (which Task 9 deletes once the DB-backed section is verified).
+const existingLogos: { src: string; alt: string }[] = [
   { src: "/client-logos/ekraf.webp", alt: "EKRAF" },
   { src: "/client-logos/erafone.webp", alt: "Erafone" },
   { src: "/client-logos/pt-dahana.webp", alt: "PT Dahana" },
@@ -20,3 +21,19 @@ export const clientLogos: ClientLogo[] = [
   { src: "/client-logos/the-textile-map.webp", alt: "The Textile Map" },
   { src: "/client-logos/yoonjae-space-studio.webp", alt: "Yoonjae Space Studio" },
 ];
+
+async function main() {
+  const rows = existingLogos.map((logo, index) => ({
+    imagePath: logo.src,
+    altText: logo.alt,
+    sortOrder: index,
+  }));
+  await db.insert(clientLogos).values(rows);
+  console.log(`Seeded ${rows.length} client logos.`);
+  process.exit(0);
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

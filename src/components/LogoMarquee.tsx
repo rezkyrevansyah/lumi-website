@@ -1,6 +1,10 @@
 import Image from "next/image";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
-import type { ClientLogo } from "@/data/clientLogos";
+
+interface ClientLogo {
+  src: string;
+  alt: string;
+}
 
 export function LogoMarquee({ logos }: { logos: ClientLogo[] }) {
   // Repeating logos ensures each track spans > 4500px, completely covering any screen resolution up to 4K

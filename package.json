@@ -11,7 +11,8 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "db:seed-translations": "tsx --env-file=.env.local scripts/seed-translations.ts",
-    "db:seed-testimonials": "tsx --env-file=.env.local scripts/seed-testimonials.ts"
+    "db:seed-testimonials": "tsx --env-file=.env.local scripts/seed-testimonials.ts",
+    "db:seed-client-logos": "tsx --env-file=.env.local scripts/seed-client-logos.ts"
   },
   "dependencies": {
     "@next/third-parties": "^16.3.5",
