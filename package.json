@@ -13,7 +13,8 @@
     "db:seed-translations": "tsx --env-file=.env.local scripts/seed-translations.ts",
     "db:seed-testimonials": "tsx --env-file=.env.local scripts/seed-testimonials.ts",
     "db:seed-client-logos": "tsx --env-file=.env.local scripts/seed-client-logos.ts",
-    "db:seed-portfolio": "tsx --env-file=.env.local scripts/seed-portfolio.ts"
+    "db:seed-portfolio": "tsx --env-file=.env.local scripts/seed-portfolio.ts",
+    "db:seed-tech-stack": "tsx --env-file=.env.local scripts/seed-tech-stack.ts"
   },
   "dependencies": {
     "@next/third-parties": "^16.3.5",

@@ -1,20 +1,16 @@
-import { useTranslations } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
 import { CodeXml, ShieldCheck } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { TechStackGroupCard } from "@/components/TechStackGroupCard";
 import { CertificationCard } from "@/components/CertificationBadge";
-import { techStackGroups, certifications } from "@/data/techStack";
+import { certifications } from "@/data/techStack";
+import { getTechStackGroups } from "@/lib/content/tech-stack";
 
-export function TechStack() {
-  const t = useTranslations("TechStack");
-  const tCert = useTranslations("Certifications");
-
-  const groupLabels: Record<string, string> = {
-    frontend: t("groupFrontend"),
-    backend: t("groupBackend"),
-    mobileDb: t("groupMobileDb"),
-    cloudDevops: t("groupCloudDevops"),
-  };
+export async function TechStack() {
+  const t = await getTranslations("TechStack");
+  const tCert = await getTranslations("Certifications");
+  const locale = (await getLocale()) as "id" | "en";
+  const groups = await getTechStackGroups(locale);
 
   return (
     <section id="tech-stack" className="w-full border-b border-border/60 bg-background py-24 lg:py-32">
@@ -28,8 +24,8 @@ export function TechStack() {
         />
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {techStackGroups.map((group) => (
-            <TechStackGroupCard key={group.key} title={groupLabels[group.key]} items={group.items} />
+          {groups.map((group) => (
+            <TechStackGroupCard key={group.key} title={group.label} items={group.items} />
           ))}
         </div>
 
