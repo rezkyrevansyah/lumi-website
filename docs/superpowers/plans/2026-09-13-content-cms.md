@@ -2978,7 +2978,7 @@ export function PricingTierFormDialog({ trigger, tierId, initial }: Props) {
                   checked={form.highlighted}
                   onChange={(e) => setForm({ ...form, highlighted: e.target.checked })}
                 />
-                Highlighted
+                Ditonjolkan
               </label>
               <label className="flex items-center gap-2 text-sm">
                 Variant CTA
