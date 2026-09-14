@@ -5,6 +5,6 @@ export const AVATAR_PALETTE = [
 ] as const;
 
 export function getAvatarPalette(name: string) {
-  const code = name.charCodeAt(0) || 0;
+  const code = typeof name === "string" ? name.charCodeAt(0) || 0 : 0;
   return AVATAR_PALETTE[code % AVATAR_PALETTE.length];
 }
