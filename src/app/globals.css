@@ -16,6 +16,12 @@
   --color-accent-700: #047857;
   --color-accent-800: #065f46;
 
+  --color-primary: #10b981;
+  --color-primary-foreground: #ffffff;
+  --color-foreground: #18181b;
+  --color-muted: #f4f4f5;
+  --color-muted-foreground: #71717a;
+
   --color-cta-solid: #18181b;
   --color-cta-solid-hover: #27272a;
 
@@ -44,6 +50,12 @@
   --color-accent-500: var(--color-accent-500);
   --color-accent-700: var(--color-accent-700);
   --color-accent-800: var(--color-accent-800);
+
+  --color-primary: var(--color-primary);
+  --color-primary-foreground: var(--color-primary-foreground);
+  --color-foreground: var(--color-foreground);
+  --color-muted: var(--color-muted);
+  --color-muted-foreground: var(--color-muted-foreground);
 
   --color-cta-solid: var(--color-cta-solid);
   --color-cta-solid-hover: var(--color-cta-solid-hover);

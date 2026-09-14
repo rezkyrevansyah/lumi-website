@@ -15,6 +15,10 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Admin | Lumi Beta Works",
   robots: { index: false, follow: false },
+  icons: {
+    icon: "/logo_lumi_whitebg.png",
+    apple: "/logo_lumi_whitebg.png",
+  },
 };
 
 export default function AdminRootLayout({ children }: { children: React.ReactNode }) {

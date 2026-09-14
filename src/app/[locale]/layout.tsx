@@ -44,8 +44,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     description,
     icons: {
-      icon: "/brand/logo-square.png",
-      apple: "/brand/logo-square.png",
+      icon: "/logo_lumi_whitebg.png",
+      apple: "/logo_lumi_whitebg.png",
     },
     alternates: {
       canonical: locale === "en" ? `${SITE_URL}/en` : SITE_URL,

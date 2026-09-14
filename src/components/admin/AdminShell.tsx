@@ -68,9 +68,8 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       : pathname.startsWith(item.href)
   );
 
-  function NavContent() {
-    return (
-      <div className="flex h-full flex-col justify-between">
+  const navContent = (
+    <div className="flex h-full flex-col justify-between">
         <div className="space-y-6">
           {/* Logo & Brand */}
           <div className="flex items-center gap-3 px-2 py-1">
@@ -163,15 +162,14 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             </button>
           </form>
         </div>
-      </div>
-    );
-  }
+    </div>
+  );
 
   return (
     <div className="flex min-h-screen bg-zinc-50/75 text-zinc-900">
       {/* Desktop Sidebar */}
       <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-zinc-200 bg-white p-5 lg:flex">
-        <NavContent />
+        {navContent}
       </aside>
 
       {/* Mobile Drawer Overlay */}
@@ -194,7 +192,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <NavContent />
+            {navContent}
           </div>
         </div>
       )}
